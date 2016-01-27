@@ -1,0 +1,16 @@
+{
+  "name": "musement",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "author": "musement collective company",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "forever-monitor": "^1.7.0"
+  },
+  "scripts": {
+    "serve": "NODE_PATH=. node server.js",
+    "forever": "NODE_PATH=. forever start server.js"
+  }
+}
