@@ -3,4 +3,4 @@ const app = express()
 
 app.use(express.static('public')) //Folder
 
-app.listen(8080)
+app.listen(80)
