@@ -10,7 +10,7 @@
     "forever-monitor": "^1.7.0"
   },
   "scripts": {
-    "serve": "NODE_PATH=. nodejs server.js",
+    "serve": "NODE_PATH=. node server.js",
     "forever": "NODE_PATH=. forever start server.js"
   }
 }
