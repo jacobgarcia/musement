@@ -11,6 +11,10 @@ const ensureAuth = require('middlewares/auth.js');
 module.exports = function(app,passport){
 // ====================== > HOME PAGE (with login links) =======================
 
+  app.get('/', (req,res) => {
+    res.render('index')
+  });
+  
   app.get('/apply', (req,res) => {
     res.redirect('/apply.html')
   });
