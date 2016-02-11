@@ -20,7 +20,7 @@ module.exports = function(app,passport){
     failureRedirect: '/login' }));
 
     app.get('/login', (req, res) => {
-      res.redirect('/apply.html')
+      res.render('login', { title: 'Hey', message: 'Hello there!'});
     });
 
     app.get('/logout', (req, res) => {
@@ -31,5 +31,4 @@ module.exports = function(app,passport){
     app.get('/welcome', ensureAuth, (req, res) => {
       res.send(`You are welcome ${req.user.username}`)
     });
-
-}
+};

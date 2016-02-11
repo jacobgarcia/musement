@@ -17,8 +17,7 @@ mongoose.connect(configDB.url); //connect database
 require('config/passport')(passport);
 
 app.use(express.static('public')); //Folder
-// app.set('views', __dirname + '/views');
-// app.set('view engine', 'jade');
+app.set('view engine', 'jade');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
