@@ -28,7 +28,9 @@ module.exports = function(app,passport){
       res.redirect('/login')
     });
 
-    app.get('/welcome', ensureAuth, (req, res) => {
-      res.send(`You are welcome ${req.user.username}`)
+    app.get('/home', ensureAuth, (req, res) => {
+      res.render('home', {user: req.user.username})
+
+
     });
 };
