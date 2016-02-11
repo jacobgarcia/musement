@@ -6,8 +6,17 @@
   "author": "musement collective company",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
-    "forever-monitor": "^1.7.0"
+    "express-session": "^1.13.0",
+    "forever-monitor": "^1.7.0",
+    "jade": "^1.11.0",
+    "mongoose": "^4.4.3",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0"
   },
   "scripts": {
     "serve": "NODE_PATH=. node server.js",
