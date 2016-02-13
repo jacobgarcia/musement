@@ -53,7 +53,7 @@ p{
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  padding: 1.5vh 4vh 1.3vh 4vh;
+  padding: 14px 40px 12px 40px;
   text-decoration: none;
 }
 @media (min-width: 850px) {
