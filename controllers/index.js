@@ -14,7 +14,7 @@ module.exports = function(app,passport){
   app.get('/', (req,res) => {
     res.render('index')
   });
-  
+
   app.get('/apply', (req,res) => {
     res.redirect('/apply.html')
   });
@@ -36,5 +36,9 @@ module.exports = function(app,passport){
       res.render('home', {user: req.user.username})
 
 
+    });
+
+    app.get('/signup', (req, res) => {
+      res.render('signup');
     });
 };

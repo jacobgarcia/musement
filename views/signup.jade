@@ -1,0 +1,40 @@
+doctype html
+head
+  meta(charset="utf-8")
+  meta(name='viewport', content='width=device-width, user-scalable=no')
+  title Musement Collective - Sign Up
+  link(rel="stylesheet", href="/static/assets/css/master.css", type='text/css')
+  link(rel="stylesheet", href="/static/assets/css/normalize.css", type='text/css')
+  
+body
+  .container
+    .c1 
+      .signin
+        a(href="/login") Iniciar Sesión
+      figure
+        img(src='/static/assets/img/logo.svg')
+      .message
+        | Registro
+        
+      form.signup(action='/signup', method='post' class)
+        .wrap
+          .icon-username
+          input(type="text", name="user", placeholder="usuario")
+        .wrap
+          .icon-email
+          input(type="email", name="email", placeholder="email") 
+        .wrap.none       
+          .icon-password
+          input(type="password", name="password", placeholder="contraseña")
+        input(type="submit", name="submit", value="Registrarse")
+        
+      .footer
+        | ¿Problemas con tu registro?
+        br 
+        a(href="mailto:hello@musement.co") hello@musement.co 
+          
+    .c2 
+    
+    
+    
+  

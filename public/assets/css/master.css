@@ -1,0 +1,183 @@
+@font-face {
+  font-family: helvetica;
+    src: url('../fonts/Helvetica.otf');
+}
+@font-face {
+    font-family: 'icomoon';
+    src:    url('../fonts/icomoon.eot?x7qbjt');
+    src:    url('../fonts/icomoon.eot?x7qbjt#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?x7qbjt') format('truetype'),
+        url('../fonts/icomoon.woff?x7qbjt') format('woff'),
+        url('../fonts/icomoon.svg?x7qbjt#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+  font-size: 16px;
+  font-family: 'helvetica', sans-serif;
+}
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    color:#FF543F;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container{
+  background-color: #ffffff;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.c1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.c2{
+  display: none;
+}
+.signin a{
+  color: #FF543F;
+  text-decoration: none;
+}
+.signin{
+  font-size: 0.9em;
+  margin-bottom: auto;
+  margin-top: 2vh;
+  margin-left: 2vh;
+  align-self: baseline;
+}
+
+.message{
+  margin: 5vh 0 3vh 0;
+  color: #D3D3D3;
+  font-size: 1.2em;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+input[type=submit]{
+  padding: 0.7vh 3vh 0.7vh 3vh;
+  margin: 2vh 0;
+  background-color: #FF543F;
+  color: white;
+  border: 0px solid #000000;
+  border-radius: 20px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+}
+
+input[type="text"], input[type="email"] {
+  margin: 0;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: none;
+  -moz-border-radius: none;
+  -ms-border-radius: none;
+  -o-border-radius: none;
+  border-radius: none;
+  padding: 15px 10px 15px 10px;
+  border: none;
+  /*-webkit-transition: border 0.3s;
+  -moz-transition: border 0.3s;
+  -o-transition: border 0.3s;
+  transition: border 0.3s;*/
+
+}
+input[type="text"]{
+  padding-left: 19px;
+}
+input[type="password"]{
+  margin-top: 5px;
+  padding: 15px 10px 15px 20px;
+  border: none;
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.footer{
+  font-size: 0.7em;
+  color: #D3D3D3;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 2vh;
+}
+.footer a{
+  color: #D3D3D3;
+  text-decoration: none;
+}
+.wrap{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: solid 2px #FF543F;
+}
+.none{
+  border: none;
+}
+.icon-email:before {
+    content: "\e900";
+    font-size: 0.8em;
+}
+.icon-password:before {
+    content: "\e901";
+
+}
+.icon-username:before {
+    content: "\e902";
+
+}
+
+@media (min-width: 850px) {
+
+  .c1{
+    width: 30%;
+    margin-right: 0.3em;
+  }
+
+  .c2{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+    width: 70%;
+    background-image: url(../img/rojo.jpg);
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+  }
+
+}
