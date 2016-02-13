@@ -5,11 +5,11 @@ const bcrypt = require('bcrypt-nodejs');
 var userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        //required: true
     },
     lastName: {
         type: String,
-        required: true
+        //required: true
     },
     email: {
         type: String,
@@ -22,7 +22,7 @@ var userSchema = new mongoose.Schema({
     },
     bornDate: {
         type: Date,
-        required: true
+        //required: true
     },
     username: {
         type: String,
@@ -30,16 +30,16 @@ var userSchema = new mongoose.Schema({
         unique: true
     },
     follow: [{
-        // type: Schema.Types.ObjectId, /* Object ID from user */
-        // ref: 'User' /* User Schema. Remember to define it as this in the export module */
+      type: mongoose.Schema.Types.ObjectId, /* Object ID from user */
+      ref: 'User' /* User Schema. Remember to define it as this in the export module */
   }],
     following: [{
-        // type: Schema.Types.ObjectId, /* Object ID from user */
-        // ref: 'User' /* User Schema. Remember to define it as this in the export module */
+        type: mongoose.Schema.Types.ObjectId, /* Object ID from user */
+        ref: 'User' /* User Schema. Remember to define it as this in the export module */
   }],
     image: {
         type: String,
-        required: true
+        //required: true
     }
 });
 

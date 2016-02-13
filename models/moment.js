@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt-nodejs');
 
 var momentSchema = new mongoose.Schema({
     start: {
@@ -14,7 +13,7 @@ var momentSchema = new mongoose.Schema({
         type: String
     },
     moment_type: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Moment Type' /* References an specific collection for storing moment types */
         /****** THIS IS MEANT TO BE REQUIRED, BUT NOT A PRE-ALPHA MILESTONE **************/
     },

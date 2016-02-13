@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt-nodejs');
 
 /* Remember to use a buffer when bringing data from this schema! */
 
