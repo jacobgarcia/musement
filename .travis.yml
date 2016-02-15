@@ -3,3 +3,5 @@ node_js:
   - "4.2"
   - "4.1"
   - "iojs"
+notifications:
+  slack: musement:4uNZ6gWWq0X2UetuJSgn3uEV
