@@ -21,6 +21,7 @@
   },
   "scripts": {
     "serve": "NODE_PATH=. node server.js",
-    "forever": "NODE_PATH=. forever start server.js"
+    "forever": "NODE_PATH=. forever start server.js",
+    "test": "mocha"
   }
 }
