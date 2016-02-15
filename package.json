@@ -23,5 +23,8 @@
     "serve": "NODE_PATH=. node server.js",
     "forever": "NODE_PATH=. forever start server.js",
     "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
   }
 }
