@@ -12,13 +12,19 @@ const ensureAuth = require('middlewares/auth.js');
 module.exports = function (app, passport) {
     // ====================== > HOME PAGE (with login links) =======================
     app.use(flash());
-
+    
     app.get('/', (req, res) => {
         res.render('index')
     });
 
     app.get('/apply', (req, res) => {
         res.redirect('/apply.html')
+    });
+    
+    
+    app.get('/moment', function (req, res) {
+        // render the page and pass in any flash data if it exists
+        res.render('moment', {scripts: ['moment.js']});
     });
 
     app.post('/login', passport.authenticate('local-login', {
