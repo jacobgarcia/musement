@@ -1,16 +1,20 @@
 // set up ====================================
 'use strict';
-
+const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const configDB = require('config/database');
 const jade = require('jade');
+const socketio = require('socket.io');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
+
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 
 // configuration ==============================
 mongoose.connect(configDB.url); //connect database
@@ -34,4 +38,8 @@ app.use(passport.session());
 
 require('controllers/index')(app,passport);
 
-app.listen(8080);
+io.on('connection', function (socket){
+
+});
+
+server.listen(8080);
