@@ -17,10 +17,6 @@ module.exports = function (app, passport) {
         res.render('index')
     });
 
-    app.get('/apply', (req, res) => {
-        res.redirect('/apply.html')
-    });
-
     app.post('/login', passport.authenticate('local-login', {
         successRedirect: '/home',
         failureRedirect: '/login'
@@ -63,5 +59,11 @@ module.exports = function (app, passport) {
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
+
+    // ========================== > CHAT  ==================================
+    app.get('/chat', function (req, res){
+      res.render('chat')
+      failureRedirect: '/login'
+    });
 
 };

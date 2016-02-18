@@ -1,0 +1,23 @@
+doctype html
+head
+  meta(charset="utf-8")
+  meta(name='viewport', content='width=device-width, user-scalable=no')
+  title Musement Collective - Chat
+  link(rel="stylesheet", href="/static/assets/css/normalize.css", type='text/css')
+  link(rel="stylesheet", href="/static/assets/css/chat.css", type='text/css')
+  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type='text/css')
+  
+body
+  nav
+    .i.fa.fa-bars
+    //- .channel General
+    
+  .chat
+    ul#messages
+      form(action='')
+        input#m(autocomplete='off', placeholder="Escribe aquí")
+        
+  script(src='/socket.io/socket.io.js')
+  script(src="http://code.jquery.com/jquery-1.11.1.js")
+  script(src="/static/js/bundle.js")
+    
