@@ -16,8 +16,11 @@ Install Node.js.
 Fork :ghost:
 
 ```bash
-git add remote origin git://github.com/yourForkRepo
+mkdir musement
 cd musement
+git init
+git add remote origin git://github.com/yourForkRepo
+git pull origin master (and dev)
 ```
 Install dependencies from this project
 ```bash

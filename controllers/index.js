@@ -17,6 +17,11 @@ module.exports = function (app, passport) {
         res.render('index')
     });
 
+    app.get('/moment', function (req, res) {
+        // render the page and pass in any flash data if it exists
+        res.render('moment', {scripts: ['moment.js']});
+    });
+
     app.post('/login', passport.authenticate('local-login', {
         successRedirect: '/home',
         failureRedirect: '/login'
