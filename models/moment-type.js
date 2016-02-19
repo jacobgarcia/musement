@@ -15,4 +15,4 @@ var momentTypeSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Moment Type', userSchema);
+module.exports = mongoose.model('Moment Type', momentTypeSchema);

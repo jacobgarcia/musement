@@ -6,6 +6,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 //================================== MIDDLEWARES ===============================
 const ensureAuth = require('middlewares/auth.js');
+const newMoment = require('config/createmoment.js')
 
 //===================================== ROUTES =================================
 
@@ -31,6 +32,11 @@ module.exports = function (app, passport) {
         successRedirect: '/home',
         failureRedirect: '/login'
     }));
+    
+    app.post('/moment', passport.authenticate('local-login', {
+        successRedirect: '/home',
+        failureRedirect: '/login'
+    }));
 
     app.get('/login', (req, res) => {
         res.render('login', {
@@ -48,9 +54,9 @@ module.exports = function (app, passport) {
         res.render('home', {
             user: req.user.username
         })
-
-
     });
+    
+   // app.post('/home', ensureAuth, newMoment);
 
     // =====================================
     // SIGNUP ==============================
