@@ -87,30 +87,34 @@ module.exports = function (passport) {
         }));
 
 
-    // =============================== LOGIN =======================================
+      // =============================== LOGIN =======================================
 
-    passport.use('local-login', new LocalStrategy({
-            usernameField: 'email',
-            passwordField: 'password',
-            passReqToCallback: true
-        },
-        function (req, email, password, done) {
-            User.findOne({
-                'email': email
-            }, function (err, user) {
-                if (err) {
-                    console.log('err')
-                    return done(err)
-                }
-                if (user == null) {
-                    console.log('User no found');
-                }
-                var compare = user.comparePassword(password)
-                if (!compare) {
-                    console.log('Incorrect Password')
-                }
+      passport.use('local-login', new LocalStrategy({
+              usernameField: 'email',
+              passwordField: 'password',
+              passReqToCallback: true
+          },
+          function (req, email, password, done) {
+              User.findOne({
+                  'email': email
+              }, function (err, user) {
+                  if (err) {
+                      console.log('err')
+                      return done(err)
+                  }
+                  if (user == null) {
+                      console.log('User no found');
+                      return done(null, 'error');
+                  }else{
+                    var compare = user.comparePassword(password)
+                    if (!compare) {
+                      console.log('Incorrect Password');
+                      return done(null, 'error_password');
+                    }
+                    return done(null, user);
 
-                return done(null, user)
-            })
-        }))
-}
+
+                  }
+              })
+          }))
+  }

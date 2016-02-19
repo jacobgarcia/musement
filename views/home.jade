@@ -1,8 +1,82 @@
 html
   head
+    meta(name='viewport', content='width=device-width, user-scalable=no')  
     title Musement Collective - Home
+    link(rel="stylesheet", href="/static/assets/css/master.css", type='text/css')
+    link(rel="stylesheet", href="/static/assets/css/normalize.css", type='text/css')
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type='text/css')
+    
   body
-    h1 welcome #{user}
+    .container
+      .c1 
+        .signin
+          .fa.fa-bars 
+            //- a(href="/menu")
+        figure
+          | Comienza tu momento
+        .new_moment
+          | momento
+                    
+        .footer
+          | ¡210 personas inspiradas!
+            
+      .c2
+        .text-logo
+          span.logo_text-top musement 
+          span.logo_text-bottom collective
+          
+        section.timeline
+                      
+          article.moment
+            .has
+              img(src="/static/assets/img/dontavo.jpeg", alt="")
+              span.bold DonTavo 
+              | tuvo un 
+              span.bold momento
+            .right_moment 
+              //- .time_moment
+              //-   span hoy
+              .tipe_moment.image
+                img(src="/static/assets/img/main.jpg", alt="")
+              .tipe_moment.text
+                | Mejoró bastante el concept, creo.
+          
+          article.moment             
+            .has
+              img(src="/static/assets/img/cookie8.jpg", alt="")
+              span.bold Cookie8 
+              | tuvo un 
+              span.bold momento 
+            .right_moment  
+              //- .time_moment
+              //-   span hoy
+              .tipe_moment.text
+                | Hoy aprendí a programar :)            
+              
+          article.moment
+            .has
+              img(src="/static/assets/img/dontavo.jpeg", alt="")
+              span.bold DonTavo 
+              | tuvo un 
+              span.bold momento
+            .right_moment 
+              //- .time_moment
+              //-   span hoy
+              .tipe_moment.image
+                img(src="/static/assets/img/main.jpg", alt="")
+              .tipe_moment.text
+                | Mejoró bastante el concept, creo. Mejoró bastante el concept, creo.Mejoró bastante el concept, creo.Mejoró bastante el concept, creo.
+              
+                
+                
+                
+               
+              
+              
+            
+              
+          
+          
     
     
       
