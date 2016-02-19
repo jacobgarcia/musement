@@ -3,12 +3,12 @@
     src: url('../fonts/Helvetica.otf');
 }
 @font-face {
-  font-family: hero;
-    src: url('../fonts/Hero.otf');
+  font-family: ruler;
+    src: url('../fonts/Ruler.ttf');
 }
 @font-face {
-  font-family: hero-light;
-    src: url('../fonts/Hero Light.otf');
+  font-family: ruler-light;
+    src: url('../fonts/Ruler Light.ttf');
 }
 @font-face {
     font-family: 'icomoon';
@@ -99,6 +99,17 @@ body{
   align-self: baseline;
 }
 
+.content_center a{
+  color: #FF543F;
+  text-decoration: none;
+}
+.content_center{
+  font-size: 0.9em;
+  margin-top: 2vh;
+  margin-left: 2vh;
+  align-self: baseline;
+}
+
 .message{
   margin: 5vh 0 3vh 0;
   color: #D3D3D3;
@@ -184,23 +195,35 @@ textarea:focus, input:focus{
 .icon-username:before {
     content: "\e902";
 }
-
-/*Moments*/
 .text-logo{
+  width: 100%;
+  font-family: 'ruler', sans-serif;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  align-content: center;
-  width: 80%;
-  margin: 3vh 3vh 0 0;
-  font-family: 'hero', sans-serif;
-  color: white;
+  padding-top: 5vh;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.moment-text{
+  width: 100%;
+  font-family: 'ruler', sans-serif;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  align-self: flex-start;
+  /*padding-top: 5px;*/
+}
+.logo_text-top{
+  color: #FF543F;
+  font-size: 2rem;
+
 }
 .logo_text-bottom{
-  padding-right: 1.5vh;
+  font-size: 1.8rem;
+  color: #27AF98;
 }
+/*Moments*/
 .tipe_moment{
   margin-bottom: 1vh;
 }
@@ -261,7 +284,6 @@ textarea:focus, input:focus{
   left: 50%;
   top: 50%;
   margin: -60px 0 0 -60px;
-  background: #fff;
   width: 100px;
   height: 100px;
   border-radius: 100%;
@@ -286,7 +308,6 @@ textarea:focus, input:focus{
   left: 50%;
   top: 50%;
   margin: -60px 0 0 -60px;
-  background: #fff;
   width: 100px;
   height: 100px;
   border-radius: 100%;
