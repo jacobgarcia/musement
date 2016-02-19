@@ -53,6 +53,7 @@ body{
 }
 
 .c1{
+  position: relative;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -246,6 +247,71 @@ textarea:focus, input:focus{
   margin-left: 0.3em;
   margin-right: 0.3em;
   font-weight: bold;
+}
+
+/*moment animation*/
+.container_animation-moment{
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -60px 0 0 -60px;
+  background: #fff;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 10px solid #FF543F;
+}
+.loading:after {
+  content: '';
+  background: trasparent;
+  width: 140%;
+  height: 140%;
+  position: absolute;
+  border-radius: 100%;
+  top: -20%;
+  left: -20%;
+  opacity: 0.7;
+  box-shadow: #FF543F -4px -5px 3px -3px;
+  animation: rotate 2s infinite linear;
+}
+
+.loading-click {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -60px 0 0 -60px;
+  background: #fff;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 10px solid #FF543F;
+}
+.loading-click:after {
+  content: '';
+  background: trasparent;
+  width: 140%;
+  height: 140%;
+  position: absolute;
+  border-radius: 100%;
+  top: -20%;
+  left: -20%;
+  opacity: 0.7;
+  animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
 }
 
 @media (min-width: 850px) {
