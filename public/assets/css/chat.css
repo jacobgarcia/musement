@@ -1,0 +1,70 @@
+body {
+  font: 16px;
+}
+nav{
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+  justify-content: flex-start;
+}
+.i{
+  align-self: flex-start;
+  margin-right: 1rem;
+  font-size: 2rem;
+}
+.channel{
+  align-self: center;
+}
+.chat{
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+}
+form {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+form input {
+  border: 0;
+  padding: 1.2rem;
+  width: 100%;
+  border-top: solid 1px #FF543F;
+}
+
+input:focus{
+    outline: none;
+}
+li .new_message{
+  display: flex;
+  flex-direction: row;;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+
+}
+
+li img{
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+  border-radius: 100px;
+  align-self: center;
+}
+
+.msg{
+  align-self: center;
+  margin-left: 1rem;
+}
+
+#messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#messages li {
+  padding: 5px 10px;
+  margin: 1em 1em;
+}

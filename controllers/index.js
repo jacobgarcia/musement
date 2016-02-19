@@ -16,16 +16,10 @@ module.exports = function (app, passport) {
     // ====================== > HOME PAGE (with login links) =======================
     app.use(flash());
     
-    
     app.get('/', (req, res) => {
         res.render('index')
     });
 
-    app.get('/apply', (req, res) => {
-        res.redirect('/apply.html')
-    });
-    
-    
     app.get('/moment', function (req, res) {
         // render the page and pass in any flash data if it exists
         res.render('moment', {scripts: ['moment.js']});
@@ -83,5 +77,11 @@ module.exports = function (app, passport) {
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
+
+    // ========================== > CHAT  ==================================
+    app.get('/chat', function (req, res){
+      res.render('chat')
+      failureRedirect: '/login'
+    });
 
 };
