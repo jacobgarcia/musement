@@ -14,6 +14,7 @@ module.exports = function (app, passport) {
     // ====================== > HOME PAGE (with login links) =======================
     app.use(flash());
     
+    
     app.get('/', (req, res) => {
         res.render('index')
     });
@@ -56,7 +57,10 @@ module.exports = function (app, passport) {
         })
     });
     
-   // app.post('/home', ensureAuth, newMoment);
+    app.post('/home', ensureAuth, function(req, res){
+        res.render('home');
+        newMoment.insertMoment(req, null);
+    });
 
     // =====================================
     // SIGNUP ==============================

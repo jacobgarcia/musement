@@ -14,6 +14,8 @@ const app = express();
 
 // configuration ==============================
 mongoose.connect(configDB.url); //connect database
+mongoose.set('debug', true);
+
 require('config/passport')(passport);
 
 // app.use(express.static('assets')); //Folder

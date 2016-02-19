@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 var momentSchema = new mongoose.Schema({
     timelapse: {
-        type: Date,
+        type: Number,
         required: true
     },
     description: {

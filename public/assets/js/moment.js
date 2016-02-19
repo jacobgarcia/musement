@@ -45,6 +45,7 @@ var Stopwatch = function (elem, options) {
             stop();
             firstTime = false;
             totalTime = Math.floor((Math.ceil(clock / 1000)) / 60); /* Return minutes; consider the floor function */
+            document.getElementById('time').value = totalTime;
         }
     }
 
@@ -123,10 +124,9 @@ dTimer = new Stopwatch(d, {
 });
 dTimer.start();
 
-///////////////
+/////////////// REMEMBER TO CHANGE NAME
 function alertFilename() {
     var thefile = document.getElementById('attachement');
     var files = (thefile.value).split("\\"); /* Using regular expressions to split the fake PATH */
     fileName = files[2];
-    alert(fileName);
 }
