@@ -13,7 +13,6 @@ var Stopwatch = function (elem, options) {
     options.delay = options.delay || 1;
 
     // append elements     
-    elem.appendChild(timer);
     elem.appendChild(startButton);
 
     // initialize

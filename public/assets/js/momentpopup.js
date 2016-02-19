@@ -4,7 +4,6 @@ $('.open').click(function (e) {
     if(!firstTime){
         d.removeClass('dialog-close');
         d.addClass('dialog-open');
-        alert(totalTime);
     }
 });
 
