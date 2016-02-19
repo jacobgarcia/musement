@@ -11,6 +11,7 @@ const socketio = require('socket.io');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
+const multer = require('multer');
 
 const app = express();
 const server = http.createServer(app);
@@ -18,6 +19,8 @@ const io = socketio(server);
 
 // configuration ==============================
 mongoose.connect(configDB.url); //connect database
+mongoose.set('debug', true);
+
 require('config/passport')(passport);
 
 // app.use(express.static('assets')); //Folder

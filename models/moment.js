@@ -1,12 +1,8 @@
 const mongoose = require('mongoose');
 
 var momentSchema = new mongoose.Schema({
-    start: {
-        type: timestamp,
-        required: true
-    },
-    end: {
-        type: timestamp,
+    timelapse: {
+        type: Number,
         required: true
     },
     description: {
@@ -17,9 +13,10 @@ var momentSchema = new mongoose.Schema({
         ref: 'Moment Type' /* References an specific collection for storing moment types */
         /****** THIS IS MEANT TO BE REQUIRED, BUT NOT A PRE-ALPHA MILESTONE **************/
     },
-    attachement: [{
-        type: String
+    attachement: [
+    {
+        reference: {type: String, required: true}
     }]
 });
 
-module.exports = mongoose.model('Moment', chatMessageSchema);
+module.exports = mongoose.model('Moment', momentSchema);

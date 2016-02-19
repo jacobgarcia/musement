@@ -1,4 +1,6 @@
 const express = require('express');
+const multer = require('multer');
+var upload = multer({ dest: 'uploads/'});
 var user = require("models/user.js");
 var flash = require('connect-flash');
 var LocalStrategy = require('passport-local').Strategy;
@@ -6,13 +8,14 @@ var LocalStrategy = require('passport-local').Strategy;
 
 //================================== MIDDLEWARES ===============================
 const ensureAuth = require('middlewares/auth.js');
+const newMoment = require('config/createmoment.js')
 
 //===================================== ROUTES =================================
 
 module.exports = function (app, passport) {
     // ====================== > HOME PAGE (with login links) =======================
     app.use(flash());
-
+    
     app.get('/', (req, res) => {
         res.render('index')
     });
@@ -23,6 +26,11 @@ module.exports = function (app, passport) {
     });
 
     app.post('/login', passport.authenticate('local-login', {
+        successRedirect: '/home',
+        failureRedirect: '/login'
+    }));
+    
+    app.post('/moment', passport.authenticate('local-login', {
         successRedirect: '/home',
         failureRedirect: '/login'
     }));
@@ -43,8 +51,13 @@ module.exports = function (app, passport) {
         res.render('home', {
             user: req.user.username
         })
-
-
+    });
+    
+    app.post('/home', ensureAuth, upload.single('fileName'), function(req, res){
+        res.render('home');
+        newMoment.insertMoment(req, null);
+        console.log(req.file);
+        console.log("uploaded");
     });
 
     // =====================================
