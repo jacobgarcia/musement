@@ -1,4 +1,6 @@
 const express = require('express');
+const multer = require('multer');
+var upload = multer({ dest: 'uploads/'});
 var user = require("models/user.js");
 var flash = require('connect-flash');
 var LocalStrategy = require('passport-local').Strategy;
@@ -57,9 +59,11 @@ module.exports = function (app, passport) {
         })
     });
     
-    app.post('/home', ensureAuth, function(req, res){
+    app.post('/home', ensureAuth, upload.single('fileName'), function(req, res){
         res.render('home');
         newMoment.insertMoment(req, null);
+        console.log(req.file);
+        console.log("uploaded");
     });
 
     // =====================================

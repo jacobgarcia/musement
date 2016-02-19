@@ -13,7 +13,7 @@ html
       .dialog-content
         h2
           strong Mi Momento
-          form(action='/home', method='post' class)
+          form(action='/home', method='post', enctype="multipart/form-data" class)
             input(type="text", name="description", placeholder="Describe tu momento")
             .file-upload
                 label.upload-label

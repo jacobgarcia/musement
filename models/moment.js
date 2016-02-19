@@ -6,8 +6,7 @@ var momentSchema = new mongoose.Schema({
         required: true
     },
     description: {
-        type: String,
-        required: true
+        type: String
     },
     moment_type: {
         type: mongoose.Schema.Types.ObjectId,
