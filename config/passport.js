@@ -19,14 +19,14 @@ module.exports = function (passport) {
 
     // used to serialize the user for the session
     passport.serializeUser(function (user, done) {
-        done(null, user);
+        done(null, user.id);
     });
 
     // used to deserialize the user
-    passport.deserializeUser(function (user, done) {
-        // User.findById(id, function (err, user) {
-            done(null, user);
-        // });
+    passport.deserializeUser(function (id, done) {
+         User.findById(id, function (err, user) {
+            done(err, user);
+       });
     });
 
     // =========================================================================
@@ -87,7 +87,7 @@ module.exports = function (passport) {
         }));
 
 
-      // =============================== LOGIN =======================================
+              // =============================== LOGIN =======================================
 
       passport.use('local-login', new LocalStrategy({
               usernameField: 'email',
@@ -112,7 +112,8 @@ module.exports = function (passport) {
                       return done(null, false, { message: 'Incorrect password.' });
                     }
                     return done(null, user);
-                  }
-              })
-          }))
-  }
+
+                                      }
+                })
+            }))
+    }

@@ -10,7 +10,7 @@ var insertMoment = function (req, user) {
     newMoment.timelapse = req.body.totalTime;
     newMoment.attachement.reference = req.body.fileName;
 
-    //console.log(newMoment.description + ' ' + newMoment.timelapse + ' ' + newMoment.attachement.reference + ' ' + req.user.id);
+    console.log(newMoment.description + ' ' + newMoment.timelapse + ' ' + newMoment.attachement.reference + ' ' + req.user.id);
 
     newMoment.save(function (error, moment) {
         console.log(moment.id);
