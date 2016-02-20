@@ -17,7 +17,7 @@ html
         //- .moment-text
         //-   | Iniciar
         .container_animation-moment
-          #moment.loading-click
+          #moment.loading-click.open
                     
         .footer
           | ¡210 personas inspiradas!
@@ -64,6 +64,20 @@ html
                 img(src="/static/assets/img/main.jpg", alt="")
               .tipe_moment.text
                 | Mejoró bastante el concept, creo. Mejoró bastante el concept, creo.Mejoró bastante el concept, creo.Mejoró bastante el concept, creo.
+                
+  #somedialog.dialog
+    .dialog-overlay
+    .dialog-content
+      h2
+        strong Mi Momento
+        form(action='/home', method='post', enctype="multipart/form-data" class)
+          input(type="text", name="description", placeholder="Describe tu momento")
+          .file-upload
+              label.upload-label
+                  input(type='file', id='attachement', onchange="alertFilename()", name="fileName")
+           input(type="hidden", name="totalTime", id="time")
+          div
+              input.close.btn.btn-close(type="submit", name="submit", value="Guardar Momento")
               
 script(src='/static/assets/js/jquery.min.js')                
 script(src="/static/js/moment.js")

@@ -1,16 +1,69 @@
 // Animation moment
 var click = true;
-$('#moment').click(function(){
+var interval;
+var clock = 0;
+
+// default options
+var options = options || {};
+options.delay = options.delay || 1;
+
+function delta() {
+    var now = Date.now(),
+        d = now - offset;
+
+    offset = now;
+    return d;
+}
+
+function getClock() {
+    return clock;
+}
+
+function reset() {
+    clock = 0;
+    render(0);
+}
+
+function update() {
+    clock += delta();
+}
+
+$('#moment').click(function(event){
   if (! click) {
     $('#moment').removeClass('loading').addClass('loading-click');
+    d.removeClass('dialog-close');
+    start();
     click = true;
   }else{
+    start();
+      event.preventDefault();
     $('#moment').removeClass('loading-click').addClass('loading');
     click = false;
+    d.removeClass('dialog-open');
   }
 
   console.log("Click");
-});
+  });
+
+function start() {
+    if (!interval) {
+        offset = Date.now();
+        interval = setInterval(update, options.delay);
+
+    } else {
+        stop();
+        firstTime = false;
+        totalTime = Math.floor((Math.ceil(clock / 1000)) / 60); /* Return minutes; consider the floor function */
+        document.getElementById('time').value = totalTime;
+    }
+}
+
+function stop() {
+    if (interval) {
+        clearInterval(interval);
+        interval = null;
+    }
+}
 
 // Moment timer
 var Stopwatch = function (elem, options) {
@@ -23,9 +76,7 @@ var Stopwatch = function (elem, options) {
         clock,
         interval;
 
-    // default options
-    options = options || {};
-    options.delay = options.delay || 1;
+
 
     // append elements
     elem.appendChild(startButton);
@@ -50,61 +101,24 @@ var Stopwatch = function (elem, options) {
         return a;
     }
 
-    function start() {
-        if (!interval) {
-            offset = Date.now();
-            interval = setInterval(update, options.delay);
 
-        } else {
-            stop();
-            firstTime = false;
-            totalTime = Math.floor((Math.ceil(clock / 1000)) / 60); /* Return minutes; consider the floor function */
-            document.getElementById('time').value = totalTime;
-        }
-    }
 
-    function stop() {
-        if (interval) {
-            clearInterval(interval);
-            interval = null;
-        }
-    }
 
-    function reset() {
-        clock = 0;
-        render(0);
-    }
 
-    function update() {
-        clock += delta();
-        render();
-    }
 
-    function render() {
-        timer.innerHTML = clock / 1000;
-    }
 
-    function delta() {
-        var now = Date.now(),
-            d = now - offset;
 
-        offset = now;
-        return d;
-    }
 
-    function getClock() {
-        return clock;
-    }
 
-    // public API
-    this.start = start;
-    this.stop = stop;
-    this.reset = reset;
+
+
+
+
 };
 
 
 // basic examples
-var elems = document.getElementById('test');
+//var elems = document.getElementById('test');
 
 var firstTime = true;
 
@@ -114,29 +128,6 @@ var totalTime = 0;
 
 var fileName = "";
 
-
-// programmatic examples
-var a = document.getElementById("a-timer");
-aTimer = new Stopwatch(a);
-aTimer.start();
-
-var b = document.getElementById("b-timer");
-bTimer = new Stopwatch(b, {
-    delay: 100
-});
-bTimer.start();
-
-var c = document.getElementById("c-timer");
-cTimer = new Stopwatch(c, {
-    delay: 456
-});
-cTimer.start();
-
-var d = document.getElementById("d-timer");
-dTimer = new Stopwatch(d, {
-    delay: 1000
-});
-dTimer.start();
 
 /////////////// REMEMBER TO CHANGE NAME
 function alertFilename() {
