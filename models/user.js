@@ -40,11 +40,7 @@ var userSchema = new mongoose.Schema({
     image: {
         type: String,
         //required: true
-    },
-    moment: [
-    {
-        reference: {type: mongoose.Schema.Types.ObjectId, ref: 'Moment'}   
-    }]
+    }
 });
 
 // ============================= METHODS =======================================
