@@ -5,6 +5,9 @@ var user = require("models/user.js");
 var flash = require('connect-flash');
 var LocalStrategy = require('passport-local').Strategy;
 
+/* THESE ARE USED FOR LOADING MOMENTS AT HOME PAGE, REMEMBER TO REMOVE DEPENDENCIES, WHEN CLEANING THIS FILE FOR SPECIFIC ROUTES SPECIFICATION */
+var Moment = require("models/moment.js");
+var User = require("models/user.js");
 
 //================================== MIDDLEWARES ===============================
 const ensureAuth = require('middlewares/auth.js');
@@ -15,7 +18,7 @@ const newMoment = require('config/createmoment.js')
 module.exports = function (app, passport) {
     // ====================== > HOME PAGE (with login links) =======================
     app.use(flash());
-    
+
     app.get('/', (req, res) => {
         res.render('index')
     });
@@ -29,7 +32,7 @@ module.exports = function (app, passport) {
         successRedirect: '/home',
         failureRedirect: '/login'
     }));
-    
+
     app.post('/moment', passport.authenticate('local-login', {
         successRedirect: '/home',
         failureRedirect: '/login'
@@ -47,12 +50,18 @@ module.exports = function (app, passport) {
         res.redirect('/login')
     });
 
-    app.get('/home', ensureAuth, (req, res) => {
-        res.render('home', {
-            user: req.user.username
-        })
+    app.get('/api/moment/json', ensureAuth, (req, res) => {
+      Moment.find().populate('user', 'username').lean().exec(function(err, moments) {
+          res.end(JSON.stringify(moments)); /* WARNING: This returns all the moments in the database, REMEMBER to add later a paging file in FRONT END */
+      });
+
+
     });
-    
+
+    app.get('/home', ensureAuth, (req, res) => {
+      res.render('home');
+    });
+
     app.post('/home', ensureAuth, upload.single('fileName'), function(req, res){
         res.render('home');
         newMoment.insertMoment(req, null);

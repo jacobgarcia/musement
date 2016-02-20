@@ -27,7 +27,7 @@ require('config/passport')(passport);
 app.use('/static', express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
 
-app.use(bodyParser.json());
+app.use(bodyParser.json()); /* JSON support */
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
