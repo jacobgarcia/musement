@@ -16,7 +16,6 @@ function populateWall() {
 
   // jQuery AJAX call for JSON
   $.getJSON('/home/momentlist', function(data) {
-    alert("estás frito");
     // For each item in our JSON, add an 'article.moment'
     $.each(data, function() {
       wallContent += '<article class="moment">';
@@ -27,7 +26,6 @@ function populateWall() {
       wallContent += '<span class="bold">momento</span></div>';
       wallContent += '<div class="right_moment">';
       wallContent += '<div class="tipe_moment text">' + this.description + '</div></div></article>';
-      console.log(wallContent);
     });
 
     // Inject the whole content string into our existing HTML section

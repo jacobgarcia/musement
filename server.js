@@ -18,7 +18,7 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 // ROUTES
-var home = require('./controllers/home');
+
 
 // configuration ==============================
 mongoose.connect(configDB.url); //connect database
@@ -30,7 +30,7 @@ require('config/passport')(passport);
 app.use('/static', express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
 
-app.use('/home', home);
+
 
 app.use(bodyParser.json()); /* JSON support */
 app.use(bodyParser.urlencoded({ extended: false }));

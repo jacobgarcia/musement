@@ -20,6 +20,7 @@ const newMoment = require('config/createmoment.js')
 module.exports = function (app, passport) {
     // ====================== > HOME PAGE (with login links) =======================
     app.use(flash());
+    app.use('/home', home);
 
     app.get('/', (req, res) => {
         res.render('index')
