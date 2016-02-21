@@ -13,12 +13,7 @@ var momentSchema = new mongoose.Schema({
     ref: 'Moment Type' /* References an specific collection for storing moment types */
       /****** THIS IS MEANT TO BE REQUIRED, BUT NOT A PRE-ALPHA MILESTONE **************/
   },
-  attachement: [{
-    reference: {
-      type: String,
-      required: true
-    }
-  }],
+  attachement: [String],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

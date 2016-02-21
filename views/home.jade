@@ -76,7 +76,7 @@ html
           input(type="text", name="description", placeholder="Describe tu momento")
           .file-upload
               label.upload-label
-                  input(type='file', id='attachement', onchange="alertFilename()", name="fileName")
+                  input(type='file', id='attachement', onchange="setName()", name="fileName")
            input(type="hidden", name="totalTime", id="time")
           div
               input.close.btn.btn-close(type="submit", name="submit", value="Guardar Momento")
