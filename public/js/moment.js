@@ -130,8 +130,10 @@ var fileName = "";
 
 
 /////////////// REMEMBER TO CHANGE NAME
-function alertFilename() {
+function setName() {
     var thefile = document.getElementById('attachement');
     var files = (thefile.value).split("\\"); /* Using regular expressions to split the fake PATH */
     fileName = files[2];
+    document.getElementById('attachement').value = fileName;
+    alert(document.getElementById('attachement').value);
 }
