@@ -27,7 +27,7 @@ function populateWall() {
       wallContent += '<div class="right_moment">';
 
       if(this.attachement != ''){
-        wallContent += '<div class="tipe_moment.image">';
+        wallContent += '<div class="tipe_moment image">';
         wallContent += '<img src="' + this.attachement[0] + '".jpg alt=""/>';
       }
 
