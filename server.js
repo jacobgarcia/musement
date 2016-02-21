@@ -17,6 +17,9 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+// ROUTES
+var home = require('./controllers/home');
+
 // configuration ==============================
 mongoose.connect(configDB.url); //connect database
 mongoose.set('debug', true);
@@ -26,6 +29,8 @@ require('config/passport')(passport);
 // app.use(express.static('assets')); //Folder
 app.use('/static', express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
+
+app.use('/home', home);
 
 app.use(bodyParser.json()); /* JSON support */
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -39,7 +44,7 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('controllers/index')(app,passport);
+require('controllers/index')(app,passport); // load our routes and pass in our app and fully configured passport
 
 io.on('connection', function (socket){
   socket.on('chat message', function(msg){
