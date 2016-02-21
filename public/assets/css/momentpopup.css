@@ -1,49 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,100);
-html,body{min-height:100%}
-body{
-  background-size:cover;
-  font-family: 'Roboto', sans-serif;
-  color:#333;
-  text-align:center;
-  margin:0
-}
-h1{
-  margin:0;
-  padding:50px 0;
-  font-weight:400;
-  color:rgba(255,255,255,0.9);
-  height:100px;
- box-shadow:0 200px 150px -150px  rgba(0,0,0,0.7) inset;
-}
-.btn {
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  display: inline-block;
-  font-size: 14px;
-  padding: 8px 15px;
-  text-decoration: none;
-  text-align: center;
-  min-width: 60px;
-  position: relative;
-  transition: all 0.2s;
-}
-.btn:hover {
-  background: rgba(5, 120, 201, 0.9);
-}
-.btn.btn-big {
-  font-size: 18px;
-  padding: 15px 20px;
-  min-width: 100px;
-}
-.btn-close {
-  font-size: 20px;
-  padding:10px;
-  background: rgba(55, 58, 71, 0.5)
-}
-.btn-close:hover {
-  background:rgba(55, 58, 71, 0.9)
-}
-
 .dialog,
 .dialog-overlay {
 	width: 100%;
@@ -66,7 +20,7 @@ h1{
 .dialog-overlay {
 	position: absolute;
 	z-index: 1;
-	background: rgba(0, 58, 71, 0.9);
+	background: rgba(35, 36, 36, 0.8);
 	opacity: 0;
 	-webkit-transition: opacity 0.3s;
 	transition: opacity 0.3s;
@@ -77,18 +31,23 @@ h1{
 	opacity: 1;
 	pointer-events: auto;
 }
-
+.icon-upload_Icon{
+  font-size: 3rem;
+}
 .dialog-content {
-	width: 50%;
-	max-width: 560px;
-	min-width: 290px;
+	width: 85%;
+	max-width: 85%;
+	min-width: 85%;
 	background: #fff;
-	padding: 4em;
+	padding: 1em;
+  margin: 2em;
 	text-align: center;
 	position: relative;
 	z-index: 995;
 	opacity: 0;
-  box-shadow:0 3px 36px 0 rgba(0, 0, 0, 0.6)
+  box-shadow:0 3px 36px 0 rgba(0, 0, 0, 0.6);
+  /*background-size: cover;*/
+  border-radius: 10px;
 }
 
 .dialog-open .dialog-content {
@@ -97,12 +56,65 @@ h1{
 
 /* Content */
 .dialog h2 {
-	margin: 0;
-	font-weight: 400;
-	font-size: 2em;
-	padding: 0 0 2em;
-	margin: 0;
+	font-size: 1rem;
+	padding: 0 0 1em;
+  margin: 0;
+  color: #FF543F;
+  letter-spacing: 2px;
+  margin-top: 2vh;
 }
+form.create_moment{
+  width: 100%;
+  border-top: 1px solid rgba(255, 84, 62, 0.5);
+  margin: 0;
+}
+.file-upload{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10vh;
+}
+input[name=description]{
+  width: 100%;
+}
+label.upload-label input[type="file"] {
+  position: fixed;
+  top: -1000px;
+}
+.upload-label{
+  align-self: flex-end;
+}
+input[name="submits"] {
+  margin: 0 !important;
+  padding: 0.7vh 3vh 0.7vh 3vh;
+  background-color: #FF543F;
+  color: white;
+  border: 0px solid #000000;
+  border-radius: 20px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+}
+button{
+  border:0;
+  background:none;
+}
+
+@media (min-width: 850px) {
+  .dialog-content{
+    width: 50%;
+  	max-width: 50%;
+  	min-width: 50%;
+  }
+  .icon-done_Icon{
+    font-size: 1.5rem;
+  }
+  .icon-img_Icon{
+    font-size: 1.5rem;
+  }
+}
+
+
+/*Efects*/
 
 .dialog.dialog-open .dialog-content,
 .dialog.dialog-close .dialog-content {

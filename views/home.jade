@@ -64,20 +64,26 @@ html
                 img(src="/static/assets/img/main.jpg", alt="")
               .tipe_moment.text
                 | Mejoró bastante el concept, creo. Mejoró bastante el concept, creo.Mejoró bastante el concept, creo.Mejoró bastante el concept, creo.
-                
+  
+  //- Create moment Popup (is hidden)        
   #somedialog.dialog
     .dialog-overlay
     .dialog-content
-      h2
-        strong Mi Momento
-        form(action='/home', method='post', enctype="multipart/form-data" class)
-          input(type="text", name="description", placeholder="Describe tu momento")
-          .file-upload
-              label.upload-label
-                  input(type='file', id='attachement', onchange="alertFilename()", name="fileName")
-           input(type="hidden", name="totalTime", id="time")
-          div
-              input.close.btn.btn-close(type="submit", name="submit", value="Guardar Momento")
+      .icon-upload_Icon    
+      h2 Mi Momento
+      form.create_moment(action='/home', method='post', enctype="multipart/form-data" )
+        
+        input(type="text", name="description", placeholder="Describe tu momento :)")
+        .file-upload 
+          label.upload-label
+            input(type='file', id='attachement', onchange="alertFilename()", name="fileName")
+            span.icon-img_Icon                
+          input(type="hidden", name="totalTime", id="time")
+          //- input.close.btn.btn-close(type="submit", name="submits", value="Guardar Momento")
+          button.close.btn.btn-close(type='submit', name="submits")
+            i.icon-done_Icon
+          
+          
               
 script(src='/static/assets/js/jquery.min.js')                
 script(src="/static/js/moment.js")
