@@ -25,6 +25,12 @@ function populateWall() {
       wallContent += 'tuvo un ';
       wallContent += '<span class="bold">momento</span></div>';
       wallContent += '<div class="right_moment">';
+
+      if(this.attachement != ''){
+        wallContent += '<div class="tipe_moment.image">';
+        wallContent += '<img src="' + this.attachement[0] + '".jpg alt=""/>';
+      }
+
       wallContent += '<div class="tipe_moment text">' + this.description + '</div></div></article>';
     });
 

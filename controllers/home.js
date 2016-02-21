@@ -3,7 +3,7 @@ const multer = require('multer');
 
 var router = express.Router();
 var upload = multer({
-  dest: './public/uploads/0000/0'
+  dest: './uploads/user/u0000/u0'
 });
 
 const newMoment = require('config/createmoment.js')

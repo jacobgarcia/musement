@@ -28,6 +28,7 @@ require('config/passport')(passport);
 
 // app.use(express.static('assets')); //Folder
 app.use('/static', express.static(__dirname + '/public'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 app.set('view engine', 'jade');
 
 
