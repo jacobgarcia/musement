@@ -8,21 +8,36 @@ html
     
   body
     .container
-      .c1 
+      #sidePanel.c0
+        i.fa.fa-times#close_button
+        .imenu
+          .icon-moments_Icon
+          span.title_menu Momentos
+        .imenu
+          .icon-conexiones_Icon
+          span.title_menu Conexiones
+        .imenu
+          .icon-chat_Icons
+          span.title_menu Chat
+        .imenu
+          .icon-profile_Icons
+          span.title_menu Perfil
+        
+      #mainPanel.c1 
         .content_center
-          .fa.fa-bars 
+          .fa.fa-bars#menu_button
         .text-logo
             span.logo_text-top musement 
             span.logo_text-bottom collective
-        //- .moment-text
-        //-   | Iniciar
+        .moment-text
+          //- | Iniciar
         .container_animation-moment
           #moment.loading-click.open
                     
-        .footer
-          | ¡210 personas inspiradas!
+        .footer_home
+          | ¡Tu momento es ahora!
             
-      .c2    
+      #timelinePanel.c2    
         section#wall.timeline
                       
   //- Create moment Popup (is hidden)        
@@ -50,6 +65,10 @@ script(src='/static/assets/js/jquery.min.js')
 script(src="/static/js/moment.js")
 script(src='/static/assets/js/momentpopup.js')
 script(src='/static/js/home.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.4/hammer.min.js')
+script(src='/static/assets/js/swipe.js')
+
+
 
                 
                 

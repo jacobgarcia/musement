@@ -53,14 +53,15 @@
 /*Home fonts icons*/
 @font-face {
     font-family: 'moments';
-    src:    url('../fonts/moments.eot?eoxxfp');
-    src:    url('../fonts/moments.eot?eoxxfp#iefix') format('embedded-opentype'),
-        url('../fonts/moments.ttf?eoxxfp') format('truetype'),
-        url('../fonts/moments.woff?eoxxfp') format('woff'),
-        url('../fonts/moments.svg?eoxxfp#moments') format('svg');
+    src:    url('../fonts/moments.eot?qrbi42');
+    src:    url('../fonts/moments.eot?qrbi42#iefix') format('embedded-opentype'),
+        url('../fonts/moments.ttf?qrbi42') format('truetype'),
+        url('../fonts/moments.woff?qrbi42') format('woff'),
+        url('../fonts/moments.svg?qrbi42#moments') format('svg');
     font-weight: normal;
     font-style: normal;
 }
+
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'moments' !important;
@@ -79,18 +80,21 @@
 .icon-chat_Icons:before {
     content: "\e900";
 }
-.icon-done_Icon:before {
+.icon-conexiones_Icon:before {
     content: "\e901";
 }
-.icon-img_Icon:before {
+.icon-done_Icon:before {
     content: "\e902";
 }
-.icon-moments_Icon:before {
+.icon-img_Icon:before {
     content: "\e903";
 }
-.icon-profile_Icons:before {
+.icon-moments_Icon:before {
     content: "\e904";
 }
-.icon-upload_Icon:before {
+.icon-profile_Icons:before {
     content: "\e905";
+}
+.icon-upload_Icon:before {
+    content: "\e906";
 }

@@ -1,9 +1,11 @@
 @import "fonts.css";
 @import "momentpopup.css";
+@import "menu.css";
 
 body{
   font-size: 16px;
   font-family: 'helvetica', sans-serif;
+  margin: 0 auto;
 }
 
 /*Containers*/
@@ -16,9 +18,31 @@ body{
   display: flex;
   flex-direction: column;
 }
+.c0{
+  background: white;
+  position:absolute;
+  height: 80vh;
+  width: 70%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  padding: 2rem 2rem 0 1rem;
+  text-transform: uppercase;
+  transition: transform .3s ease-out;
+  -webkit-transition: -webkit-transform .3s ease-out;
+  transform: translate(-100%, 0);
+  -webkit-transform: translate(-100%, 0);
+
+  z-index: 1;
+}
+.c0.open{
+  transform: translate(0,0);
+  -webkit-transform: translate(0,0);
+}
 
 .c1{
-  position: relative;
+  position: absolute;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -41,12 +65,30 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  position: absolute;
   width: 100%;
+  right: 0;
+  height: 100vh;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+  transition: transform .3s ease-out;
+  -webkit-transition: -webkit-transform .3s ease-out;
+  transform: translateX(-200%);
+  -webkit-transform: translateX(-200%, 0);
+  overflow-y: scroll;
+  z-index: 1;
+}
+.c2.timeline_open {
+      -webkit-animation: timeline_open 300ms ease-in-out;
+      -webkit-animation-fill-mode: forwards;
+      -webkit-transform: translateX(0);
+}
+@-webkit-keyframes timeline_open {
+    to {
+        -webkit-transform: translateX(0);
+    }
 }
 
 .none{
@@ -143,6 +185,15 @@ textarea:focus, input:focus{
   margin-top: auto;
   margin-bottom: 2vh;
 }
+
+.footer_home{
+  font-size: 1.3rem;
+  color: #FF543F;
+  text-align: center;
+  /*margin-top: auto;*/
+  margin-top: auto;
+  margin-bottom: auto;
+}
 .footer a{
   color: #D3D3D3;
   text-decoration: none;
@@ -171,6 +222,8 @@ textarea:focus, input:focus{
   text-align: center;
   font-size: 1.5rem;
   align-self: flex-start;
+  margin-top: auto;
+  margin-bottom: 8rem;
   /*padding-top: 5px;*/
 }
 .logo_text-top{
@@ -185,6 +238,7 @@ textarea:focus, input:focus{
 /*Moments*/
 .tipe_moment{
   margin-bottom: 1vh;
+  margin-top: 1.5vh;
 }
 .image img{
   /*margin-left: 100px;*/
@@ -299,19 +353,27 @@ textarea:focus, input:focus{
   .container{
     flex-direction: row;
   }
+  .c0{
+    width: 25%;
+  }
   .c1{
     width: 30%;
     margin-right: 0.3em;
+    position: relative;
+  }
+  /*This cover 70% for the screen with flex*/
+  .c2{
+    width: 70%;
+    transition: none;
+    position: relative;
+    transition: transform none;
+    -webkit-transition: -webkit-transform none;
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
   }
   .wallpaper{
     background-image: url(../img/rojo.jpg);
     background-position: center;
-  }
-
-  /*This cover 70% for the screen with flex*/
-  .c2{
-    width: 70%;
-
   }
   .none{
     display: flex;
