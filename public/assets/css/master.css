@@ -215,7 +215,26 @@ textarea:focus, input:focus{
   letter-spacing: 4px;
   text-transform: uppercase;
 }
-
+.text_start{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -12px 0 0 -22px;
+  font-family: 'ruler', sans-serif;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  z-index: 0;
+}
+.text_start-stop{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -28px;
+  font-family: 'ruler', sans-serif;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  z-index: 0;
+}
 .moment-text{
   width: 100%;
   font-family: 'ruler', sans-serif;
@@ -242,20 +261,29 @@ textarea:focus, input:focus{
 }
 .image img{
   /*margin-left: 100px;*/
-  width: 240px;
+  width: 90%;
   border-radius: 10px;
 }
 .timeline{
-  margin-top: 3vh;
-  border-top: rgba(255, 255, 255, 0.7) 1px solid;
+  margin-top: 2vh;
+  /*border-top: rgba(255, 255, 255, 0.7) 1px solid;*/
   width: 90%;
   color: white;
 }
 .time_moment{
   display: flex;
   padding-right: 5vh;
-
 }
+
+.profile{
+  margin-right: 4vh;
+  margin-top: 1rem;
+  align-self: flex-end;
+}
+.profile img{
+  border-radius: 50%;
+}
+
 .moment{
   /*text-align: center;*/
   padding-left: 1vh;
@@ -301,6 +329,7 @@ textarea:focus, input:focus{
   height: 100px;
   border-radius: 100%;
   border: 10px solid #FF543F;
+  z-index: 1;
 }
 .loading:after {
   content: '';
@@ -325,6 +354,7 @@ textarea:focus, input:focus{
   height: 100px;
   border-radius: 100%;
   border: 10px solid #FF543F;
+  z-index: 1;
 }
 .loading-click:after {
   content: '';
@@ -336,7 +366,7 @@ textarea:focus, input:focus{
   top: -20%;
   left: -20%;
   opacity: 0.7;
-  animation: rotate 2s infinite linear;
+  /*animation: rotate 2s infinite linear;*/
 }
 
 @keyframes rotate {
@@ -358,7 +388,6 @@ textarea:focus, input:focus{
   }
   .c1{
     width: 30%;
-    margin-right: 0.3em;
     position: relative;
   }
   /*This cover 70% for the screen with flex*/
@@ -380,7 +409,7 @@ textarea:focus, input:focus{
   }
   /*moment*/
   .timeline{
-    width: 60%;
+    width: 50%;
   }
   .time_moment{
     padding-right: 5vh;

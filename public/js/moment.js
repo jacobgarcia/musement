@@ -38,6 +38,8 @@ $('#moment').click(function(event){
     start();
       event.preventDefault();
     $('#moment').removeClass('loading-click').addClass('loading');
+    $('#text').removeClass('text_start').addClass('text_start-stop');
+    $("#text").text("Detener");
     click = false;
     d.removeClass('dialog-open');
   }
