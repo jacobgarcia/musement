@@ -34,7 +34,7 @@ body{
   transform: translate(-100%, 0);
   -webkit-transform: translate(-100%, 0);
 
-  z-index: 1;
+  z-index: 2;
 }
 .c0.open{
   transform: translate(0,0);
@@ -94,6 +94,7 @@ body{
 .none{
   display: none;
 }
+
 .signin a{
   color: #FF543F;
   text-decoration: none;
@@ -204,6 +205,9 @@ textarea:focus, input:focus{
   align-items: center;
   border-bottom: solid 2px #FF543F;
 }
+.noborder{
+  border-bottom: none;
+}
 
 .text-logo{
   width: 100%;
@@ -223,7 +227,6 @@ textarea:focus, input:focus{
   font-family: 'ruler', sans-serif;
   letter-spacing: .5px;
   text-transform: uppercase;
-  z-index: 0;
 }
 .text_start-stop{
   position: absolute;
@@ -233,7 +236,6 @@ textarea:focus, input:focus{
   font-family: 'ruler', sans-serif;
   letter-spacing: .5px;
   text-transform: uppercase;
-  z-index: 0;
 }
 .moment-text{
   width: 100%;
@@ -243,7 +245,6 @@ textarea:focus, input:focus{
   align-self: flex-start;
   margin-top: auto;
   margin-bottom: 8rem;
-  /*padding-top: 5px;*/
 }
 .logo_text-top{
   color: #FF543F;
