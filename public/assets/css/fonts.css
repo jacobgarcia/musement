@@ -14,11 +14,11 @@
 /*Login/sign up font icon*/
 @font-face {
     font-family: 'moments';
-    src:    url('../fonts/moments.eot?2ilnsb');
-    src:    url('../fonts/moments.eot?2ilnsb#iefix') format('embedded-opentype'),
-        url('../fonts/moments.ttf?2ilnsb') format('truetype'),
-        url('../fonts/moments.woff?2ilnsb') format('woff'),
-        url('../fonts/moments.svg?2ilnsb#moments') format('svg');
+    src:    url('../fonts/moments.eot?x6je89');
+    src:    url('../fonts/moments.eot?x6je89#iefix') format('embedded-opentype'),
+        url('../fonts/moments.ttf?x6je89') format('truetype'),
+        url('../fonts/moments.woff?x6je89') format('woff'),
+        url('../fonts/moments.svg?x6je89#moments') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -39,6 +39,11 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-Comillas-10:before {
+    content: "\e90a";
+    color: rgba(255, 255, 255, 0.71) !important;
+    padding-right: 1vh;
+}
 .icon-email-10:before {
     content: "\e900";
     padding-left: 0.5rem;

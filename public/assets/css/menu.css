@@ -10,6 +10,10 @@
 span.title_menu{
   padding-left: 4vh;
 }
+span.title_menu a{
+  padding: 1rem 35vh 1rem 0;
+  text-align: left;
+}
 .fa{
   margin-top: 2vh;
   position: absolute;

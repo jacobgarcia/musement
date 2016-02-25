@@ -7,6 +7,10 @@ body{
   font-family: 'helvetica', sans-serif;
   margin: 0 auto;
 }
+a{
+  color: #FF5440;
+  text-decoration: none;
+}
 
 /*Containers*/
 .container{
@@ -22,7 +26,7 @@ body{
   background: white;
   position:absolute;
   height: 80vh;
-  width: 70%;
+  width: 100%;
   color: white;
   display: flex;
   flex-direction: column;
@@ -93,6 +97,13 @@ body{
 
 .none{
   display: none;
+}
+.prox{
+  font-size: 0.8rem;
+  padding-top: 0.1rem;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  color: rgba(122, 122, 122, 0.8);
 }
 
 .signin a{
@@ -310,8 +321,12 @@ textarea:focus, input:focus{
 }
 .bold{
   margin-left: 0.3em;
-  margin-right: 0.3em;
   font-weight: bold;
+}
+.transparent{
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+  color: rgba(245, 245, 245, 0.8);
 }
 
 /*moment animation*/

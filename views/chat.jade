@@ -4,15 +4,17 @@ head
   meta(name='viewport', content='width=device-width, user-scalable=no')
   title Musement Collective - Chat
   link(rel="stylesheet", href="/static/assets/css/normalize.css", type='text/css')
+  link(rel="stylesheet", href="/static/assets/css/master.css", type='text/css')
   link(rel="stylesheet", href="/static/assets/css/chat.css", type='text/css')
   link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type='text/css')
   
 body
-  nav
-    .i.fa.fa-bars
+  .container
+  include ./includes/menu.jade  
     //- .channel General
-    
-  .chat
+  #mainPanel.chat
+  .content_center
+    .fa.fa-bars#menu_button
     ul#messages
       form(action='')
         input#m(autocomplete='off', placeholder="Escribe aquí")
@@ -20,4 +22,9 @@ body
   script(src='/socket.io/socket.io.js')
   script(src="http://code.jquery.com/jquery-1.11.1.js")
   script(src="/static/js/bundle.js")
+  script(src='/static/js/home.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.4/hammer.min.js')
+  script(src='/static/assets/js/swipe.js')
+  
+  
     

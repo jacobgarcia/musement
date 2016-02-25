@@ -21,9 +21,9 @@ function populateWall() {
       wallContent += '<article class="moment">';
       wallContent += '<div class="has">';
       wallContent += '<img src="' + this.user.image + '" alt=""/>';
-      wallContent += '<span class="bold">' + this.user.username  + '</span>';
-      wallContent += 'tuvo un ';
-      wallContent += '<span class="bold">momento</span></div>';
+      wallContent += this.user.username ;
+      wallContent += ' <span class="transparent"> tuvo un </span>';
+      wallContent += ' momento</div>';
       wallContent += '<div class="right_moment">';
 
       if(this.attachement != ''){
@@ -31,7 +31,7 @@ function populateWall() {
         wallContent += '<img src="' + this.attachement[0] + '".jpg alt=""/>';
       }
 
-      wallContent += '<div class="tipe_moment text">' + this.description + '</div></div></article>';
+      wallContent += '<div class="tipe_moment text"><span class="icon-Comillas-10"></span>' + this.description + '</div></div></article>';
     });
 
     // Inject the whole content string into our existing HTML section
