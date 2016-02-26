@@ -10,21 +10,21 @@ head
   
 body
   .container
-  include ./includes/menu.jade  
-    //- .channel General
-  #mainPanel.chat
-  .content_center
-    .fa.fa-bars#menu_button
-    ul#messages
-      form(action='')
-        input#m(autocomplete='off', placeholder="Escribe aquí")
+    include ./includes/menu.jade  
+      //- .channel General
+    #mainPanel.chat
+    .content_center
+      .fa.fa-bars#menu_button
+      ul#messages
+        form(action='')
+          input#m(autocomplete='off', placeholder="Escribe aquí")
         
   script(src='/socket.io/socket.io.js')
   script(src="http://code.jquery.com/jquery-1.11.1.js")
   script(src="/static/js/bundle.js")
   script(src='/static/js/home.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.4/hammer.min.js')
-  script(src='/static/assets/js/swipe.js')
+  script(src='/static/assets/js/menu-swipe.js')
   
   
     
