@@ -18,6 +18,8 @@ body
     ul#messages
       form(action='')
         input#m(autocomplete='off', placeholder="Escribe aquí")
+      p(hidden='' id="username") #{username}
+      p(hidden='' id="image") #{image}
         
   script(src='/socket.io/socket.io.js')
   script(src="http://code.jquery.com/jquery-1.11.1.js")

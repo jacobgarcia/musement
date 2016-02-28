@@ -49,7 +49,6 @@ require('controllers/index')(app,passport); // load our routes and pass in our a
 
 io.on('connection', function (socket){
   socket.on('chat message', function(msg){
-    console.log('message: ' + msg);
     io.emit('chat message', msg);
  });
 });
