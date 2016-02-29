@@ -42,7 +42,7 @@ html
         input(type="text", name="description", placeholder="Describe tu momento :)")
         .file-upload 
           label.upload-label
-            input(type='file', id='attachement', onchange="alertFilename()", name="fileName")
+            input(type='file', accept="image/*" id='attachement', onchange="alertFilename()", name="fileName")
             span.icon-img_Icon                
           input(type="hidden", name="totalTime", id="time")
           //- input.close.btn.btn-close(type="submit", name="submits", value="Guardar Momento")
