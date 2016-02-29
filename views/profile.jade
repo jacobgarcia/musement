@@ -1,0 +1,75 @@
+html
+  head
+    meta(name='viewport', content='width=device-width, user-scalable=no')  
+    title Musement Collective - Profile
+    link(rel="stylesheet", href="/static/assets/css/master.css", type='text/css')
+    link(rel="stylesheet", href="/static/assets/css/normalize.css", type='text/css')
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type='text/css')
+    
+  body
+    .container
+      //- Insert menu
+      include ./includes/menu.jade
+      #mainPanel.c1 
+        .content_center
+          .fa.fa-bars#menu_button
+        #effect-2.effects.clearfix
+          .img
+            img(src="static/assets/img/default.jpg", alt="")
+            .overlay
+              a.expand(href='#').icon-profilePhotoIcon 
+        .username_profile
+          | lmrarturo
+        
+          
+        .footer_home
+          | ¡13 momentos logrados!
+            
+      #timelinePanel.c2    
+        section#wall.timeline
+                      
+  //- Create moment Popup (is hidden)        
+  #somedialog.dialog
+    .dialog-overlay
+    .dialog-content
+      .icon-upload_Icon    
+      h2 Mi Momento
+      form.create_moment(action='/home', method='post', enctype="multipart/form-data" )
+        
+        input(type="text", name="description", placeholder="Describe tu momento :)")
+        .file-upload 
+          label.upload-label
+            input(type='file', id='attachement', onchange="alertFilename()", name="fileName")
+            span.icon-img_Icon                
+          input(type="hidden", name="totalTime", id="time")
+          //- input.close.btn.btn-close(type="submit", name="submits", value="Guardar Momento")
+          button.close.btn.btn-close(type='submit', name="submits")
+            i.icon-done_Icon
+          
+          
+
+              
+script(src='/static/assets/js/jquery.min.js')                
+script(src='/static/assets/js/momentpopup.js')
+script(src='/static/js/home.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.4/hammer.min.js')
+script(src='/static/assets/js/menu-swipe.js')
+script(src='/static/assets/js/timeline-swipe.js')
+script(src='/static/js/profile.js')
+script(src='/static/js/modernizr.js')
+
+
+
+
+                
+                
+               
+              
+              
+            
+              
+          
+          
+    
+    
+      

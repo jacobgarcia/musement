@@ -39,6 +39,10 @@ module.exports = function(app, passport) {
     failureRedirect: '/login'
   }));
 
+  app.get('/profile', ensureAuth, (req, res) => {
+    res.render('profile')
+  });
+
   app.get('/login', (req, res) => {
     res.render('login', {
       title: 'Hey',

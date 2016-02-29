@@ -52,6 +52,7 @@ li img{
   -o-border-radius: 100px;
   border-radius: 100px;
   align-self: center;
+  width: 50px;
 }
 
 .msg{
