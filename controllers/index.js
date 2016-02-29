@@ -7,6 +7,7 @@ var router = express.Router();
 
 var home = require('./home');
 var chat = require('./chat');
+var profile = require('./profile')
 
 //================================== MIDDLEWARES ===============================
 const ensureAuth = require('middlewares/auth.js');
@@ -20,6 +21,7 @@ module.exports = function(app, passport) {
   app.use(flash());
   app.use('/home', home);
   app.use('/chat', chat);
+  app.use('/profile', profile);
 
   app.get('/', (req, res) => {
     res.render('index')

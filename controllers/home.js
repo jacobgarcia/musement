@@ -11,15 +11,13 @@ const newMoment = require('config/createmoment.js')
 //================================== MIDDLEWARES ===============================
 var Moment = require("models/moment.js");
 const ensureAuth = require('middlewares/auth.js');
+const populate = require('helpers/populate.js');
 
 /*
  * GET momentlist
  */
 router.get('/momentlist', ensureAuth, (req, res) => {
-  /* The populate first parameter refers to the 'foreign key', the other 2 params are the only fields that will be populated */
-  Moment.find().populate('user', 'username image').lean().sort({$natural:-1}).limit(30).exec(function(err, moments) {
-    //res.render('home');
-    /* WARNING: This returns all the moments in the database, REMEMBER to add later a paging file in FRONT END */
+  populate.populate().exec(function(err, moments) {
     res.end(JSON.stringify(moments));
   });
 
