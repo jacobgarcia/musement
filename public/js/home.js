@@ -44,7 +44,12 @@ function populateWall(momentlist) {
     $('#wall').html(wallContent);
 
     // If we are in profile
-    if(momentlist === '/profile/momentList')
-      $('#momentsQuantity').html("¡" + Object.keys(data).length + " momentos logrados!");
+    if(momentlist === '/profile/momentList'){
+      if(Object.keys(data).length === 0)
+          $('#momentsQuantity').html("Amm...");
+      else
+        $('#momentsQuantity').html("¡" + Object.keys(data).length + " momentos logrados!");
+    }
+
   });
 };

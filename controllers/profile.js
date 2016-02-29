@@ -11,13 +11,13 @@ const populate = require('helpers/populate.js');
  * GET momentlist
  */
 router.get('/momentlist', ensureAuth, (req, res) => {
-  populate.populate({"user":ObjectId("56cb30bddd08126a09f28f69")}).exec(function(err, moments) {
+  populate.populate({"user":ObjectId(req.user.id)}).exec(function(err, moments) {
     res.end(JSON.stringify(moments));
   });
 });
 
 router.get('/', ensureAuth, (req, res) => {
-  res.render('profile');
+  res.render('profile', {user: req.user.username});
 });
 
 module.exports = router;
