@@ -42,5 +42,9 @@ function populateWall(momentlist) {
 
     // Inject the whole content string into our existing HTML section
     $('#wall').html(wallContent);
+
+    // If we are in profile
+    if(momentlist === '/profile/momentList')
+      $('#momentsQuantity').html("¡" + Object.keys(data).length + " momentos logrados!");
   });
 };
