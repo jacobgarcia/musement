@@ -15,9 +15,10 @@ html
           .fa.fa-bars#menu_button
         #effect-2.effects.clearfix
           .img
-            img(src="static/assets/img/default.jpg", alt="")
+            img(src="#{image}", alt="")
             .overlay
-              a.expand(href='#').icon-profilePhotoIcon 
+              form(action='/profile', method='post', enctype="multipart/form-data" )
+                input.expand(type='file', accept="image/*" id='attachement', name="fileName", onchange="this.form.submit()").icon-profilePhotoIcon 
         .username_profile
           | #{user}
         

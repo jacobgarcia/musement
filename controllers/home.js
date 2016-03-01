@@ -29,7 +29,7 @@ router.get('/', ensureAuth, (req, res) => {
 
 router.post('/', ensureAuth, upload.single('fileName'), function(req, res) {
   //res.render('home');
-  newMoment.insertMoment(req, null);
+  newMoment.insertMoment(req);
   console.log(req.file);
   console.log("uploaded");
   res.redirect('/home');

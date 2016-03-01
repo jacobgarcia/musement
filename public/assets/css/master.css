@@ -297,6 +297,11 @@ textarea:focus, input:focus{
   width: 50px;
 }
 
+.profile input{
+  border-radius: 50%;
+  width: 50px;
+}
+
 .moment{
   /*text-align: center;*/
   padding-left: 1vh;
@@ -457,7 +462,7 @@ a.close-overlay.hidden {
   display: none;
 }
 
-a.expand {
+input.expand {
   display: block;
   position: absolute;
   z-index: 100;
