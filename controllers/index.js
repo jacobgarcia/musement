@@ -14,8 +14,6 @@ const ensureAuth = require('middlewares/auth.js');
 
 
 //===================================== ROUTES =================================
-
-
 module.exports = function(app, passport) {
   // ====================== > HOME PAGE (with login links) =======================
   app.use(flash());
@@ -42,10 +40,10 @@ module.exports = function(app, passport) {
   });
 
   app.get('/login', (req, res) => {
-    res.render('login', {
-      title: 'Hey',
-      message: 'Hello there!'
-    });
+    if(req.isAuthenticated())
+      res.render('home');
+    else
+      res.render('login');
   });
 
   app.get('/logout', (req, res) => {
