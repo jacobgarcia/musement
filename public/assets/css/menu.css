@@ -25,3 +25,9 @@ span.title_menu a{
 .fa-times{
   padding: 0.2rem 1rem;
 }
+.logout{
+  align-self: flex-end;
+  margin-top: auto;
+  margin-bottom: 2rem;
+  margin-right: 2rem;
+}

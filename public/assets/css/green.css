@@ -1,5 +1,5 @@
 a{
-  color: #1FAC89 !important;
+  color: #1FAC89;
 }
 .c0{
   background-color: #3E4D54;
@@ -11,7 +11,7 @@ a{
   background: #1FAC89;
 }
 input[type=submit]{
-  background-color: #1FAC89 !important;
+  background-color: #1FAC89;
 }
 input[type=submit]:hover{
   background-color: #1FAC89;
@@ -76,6 +76,9 @@ form.create_moment{
 }
 form input {
   border-top: solid 1px #1FAC89;
+}
+.logout a{
+  color: white;
 }
 @media (min-width: 850px) {
   .wallpaper{
