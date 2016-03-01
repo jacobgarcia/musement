@@ -1,0 +1,86 @@
+a{
+  color: #1FAC89 !important;
+}
+.c0{
+  background-color: #3E4D54;
+}
+.c1{
+  color: #1FAC89;
+}
+.c2{
+  background: #1FAC89;
+}
+input[type=submit]{
+  background-color: #1FAC89 !important;
+}
+input[type=submit]:hover{
+  background-color: #1FAC89;
+}
+input[type="password"]{
+  border: none;
+}
+.footer_home{
+  color: #1FAC89;
+}
+.wrap{
+  border-bottom: solid 2px #1FAC89;
+}
+.noborder{
+  border: none;
+}
+.logo_text-top{
+  color: #1FAC89;
+}
+.logo_text-bottom{
+  color: #FEC06C;
+}
+.loading{
+  border: 10px solid #1FAC89;
+}
+.loading:after{
+  box-shadow: #1FAC89 -4px -5px 3px -3px;
+}
+.loading-click{
+  border: 10px solid #1FAC89;
+
+}
+.imenu{
+  color: white;
+}
+span.title_menu a{
+  color: white !important;
+}
+.fa{
+  color: white;
+}
+.fa-bars{
+  color: #FEC06C !important;
+}
+[class^="icon-"], [class*=" icon-"] {
+  color: #1FAC89;
+}
+.icon-moments_Icon:before {
+  color: white;
+}
+.icon-profile_Icons:before {
+  color: white;
+}
+.icon-chat_Icons:before {
+  color: white;
+}
+.dialog h2 {
+  color: #1FAC89;
+}
+form.create_moment{
+  border-top: 1px solid rgba(31, 172, 137, 0.5);
+}
+form input {
+  border-top: solid 1px #1FAC89;
+}
+@media (min-width: 850px) {
+  .wallpaper{
+    background-image: url(../img/green.png);
+    background-position: center;
+  }
+
+}

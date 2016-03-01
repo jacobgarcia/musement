@@ -32,7 +32,7 @@ function update() {
 $('#moment').click(function(event){
   if (! moment) {
     if (Math.floor((Math.ceil(clock / 1000)) / 60) < 30 ) {
-      $("#error").text("El que persevera alcanza su momento...");
+      $("#error").text("El que persevera logra su momento...");
     }else{
       $('#moment').removeClass('loading').addClass('loading-click');
       $('#text').removeClass('text_start-stop').addClass('text_start');
