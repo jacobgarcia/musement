@@ -24,28 +24,12 @@ html
           
         #momentsQuantity.footer_home
           | 
+          
+        #ipsos.footer_home
+            | 
             
       #timelinePanel.c2    
         section#wall.timeline
-                      
-  //- Create moment Popup (is hidden)        
-  #somedialog.dialog
-    .dialog-overlay
-    .dialog-content
-      .icon-upload_Icon    
-      h2 Mi Momento
-      form.create_moment(action='/home', method='post', enctype="multipart/form-data" )
-        
-        input(type="text", name="description", placeholder="Describe tu momento :)")
-        .file-upload 
-          label.upload-label
-            input(type='file', id='attachement', onchange="alertFilename()", name="fileName")
-            span.icon-img_Icon                
-          input(type="hidden", name="totalTime", id="time")
-          //- input.close.btn.btn-close(type="submit", name="submits", value="Guardar Momento")
-          button.close.btn.btn-close(type='submit', name="submits")
-            i.icon-done_Icon
-          
           
 
               
