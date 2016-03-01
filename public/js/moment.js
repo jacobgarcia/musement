@@ -21,6 +21,7 @@ function getClock() {
 function reset() {
     clock = 0;
     firstTime = true;
+    $("#error").text("");
 
 }
 
@@ -30,12 +31,16 @@ function update() {
 
 $('#moment').click(function(event){
   if (! moment) {
-    $('#moment').removeClass('loading').addClass('loading-click');
-    $('#text').removeClass('text_start-stop').addClass('text_start');
-    $("#text").text("Iniciar");
-    console.log('Segundo', moment);
-    start();
-    moment = true;
+    if (Math.floor((Math.ceil(clock / 1000)) / 60) < 30 ) {
+      $("#error").text("El que persevera alcanza su momento...");
+    }else{
+      $('#moment').removeClass('loading').addClass('loading-click');
+      $('#text').removeClass('text_start-stop').addClass('text_start');
+      $("#text").text("Iniciar");
+      console.log('Segundo', moment);
+      start();
+      moment = true;
+    }
   }else{
 
     $('#moment').removeClass('loading-click').addClass('loading'); /* Start the animation (moment) */
