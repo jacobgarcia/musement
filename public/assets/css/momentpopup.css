@@ -35,6 +35,12 @@
 .icon-upload_Icon{
   font-size: 3rem;
 }
+.icon-closeIcon{
+	position: absolute;
+  top: 0;
+  margin-top: 2vh;
+	cursor: pointer;
+}
 .dialog-content {
 	width: 85%;
 	max-width: 85%;

@@ -1,11 +1,10 @@
+/* momentpopup.js is necesary */
+
 // Animation moment
-var click = true;
+var moment = true;
 var interval;
 var clock = 0;
 
-// default options
-var options = options || {};
-options.delay = options.delay || 1;
 
 function delta() {
     var now = Date.now(),
@@ -21,7 +20,8 @@ function getClock() {
 
 function reset() {
     clock = 0;
-    render(0);
+    firstTime = true;
+
 }
 
 function update() {
@@ -29,28 +29,35 @@ function update() {
 }
 
 $('#moment').click(function(event){
-  if (! click) {
+  if (! moment) {
     $('#moment').removeClass('loading').addClass('loading-click');
-    d.removeClass('dialog-close');
+    $('#text').removeClass('text_start-stop').addClass('text_start');
+    $("#text").text("Iniciar");
+    console.log('Segundo', moment);
     start();
-    click = true;
+    moment = true;
   }else{
-    start();
-      event.preventDefault();
-    $('#moment').removeClass('loading-click').addClass('loading');
+
+    $('#moment').removeClass('loading-click').addClass('loading'); /* Start the animation (moment) */
     $('#text').removeClass('text_start').addClass('text_start-stop');
     $("#text").text("Detener");
-    click = false;
-    d.removeClass('dialog-open');
+    /*Change text and text's style*/
+    console.log('Primero', moment);
+    start();
+    moment = false;
   }
+});
 
-  console.log("Click");
-  });
+$('#close_moment').click(function(event){
+  console.log('clock', clock, 'Time',totalTime);
+  reset();
+});
 
 function start() {
     if (!interval) {
         offset = Date.now();
-        interval = setInterval(update, options.delay);
+        interval = setInterval(update, 1);
+        /* Executes a function, after waiting a specified number of milliseconds,  but repeats the execution of the function continuously. */
 
     } else {
         stop();
@@ -102,20 +109,6 @@ var Stopwatch = function (elem, options) {
         });
         return a;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 };
 
 
