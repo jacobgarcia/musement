@@ -4,18 +4,24 @@ var momentListData = [];
 //================================== DOM READY ===============================
 $(document).ready(function() {
   // Populate the moments wall on initial page load
-  populateWall();
+  var momentList;
+  if ($(document).find("title").text() === 'Musement Collective - Home')
+      momentList = '/home/momentList';
+  else
+      momentList = '/profile/momentList'
+
+  populateWall(momentList);
 });
 
 //================================== FUNCTIONS ===============================
 
 // Fill wall with data
-function populateWall() {
+function populateWall(momentlist) {
   // Empty content string
   var wallContent = '';
 
   // jQuery AJAX call for JSON
-  $.getJSON('/home/momentlist', function(data) {
+  $.getJSON(momentlist, function(data) {
     // For each item in our JSON, add an 'article.moment'
     $.each(data, function() {
       wallContent += '<article class="moment">';
@@ -36,5 +42,14 @@ function populateWall() {
 
     // Inject the whole content string into our existing HTML section
     $('#wall').html(wallContent);
+
+    // If we are in profile
+    if(momentlist === '/profile/momentList'){
+      if(Object.keys(data).length === 0)
+          $('#momentsQuantity').html("Amm...");
+      else
+        $('#momentsQuantity').html("¡" + Object.keys(data).length + " momentos logrados!");
+    }
+
   });
 };
