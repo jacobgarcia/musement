@@ -9,5 +9,4 @@ $('.open').click(function (e) {
 
 $('.close').click(function (e) {
     d.removeClass('dialog-open');
-    d.addClass('dialog-close');
 });

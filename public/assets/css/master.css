@@ -294,7 +294,7 @@ textarea:focus, input:focus{
 }
 .profile img{
   border-radius: 50%;
-  width: 60px;
+  width: 50px;
 }
 
 .moment{
@@ -319,7 +319,6 @@ textarea:focus, input:focus{
   width: 50px;
   margin-right: 0.5em;
   border-radius: 50%;
-  border: white 3px solid;
 }
 .bold{
   margin-left: 0.3em;
@@ -528,6 +527,9 @@ a.expand {
   }
   .time_moment{
     padding-right: 5vh;
+  }
+  .image img{
+    width: 80%;
   }
 
 }

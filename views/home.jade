@@ -22,6 +22,7 @@ html
             |Iniciar
         .moment-text
         //- | Iniciar
+        #error.error_moment
                     
         .footer_home
           | ¡Tu momento es ahora!
@@ -36,10 +37,11 @@ html
     .dialog-overlay
     .dialog-content
       .icon-upload_Icon    
+      #close_moment.icon-closeIcon.close
       h2 Mi Momento
       form.create_moment(action='/home', method='post', enctype="multipart/form-data" )
         
-        input(type="text", name="description", placeholder="Describe tu momento :)")
+        input(type="text", name="description", required="true", placeholder="Describe tu momento :)")
         .file-upload 
           label.upload-label
             input(type='file', accept="image/*" id='attachement', onchange="alertFilename()", name="fileName")

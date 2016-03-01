@@ -35,6 +35,12 @@
 .icon-upload_Icon{
   font-size: 3rem;
 }
+.icon-closeIcon{
+	position: absolute;
+  top: 0;
+  margin-top: 2vh;
+	cursor: pointer;
+}
 .dialog-content {
 	width: 85%;
 	max-width: 85%;
@@ -98,6 +104,11 @@ input[name="submits"] {
 button{
   border:0;
   background:none;
+}
+.error_moment{
+	margin-top: auto;
+	color: rgba(60, 60, 60, 0.7);
+	font-size: 0.8rem;
 }
 
 @media (min-width: 850px) {
