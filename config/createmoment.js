@@ -1,7 +1,7 @@
 var Moment = require("models/moment.js");
 var User = require("models/user.js");
 
-var insertMoment = function(req, user) {
+var insertMoment = function(req) {
   // Create moment
   var newMoment = new Moment();
 

@@ -19,6 +19,11 @@ $(document).ready(function() {
 function populateWall(momentlist) {
   // Empty content string
   var wallContent = '';
+  /* Ipsos Counter */
+  var ipsos = 0;
+
+  /* Temporal computation for speed purposes */
+  var timelapse = 0;
 
   // jQuery AJAX call for JSON
   $.getJSON(momentlist, function(data) {
@@ -29,7 +34,12 @@ function populateWall(momentlist) {
       wallContent += '<img src="' + this.user.image + '" alt=""/>';
       wallContent += this.user.username ;
       wallContent += ' <span class="transparent"> tuvo un </span>';
-      wallContent += ' momento</div>';
+      wallContent += ' momento <span class="transparent"> de </span>' ;
+
+      timelapse = Math.floor(this.timelapse/30);
+      ipsos += timelapse;
+      wallContent += timelapse;
+      wallContent += ' ipsos</div>'
       wallContent += '<div class="right_moment">';
 
       if(this.attachement != ''){
@@ -46,9 +56,11 @@ function populateWall(momentlist) {
     // If we are in profile
     if(momentlist === '/profile/momentList'){
       if(Object.keys(data).length === 0)
-          $('#momentsQuantity').html("Amm...");
-      else
-        $('#momentsQuantity').html("¡" + Object.keys(data).length + " momentos logrados!");
+          $('#momentsQuantity').html("Es hora de idear. ¡Inicia un nuevo momento!");
+      else{
+        $('#momentsQuantity').html(Object.keys(data).length + " momentos logrados");
+        $('#ipsos').html(ipsos + ' ipsos');
+      }
     }
 
   });
