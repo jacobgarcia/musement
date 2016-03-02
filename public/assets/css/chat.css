@@ -32,6 +32,7 @@ form input {
   padding: 1.2rem;
   width: 100%;
   border-top: solid 1px #FF543F;
+  margin: 1.3rem;
 }
 
 input:focus{
@@ -39,10 +40,10 @@ input:focus{
 }
 li .new_message{
   display: flex;
-  flex-direction: row;;
+  flex-direction: column;
   justify-content: flex-start;
   flex-wrap: nowrap;
-
+  padding: 0 10vh 0 10vh;
 }
 
 li img{
@@ -53,11 +54,13 @@ li img{
   border-radius: 100px;
   align-self: center;
   width: 50px;
+  height: 50px;
 }
-
+.who{
+  display: flex;
+}
 .msg{
-  align-self: center;
-  margin-left: 1rem;
+  margin-left: 4.3rem;
 }
 
 #messages {
@@ -68,4 +71,18 @@ li img{
 #messages li {
   padding: 5px 10px;
   margin: 1em 1em;
+}
+.username_chat{
+  align-self: center;
+  margin-left: 1rem;
+}
+.content_center a{
+  color: #FF543F;
+  text-decoration: none;
+}
+.content_center{
+  font-size: 1em;
+  margin-top: 7vh;
+  margin-left: 2vh;
+  align-self: baseline;
 }

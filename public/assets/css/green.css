@@ -83,6 +83,10 @@ form input {
 .signin a{
   color: #1FAC89;
 }
+/*chat*/
+.username_chat{
+  color: #1FAC89;
+}
 @media (min-width: 850px) {
   .wallpaper{
     background-image: url(../img/green.png);
