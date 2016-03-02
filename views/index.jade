@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Musement Collective
+    meta(name='viewport', content='width=device-width, user-scalable=no')
+    link(rel='stylesheet', href='/static/assets/css/normalize.css', media='screen', title='no title', charset='utf-8')
+    link(rel='stylesheet', href='/static/assets/css/index.css', media='screen', title='no title', charset='utf-8')
+  body
+    .container
+      .login
+        a(href="/login") Iniciar Sesión 
+        
+      .logo
+        img(src='/static/assets/img/logo-red.svg', alt='')
+      .text
+        p
+          | Al trabajar en un proyecto personal que nos apasiona es tan grande nuestra concentración que perdemos la noción del tiempo, las horas parecen minutos, nuestras ideas lo son todo.
+        p
+          | Ahí surge Musement, dejando el tiempo y creando el momento.
+      .button
+        // <input type="button" name="unirme" value="Quiero Unirme">
+        a.typeform-share.btn(href='https://arturo10mr.typeform.com/to/Cw1n8E', data-mode='1', target='_blank') Quiero Unirme
+    script(src='/static/js/typeform.js')
+    script(src='/static/js/analytics.js')
+    

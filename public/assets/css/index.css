@@ -27,6 +27,20 @@ body{
   display: -ms-flexbox;
   display: -webkit-flex;
 }
+.login{
+  padding: 1vh 0;
+  width: 100%;
+  text-align: right;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+.login a{
+  color: white;
+  padding: 1vh 3vh 1vh 1vh;
+  text-decoration: none;
+}
+.logo{
+  margin-top: auto;
+}
 .logo img{
   border-bottom: 1px solid #FF543F;
   padding-bottom: 3vh;
@@ -37,7 +51,7 @@ body{
   width: 100%;
   color: white;
   text-align: center;
-  margin: 2vh 0 4vh 0;
+  margin: 3vh 0;
 }
 
 p{
@@ -54,6 +68,9 @@ p{
   -webkit-border-radius: 10px;
   padding: 14px 40px 12px 40px;
   text-decoration: none;
+}
+.button{
+  margin-bottom: auto;
 }
 @media (min-width: 850px) {
   .text{

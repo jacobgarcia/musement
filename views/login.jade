@@ -1,0 +1,39 @@
+doctype html
+head
+  meta(charset="utf-8")
+  meta(name='viewport', content='width=device-width, user-scalable=no')
+  title Musement Collective - Login
+  link(rel="stylesheet", href="/static/assets/css/master.css", type='text/css')
+  link(rel="stylesheet", href="/static/assets/css/normalize.css", type='text/css')
+  link(rel="stylesheet", href="/static/assets/css/green.css", type='text/css')
+  
+body
+  .container
+    .c1.align_center
+      .signin
+        a(href="/signup") Nuevo Usuario
+      figure
+        img(src='/static/assets/img/logo.svg')
+      .message
+        | Bienvenido
+        
+      form.signup(action='/login', method='post' class)
+        
+        .wrap
+          .icon-email-10
+          input(type="email", name="email", placeholder="email") 
+        .wrap.noborder       
+          .icon-passwordIcon
+          input(type="password", name="password", placeholder="contraseña")
+        input.login(type="submit", name="submit", value="Entrar")
+        
+      .footer
+        | ¿Problemas para entrar?
+        br 
+        a(href="mailto:hello@musement.co") hello@musement.co 
+          
+    .c2.wallpaper.none.noscroll
+    
+    
+    
+  

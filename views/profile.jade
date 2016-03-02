@@ -1,0 +1,60 @@
+html
+  head
+    meta(name='viewport', content='width=device-width, user-scalable=no')  
+    title Musement Collective - Profile
+    link(rel="stylesheet", href="/static/assets/css/master.css", type='text/css')
+    link(rel="stylesheet", href="/static/assets/css/normalize.css", type='text/css')
+    link(rel="stylesheet", href="/static/assets/css/green.css", type='text/css')
+    
+  body
+    .container
+      //- Insert menu
+      include ./includes/menu.jade
+      #mainPanel.c1 
+        .content_center
+          .icon-menu_IconOPEN#menu_button
+        #effect-2.effects.clearfix
+          .img
+            img(src="#{image}", alt="")
+            .overlay
+              form(action='/profile', method='post', enctype="multipart/form-data" )
+                input.expand(type='file', accept="image/jpg, image/jpeg", id='attachement', name="fileName", onchange="this.form.submit()").icon-profilePhotoIcon 
+        .username_profile
+          | #{user}
+        
+          
+        #momentsQuantity.footer_home
+          | 
+          
+        #ipsos.footer_home
+            | 
+            
+      #timelinePanel.c2    
+        section#wall.timeline
+          
+
+              
+script(src='/static/assets/js/jquery.min.js')                
+script(src='/static/assets/js/momentpopup.js')
+script(src='/static/js/home.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.4/hammer.min.js')
+script(src='/static/assets/js/menu-swipe.js')
+script(src='/static/assets/js/timeline-swipe.js')
+script(src='/static/js/profile.js')
+script(src='/static/js/modernizr.js')
+
+
+
+
+                
+                
+               
+              
+              
+            
+              
+          
+          
+    
+    
+      
