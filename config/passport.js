@@ -51,14 +51,16 @@ module.exports = function (passport) {
                 // find a user whose email is the same as the forms email
                 // we are checking to see if the user trying to login already exists
                 User.findOne({
-                    'email': email
+                    $or: [{
+                    'email': email},
+                    {'username': req.body.username}]
                 }, function (err, user) {
                     // if there are any errors, return the error
                     if (err)
                         return done(err);
 
-                    // check to see if theres already a user with that email
-                    if (user || email) {
+                    // check to see if theres already a user with that username
+                    if (user) {
                         return done(null, false, req.flash('signupMessage', 'Ese email ya está registrado. Intenta con otro.'));
                     } else {
 

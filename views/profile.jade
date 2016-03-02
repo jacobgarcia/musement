@@ -17,8 +17,8 @@ html
           .img
             img(src="#{image}", alt="")
             .overlay
-              form.profile_form(action='/profile', method='post', enctype="multipart/form-data" )
-                input.expand(type='file', accept="image/jpg, image/jpeg" id='attachement', name="fileName", onchange="this.form.submit()").icon-profilePhotoIcon 
+              form(action='/profile', method='post', enctype="multipart/form-data" )
+                input.expand(type='file', accept="image/jpg, image/jpeg", id='attachement', name="fileName", onchange="this.form.submit()").icon-profilePhotoIcon 
         .username_profile
           | #{user}
         
