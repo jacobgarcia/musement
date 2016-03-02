@@ -37,7 +37,6 @@ $('#moment').click(function(event){
       $('#moment').removeClass('loading').addClass('loading-click');
       $('#text').removeClass('text_start-stop').addClass('text_start');
       $("#text").text("Iniciar");
-      console.log('Segundo', moment);
       start();
       moment = true;
     }
@@ -47,14 +46,13 @@ $('#moment').click(function(event){
     $('#text').removeClass('text_start').addClass('text_start-stop');
     $("#text").text("Detener");
     /*Change text and text's style*/
-    console.log('Primero', moment);
     start();
     moment = false;
   }
 });
 
 $('#close_moment').click(function(event){
-  console.log('clock', clock, 'Time',totalTime);
+
   reset();
 });
 
@@ -121,8 +119,6 @@ var Stopwatch = function (elem, options) {
 //var elems = document.getElementById('test');
 
 var firstTime = true;
-
-var watch = new Stopwatch(elems);
 
 var totalTime = 0;
 

@@ -24,7 +24,7 @@ router.get('/momentlist', ensureAuth, (req, res) => {
 });
 
 router.get('/', ensureAuth, (req, res) => {
-  res.render('home');
+  res.render('home', {image: req.user.image});
 });
 
 router.post('/', ensureAuth, upload.single('fileName'), function(req, res) {
