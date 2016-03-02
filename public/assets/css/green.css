@@ -80,6 +80,9 @@ form input {
 .logout a{
   color: white;
 }
+.signin a{
+  color: #1FAC89;
+}
 @media (min-width: 850px) {
   .wallpaper{
     background-image: url(../img/green.png);

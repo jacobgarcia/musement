@@ -323,6 +323,7 @@ textarea:focus, input:focus{
   width: 50px;
   margin-right: 0.5em;
   border-radius: 50%;
+  height: 50px;
 }
 .bold{
   margin-left: 0.3em;
@@ -418,19 +419,20 @@ textarea:focus, input:focus{
   display: inline-block;
 }
 .effects .img {
-  width: 150px;
   overflow: hidden;
+  width: 150px;
 }
-.effects .img img{
-  border-radius: 50%;
-}
-
 .effects .img img {
+  border-radius: 100%;
   display: block;
   margin: 0;
   padding: 0;
-  max-width: 100%;
-  height: auto;
+  width: 150px;
+  height: 150px;
+  left: 50%;
+  top: 50%;
+
+
 }
 
 .overlay {
@@ -473,6 +475,10 @@ input.expand {
   font-weight: 700;
   font-size: 30px;
 }
+.profile_form input{
+  position: absolute;
+  top: -40px;
+}
 /* ============================================================
   EFFECT 2 - SLIDE IN TOP
 ============================================================ */
@@ -489,7 +495,7 @@ input.expand {
   left: 0;
   right: 0;
   top: 50%;
-  margin: -30px auto 0 auto;
+  /*margin: -30px auto 0 auto;*/
 }
 #effect-2 .img.hover .overlay {
   height: 100%;
@@ -497,6 +503,9 @@ input.expand {
   border: 1px white solid;
 }
 @media (min-width: 850px) {
+  .noscroll{
+    overflow: hidden;
+  }
   /*Temporaly container row, because timeline will swipe*/
   .container{
     flex-direction: row;
