@@ -106,9 +106,10 @@ button{
   background:none;
 }
 .error_moment{
-	margin-top: 6.5rem;
+	margin-top: 7rem;
 	color: rgba(60, 60, 60, 0.7);
 	font-size: 0.8rem;
+	text-align: center;
 }
 
 @media (min-width: 850px) {
