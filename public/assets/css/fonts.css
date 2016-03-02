@@ -43,6 +43,9 @@
 }
 .icon-profilePhotoIcon:before {
     content: "\e90b";
+    position: absolute;
+    top: 9vh;
+    left: 6vh;
 }
 .icon-closeIcon:before {
     content: "\e90d";
