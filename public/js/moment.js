@@ -116,20 +116,20 @@ var Stopwatch = function (elem, options) {
 
 
 // basic examples
-//var elems = document.getElementById('test');
 
 var firstTime = true;
 
 var totalTime = 0;
 
-var fileName = "";
-
 
 /////////////// REMEMBER TO CHANGE NAME
-function setName() {
-    var thefile = document.getElementById('attachement');
-    var files = (thefile.value).split("\\"); /* Using regular expressions to split the fake PATH */
-    fileName = files[2];
-    document.getElementById('attachement').value = fileName;
-    alert(document.getElementById('attachement').value);
+function verifySize() {
+    const SIZELIMIT = 15728640; /* This is in bytes for 15 MB */
+    var size = document.getElementById('attachement').files[0].size;
+
+
+    if (size > SIZELIMIT) {
+      document.getElementById('fileError').text = "Tu imagen no puede ser mayor a 15 MB"
+      document.getElementById('attachement').value = null;
+    }
 }
