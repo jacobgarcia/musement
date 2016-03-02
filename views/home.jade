@@ -5,7 +5,6 @@ html
     link(rel="stylesheet", href="/static/assets/css/normalize.css", type='text/css')
     link(rel="stylesheet", href="/static/assets/css/master.css", type='text/css')
     link(rel="stylesheet", href="/static/assets/css/green.css", type='text/css')
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type='text/css')
     
   body
     .container
@@ -13,7 +12,8 @@ html
       include ./includes/menu.jade
       #mainPanel.c1 
         .content_center
-          .fa.fa-bars#menu_button
+          .icon-menu_IconOPEN#menu_button
+          .icon-gotRight#timeline_right
         .text-logo
             span.logo_text-top musement 
             span.logo_text-bottom collective
@@ -25,10 +25,11 @@ html
         //- | Iniciar
         #error.error_moment
                     
-        .footer_home
+        .footer_home.margin_auto
           | ¡Tu momento es ahora!
             
       #timelinePanel.c2    
+        .icon-goLeft#timeline_left
         .profile
           img(src="#{image}", alt="")  
         section#wall.timeline

@@ -53,8 +53,14 @@ span.title_menu a{
 .fa{
   color: white;
 }
-.fa-bars{
-  color: #FEC06C !important;
+#menu_button{
+  color: #FEC06C;
+}
+#timeline_right{
+  color: #FEC06C;
+}
+#timeline_left{
+  color: #FEC06C;
 }
 [class^="icon-"], [class*=" icon-"] {
   color: #1FAC89;

@@ -13,14 +13,14 @@
 
 /*Login/sign up font icon*/
 @font-face {
-    font-family: 'moments';
-    src:    url('../fonts/moments.eot?4b1v4b');
-    src:    url('../fonts/moments.eot?4b1v4b#iefix') format('embedded-opentype'),
-        url('../fonts/moments.ttf?4b1v4b') format('truetype'),
-        url('../fonts/moments.woff?4b1v4b') format('woff'),
-        url('../fonts/moments.svg?4b1v4b#moments') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'moments';
+  src:    url('../fonts/moments.eot?vn74nt');
+  src:    url('../fonts/moments.eot?vn74nt#iefix') format('embedded-opentype'),
+      url('../fonts/moments.ttf?vn74nt') format('truetype'),
+      url('../fonts/moments.woff?vn74nt') format('woff'),
+      url('../fonts/moments.svg?vn74nt#moments') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
@@ -38,7 +38,20 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.icon-comillasCierran:before {
+    content: "\e90e";
+}
+.icon-goLeft:before {
+    content: "\e90f";
+}
+.icon-trashIcon:before {
+    content: "\e910";
+}
+.icon-gotRight:before {
+    content: "\e911";
+}
 .icon-menu_IconOPEN:before {
+    margin-left: 2vh;
     content: "\e90c";
 }
 .icon-profilePhotoIcon:before {
@@ -48,7 +61,8 @@
     left: 6vh;
 }
 .icon-closeIcon:before {
-    content: "\e90d";
+  margin-left: 2vh;
+  content: "\e90d";
 }
 .icon-Comillas-10:before {
     content: "\e90a";

@@ -31,3 +31,11 @@ span.title_menu a{
   margin-bottom: 2rem;
   margin-right: 2rem;
 }
+#menu_button{
+  margin-top: 2vh;
+  position: absolute;
+  top: 0;
+  font-size: 1.5rem !important;
+  font-weight: lighter !important;
+  cursor: pointer;
+}

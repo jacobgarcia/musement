@@ -55,8 +55,10 @@ a{
   justify-content: center;
   width: 100%;
   min-height: 100vh;
-  align-items: center;
   flex-grow: 1;
+}
+.align_center{
+  align-items: center;
 }
 
 .c2{
@@ -83,6 +85,23 @@ a{
   overflow-y: scroll;
   z-index: 1;
 }
+#timeline_right{
+  margin-right: 2vh;
+  margin-top: 2vh;
+  font-size: 1.5rem !important;
+  font-weight: lighter !important;
+  cursor: pointer;
+  text-align: right;
+}
+#timeline_left{
+  margin-left: 4vh;
+  margin-top: 5vh;
+  font-size: 1.5rem !important;
+  font-weight: lighter !important;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
 .c2.timeline_open {
       -webkit-animation: timeline_open 300ms ease-in-out;
       -webkit-animation-fill-mode: forwards;
@@ -190,7 +209,11 @@ textarea:focus, input:focus{
   font-size: 1.3rem;
   color: #FF543F;
   text-align: center;
-  /*margin-top: auto;*/
+}
+#ipsos{
+  margin-bottom: 4vh;
+}
+.margin_auto{
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -265,9 +288,11 @@ textarea:focus, input:focus{
   border-radius: 10px;
 }
 .timeline{
-  margin-top: 4vh;
+  margin-top: 6vh;
   /*border-top: rgba(255, 255, 255, 0.7) 1px solid;*/
-  width: 90%;
+  width: 100%;
+  padding-left: 2vh;
+  padding-right: 3vh;
   color: white;
 }
 .time_moment{
@@ -278,7 +303,9 @@ textarea:focus, input:focus{
 .profile{
   margin-right: 4vh;
   margin-top: 1rem;
-  align-self: flex-end;
+  top: 0;
+  position: absolute;
+  right: 0;
 }
 .profile img{
   border-radius: 50%;
@@ -300,6 +327,7 @@ textarea:focus, input:focus{
   /*align-items: center;*/
   margin-top: 1rem;
   margin-bottom: 1rem;
+  width: 100%;
 }
 .right_moment{
   margin-left: 4rem;
@@ -526,7 +554,7 @@ input.expand {
   }
   /*moment*/
   .timeline{
-    width: 50%;
+    width: 80%;
   }
   .time_moment{
     padding-right: 5vh;
@@ -534,5 +562,16 @@ input.expand {
   .image img{
     width: 80%;
   }
+  #timeline_right{
+    display: none;
+  }
+  #timeline_left{
+    display: none;
+  }
+}
 
+@media (min-width: 970px) {
+  .timeline{
+    width: 50%;
+  }
 }
