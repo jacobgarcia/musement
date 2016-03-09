@@ -32,6 +32,7 @@ function populateWall(momentlist) {
       wallContent += '<article class="moment">';
       wallContent += '<div class="has">';
       wallContent += '<img src="' + this.user.image + '" alt=""/>';
+      wallContent += '<div class="text_has">';
       wallContent += this.user.username ;
       wallContent += ' <span class="transparent"> tuvo un </span>';
       wallContent += ' momento <span class="transparent"> de </span>' ;
@@ -39,7 +40,7 @@ function populateWall(momentlist) {
       timelapse = Math.floor(this.timelapse/30);
       ipsos += timelapse;
       wallContent += timelapse;
-      wallContent += ' ipsos</div>'
+      wallContent += ' ipsos</div></div>'
       wallContent += '<div class="right_moment">';
 
       if(this.attachement != ''){
