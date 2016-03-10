@@ -72,7 +72,7 @@ module.exports = function (passport) {
                         newUser.email = email;
                         newUser.username = req.body.username;
                         newUser.password = newUser.generateHash(password);
-                        newUser.image = "/static/assets/img/default.jpg";
+                        newUser.image = "/static/img/default.jpg";
 
                         console.log(newUser.email + ' ' + newUser.password + ' ' + newUser.username);
                         // save the user
