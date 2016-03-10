@@ -38,4 +38,8 @@ Run the project
 ```bash
 npm run serve
 ```
+Test the project
+```bash
+npm run test
+```
 
