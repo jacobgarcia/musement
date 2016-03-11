@@ -439,6 +439,23 @@ textarea:focus, input:focus{
 .effects .img {
   overflow: hidden;
   width: 150px;
+  position: relative; /*HOVER EFFECT, CAMERA UPLOAD IMPORTANT*/
+}
+.effects .img:hover::before { /*HOVER EFFECT, CAMERA UPLOAD*/
+  font-family: 'moments';
+  text-align: center;
+  line-height: 9.45rem;
+  background: rgba(0, 0, 0, .5);
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  content: '\e90b';
+  color: #FFF;
+  font-size: 2.5rem;
+  position: absolute; /*HOVER EFFECT, CAMERA UPLOAD IMPORTANT*/
+}
+.effects .img:hover:active::before { /*HOVER EFFECT, CAMERA UPLOAD*/
+  background: rgba(0, 0, 0, .7);
 }
 .effects .img img {
   border-radius: 100%;
@@ -447,8 +464,6 @@ textarea:focus, input:focus{
   padding: 0;
   width: 150px;
   height: 150px;
-  left: 50%;
-  top: 50%;
 
 
 }
@@ -456,9 +471,6 @@ textarea:focus, input:focus{
 .overlay {
   display: block;
   position: absolute;
-  z-index: 20;
-  background: rgba(0, 0, 0, 0.6);
-  overflow: hidden;
 }
 
 a.close-overlay {
@@ -480,22 +492,8 @@ a.close-overlay {
 a.close-overlay.hidden {
   display: none;
 }
-
-input.expand {
-  display: block;
-  position: absolute;
-  z-index: 100;
-  width: 60px;
-  height: 60px;
-  text-align: center;
-  color: #fff;
-  line-height: 50px;
-  font-weight: 700;
-  font-size: 30px;
-}
 .profile_form input{
   position: absolute;
-  top: -40px;
 }
 /* ============================================================
   EFFECT 2 - SLIDE IN TOP
@@ -509,16 +507,16 @@ input.expand {
   border-radius: 50%;
 
 }
-#effect-2 .overlay a.expand {
-  left: 0;
-  right: 0;
-  top: 50%;
-  /*margin: -30px auto 0 auto;*/
-}
-#effect-2 .img.hover .overlay {
+
+#effect-2 .img .overlay {
   height: 100%;
   border-radius: 50%;
   border: 1px white solid;
+}
+#attachement {
+  width: 100%;
+  height: 100%;
+  opacity: 0 !important;
 }
 @media (min-width: 850px) {
   .noscroll{
