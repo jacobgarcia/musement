@@ -278,6 +278,33 @@ textarea:focus, input:focus{
   color: #27AF98;
 }
 /*Moments*/
+.icon-heart_white{
+  cursor: pointer;
+}
+.icon-heart_white:before{
+  font-family: 'moments' !important;
+  content: "\e912";
+  color: rgba(217, 217, 217, 0.7);
+  margin-right: 1vh;
+  font-size: 1rem;
+}
+.icon-heart_white:hover:before{
+  font-family: 'moments' !important;
+  content: "\e912";
+  color: #FEC06C;
+  margin-right: 1vh;
+  font-size: 1rem;
+}
+.icon-heart_red:before{
+  font-family: 'moments' !important;
+  content: "\e912";
+  color: #FEC06C;
+  margin-right: 1vh;
+  font-size: 1rem;
+}
+.heart-number{
+  margin-top: 0.3em;
+}
 .tipe_moment{
   margin-bottom: 1vh;
   margin-top: 1.5vh;
@@ -290,7 +317,6 @@ textarea:focus, input:focus{
 .timeline{
   margin-top: 6vh;
   /*border-top: rgba(255, 255, 255, 0.7) 1px solid;*/
-  width: 100%;
   padding-left: 2vh;
   padding-right: 3vh;
   color: white;
@@ -327,7 +353,6 @@ textarea:focus, input:focus{
   /*align-items: center;*/
   margin-top: 1rem;
   margin-bottom: 1rem;
-  width: 100%;
 }
 .right_moment{
   margin-left: 4rem;
