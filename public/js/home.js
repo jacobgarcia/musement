@@ -31,6 +31,9 @@ function populateWall(momentlist) {
     $.each(data, function() {
       wallContent += '<article class="moment">';
       wallContent += '<div class="has">';
+      wallContent += '<div class="heart">'
+      wallContent += '<div class="icon-heart_white"></div>'
+      wallContent += '<div class="heart-number">10</div></div>'
       wallContent += '<img src="' + this.user.image + '" alt=""/>';
       wallContent += '<div class="text_has">';
       wallContent += this.user.username ;
@@ -64,5 +67,10 @@ function populateWall(momentlist) {
       }
     }
 
+    //================================== CHANGE COLOR HEART ===============================
+    $(".icon-heart_white").click(function(){
+      $(this).removeClass("icon-heart_white");
+      $(this).addClass("icon-heart_red");
+    });
   });
 };
