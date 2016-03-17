@@ -31,9 +31,9 @@ function populateWall(momentlist) {
     $.each(data, function() {
       wallContent += '<article class="moment">';
       wallContent += '<div class="has">';
-      wallContent += '<div class="heart">'
-      wallContent += '<div class="icon-heart_white"></div>'
-      wallContent += '<div class="heart-number">10</div></div>'
+      // wallContent += '<div class="heart">'
+      // wallContent += '<div class="icon-heart_white"></div>'
+      // wallContent += '<div class="heart-number">10</div></div>'
       wallContent += '<img src="' + this.user.image + '" alt=""/>';
       wallContent += '<div class="text_has">';
       wallContent += this.user.username ;
