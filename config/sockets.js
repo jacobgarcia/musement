@@ -5,10 +5,10 @@ module.exports.listen = function(server){
     console.log('Connected ${socket.id}');
 
     io.on('connection', function (socket){
-      socket.on('chat message', function(msg){
-        io.emit('chat message', msg);
+      socket.on('chat message', function(msg, imageUser, userName){
+        io.emit('chat message', msg, imageUser, userName);
       });
-      
+
     });
 
     return io;

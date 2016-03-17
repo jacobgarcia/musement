@@ -46,4 +46,4 @@ app.use(passport.session());
 
 require('controllers/index')(app,passport); // load our routes and pass in our app and fully configured passport
 
-server.listen(80);
+server.listen(8080);

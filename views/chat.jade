@@ -15,7 +15,8 @@ body
     #mainPanel.chat
     .content_center
       .icon-menu_IconOPEN#menu_button
-      ul#messages
+      .chatContainer
+        ul#messages
         form(action='')
           input#m(autocomplete='off', placeholder="Escribe aquí")
         p(hidden='' id="username") #{username}
