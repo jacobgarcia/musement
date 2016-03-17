@@ -29,10 +29,36 @@ function update() {
     clock += delta();
 }
 
+var textRandom = Math.floor(Math.random() * 5) + 1;
+var textRandom2 = Math.floor(Math.random() * 5) + 1;
+function textRandomMoment(){
+  switch(textRandom) {
+      case 1:
+        $("#error").text("El que persevera logra su momento...");
+        break;
+      case 2:
+        $("#error").text("Aún no han pasado 30 minutos...");
+        break;
+      case 3:
+        $("#error").text("¿No deberías estar enfocado en tu proyecto?");
+        break;
+      case 4:
+        $("#error").text("El tiempo de concentración es aproximadamente 30mns");
+        break;
+      case 5:
+        $("#error").text("No... Aún no han pasado 30 minutos.");
+        break;
+  }
+  do {
+    textRandom = Math.floor(Math.random() * 5) + 1;
+  } while (textRandom == textRandom2);
+  textRandom2 = textRandom;
+}
+
 $('#moment').click(function(event){
   if (! moment) {
     if (Math.floor((Math.ceil(clock / 1000)) / 60) < 30 ) {
-      $("#error").text("El que persevera logra su momento...");
+      textRandomMoment();
     }else{
       $('#moment').removeClass('loading').addClass('loading-click');
       $('#text').removeClass('text_start-stop').addClass('text_start');
