@@ -31,7 +31,11 @@ function populateWall(momentlist) {
     $.each(data, function() {
       wallContent += '<article class="moment">';
       wallContent += '<div class="has">';
+      // wallContent += '<div class="heart">'
+      // wallContent += '<div class="icon-heart_white"></div>'
+      // wallContent += '<div class="heart-number">10</div></div>'
       wallContent += '<img src="' + this.user.image + '" alt=""/>';
+      wallContent += '<div class="text_has">';
       wallContent += this.user.username ;
       wallContent += ' <span class="transparent"> tuvo un </span>';
       wallContent += ' momento <span class="transparent"> de </span>' ;
@@ -39,7 +43,7 @@ function populateWall(momentlist) {
       timelapse = Math.floor(this.timelapse/30);
       ipsos += timelapse;
       wallContent += timelapse;
-      wallContent += ' ipsos</div>'
+      wallContent += ' ipsos</div></div>'
       wallContent += '<div class="right_moment">';
 
       if(this.attachement != ''){
@@ -63,5 +67,10 @@ function populateWall(momentlist) {
       }
     }
 
+    //================================== CHANGE COLOR HEART ===============================
+    $(".icon-heart_white").click(function(){
+      $(this).removeClass("icon-heart_white");
+      $(this).addClass("icon-heart_red");
+    });
   });
 };

@@ -7,7 +7,6 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const configDB = require('config/database');
 const jade = require('jade');
-const socketio = require('socket.io');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
@@ -15,7 +14,7 @@ const multer = require('multer');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server);
+var io = require("config/sockets").listen(server)
 
 // ROUTES
 
@@ -47,10 +46,4 @@ app.use(passport.session());
 
 require('controllers/index')(app,passport); // load our routes and pass in our app and fully configured passport
 
-io.on('connection', function (socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
- });
-});
-
-server.listen(80);
+server.listen(8080);
