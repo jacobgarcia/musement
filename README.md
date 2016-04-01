@@ -1,4 +1,4 @@
-# Musement [![Build Status](https://travis-ci.com/lmrarturo/Musement.svg?token=8VCEpdV8M5U1zxzCUDq1&branch=dev)](https://travis-ci.com/lmrarturo/Musement)
+# Musement 
 
 <img src=http://i.imgur.com/pG2FYHp.jpg">
 ###### Musement is a community from people who want to share their ideas and projects. Creating the moment.
