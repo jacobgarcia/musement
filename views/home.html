@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    <title>Musement Collective - Home</title>
+    <link rel="stylesheet" href="/static/css/normalize.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/master.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/green.css" type="text/css"/>
+  </head>
+  <body ng-app="feedApp">
+    <div class="container" ng-controller="mainCtrl">
+      <div id="mainPanel" class="c1">
+        <div class="content_center">
+          <div id="menu_button" class="icon-menu_IconOPEN">
+          </div>
+          <div id="timeline_right" class="icon-gotRight">
+          </div>
+        </div>
+        <div class="text-logo">
+          <span class="logo_text-top">musement </span>
+          <span class="logo_text-bottom">collective</span>
+        </div>
+        <div class="container_animation-moment">
+          <div id="moment" class="loading-click open"></div>
+          <div id="text" class="text_start">Iniciar</div>
+        </div>
+        <div class="moment-text">
+        </div>
+        <div id="error" class="error_moment">
+        </div>
+        <div class="footer_home margin_auto">¡Tu momento es ahora!</div>
+      </div>
+      <div id="timelinePanel" class="c2">
+        <div id="timeline_left" class="icon-goLeft"></div>
+        <div class="profile">
+          <img src="undefined" alt=""/>
+        </div>
+        <section id="wall" class="timeline">
+
+          <article class="moment" ng-repeat="moment in moments">
+            <div class="has">
+              <div class="heart">
+                <div class="icon-heart_white"></div>
+                <div class="heart-number">{{moment.likes}}</div></div>
+                <img src="{{user.image}}" alt=""/>
+                <div class="text_has">
+                  {{user.name}}<span class="transparent"> tuvo un </span> momento <span class="transparent"> de </span> {{moment.ipsos}} ipsos
+                </div>
+              </div>
+              <div class="right_moment">
+                <div class="tipe_moment image">
+                  <img src="{{user.image}}.jpg" alt=""/>
+                  <div class="tipe_moment text">
+                    <span class="icon-Comillas-10"></span>{{moment.description}}
+                  </div>
+                </div>
+              </div>
+            </article>
+
+        </section>
+      </div>
+    </div>
+    <div id="somedialog" class="dialog">
+      <div class="dialog-overlay"></div>
+      <div class="dialog-content">
+        <div class="icon-upload_Icon"></div>
+        <div id="close_moment" class="icon-closeIcon close"></div>
+        <h2>Mi Momento</h2>
+        <form action="/home" method="post" enctype="multipart/form-data" class="create_moment">
+          <input type="text" name="description" required="true" placeholder="Describe tu momento :)"/>
+          <div class="file-upload">
+            <label class="upload-label">
+              <input type="file" accept="image/jpg, image/jpeg" id="attachement" onchange="verifySize()" name="fileName"/>
+              <p id="fileError"></p>
+              <span class="icon-img_Icon"></span>
+            </label>
+            <input type="hidden" name="totalTime" id="time"/>
+            <button type="submit" name="submits" class="close btn btn-close">
+              <i class="icon-done_Icon">
+              </i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/components/jquery/dist/jquery.min.js"></script>
+  <script src="/static/js/moment.js"></script>
+  <script src="/static/js/momentpopup.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.4/hammer.min.js"></script>
+  <script src="/static/js/menu-swipe.js"></script>
+  <script src="/static/js/timeline-swipe.js"></script>
+  <script src="/static/js/home.js"></script>
+  <script src="/static/js/analytics.js"></script>
+
+  <script src="/components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script src="/components/angular/angular.min.js" charset="utf-8"></script>
+  <script src="/static/js/modules.js" charset="utf-8"></script>
+  <script src="/static/js/services/feed.js" charset="utf-8"></script>
+  <script src="/static/js/controllers/feed.js" charset="utf-8"></script>
+</html>
