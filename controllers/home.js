@@ -6,7 +6,8 @@ var upload = multer({
   dest: './uploads/user/u0000/u0'
 });
 
-const newMoment = require('config/createmoment.js')
+const newMoment = require('config/createmoment.js');
+const heart = require('config/heart.js');
 
 //================================== MIDDLEWARES ===============================
 var Moment = require("models/moment.js");
@@ -33,6 +34,14 @@ router.post('/', ensureAuth, upload.single('fileName'), function(req, res) {
   console.log(req.file);
   console.log("uploaded");
   res.redirect('/home');
+});
+
+/* Heart moment */
+router.post('/vote/:id', ensureAuth, function(req, res){
+    console.log("Succesful Post");
+  /*heart.heartMoment.exec(function(err, moments){
+    res.end(JSON.stringify(moments));
+  });*/
 });
 
 module.exports = router;

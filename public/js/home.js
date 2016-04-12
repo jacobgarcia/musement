@@ -1,6 +1,13 @@
 // Momentlist data array for filling in info box
 var momentListData = [];
 
+var socket = io();
+
+socket.emit('ping');
+socket.on('pong', function(){
+  console.log('PONG');
+});
+
 //================================== DOM READY ===============================
 $(document).ready(function() {
   // Populate the moments wall on initial page load
@@ -29,11 +36,16 @@ function populateWall(momentlist) {
   $.getJSON(momentlist, function(data) {
     // For each item in our JSON, add an 'article.moment'
     $.each(data, function() {
+      /* Replace undefined hearts with zeroes */
+      if(this.heart == null)
+        this.heart = 0;
+
       wallContent += '<article class="moment">';
       wallContent += '<div class="has">';
-      // wallContent += '<div class="heart">'
-      // wallContent += '<div class="icon-heart_white"></div>'
-      // wallContent += '<div class="heart-number">10</div></div>'
+      wallContent += '<div class="heart" onClick="addHref(\''+ this._id +'\')">';
+      wallContent += '<div class="icon-heart_white"></div>';
+
+      wallContent += '<div id=' + this._id + ' class="heart-number">' + this.heart + '</div></div>';
       wallContent += '<img src="' + this.user.image + '" alt=""/>';
       wallContent += '<div class="text_has">';
       wallContent += this.user.username ;
@@ -74,3 +86,10 @@ function populateWall(momentlist) {
     });
   });
 };
+
+function addHref(clickedID){
+  console.log("El id es: " + clickedID);
+  $.post('home/vote/' + clickedID, function(){
+
+  });
+}

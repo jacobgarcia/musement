@@ -40,7 +40,11 @@ var userSchema = new mongoose.Schema({
     image: {
         type: String,
         required: true
-    }
+    },
+    momentsHeart: [{
+      type: mongoose.Schema.Types.ObjectId, /* Object ID from moment */
+      ref: 'Moment' /* Moment Schema. Remember to define it as this in the export module */
+    }]
 });
 
 // ============================= METHODS =======================================
