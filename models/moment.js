@@ -22,7 +22,11 @@ var momentSchema = new mongoose.Schema({
   heart: {
     type: Number,
     required: true
-  }
+  },
+  usersHeart: [{
+    type: mongoose.Schema.Types.ObjectId, /* Object ID from moment */
+    ref: 'Moment' /* Moment Schema. Remember to define it as this in the export module */
+  }]
 });
 
 module.exports = mongoose.model('Moment', momentSchema);

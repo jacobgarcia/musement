@@ -38,7 +38,7 @@ router.post('/', ensureAuth, upload.single('fileName'), function(req, res) {
 
 /* Heart moment */
 router.post('/vote/:id', ensureAuth, function(req, res){
-    heart.heartMoment(req.params.id);
+    heart.heartMoment(req);
     console.log("Succesful Post");
 
     return;
