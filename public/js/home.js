@@ -92,4 +92,6 @@ function addHref(clickedID){
   $.post('home/vote/' + clickedID, function(){
 
   });
+  console.log("After POST");
+  $("#" + clickedID).html(parseInt($("#" + clickedID).html()) + 1);
 }
