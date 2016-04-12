@@ -38,10 +38,8 @@ router.post('/', ensureAuth, upload.single('fileName'), function(req, res) {
 
 /* Heart moment */
 router.post('/vote/:id', ensureAuth, function(req, res){
+    heart.heartMoment(req.params.id);
     console.log("Succesful Post");
-  /*heart.heartMoment.exec(function(err, moments){
-    res.end(JSON.stringify(moments));
-  });*/
 });
 
 module.exports = router;
