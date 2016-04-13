@@ -280,6 +280,7 @@ textarea:focus, input:focus{
 /*Moments*/
 .icon-heart_white{
   cursor: pointer;
+  padding-left: 0.5rem;
 }
 .icon-heart_white:before{
   font-family: 'moments' !important;
@@ -296,6 +297,7 @@ textarea:focus, input:focus{
   font-size: 1rem;
 }
 .icon-heart_red:before{
+  padding-left: 0.5rem;
   font-family: 'moments' !important;
   content: "\e912";
   color: #FEC06C;
@@ -304,6 +306,7 @@ textarea:focus, input:focus{
 }
 .heart-number{
   margin-top: 0.3em;
+  text-align: center;
 }
 .tipe_moment{
   margin-bottom: 1vh;
