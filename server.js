@@ -14,10 +14,9 @@ const multer = require('multer');
 
 const app = express();
 const server = http.createServer(app);
-var io = require("config/sockets").listen(server)
+const socketio = require('socket.io');
 
-// ROUTES
-
+var chat = require("config/sockets").listen(server);
 
 // configuration ==============================
 mongoose.connect(configDB.url); //connect database
@@ -29,8 +28,6 @@ require('config/passport')(passport);
 app.use('/static', express.static(__dirname + '/public'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.set('view engine', 'jade');
-
-
 
 app.use(bodyParser.json()); /* JSON support */
 app.use(bodyParser.urlencoded({ extended: false }));
