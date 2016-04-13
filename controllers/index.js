@@ -62,17 +62,6 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.get('/api/user_data', function(req, res) {
-      if (req.user === undefined) {
-          // The user is not logged in
-          res.json({});
-      } else {
-          res.json({
-            userid: req.user.id
-          });
-        }
-  });
-
   // process the signup form
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect: '/home', // redirect to the secure PROFILE section --- CHANGE FOR PROFILE
