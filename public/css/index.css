@@ -42,9 +42,9 @@ body{
   margin-top: auto;
 }
 .logo img{
-  border-bottom: 1px solid #FF543F;
+  border-bottom: 1px solid #1FAC89;
   padding-bottom: 3vh;
-  width: 150px;
+  width: 200px;
 }
 
 .text{
@@ -60,7 +60,7 @@ p{
 
 
 .btn{
-  background-color: #FF543F;
+  background-color: #1FAC89;
   color: white;
   border: 0px solid #000000;
   border-radius: 10px;
