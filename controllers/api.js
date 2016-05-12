@@ -157,7 +157,10 @@ router.route('/users/:user_id/moments')
 router.route('/moments')
   .get(function (req, res) {
     //GET ALL MOMENTS for FEED
-    Moment.find({}, function(err, moments) {
+    Moment
+    .find({})
+    .populate('user', '_id name username image') //POPULATE!!!! IMPORTANT
+    .exec(function(err, moments) {
         if (err) {
           res.send(err);
         } else {

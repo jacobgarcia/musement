@@ -34,7 +34,7 @@
       <div id="timelinePanel" class="c2">
         <div id="timeline_left" class="icon-goLeft"></div>
         <div class="profile">
-          <img src="undefined" alt=""/>
+          <img src="{{ user.image }}" alt=""/>
         </div>
         <section id="wall" class="timeline">
 
@@ -43,14 +43,14 @@
               <div class="heart">
                 <div class="icon-heart_white"></div>
                 <div class="heart-number">{{moment.likes}}</div></div>
-                <img src="{{user.image}}" alt=""/>
+                <img src="{{ moment.user.image }}" alt=""/>
                 <div class="text_has">
-                  {{user.name}}<span class="transparent"> tuvo un </span> momento <span class="transparent"> de </span> {{moment.ipsos}} ipsos
+                  {{moment.user.name || moment.user.username}}<span class="transparent"> tuvo un </span> momento <span class="transparent"> de </span> {{moment.timelapse}} ipsos
                 </div>
               </div>
               <div class="right_moment">
                 <div class="tipe_moment image">
-                  <img src="{{user.image}}.jpg" alt=""/>
+                  <img src="{{ moment.user.image }}.jpg" alt=""/>
                   <div class="tipe_moment text">
                     <span class="icon-Comillas-10"></span>{{moment.description}}
                   </div>
