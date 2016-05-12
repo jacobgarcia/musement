@@ -17,10 +17,9 @@ const multer = require('multer'),
 
 const app = express();
 const server = http.createServer(app);
-var io = require("config/sockets").listen(server)
+const socketio = require('socket.io');
 
-// ROUTES
-
+var chat = require("config/sockets").listen(server);
 
 // configuration ==============================
 mongoose.connect(configDB.url); //connect database

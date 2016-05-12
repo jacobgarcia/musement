@@ -9,6 +9,7 @@ var insertMoment = function(req) {
   newMoment.description = req.body.description;
   newMoment.timelapse = req.body.totalTime;
   newMoment.user = req.user.id;
+  newMoment.heart = 0;
 
   if(req.file != null)
     newMoment.attachement.push(req.file.path);

@@ -142,12 +142,21 @@ a{
   font-size: 1.2em;
 }
 
+.big{
+    font-size: 1.5rem !important;
+    padding: 0 0.5rem 0 0.5rem;
+}
+.big-especial{
+  font-size: 1.3rem !important;
+  margin-bottom: 6rem !important;
+}
 form{
   display: flex;
   flex-direction: column;
+  width: 65%;
 }
 input[type=submit]{
-  padding: 0.7vh 3vh 0.7vh 3vh;
+  padding: 1vh 3vh 1vh 3vh;
   margin: 2vh 0;
   background-color: #FF543F;
   color: white;
@@ -280,6 +289,7 @@ textarea:focus, input:focus{
 /*Moments*/
 .icon-heart_white{
   cursor: pointer;
+  padding-left: 0.5rem;
 }
 .icon-heart_white:before{
   font-family: 'moments' !important;
@@ -296,14 +306,17 @@ textarea:focus, input:focus{
   font-size: 1rem;
 }
 .icon-heart_red:before{
+  padding-left: 0.5rem;
   font-family: 'moments' !important;
   content: "\e912";
   color: #FEC06C;
   margin-right: 1vh;
   font-size: 1rem;
 }
+
 .heart-number{
   margin-top: 0.3em;
+  text-align: center;
 }
 .tipe_moment{
   margin-bottom: 1vh;

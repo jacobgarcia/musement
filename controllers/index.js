@@ -8,6 +8,7 @@ var router = express.Router();
 var home = require('./home');
 var chat = require('./chat');
 var profile = require('./profile')
+var invitation = require('./invitation')
 
 //================================== MIDDLEWARES ===============================
 const ensureAuth = require('middlewares/auth.js');
@@ -20,6 +21,7 @@ module.exports = function(app, passport) {
   app.use('/home', home);
   app.use('/chat', chat);
   app.use('/profile', profile);
+  app.use('/invitation', invitation);
 
   app.get('/', (req, res) => {
     res.render('index')
@@ -61,6 +63,27 @@ module.exports = function(app, passport) {
       message: req.flash('signupMessage')
     });
   });
+  app.get('/invitation', function(req, res) {
+    // render the page and pass in any flash data if it exists
+    res.render('invitation', {
+      message: req.flash('invitationMessage')
+    });
+  });
+  app.get('/thanks', function(req, res) {
+    // render the page and pass in any flash data if it exists
+    res.render('thanks');
+  });
+
+  app.get('/api/user_data', function(req, res) {
+      if (req.user === undefined) {
+          // The user is not logged in
+          res.json({});
+      } else {
+          res.json({
+            userid: req.user.id
+          });
+        }
+  });
 
   // process the signup form
   app.post('/signup', passport.authenticate('local-signup', {
@@ -68,4 +91,5 @@ module.exports = function(app, passport) {
     failureRedirect: '/signup', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
+
 };

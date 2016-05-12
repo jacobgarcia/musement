@@ -90,6 +90,9 @@
 }
 .icon-chat_Icons:before {
     content: "\e903";
+    color: #1FAC89 !important;
+    margin-left: 0.6rem;
+    font-size: 1.3rem;
 }
 .icon-conexiones_Icon:before {
     content: "\e904";
