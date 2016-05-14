@@ -3,10 +3,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 // User Schema
 var userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        //required: true
-    },
+    name: String,
     lastName: {
         type: String,
         //required: true
@@ -16,18 +13,21 @@ var userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    password: {
-        type: String,
-    },
-    bornDate: {
-        type: Date,
-        //required: true
-    },
+    password: String,
+    bornDate: Date, //ISO Date
     username: {
         type: String,
         required: true,
         unique: true
     },
+    projects: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Project'
+    }],
+    moments: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Moment'
+    }],
     follow: [{
       type: mongoose.Schema.Types.ObjectId, /* Object ID from user */
       ref: 'User' /* User Schema. Remember to define it as this in the export module */

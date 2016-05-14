@@ -1,9 +1,9 @@
 {
   "name": "musement",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
-  "main": "index.js",
-  "author": "musement collective company",
+  "main": "server.js",
+  "author": "Musement Collective Company",
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -13,7 +13,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "forever-monitor": "^1.7.0",
-    "jade": "^1.11.0",
+    "jsonwebtoken": "^6.2.0",
     "mongoose": "^4.4.3",
     "multer": "^1.1.0",
     "nunjucks": "^2.4.1",
