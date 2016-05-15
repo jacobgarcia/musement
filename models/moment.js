@@ -23,7 +23,7 @@ var momentSchema = new mongoose.Schema({
   //< -------------------------
   heart: {
     type: Number,
-    required: true
+    // required: true //Commented, why is a heart required?
   },
   //------------------------- >
   usersHeart: [{
