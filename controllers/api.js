@@ -11,7 +11,7 @@ jwt = require('jsonwebtoken'),
 router = express.Router();
 
 //Register new user
-router.route('/users/:user_id')
+router.route('/users')
 .post(function (req, res) {
   console.log('Creating user...');
   res.json({'message':'not supported yet.'});
@@ -53,31 +53,31 @@ router.post('/authenticate', function(req, res) {
 });
 
 //MIDDLEWARE TOKEN-ACCESS
-router.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  var token = req.body.token || req.query.token || req.headers['x-access-token']; // check header or url parameters or post parameters for token
-
-  if (token) {
-    var decodedToken = jwt.decode(token);
-
-    jwt.verify(token, "svuadyIUUVas87gdas78ngd87asgd87as", function(err, decoded) { // decode token
-      if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });
-      } else {
-        //Send the decoded token to the request body
-        req.decoded = decoded; // if everything is good, save to request for use in other routes
-        res.decode = decoded;
-        next();
-      }
-    });
-  } else {
-    res.status(403).send({
-        success: false,
-        message: 'No token provided.'
-    });
-  }
-});
+// router.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   var token = req.body.token || req.query.token || req.headers['x-access-token']; // check header or url parameters or post parameters for token
+//
+//   if (token) {
+//     var decodedToken = jwt.decode(token);
+//
+//     jwt.verify(token, "svuadyIUUVas87gdas78ngd87asgd87as", function(err, decoded) { // decode token
+//       if (err) {
+//         return res.json({ success: false, message: 'Failed to authenticate token.' });
+//       } else {
+//         //Send the decoded token to the request body
+//         req.decoded = decoded; // if everything is good, save to request for use in other routes
+//         res.decode = decoded;
+//         next();
+//       }
+//     });
+//   } else {
+//     res.status(403).send({
+//         success: false,
+//         message: 'No token provided.'
+//     });
+//   }
+// });
 
 // *************************************
 // ***                               ***
@@ -345,16 +345,7 @@ router.route('/projects/:project_id/moments')
 // *************************************
 
 router.route('/users/:user_id/connections')
-  .get(function (req, res) {
-    User.findById(req.params.user_id,
-      'followers',
-      function(err, user) {
-        if (err) {
-          res.send(err);
-        } else {
-          res.json(user);
-        }
-      });
+  .get(function(req, res) {
     //Get connections of the user
     res.json({'message':'not supported yet.'});
   })
@@ -362,6 +353,16 @@ router.route('/users/:user_id/connections')
     //Add new connection to the user
     res.json({'message':'not supported yet.'});
   });
+
+  router.route('/users/:user_id/connections/moments')
+    .get(function(req, res) {
+      //Get connections of the user
+      res.json({'message':'not supported yet.'});
+    })
+    .post(function (req, res) {
+      //Add new connection to the user
+      res.json({'message':'not supported yet.'});
+    });
 
 router.route('/users/:user_id/connections/:connection_id')
   .delete(function (req, res) {

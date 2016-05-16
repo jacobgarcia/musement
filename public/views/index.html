@@ -3,11 +3,65 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/master.css" media="screen" title="no title" charset="utf-8">
     <title>Musement</title>
   </head>
   <body ng-app="musementApp" class="{{type || 'nav'}}" ui-view>
-
-    <h1>Musement</h1>
+    <header>
+      <nav>
+        <ul>
+          <li>menu</li>
+          <li>musement</li>
+          <li>add</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="moment" ng-repeat="moment in moments">
+        <div class="moment-body">
+          <div class="moment-user">
+            <img id="user-image" src="/{{moment.user.img}}" alt="" />
+            <div class="user-info">
+              <p id="user-name">{{moment.user.name}}</p>
+              <p id="user-username">{{moment.user.username}}</p>
+              <p class="date">{{moment.date}}</p>
+            </div>
+            <input type="button" name="name" value="" class="share">
+          </div>
+          <p id="moment-description">
+            {{moment.description}}
+          </p>
+          <div class="tags">
+            <span class="tag" ng-if="moment.tag">{{moment.tag}}</span>
+          </div>
+        </div>
+        <img src="/" alt="" class="attachment"/>
+        <div class="feedback">
+          <div class="feedback-user" ng-repeat="feedback in moments.feedback">
+            <div class="upvote">
+              <input type="button" name="name" value="" >
+              <p class="upvote-count">7</p>
+            </div>
+            <img id="user-image" src="/" alt="" />
+            <div class="user-info">
+              <p id="user-name">Arturo Gonzales</p>
+              <p id="user-username">@ArtG</p>
+              <p class="feedback-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+          <div class="more-feedback-user">
+            <a>ver más feedback</a>
+            <p class="feedback-count">
+              32 feedback
+            </p>
+          </div>
+        </div>
+        <div class="actions">
+          <input type="button" name="name" value="LIKE" class="like">
+          <input type="button" name="name" value="FEED" class="feedback-button">
+        </div>
+      </div>
+    </main>
 
   </body>
 
@@ -17,6 +71,6 @@
   <script src="/components/angular-jwt/dist/angular-jwt.min.js" charset="utf-8"></script>
   <script src="/static/js/app.js" charset="utf-8"></script>
   <script src="/static/js/router.js" charset="utf-8"></script>
-  <script src="/static/js/controllers/login.js" charset="utf-8"></script>
+  <script src="/static/js/controllers/feed.js" charset="utf-8"></script>
 
 </html>

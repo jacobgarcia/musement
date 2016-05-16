@@ -19,6 +19,6 @@ angular.module("musementApp",["ui.router", "LocalStorageModule", "angular-jwt"])
 
   $scope.state = $state;
   //Decode token and asign info to user info div
-  $scope.user = jwtHelper.decodeToken(localStorageService.get('token'));
+  //$scope.user = jwtHelper.decodeToken(localStorageService.get('token'));
 
 });
