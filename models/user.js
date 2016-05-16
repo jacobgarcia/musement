@@ -24,7 +24,7 @@ var userSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Project'
     }],
-    follow: [{
+    followers: [{
       type: mongoose.Schema.Types.ObjectId, /* Object ID from user */
       ref: 'User' /* User Schema. Remember to define it as this in the export module */
     }],

@@ -24,13 +24,13 @@ app.use('/static', express.static(__dirname + '/public'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use('/components', express.static(__dirname + '/bower_components')); //Set bower_components to just components
 
-//API routing
-app.use('/api', API);
-
 //Parser
 app.use(bodyParser.json()); /* JSON support */
 app.use(bodyParser.urlencoded());
 app.use(morgan('dev')); // use morgan to log requests to the console
+
+//API routing
+app.use('/api', API);
 
 //Handles all routes and redirects it to index.html
 app.use(function(req, res) {

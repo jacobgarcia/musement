@@ -19,21 +19,24 @@ router.route('/users/:user_id')
 
 //AUTHENTICATE TO GIVE NEW TOKEN
 router.post('/authenticate', function(req, res) {
+  //console.log("LOGIN INFO:" + req.body);
   // find the user
   User.findOne({
-    email: req.body.email
+    name: req.body.name
   }, function(err, user) {
     if (err) throw err;
     if (!user) {
       res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
     } else if (user) {
       if (user.password != req.body.password) { // check if password matches
+        console.log(user.password);
+        console.log('Wrong password');
         res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
       } else {
         // if user is found and password is right
         // create a token and --- sign with the user information --- and secret password
-        var token = jwt.sign({"email": user.email, "username": user.username}, "Th1sIsTheSup3rS3cr3Tp4Ss", {
-          expiresIn: 21600 // expires in 6 hours
+        var token = jwt.sign({"name": user.name, "email": user.email}, "svuadyIUUVas87gdas78ngd87asgd87as", {
+          expiresIn: 216000 // expires in 6 hours
         });
         //console.dir(token)
         // return the information including token as JSON
@@ -58,7 +61,7 @@ router.use(function(req, res, next) {
   if (token) {
     var decodedToken = jwt.decode(token);
 
-    jwt.verify(token, "Th1sIsTheSup3rS3cr3Tp4Ss", function(err, decoded) { // decode token
+    jwt.verify(token, "svuadyIUUVas87gdas78ngd87asgd87as", function(err, decoded) { // decode token
       if (err) {
         return res.json({ success: false, message: 'Failed to authenticate token.' });
       } else {
@@ -135,18 +138,16 @@ router.route('/users/:user_id/moments')
     //Get moments of user
       //Validate user is accessing it's own moments or of people he follows
     Moment.find({"user": req.params.user_id})
-    .populate('moments')
     .exec(
-      function(err, user) {
+      function(err, moments) {
         if (err) {
           res.send(err);
         } else {
-          res.json(user);
+          res.json(moments);
         }
       });
   })
   .post(function (req, res) {
-
     let moment = new Moment();
     moment.timelapse = req.body.timelapse;
     moment.description = req.body.description;
@@ -218,7 +219,7 @@ router.route('/moments/:moment_id')
     })
     .post(function (req, res) {
       Moment.findByIdAndUpdate(req.params.moment_id, {
-                $addToSet: {usersHeart: req.body.hearter}
+                $addToSet: { usersHeart: req.body.hearter }
             }, function(err) {
                 if (err) {
                   res.send(err);
@@ -250,7 +251,7 @@ router.route('/moments/:moment_id')
 router.route('/users/:user_id/projects')
   .get(function (req, res) {
     //Get projects of user
-    Project.find()
+    Project.find({"user": req.params.user_id})
     .exec(
       function(err, projects) {
         if (err) {
@@ -324,7 +325,7 @@ router.route('/projects/:project_id/moments')
   .post(function (req, res) {
     Project.findByIdAndUpdate(req.params.project_id,
       {
-        $addToSet: { moments: req.body.moment }
+          $addToSet: {moments: req.body.moment}
       }, function(err) {
           console.log('YAY!!!');
           console.dir(req.body);
@@ -345,15 +346,15 @@ router.route('/projects/:project_id/moments')
 
 router.route('/users/:user_id/connections')
   .get(function (req, res) {
-    // User.findById(req.params.user_id,
-    //   'follow',
-    //   function(err, user) {
-    //     if (err) {
-    //       res.send(err);
-    //     } else {
-    //       res.json(user);
-    //     }
-    //   });
+    User.findById(req.params.user_id,
+      'followers',
+      function(err, user) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.json(user);
+        }
+      });
     //Get connections of the user
     res.json({'message':'not supported yet.'});
   })
