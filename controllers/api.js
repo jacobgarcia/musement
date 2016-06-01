@@ -98,7 +98,7 @@ router.route('/users')
     user.image = req.body.image;
     user.save(function (err) {
       if (err){
-        res.send(err);
+        res.send("err": err, "success": false);
       } else {
         res.json({message: 'Successfully created' + user.name});
       }
@@ -111,7 +111,7 @@ router.route('/users/:user_id')
       'username email name lastName image following follow bornDate',
       function(err, user) {
         if (err) {
-          res.send(err);
+          res.send("err": err, "success": false);
         } else {
           res.json(user);
         }
@@ -141,7 +141,7 @@ router.route('/users/:user_id/moments')
     .exec(
       function(err, moments) {
         if (err) {
-          res.send(err);
+          res.send("err": err, "success": false);
         } else {
           res.json(moments);
         }
@@ -156,7 +156,7 @@ router.route('/users/:user_id/moments')
     moment.user = req.params.user_id;
     moment.save(function(err) {
       if (err) {
-        res.send(err);
+        res.send("err": err, "success": false);
       } else {
         res.json({message: 'Moment created!', moment: moment});
       }
@@ -172,7 +172,7 @@ router.route('/moments/:moment_id')
     .exec(
       function(err, moment) {
         if (err) {
-          res.send(err);
+          res.send("err": err, "success": false);
         } else if (!moment) {
           res.json({"message": "No moment found.", "success": false});
         } else {
@@ -192,7 +192,7 @@ router.route('/moments/:moment_id')
       function(err, moment) {
         // console.log(moment);
         if (err) {
-          res.send(err);
+          res.send("err": err, "success": false);
         } else if (!moment) {
           res.json({"message": "No moment found, couldn't delete.", "success": false});
         } else {
@@ -209,7 +209,7 @@ router.route('/moments/:moment_id')
       .exec(
         function(err, moment) {
           if (err) {
-            res.send(err);
+            res.send("err": err, "success": false);
           } else if (!moment) {
             res.json({"message": "No moment found.", "success": false});
           } else {
@@ -222,7 +222,7 @@ router.route('/moments/:moment_id')
                 $addToSet: { usersHeart: req.body.hearter }
             }, function(err) {
                 if (err) {
-                  res.send(err);
+                  res.send("err": err, "success": false);
                 } else {
                   res.json({"message": "Successfully liked", "success": true});
                 }
@@ -235,7 +235,7 @@ router.route('/moments/:moment_id')
                   $pull: {usersHeart: req.body.hearter}
               }, function(err) {
                   if (err) {
-                    res.send(err);
+                    res.send("err": err, "success": false);
                   } else {
                     res.json({"message": "Successfully un-liked", "success": true});
                   }
@@ -255,7 +255,7 @@ router.route('/users/:user_id/projects')
     .exec(
       function(err, projects) {
         if (err) {
-          res.send(err);
+          res.send("err": err, "success": false);
         } else {
           res.json(projects);
         }
@@ -271,7 +271,7 @@ router.route('/users/:user_id/projects')
 
     project.save(function(err) {
       if (err) {
-        res.send(err);
+        res.send("err": err, "success": false);
       } else {
         res.json({message: 'Moment created!', moment: project});
       }
@@ -284,7 +284,7 @@ router.route('/projects/:project_id')
     .populate('users','image username')
     .exec(function (err, project) {
       if (err) {
-        res.send(err);
+        res.send("err": err, "success": false);
       } else {
         res.json(project);
       }
@@ -301,7 +301,7 @@ router.route('/projects/:project_id')
       function(err, project) {
         // console.log(moment);
         if (err) {
-          res.send(err);
+          res.send("err": err, "success": false);
         } else if (!project) {
           res.json({"message": "No moment found, couldn't delete.", "success": false});
         } else {
@@ -316,7 +316,7 @@ router.route('/projects/:project_id/moments')
     .populate('moments')
     .exec(function (err, project) {
       if (err) {
-        res.send(err);
+        res.send("err": err, "success": false);
       } else {
         res.json(project);
       }
@@ -330,7 +330,7 @@ router.route('/projects/:project_id/moments')
           console.log('YAY!!!');
           console.dir(req.body);
           if (err) {
-            res.send(err);
+            res.send("err": err, "success": false);
           } else {
             res.json({"message": "Successfully added moment to project", "success": true});
           }
@@ -363,11 +363,5 @@ router.route('/users/:user_id/connections')
       //Add new connection to the user
       res.json({'message':'not supported yet.'});
     });
-
-router.route('/users/:user_id/connections/:connection_id')
-  .delete(function (req, res) {
-    //Delete connection
-    res.json({'message':'not supported yet.'});
-  });
 
 module.exports = router;
