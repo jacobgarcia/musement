@@ -5,11 +5,11 @@ var insertInvite = function(req) {
   var newGuest = new Guest();
 
   // Set the information needed
-  newGuest.name = req.body.name;
+  // newGuest.name = req.body.name;
   newGuest.email = req.body.email;
-  newGuest.whatismusement = req.body.whatismusement;
+  // newGuest.whatismusement = req.body.whatismusement;
 
-  console.log(newGuest.name + ' ' + newGuest.email + ' ' + newGuest.whatismusement);
+  console.log(newGuest.email);
 
   newGuest.save(function(error, guest) {
     if (error)
