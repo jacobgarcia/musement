@@ -2,21 +2,122 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="./static/css/master.css" media="screen" charset="utf-8">
     <title>Musement</title>
   </head>
-  <body ng-app="musementApp" class="{{type || 'nav'}}" ui-view>
-
-    <h1>Musement</h1>
-
+  <body>
+    <main>
+      <div class="hero">
+        <nav>
+          <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
+        </nav>
+        <div class="content">
+          <img src="./static/img/musement.svg" alt="" class="logo"/>
+          <h2>A platform for entrepreneurs. Learn from industry leaders.</h2>
+          <h4>Share your ideas to recieve feedback in order to improve your work.</h4>
+          <div class="signup">
+            <p>Please share with use your email until we're ready.</p>
+            <div class="input-elements">
+              <input type="email" name="email" value="" placeholder="Email address">
+              <input type="button" name="submit" value="Send">
+            </div>
+          </div>
+          <div class="">
+            <p id="learn-more">Learn more</p>
+            <img src="./static/img/arrow.svg" class="arrow" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="section develop-your-project">
+          <h2><span>Develop</span> your proyect behaing your idea</h2>
+          <img src="/static/img/people.svg" class="people" alt="" />
+          <p>The world is full of people passionate of creatig innovative proyects. Experts and liders of industry faithfull for sharing their knowledge and help you building the better version of your proyect.</p>
+        </div>
+        <div class="section">
+          <h2><span>Feedback</span>, valuable and necessary</h2>
+          <div class="two-column">
+            <div class="column">
+              <img src="/static/img/share.svg" alt="" />
+              <p>Share ideas or proyects with groups of people gives us a different perspective of our job.</p>
+            </div>
+            <div class="column">
+              <img src="/static/img/document.svg" alt="" />
+              <p>The feedback of other people enhance and boost our projects.</p>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <h2><span>Share</span> and enhance</h2>
+          <div class="two-column">
+            <div class="column">
+              <img src="/static/img/user.svg" alt="" />
+              <p>In musement you can post the project you are working on, upload your progress and give it tracking.</p>
+            </div>
+            <div class="column">
+              <img src="/static/img/moments.svg" alt="" />
+              <p>The community will help you with valuable feedback, that you will need.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content slack">
+        <div class="left-content">
+          <h2>Liders of industry</h2>
+          <p>In musment you will find key people, liders and thrully enthusiasts of industry, that will help you archiving success in your project with their feedback.</p>
+        </div>
+        <div class="right-image">
+          <img src="/static/img/archivements.svg" alt="" />
+        </div>
+      </div>
+      <div class="content slack yellow">
+        <div class="left-content">
+          <h2>Musement in Slack</h2>
+          <p>Join Musement in Slack, share your projects and ideas in which you will be working on so as to get necessary feedback and enhance your project.</p>
+          <img src="/static/img/slack_rgb.png" class="min-slack-logo" alt="" />
+          <input type="button" value="Join">
+        </div>
+        <div class="right-image">
+          <img src="/static/img/slack-desktop.svg" alt="Join us on Slack" />
+        </div>
+      </div>
+      <div class="content slack">
+        <div class="left-content">
+          <h2>Coworking afternoons</h2>
+          <p>A free space where you can work in your projects, meet new ideas and entrepreneur people like you.</p>
+          <div class="event-details">
+            <p class="event-detail">Every monday at 16:00</p>
+            <p class="event-detail">Incubadora de Empresa, Tecnológico de Monterrey Campus Toluca</p>
+          </div>
+          <img src="/static/img/meetup.svg" alt="" class="meetup-min"/>
+          <input type="button" name="name" value="Participate">
+        </div>
+        <div class="right-image">
+          <img src="/static/img/coworking.svg" alt="" />
+        </div>
+      </div>
+      <div class="call-to-action content">
+        <h2>After knowing a little bit of Musement</h2>
+        <p>Are you in the cuntdown.</p>
+        <div class="input-elements">
+          <input type="email" name="email" value="" placeholder="Email address">
+          <input type="button" name="submit" value="Send">
+        </div>
+      </div>
+    </main>
+    <footer>
+      <img src="./static/img/musement-logotype.svg" alt="" class="musement-logo"/>
+      <p>Contact us, follow us, be part of the community</p>
+      <div class="follow">
+        <ul>
+          <li class="twitter"><img src="./static/img/twitter.svg" class="follow-logo" alt="Follow us on twitter" /></li>
+          <li class="facebook"><img src="./static/img/facebook.svg" class="follow-logo" alt="" /></li>
+          <li class="snapchat"><img src="./static/img/snapchat.svg" class="follow-logo" alt="" /></li>
+          <li class="slack" id="slack"><img src="./static/img/slack.svg" class="follow-logo" alt="" /></li>
+        </ul>
+      </div>
+    </footer>
+    <script src="/static/js/main.js" charset="utf-8"></script>
   </body>
-
-  <script src="/components/angular/angular.min.js" charset="utf-8"></script>
-  <script src="/components/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
-  <script src="/components/angular-local-storage/dist/angular-local-storage.min.js" charset="utf-8"></script>
-  <script src="/components/angular-jwt/dist/angular-jwt.min.js" charset="utf-8"></script>
-  <script src="/static/js/app.js" charset="utf-8"></script>
-  <script src="/static/js/router.js" charset="utf-8"></script>
-  <script src="/static/js/controllers/login.js" charset="utf-8"></script>
-
 </html>
