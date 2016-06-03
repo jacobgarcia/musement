@@ -2,14 +2,14 @@ var Guest = require("models/guest.js");
 // var newEmail = require('config/sendEmail.js');
 const sendgrid  = require('sendgrid')('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');
 
-
-var insertInvite = function(req) {
+var insertInvite = function(req, callback) {
   // Create invite
+  console.dir(req.body);
   var newGuest = new Guest();
 
   // Set the information needed
-  // newGuest.name = req.body.name;
   newGuest.email = req.body.email;
+  console.log("Email: " + newGuest.email);
   // newGuest.whatismusement = req.body.whatismusement;
 
   var email = new sendgrid.Email();
@@ -28,26 +28,28 @@ var insertInvite = function(req) {
           }
       }
   });
-  sendgrid.send(email, function(err, json) {
-    if (err) { console.error(err); }
-    console.log(json);
-  });
 
   console.log(newGuest.email);
 
   newGuest.save(function(error, guest) {
-    if (error)
-      console.log("Error when creating a new guest. Please verify this.");
-    else {
+    var response = {};
+    if (error){
+      response.message = "Error";
+      response.error = error;
+      response.success = false;
+      console.dir(error);
+    } else {
+      response.success = true;
       //Moment id if success
       console.log(guest.id);
+      sendgrid.send(email, function(err, json) {
+        if (err) { console.error(err); }
+      });
     }
+    console.dir(response);
+    callback(response);
   });
 }
-
-
-
-
 
 module.exports = {
   insertInvite: insertInvite
