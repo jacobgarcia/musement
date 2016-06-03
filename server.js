@@ -1,23 +1,4 @@
 'use strict';
-const http = require('http');
-const express = require('express');
-const bodyParser = require('body-parser');
-const passport = require('passport');
-const mongoose = require('mongoose');
-const configDB = require('config/database');
-const jade = require('jade');
-const cookieParser = require('cookie-parser');
-const expressSession = require('express-session');
-const LocalStrategy = require('passport-local').Strategy;
-const multer = require('multer');
-
-const app = express();
-const server = http.createServer(app);
-const socketio = require('socket.io');
-
-var chat = require("config/sockets").listen(server);
-
-
 let http = require('http'),
     express = require('express'),
     bodyParser = require('body-parser'),
