@@ -16,6 +16,7 @@ a:visited {
 body {
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   color: rgb(48, 48, 48);
+  font-weight: 300;
 }
 nav {
   z-index: 3;
@@ -56,6 +57,7 @@ nav .logotype {
   align-items: center;
   height: 100vh;
   text-align: center;
+  position: relative;
 }
 h1, h2 {
   font-weight: 400;
@@ -71,12 +73,11 @@ h1, h2 {
   flex-wrap: wrap;
 }
 .two-column .column {
-  width: 50%;
   display: inline-block;
   margin: 10px;
 }
 .two-column img {
-  height: 200px;
+  max-height: 200px;
   margin: 30px 0;
   margin-bottom: 30px;
 }
@@ -108,7 +109,7 @@ h1, h2 {
   line-height: 1.7rem;
 }
 .develop-your-project .people {
-  max-width: 500px;
+  max-width: 575px;
   margin: 50px 0;
 }
 .input-elements {
@@ -121,8 +122,10 @@ h1, h2 {
   padding: 3px 20px 3px 10px;
   border-radius: 8px;
   color: rgb(255, 255, 255);
+  width: 200px;
 }
 input[type="button"] {
+  cursor: pointer;
   background: rgb(247, 193, 108);
   font-size: 1rem;
   padding: 5px 20px;
@@ -144,7 +147,14 @@ input[type="button"] {
   padding: 50px 10%;
 }
 .min-slack-logo {
-  width: 100px;
+  margin-top: 25px;
+  width: 75px;
+}
+.learn-more {
+  position: absolute;
+  bottom: 60px;
+  right: calc(50% - 39px);
+  color: #fff;
 }
 .yellow {
   text-align: center;
@@ -176,11 +186,11 @@ input[type="button"] {
 .slack img, .call-to-action img {
   max-width: 225px;
 }
-.slack input[type="button"] {
+.slack input[type="button"], .yellow input[type="button"] {
   background: rgb(84, 174, 138);
 }
 .slack .left-content {
-  margin: 0 50px;
+  margin: 0 10%;
   flex-grow: 2;
 }
 .slack .left-content h2 {
@@ -201,9 +211,6 @@ input[type="button"] {
 .slack .right-image img {
   width: 100%;
   margin: 30px 0;
-}
-.yellow input[type="button"] {
-  background: rgb(243, 179, 89);
 }
 footer {
   display: flex;
@@ -262,16 +269,25 @@ footer .follow #slack img {
   background: #F7EB20;
 }
 .follow .slack:hover {
-
+  background: #3e313c;
 }
-footer .follow-logo {
+/*footer .follow-logo {
   width: 30px;
+}*/
+.twitter:hover svg.follow-logo path {
+  fill: #fff;
 }
-.twitter .follow-logo path{
-    background: blue;
+.facebook:hover svg.follow-logo path {
+  fill: #fff;
+}
+.slack:hover svg.follow-logo path {
+  fill: #fff;
 }
 
 @media (min-width: 600px) {
+  .input-elements input[type="email"] {
+    width: auto;
+  }
   nav {
     padding: 30px 50px 0;
   }
