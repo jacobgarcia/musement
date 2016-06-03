@@ -6,6 +6,7 @@ User = require("models/user.js"),
 Project = require("models/project.js"),
 Moment = require("models/moment.js"),
 jwt = require('jsonwebtoken'),
+invite = require("config/createinvitation.js"),
 //flash = require('connect-flash'),
 //LocalStrategy = require('passport-local').Strategy,
 router = express.Router();
@@ -50,6 +51,17 @@ router.post('/authenticate', function(req, res) {
     }
 
   });
+});
+
+router.post('/invitation', function(req, res) {
+  invite.insertInvite(req, function(response){
+     console.dir(response);
+     if (response.success) {
+       res.json({'message': 'Thanks, please check your email :', 'success': true})
+     }else{
+       res.json({'message': 'Ops! Please try again :', 'success': false})
+     }
+   });
 });
 
 //MIDDLEWARE TOKEN-ACCESS
