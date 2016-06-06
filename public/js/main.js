@@ -10,9 +10,9 @@ $( "#submit-button" ).on("click",function() {
       console.dir(data);
       $("#result").html( data );
     });
-    $('.thanks-email').text('Thanks, check your email :)');
+    $('.thanks-email').text('Gracias, revisa tu correo :)');
   }else{
-    $('.thanks-email').text('Ops, your email is not valid :(');
+    $('.thanks-email').text('Tu correo no es válido :(');
   }
 });
 
