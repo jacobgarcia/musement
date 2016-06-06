@@ -103,6 +103,9 @@ h1, h2 {
   text-align: center;
   margin-bottom: 100px;
 }
+.section:last-child {
+  margin-bottom: 30px;
+}
 .section p {
   font-weight: 300;
   font-size: 1.1rem;
@@ -124,6 +127,12 @@ h1, h2 {
   color: rgb(255, 255, 255);
   width: 200px;
 }
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 input[type="button"] {
   cursor: pointer;
   background: rgb(247, 193, 108);
@@ -143,6 +152,9 @@ input[type="button"] {
   width: 100px;
   margin: 20px 0;
 }
+.hero .content {
+  padding: 0 10%;
+}
 .content {
   padding: 50px 10%;
 }
@@ -152,7 +164,10 @@ input[type="button"] {
 }
 .learn-more {
   position: absolute;
-  bottom: 60px;
+  width: 100%;
+  right: 0;
+  left: 0;
+  bottom: 10px;
   right: calc(50% - 39px);
   color: #fff;
 }
@@ -250,7 +265,7 @@ footer .follow #slack {
 footer .follow #slack::before {
   position: absolute;
   margin-left: -27px;
-  margin-top: 3px;
+  margin-top: 4px;
   content: '';
   width: 1px;
   height: 20px;
@@ -258,6 +273,9 @@ footer .follow #slack::before {
 }
 footer .follow #slack img {
   width: 90px;
+}
+.slack .svg.follow-logo.replaced-svg {
+  width: 88px;
 }
 .follow .twitter:hover {
   background: #55acee;
@@ -274,6 +292,7 @@ footer .follow #slack img {
 /*footer .follow-logo {
   width: 30px;
 }*/
+
 .twitter:hover svg.follow-logo path {
   fill: #fff;
 }
@@ -281,9 +300,24 @@ footer .follow #slack img {
   fill: #fff;
 }
 .slack:hover svg.follow-logo path {
+
   fill: #fff;
 }
-
+*::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.8);;
+}
+*:-moz-placeholder {
+    /* FF 4-18 */
+    color: rgba(255, 255, 255, 0.8);;
+}
+*::-moz-placeholder {
+    /* FF 19+ */
+    color: rgba(255, 255, 255, 0.8);;
+}
+*:-ms-input-placeholder {
+    /* IE 10+ */
+    color: rgba(255, 255, 255, 0.8);;
+}
 @media (min-width: 600px) {
   .input-elements input[type="email"] {
     width: auto;
@@ -347,5 +381,26 @@ footer .follow #slack img {
   }
   .hero .logo {
     width: 175px;
+  }
+}
+@media (min-width: 500px) and (orientation:portrait) {
+  .hero .logo {
+    margin: 70px 0;
+    width: 225px;
+  }
+  .hero .signup {
+    margin-top: 100px;
+  }
+}
+@media (min-width: 1500px) {
+  .hero .logo {
+    margin: 60px 0;
+    width: 225px;
+  }
+  .hero h2 {
+    margin-bottom: 10px;
+  }
+  .hero .logo {
+    margin-top: 80px;
   }
 }
