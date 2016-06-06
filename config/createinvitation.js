@@ -14,8 +14,9 @@ var insertInvite = function(req, callback) {
 
   var email = new sendgrid.Email();
   email.addTo(newGuest.email);
-  email.subject = "¡Bienvenido a Musement!";
+  email.subject = "Bienvenido :)";
   email.from = 'hello@musement.co';
+  email.fromname = "Musement";
   email.text = 'Bienvenido a Musement!';
   email.html = '<h1>Bienvenido a Musement!</h1>';
 

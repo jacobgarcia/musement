@@ -1,13 +1,37 @@
 $( "#submit-button" ).on("click",function() {
   var email = $("#email-input").val();
-  console.log("JQUERY EMAIL: "+email);
-  var data = {"email": email};
-  $.post( "/api/invitation", data)
-  .done(function( data ) {
-    console.log("RESPONSE:");
-    console.dir(data);
-    $("#result").html( data );
-  });
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  var isemail = regex.test(email);
+  if (isemail) {
+    var data = {"email": email};
+    $.post( "/api/invitation", data)
+    .done(function( data ) {
+      console.log("RESPONSE:");
+      console.dir(data);
+      $("#result").html( data );
+    });
+    $('.thanks-email').text('Thanks, check your email :)');
+  }else{
+    $('.thanks-email').text('Ops, your email is not valid :(');
+  }
+});
+
+$( "#submit-button2" ).on("click",function() {
+  var email = $("#email-input2").val();
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  var isemail = regex.test(email);
+  if (isemail) {
+    var data = {"email": email};
+    $.post( "/api/invitation", data)
+    .done(function( data ) {
+      console.log("RESPONSE:");
+      console.dir(data);
+      $("#result").html( data );
+    });
+    $('.thanks-email').text('Thanks, check your email :)');
+  }else{
+    $('.thanks-email').text('Ops, your email is not valid :(');
+  }
 });
 
 $('img.svg').each(function(){
