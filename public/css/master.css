@@ -19,21 +19,33 @@ li {
 }
 a {
   text-decoration: none;
+  color: rgb(45, 60, 68);
 }
 a:visited {
-  color: inherit;
+  color: rgb(45, 60, 68);
 }
 body {
   font-family: 'WeblySleekSlim', 'Helvetica Neue', Helvetica, sans-serif;
   color: rgb(63,77,85);
   font-weight: 300;
 }
+.anchors{
+  text-align: right;
+  width: 100%;
+}
+.anchors a{
+  padding-left: 2rem;
+}
+.anchors a:visited {
+  color: rgb(45, 60, 68);
+}
 nav {
   z-index: 3;
   display: flex;
   width: 100%;
-  justify-content: flex-start;
-  padding: 10px 30px 0;
+  align-items: center;
+  flex-direction: row;
+  padding: 1rem 1rem 0;
   color: rgb(255, 255, 255);
 }
 nav .logotype {
@@ -331,9 +343,6 @@ footer .follow #slack img {
   .input-elements input[type="email"] {
     width: auto;
   }
-  nav {
-    padding: 30px 50px 0;
-  }
   nav .logotype {
     width: 100px;
   }
@@ -363,6 +372,9 @@ footer .follow #slack img {
   }
 }
 @media (min-width: 800px) {
+  nav {
+    padding: 2rem 5rem;
+  }
   .two-column .column {
     margin: 30px;
   }
@@ -402,6 +414,9 @@ footer .follow #slack img {
   }
 }
 @media (min-width: 1500px) {
+  nav {
+    padding: 1.5rem 10rem;
+  }
   .hero .logo {
     margin: 60px 0;
     width: 225px;
