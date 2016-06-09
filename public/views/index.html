@@ -79,18 +79,31 @@
         </div>
         <!-- End how it works -->
       </div>
+      <!-- End hero (section) -->
+
+      <!-- Start full width (section) -->
+      <!-- Start slack -->
       <div class="content slack yellow" id="community">
         <div class="left-content">
-          <h2>{{ slack }}</h2>
+          <div class="title">
+            <h2>{{ slack }} </h2>
+            <img src="/static/img/slack_rgb.png" class="min-slack-logo" alt=""/>
+          </div>
           <p>{{ slackin }}</p>
-          <img src="/static/img/slack_rgb.png" class="min-slack-logo" alt="" />
-          <a href="http://slack.musement.co" target="_blank"><input type="button" value="{{ join }}"></a>
+          <div class="space">
+            <a href="http://slack.musement.co" target="_blank"><input type="button" value="{{ join }}"></a>
+          </div>
         </div>
-        <div class="right-image">
+        <!-- <div class="right-image">
           <img src="/static/img/slack-desktop.svg" alt="Join us on Slack" />
-        </div>
+        </div> -->
       </div>
-      <div class="content slack" id="events">
+      <!-- End Slack -->
+      <!-- Start hero -->
+      <!-- Start moment -->
+      <!-- End moment -->
+      <!-- End hero -->
+      <div class="content coworking" id="events">
         <div class="left-content">
           <h2>{{ afternoon }}</h2>
           <p>{{ coworking }}</p>
@@ -98,7 +111,7 @@
             <p class="event-detail">{{ date }}</p>
             <p class="event-detail">{{ place }}</p>
           </div>
-          <img src="/static/img/meetup.svg" alt="" class="meetup-min"/>
+          <!-- <img src="/static/img/meetup.svg" alt="" class="meetup-min"/> -->
           <a href="http://www.meetup.com/Musement-Community/" target="_blank"><input type="button" name="name" value="{{ participate }}"></a>
         </div>
         <div class="right-image">

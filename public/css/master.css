@@ -87,7 +87,7 @@ h1, h2 {
 }
 .content h2 span {
   font-weight: 500;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
 }
 .two-column {
   display: flex;
@@ -118,7 +118,7 @@ h1, h2 {
   margin-bottom: 30px;
 }
 .hero h2 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: 200;
 }
 .hero h4 {
@@ -149,8 +149,11 @@ h1, h2 {
 }
 .section h2 {
   font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: 1.1rem;
+  font-size: 2.2rem;
   line-height: 1.7rem;
+}
+.space{
+  margin: 2rem 0;
 }
 .develop-your-project .people {
   max-width: 575px;
@@ -178,10 +181,19 @@ input[type="button"] {
   cursor: pointer;
   background: rgb(247, 193, 108);
   font-size: 1rem;
-  padding: 5px 20px;
+  padding: 0.6rem 3rem;
+  color: rgb(255, 255, 255);
+  border-radius: 3px;
+}
+.coworking input[type="button"] {
+  cursor: pointer;
+  background: rgb(247, 193, 108);
+  font-size: 1rem;
+  padding: 0.6rem 3rem;
   color: rgb(255, 255, 255);
   border-radius: 3px;
   display: block;
+  margin-top: 1rem;
 }
 .input-elements input[type="button"] {
   padding: 3px 10px;
@@ -201,9 +213,8 @@ input[type="button"] {
 .content {
   padding: 50px 10%;
 }
-.min-slack-logo {
-  margin-top: 25px;
-  width: 75px;
+.min-slack-logo{
+  width: 9%;
 }
 .learn-more {
   position: absolute;
@@ -245,7 +256,7 @@ input[type="button"] {
 .slack {
   display: flex;
   background-size: 100vh;
-  text-align: left;
+  text-align: center;
 }
 .slack, .call-to-action {
   flex-wrap: wrap;
@@ -261,9 +272,17 @@ input[type="button"] {
   margin: 0 10%;
   flex-grow: 2;
 }
-.slack .left-content h2 {
-  font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
+.slack .left-content .title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
+}
+.slack .left-content .title h2 {
+  font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
+  padding: 1rem;
+  font-size: 2.5rem;
 }
 .yellow .left-content h2 {
   color: #fff;
@@ -271,6 +290,48 @@ input[type="button"] {
 .slack .left-content p {
   font-size: 1.2rem;
   line-height: 1.7rem;
+  margin: 0 10rem;
+  font-weight: bold;
+}
+.coworking .right-image {
+  flex-grow: 1;
+  min-width: 250px;
+  text-align: center;
+}
+.coworking .right-image img {
+  width: 100%;
+  margin: 30px 0;
+}
+
+.coworking {
+  display: flex;
+  background-size: 100vh;
+  text-align: left;
+}
+.coworking, .call-to-action {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.coworking img, .call-to-action img {
+  max-width: 225px;
+}
+.coworking .left-content {
+  margin: 0 10%;
+  flex-grow: 2;
+}
+.coworking .left-content h2 {
+  font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
+  padding: 1rem 0;
+  font-size: 2.2rem;
+}
+.yellow .left-content h2 {
+  color: #fff;
+}
+.slack .left-content p {
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+  margin: 0 10rem;
+  font-weight: bold;
 }
 .slack .right-image {
   flex-grow: 1;
@@ -281,6 +342,7 @@ input[type="button"] {
   width: 100%;
   margin: 30px 0;
 }
+
 footer {
   display: flex;
   flex-direction: column;
@@ -371,7 +433,7 @@ footer .follow #slack img {
     width: 100px;
   }
   .hero h2 {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
   }
   .hero h4 {
     font-size: 1.1rem;
@@ -407,6 +469,9 @@ footer .follow #slack img {
     width: 33%;
     margin-bottom: 3rem;
   }
+  .coworking .left-content {
+    width: 20%;
+  }
   .section p.subtitle{
     font-size: 1.5rem;
   }
@@ -424,7 +489,7 @@ footer .follow #slack img {
   }
 
   .hero h2 {
-    font-size: 2.3rem;
+    font-size: 2.5rem;
   }
   .hero h4 {
     font-size: 1.3rem;
