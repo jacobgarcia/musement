@@ -11,10 +11,14 @@
   <body>
     <main>
       <div class="hero">
+        <nav>
+          <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
+          <div class="anchors">
+            <a href="#community">Community</a>
+            <a href="#events">Events</a>
+          </div>
+        </nav>
         <div class="content">
-          <nav>
-            <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
-          </nav>
           <img src="./static/img/musement.svg" alt="" class="logo"/>
           <h2>{{ what }}</h2>
           <h4>{{ what2 }}</h4>
@@ -75,7 +79,7 @@
           <img src="/static/img/archivements.svg" alt="" />
         </div>
       </div>
-      <div class="content slack yellow">
+      <div class="content slack yellow" id="community">
         <div class="left-content">
           <h2>{{ slack }}</h2>
           <p>{{ slackin }}</p>
@@ -86,7 +90,7 @@
           <img src="/static/img/slack-desktop.svg" alt="Join us on Slack" />
         </div>
       </div>
-      <div class="content slack">
+      <div class="content slack" id="events">
         <div class="left-content">
           <h2>{{ afternoon }}</h2>
           <p>{{ coworking }}</p>
