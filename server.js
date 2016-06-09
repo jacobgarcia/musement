@@ -44,7 +44,8 @@ app.use(function(req, res, next) {
 // Nunjucks view configuration
 nunjucks.configure('public/views', {
     autoescape: true,
-    express: app
+    express: app,
+    watch: true
 });
 
 //Static routing
