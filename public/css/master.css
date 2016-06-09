@@ -408,19 +408,19 @@ footer .follow #slack img {
 }
 .follow .twitter:hover {
   background: #55acee;
-  /*content:url("../img/twitter-white.svg");*/
+  content:url("../img/twitter-white.svg");
 }
 .follow .facebook:hover {
   background: #3b5998;
-  /*content:url("../img/facebook-white.svg");*/
+  content:url("../img/facebook-white.svg");
 }
 .follow .snapchat:hover {
   background: #F7EB20;
-  /*content:url("../img/snapchat-white.svg");*/
+  content:url("../img/snapchat-white.svg");
 }
 .follow .slack:hover {
   background: #3e313c;
-  /*content:url("../img/slack-white.svg");*/
+  content:url("../img/slack-white.svg");
 }
 
 *::-webkit-input-placeholder {

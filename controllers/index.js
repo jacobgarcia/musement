@@ -37,4 +37,15 @@ module.exports = function(app) {
       participate: req.i18n.__('Participate')
     });
   });
+
+  app.get('/api/user/locale', function(req, res) {
+    if (req.i18n.locale === undefined) {
+        // The user is not logged in
+        res.json({});
+    } else {
+        res.json({
+          locale: req.i18n.locale
+        });
+      }
+});
 };
