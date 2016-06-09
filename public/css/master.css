@@ -87,7 +87,7 @@ h1, h2 {
 }
 .content h2 span {
   font-weight: 500;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 .two-column {
   display: flex;
@@ -111,6 +111,7 @@ h1, h2 {
 .three-column .column {
   display: inline-block;
   margin: 10px;
+  width: 100%
 }
 .three-column img {
   max-height: 200px;
@@ -118,7 +119,7 @@ h1, h2 {
   margin-bottom: 30px;
 }
 .hero h2 {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 200;
 }
 .hero h4 {
@@ -140,7 +141,7 @@ h1, h2 {
   margin-bottom: 100px;
 }
 .section:last-child {
-  margin-bottom: 30px;
+  margin-bottom: 1.9rem;
 }
 .section p {
   font-weight: 300;
@@ -149,7 +150,7 @@ h1, h2 {
 }
 .section h2 {
   font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: 2.2rem;
+  font-size: 1.5rem;
   line-height: 1.7rem;
 }
 .space{
@@ -211,10 +212,13 @@ input[type="button"] {
   padding: 0 10%;
 }
 .content {
-  padding: 50px 10%;
+  padding: 50px 3%;
+}
+.content-light {
+  padding: 1.3rem 10%;
 }
 .min-slack-logo{
-  width: 9%;
+  width: 150px;
 }
 .learn-more {
   position: absolute;
@@ -235,6 +239,12 @@ input[type="button"] {
   color: white;
   margin-bottom: 1.5rem;
 }
+.section p.subtitle{
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  margin-top: 1rem;
+}
 .yellow {
   text-align: center;
   font-weight: 300;
@@ -253,10 +263,20 @@ input[type="button"] {
   background: rgb(59, 78, 87) url('/static/img/cta-background.svg') center bottom repeat-x;
   color: rgb(255, 255, 255);
 }
+.grow{
+  text-align: center;
+  background: #FF695B;
+}
+.grow h2{
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+}
 .slack {
   display: flex;
   background-size: 100vh;
   text-align: center;
+  margin-bottom: 4rem;
 }
 .slack, .call-to-action {
   flex-wrap: wrap;
@@ -274,7 +294,7 @@ input[type="button"] {
 }
 .slack .left-content .title{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
@@ -282,7 +302,7 @@ input[type="button"] {
 .slack .left-content .title h2 {
   font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
   padding: 1rem;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 .yellow .left-content h2 {
   color: #fff;
@@ -290,7 +310,6 @@ input[type="button"] {
 .slack .left-content p {
   font-size: 1.2rem;
   line-height: 1.7rem;
-  margin: 0 10rem;
   font-weight: bold;
 }
 .coworking .right-image {
@@ -322,16 +341,10 @@ input[type="button"] {
 .coworking .left-content h2 {
   font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
   padding: 1rem 0;
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 .yellow .left-content h2 {
   color: #fff;
-}
-.slack .left-content p {
-  font-size: 1.2rem;
-  line-height: 1.7rem;
-  margin: 0 10rem;
-  font-weight: bold;
 }
 .slack .right-image {
   flex-grow: 1;
@@ -453,11 +466,20 @@ footer .follow #slack img {
   .slack-logo {
     width: 300px;
   }
+  .min-slack-logo{
+    width: 150px;
+  }
   footer .follow ul li {
     margin: 0 20px;
   }
 }
 @media (min-width: 800px) {
+  .section h2 {
+    font-size: 2rem;
+  }
+  .content h2 span {
+    font-size: 2.5rem;
+  }
   nav {
     padding: 2rem 5rem;
   }
@@ -472,9 +494,6 @@ footer .follow #slack img {
   .coworking .left-content {
     width: 20%;
   }
-  .section p.subtitle{
-    font-size: 1.5rem;
-  }
   .section p {
     padding: 0 10%;
   }
@@ -484,10 +503,25 @@ footer .follow #slack img {
   .three-column {
     flex-wrap: nowrap;
   }
+  .section p.subtitle{
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+  .grow h2{
+    font-size: 2rem;
+    }
   .slack, .call-to-action {
     flex-wrap: nowrap;
   }
-
+  .slack .left-content p {
+     margin: 0 4rem;
+   }
+   .slack .left-content .title h2{
+     font-size: 2.1rem;
+   }
+   .min-slack-logo{
+     width: 120px;
+   }
   .hero h2 {
     font-size: 2.5rem;
   }
@@ -514,6 +548,9 @@ footer .follow #slack img {
   }
 }
 @media (min-width: 1500px) {
+  .content {
+    padding: 50px 10%;
+}
   nav {
     padding: 1.5rem 10rem;
   }
@@ -527,4 +564,7 @@ footer .follow #slack img {
   .hero .logo {
     margin-top: 80px;
   }
+  .slack .left-content p {
+     margin: 0 8rem;
+}
 }
