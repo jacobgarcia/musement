@@ -14,8 +14,8 @@
         <nav>
           <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
           <div class="anchors">
-            <a href="#community">Community</a>
-            <a href="#events">Events</a>
+            <a href="#community">{{communitynav}}</a>
+            <a href="#events">{{events}}</a>
           </div>
         </nav>
         <div class="content">
@@ -58,22 +58,22 @@
         </div>
         <!-- Start how it works -->
         <div class="section blue">
-          <h2><span>{{ share }}</span> {{ improve }}</h2>
+          <h2>{{ works }}</h2>
           <div class="three-column">
             <div class="column">
-              <p class="subtitle">Comparte</p>
+              <p class="subtitle">{{share}}</p>
               <img src="/static/img/user.svg" alt="" />
               <p>{{ post }}</p>
             </div>
             <div class="column">
-              <p class="subtitle">Aporta</p>
+              <p class="subtitle">{{contribute}}</p>
               <img src="/static/img/moments.svg" alt="" />
               <p>{{ community }}</p>
             </div>
             <div class="column">
-              <p class="subtitle">Aplica</p>
-              <img src="/static/img/aply.svg" alt="" />
-              <p>{{ leaders }}</p>
+              <p class="subtitle">{{apply}}</p>
+              <img src="/static/img/apply.svg" alt="" />
+              <p>{{ application }}</p>
             </div>
           </div>
         </div>
@@ -104,14 +104,14 @@
       <div class="section">
         <div class="two-column">
           <div class="column">
-            <h2>{{ second }}</h2>
+            <h2>{{ moment }}</h2>
             <img src="/static/img/watch.svg" alt="" />
-            <p>{{ sharing }}</p>
+            <p>{{ momentdescription }}</p>
           </div>
           <div class="column">
-            <h2>{{ second }}</h2>
+            <h2>{{ leaders }}</h2>
             <img src="/static/img/archivements.svg" alt="" />
-            <p>{{ improving }}</p>
+            <p>{{ people }}</p>
           </div>
         </div>
       </div>
@@ -119,7 +119,7 @@
 
       <!-- Start grow idea -->
       <div class="content-light grow">
-        <h2>El momento de hacer crecer tu idea</h2>
+        <h2>{{ time }}</h2>
       </div>
       <!-- End grow idea -->
 

@@ -34,5 +34,8 @@
 	"Application": "Aplica el feedback que haz recibido, adáptalo lo mejor posible a tu producto y comparte la nueva versión de tu proyecto",
 	"Moment": "Tu momento es ahora",
 	"Moment Description": "En Musement nos olvidamos del tiempo. Cuando trabajamos durante horas en algo que nos apasiona, estas pueden parecer sólo un par de minutos",
-	"Time": "El momento de hacer crecer tu idea"
+	"Time": "El momento de hacer crecer tu idea",
+	"Community nav": "Comunidad",
+	"Events": "Eventos",
+	"Improve": "Mejora"
 }

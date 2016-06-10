@@ -516,6 +516,9 @@ footer .follow #slack img {
   .slack .left-content p {
      margin: 0 4rem;
    }
+   .slack .left-content .title{
+     flex-direction: row;
+   }
    .slack .left-content .title h2{
      font-size: 2.1rem;
    }

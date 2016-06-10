@@ -34,7 +34,19 @@ module.exports = function(app) {
       mail: req.i18n.__('Mail'),
       send: req.i18n.__('Send'),
       join: req.i18n.__('Join'),
-      participate: req.i18n.__('Participate')
+      participate: req.i18n.__('Participate'),
+      community: req.i18n.__('Community'),
+      events: req.i18n.__('Events'),
+      contribute: req.i18n.__('Contribute'),
+      apply: req.i18n.__('Apply'),
+      application: req.i18n.__('Application'),
+      moment: req.i18n.__('Moment'),
+      momentdescription: req.i18n.__('Moment Description'),
+      time: req.i18n.__('Time'),
+      communitynav: req.i18n.__('Community nav'),
+      events: req.i18n.__('Events'),
+      improve: req.i18n.__('Improve'),
+      works: req.i18n.__('Works')
     });
   });
 
