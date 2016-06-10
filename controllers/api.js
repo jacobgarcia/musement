@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express'),
-multer = require('multer'),
 User = require("models/user.js"),
 Project = require("models/project.js"),
 Moment = require("models/moment.js"),

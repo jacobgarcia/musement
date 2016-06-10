@@ -1,19 +1,24 @@
 {
   "name": "musement",
   "version": "0.1.0",
-  "description": "",
+  "description": "Main packages for the beta build",
   "main": "server.js",
-  "author": "Musement Collective Company",
-  "license": "ISC",
+  "author": "Musement",
+  "license": {
+    "private": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JacobGarcia/Musement.git"
+  },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.14.2",
-    "connect-flash": "^0.1.1",
     "express": "^4.13.4",
     "forever-monitor": "^1.7.0",
+    "i18n-2": "^0.6.3",
     "jsonwebtoken": "^6.2.0",
     "mongoose": "^4.4.3",
-    "multer": "^1.1.0",
+    "nunjucks": "^2.4.2",
     "sendgrid": "^2.0.0",
     "socket.io": "^1.4.5",
     "socket.io-client": "^1.4.5"

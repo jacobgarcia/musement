@@ -1,95 +1,63 @@
-const express = require('express');
-const multer = require('multer');
-var user = require("models/user.js");
-var flash = require('connect-flash');
-var LocalStrategy = require('passport-local').Strategy;
-var router = express.Router();
-
-var home = require('./home');
-var chat = require('./chat');
-var profile = require('./profile')
-var invitation = require('./invitation')
-
-//================================== MIDDLEWARES ===============================
-const ensureAuth = require('middlewares/auth.js');
-
+const express = require('express'),
+      i18n = require('i18n-2');
 
 //===================================== ROUTES =================================
-module.exports = function(app, passport) {
-  // ====================== > HOME PAGE (with login links) =======================
-  app.use(flash());
-  app.use('/home', home);
-  app.use('/chat', chat);
-  app.use('/profile', profile);
-  app.use('/invitation', invitation);
-
+module.exports = function(app) {
   app.get('/', (req, res) => {
-    res.render('index')
-  });
-
-  app.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/home',
-    failureRedirect: '/login'
-  }));
-
-  app.post('/moment', passport.authenticate('local-login', {
-    successRedirect: '/home',
-    failureRedirect: '/login'
-  }));
-
-  app.get('/profile', ensureAuth, (req, res) => {
-    res.render('profile')
-  });
-
-  app.get('/login', (req, res) => {
-    if(req.isAuthenticated())
-      res.render('home');
-    else
-      res.render('login');
-  });
-
-  app.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/login');
-  });
-
-  // =====================================
-  // SIGNUP ==============================
-  // =====================================
-  // show the signup form
-  app.get('/signup', function(req, res) {
-    // render the page and pass in any flash data if it exists
-    res.render('signup', {
-      message: req.flash('signupMessage')
+    res.render('index.html', {
+      what: req.i18n.__('What'),
+      what2: req.i18n.__('What 2'),
+      email: req.i18n.__('Email'),
+      learn: req.i18n.__('Learn'),
+      build: req.i18n.__('Build'),
+      idea: req.i18n.__('Idea'),
+      world: req.i18n.__('World Of Passion'),
+      second: req.i18n.__('Second Header'),
+      feedback: req.i18n.__('Second Header Text'),
+      sharing: req.i18n.__('Sharing'),
+      improving: req.i18n.__('Improving'),
+      share: req.i18n.__('Share'),
+      improve: req.i18n.__('Improve'),
+      post: req.i18n.__('Post'),
+      community: req.i18n.__('Community'),
+      leaders: req.i18n.__('Leaders'),
+      people: req.i18n.__('Key People'),
+      slack: req.i18n.__('Slack'),
+      slackin: req.i18n.__('Slackin'),
+      afternoon: req.i18n.__('Afternoon'),
+      coworking: req.i18n.__('Coworking'),
+      date: req.i18n.__('Date'),
+      place: req.i18n.__('Place'),
+      after: req.i18n.__('After'),
+      countdown: req.i18n.__('Countdown'),
+      contact: req.i18n.__('Contact'),
+      mail: req.i18n.__('Mail'),
+      send: req.i18n.__('Send'),
+      join: req.i18n.__('Join'),
+      participate: req.i18n.__('Participate'),
+      community: req.i18n.__('Community'),
+      events: req.i18n.__('Events'),
+      contribute: req.i18n.__('Contribute'),
+      apply: req.i18n.__('Apply'),
+      application: req.i18n.__('Application'),
+      moment: req.i18n.__('Moment'),
+      momentdescription: req.i18n.__('Moment Description'),
+      time: req.i18n.__('Time'),
+      communitynav: req.i18n.__('Community nav'),
+      events: req.i18n.__('Events'),
+      improve: req.i18n.__('Improve'),
+      works: req.i18n.__('Works')
     });
   });
-  app.get('/invitation', function(req, res) {
-    // render the page and pass in any flash data if it exists
-    res.render('invitation', {
-      message: req.flash('invitationMessage')
-    });
-  });
-  app.get('/thanks', function(req, res) {
-    // render the page and pass in any flash data if it exists
-    res.render('thanks');
-  });
 
-  app.get('/api/user_data', function(req, res) {
-      if (req.user === undefined) {
-          // The user is not logged in
-          res.json({});
-      } else {
-          res.json({
-            userid: req.user.id
-          });
-        }
-  });
-
-  // process the signup form
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/home', // redirect to the secure PROFILE section --- CHANGE FOR PROFILE
-    failureRedirect: '/signup', // redirect back to the signup page if there is an error
-    failureFlash: true // allow flash messages
-  }));
-
+  app.get('/api/user/locale', function(req, res) {
+    if (req.i18n.locale === undefined) {
+        // The user is not logged in
+        res.json({});
+    } else {
+        res.json({
+          locale: req.i18n.locale
+        });
+      }
+});
 };
