@@ -1,7 +1,7 @@
 {
-	"What 2": "Plataforma para emprendedores. Aprende de los líderes de las industria.",
+	"What 2": "Plataforma para emprendedores. Aprende de los líderes de la industria.",
 	"What": "Comparte tus proyectos. Recibe feedback. Mejora tu trabajo.",
-	"Email": "Mientras preparamos todo ¿Por qué no nos compartes tu correo?",
+	"Email": "Mientras preparamos todo ¿por qué no nos compartes tu correo?",
 	"Learn": "Ver más",
 	"Build": "Construye",
 	"Idea": " tu proyecto más allá de la idea",

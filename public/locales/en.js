@@ -1,6 +1,6 @@
 {
 	"What 2": "A platform for entrepreneurs. Learn from industry leaders.",
-	"What": "Share your projects. Recieve feedback. Improve your work.",
+	"What": "Share your projects. Receive feedback. Improve your work.",
 	"Email": "While we are still working on it. Why don't you share us your email?",
 	"Learn": "Learn more",
 	"Build": "Build",
