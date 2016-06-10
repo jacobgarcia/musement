@@ -3,11 +3,11 @@
 let http = require('http'),
     express = require('express'),
     mongoose = require('mongoose'),
+    bodyParser = require('body-parser'),
     configDB = require('config/database'),
     morgan = require('morgan'),
     i18n = require('i18n-2'),
-    nunjucks = require('nunjucks'),
-    API = require("controllers/api"); //API Routers
+    nunjucks = require('nunjucks');
 
 let app = express(),
     server = http.createServer(app),
@@ -54,6 +54,8 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use('/components', express.static(__dirname + '/bower_components')); //Set bower_components to just components
 
 //Parser
+app.use(bodyParser.json()); /* JSON support */
+app.use(bodyParser.urlencoded());
 app.use(morgan('dev')); // use morgan to log requests to the console
 
 // Load our routes and pass it our app already configured

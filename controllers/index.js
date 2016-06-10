@@ -1,8 +1,11 @@
 const express = require('express'),
-      i18n = require('i18n-2');
+      i18n = require('i18n-2'),
+      api = require("./api"); //API Routers
 
 //===================================== ROUTES =================================
 module.exports = function(app) {
+  app.use('/api', api);
+
   app.get('/', (req, res) => {
     res.render('index.html', {
       what: req.i18n.__('What'),
@@ -49,15 +52,4 @@ module.exports = function(app) {
       works: req.i18n.__('Works')
     });
   });
-
-  app.get('/api/user/locale', function(req, res) {
-    if (req.i18n.locale === undefined) {
-        // The user is not logged in
-        res.json({});
-    } else {
-        res.json({
-          locale: req.i18n.locale
-        });
-      }
-});
 };
