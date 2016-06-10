@@ -18,7 +18,7 @@
 	"Community": "La comunidad te apoyará con el feedback que necesitas, así como tú podrás aportar a otros proyectos con tu experiencia y conocimiento",
 	"Leaders": "Tu proyecto. Tus necesidades.",
 	"Key People": "En Musement encontrarás a las personas correctas que te apoyarán para alcanzar el éxito en tu proyecto. Sin importar el área de conocimiento del que necesites apoyo",
-	"Slack": "La Comunidad de Musement en Slack",
+	"Slack": "La Comunidad de Musement en ",
 	"Slackin": "Únete a la comunidad de Musement en Slack. Hoy. Comienza a compartir tus ideas y experiencias ¡Y conoce a grandes emprendedores como tú!",
 	"Afternoon": "Tardes de Coworking",
 	"Coworking": "Un espacio físico donde puedes trabajar tus proyectos, conocer nuevas ideas y relacionarte con personas emprendedoras como tú",
