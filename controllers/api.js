@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express'),
-multer = require('multer'),
 User = require("models/user.js"),
 Project = require("models/project.js"),
 Moment = require("models/moment.js"),
@@ -51,6 +50,18 @@ router.post('/authenticate', function(req, res) {
     }
 
   });
+});
+
+// Locale information about user
+router.get('/user/locale', function(req, res) {
+  if (req.i18n.locale === undefined) {
+      // The user is not logged in
+      res.json({});
+  } else {
+      res.json({
+        locale: req.i18n.locale
+      });
+    }
 });
 
 router.post('/invitation', function(req, res) {

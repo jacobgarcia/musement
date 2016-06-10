@@ -1,12 +1,13 @@
 'use strict';
+
 let http = require('http'),
     express = require('express'),
-    bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
+    bodyParser = require('body-parser'),
     configDB = require('config/database'),
-    multer = require('multer'),
     morgan = require('morgan'),
-    API = require("controllers/api"); //API Routers
+    i18n = require('i18n-2'),
+    nunjucks = require('nunjucks');
 
 let app = express(),
     server = http.createServer(app),
@@ -14,9 +15,38 @@ let app = express(),
 
 let chat = require("config/sockets").listen(server);
 
-// Configuration
-mongoose.connect(configDB.url); //connect database
-mongoose.set('debug', true);
+// Database Configuration
+mongoose.connect(configDB.url); //connect to database
+mongoose.set('debug', false);
+
+// Attach the i18n property to the express request object
+// And attach helper methods for use in templates
+i18n.expressBind(app, {
+    // setup some locales - other locales default to en silently
+    locales: ['en', 'es'],
+
+    // where to store json files - defaults to './locales' relative to modules directory
+    directory: __dirname + '/public/locales',
+
+    // The default language is english
+    defaultLocale: 'en',
+
+    // change the cookie name from 'lang' to 'locale'
+    cookieName: 'locale'
+});
+
+// Set the locale from req.cookies.
+app.use(function(req, res, next) {
+    req.i18n.setLocaleFromCookie();
+    next();
+});
+
+// Nunjucks view configuration
+nunjucks.configure('public/views', {
+    autoescape: true,
+    express: app,
+    watch: true
+});
 
 //Static routing
 app.use('/static', express.static(__dirname + '/public'));
@@ -28,13 +58,7 @@ app.use(bodyParser.json()); /* JSON support */
 app.use(bodyParser.urlencoded());
 app.use(morgan('dev')); // use morgan to log requests to the console
 
-//API routing
-app.use('/api', API);
-
-//Handles all routes and redirects it to index.html
-app.use(function(req, res) {
-    // Use res.sendfile, as it streams instead of reading the file into memory.
-    res.sendFile( __dirname + '/public/views/index.html');
-});
+// Load our routes and pass it our app already configured
+require('controllers/index')(app);
 
 server.listen(8080);

@@ -1,3 +1,13 @@
+@font-face {
+    font-family: WeblySleekSlim;
+    src: url(../fonts/weblysleeks.ttf);
+}
+
+@font-face {
+    font-family: WeblySleekBold;
+    src: url(../fonts/weblysleekb.ttf);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,21 +19,33 @@ li {
 }
 a {
   text-decoration: none;
+  color: rgb(45, 60, 68);
 }
 a:visited {
-  color: inherit;
+  color: rgb(45, 60, 68);
 }
 body {
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  color: rgb(48, 48, 48);
+  font-family: 'WeblySleekSlim', 'Helvetica Neue', Helvetica, sans-serif;
+  color: rgb(63,77,85);
   font-weight: 300;
+}
+.anchors{
+  text-align: right;
+  width: 100%;
+}
+.anchors a{
+  padding-left: 2rem;
+}
+.anchors a:visited {
+  color: rgb(45, 60, 68);
 }
 nav {
   z-index: 3;
   display: flex;
   width: 100%;
-  justify-content: flex-start;
-  padding: 10px 30px 0;
+  align-items: center;
+  flex-direction: row;
+  padding: 1rem 1rem 0;
   color: rgb(255, 255, 255);
 }
 nav .logotype {
@@ -65,7 +87,7 @@ h1, h2 {
 }
 .content h2 span {
   font-weight: 500;
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 .two-column {
   display: flex;
@@ -77,6 +99,21 @@ h1, h2 {
   margin: 10px;
 }
 .two-column img {
+  max-height: 200px;
+  margin: 30px 0;
+  margin-bottom: 30px;
+}
+.three-column{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.three-column .column {
+  display: inline-block;
+  margin: 10px;
+  width: 100%
+}
+.three-column img {
   max-height: 200px;
   margin: 30px 0;
   margin-bottom: 30px;
@@ -104,12 +141,20 @@ h1, h2 {
   margin-bottom: 100px;
 }
 .section:last-child {
-  margin-bottom: 30px;
+  margin-bottom: 1.9rem;
 }
 .section p {
   font-weight: 300;
   font-size: 1.1rem;
   line-height: 1.7rem;
+}
+.section h2 {
+  font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.7rem;
+}
+.space{
+  margin: 2rem 0;
 }
 .develop-your-project .people {
   max-width: 575px;
@@ -137,16 +182,27 @@ input[type="button"] {
   cursor: pointer;
   background: rgb(247, 193, 108);
   font-size: 1rem;
-  padding: 5px 20px;
+  padding: 0.6rem 3rem;
+  color: rgb(255, 255, 255);
+  border-radius: 3px;
+}
+.coworking input[type="button"] {
+  cursor: pointer;
+  background: rgb(247, 193, 108);
+  font-size: 1rem;
+  padding: 0.6rem 3rem;
   color: rgb(255, 255, 255);
   border-radius: 3px;
   display: block;
+  margin-top: 1rem;
 }
 .input-elements input[type="button"] {
   padding: 3px 10px;
   margin-left: -20px;
   border-radius: 8px;
   display: inline-block;
+}
+.thanks-email{
 }
 .hero .logo {
   width: 100px;
@@ -156,11 +212,13 @@ input[type="button"] {
   padding: 0 10%;
 }
 .content {
-  padding: 50px 10%;
+  padding: 50px 3%;
 }
-.min-slack-logo {
-  margin-top: 25px;
-  width: 75px;
+.content-light {
+  padding: 1.3rem 10%;
+}
+.min-slack-logo{
+  width: 150px;
 }
 .learn-more {
   position: absolute;
@@ -170,6 +228,22 @@ input[type="button"] {
   bottom: 10px;
   right: calc(50% - 39px);
   color: #fff;
+}
+.blue{
+  background: #31586F;
+  border-radius: 50px;
+  color: white;
+}
+.blue h2{
+  margin-top: 1.5rem;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+.section p.subtitle{
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  margin-top: 1rem;
 }
 .yellow {
   text-align: center;
@@ -189,17 +263,34 @@ input[type="button"] {
   background: rgb(59, 78, 87) url('/static/img/cta-background.svg') center bottom repeat-x;
   color: rgb(255, 255, 255);
 }
+.grow{
+  text-align: center;
+  background: #FF695B;
+}
+.grow h2{
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+}
 .slack {
   display: flex;
   background-size: 100vh;
-  text-align: left;
+  text-align: center;
+  margin-bottom: 4rem;
+  padding-bottom: 0;
 }
 .slack, .call-to-action {
   flex-wrap: wrap;
   justify-content: center;
 }
+.slack .title img{
+  max-width: 100%;
+  width: 150px;
+}
 .slack img, .call-to-action img {
-  max-width: 225px;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
 }
 .slack input[type="button"], .yellow input[type="button"] {
   background: rgb(84, 174, 138);
@@ -208,8 +299,17 @@ input[type="button"] {
   margin: 0 10%;
   flex-grow: 2;
 }
-.slack .left-content h2 {
+.slack .left-content .title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
+}
+.slack .left-content .title h2 {
+  font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
+  padding: 1rem;
+  font-size: 2rem;
 }
 .yellow .left-content h2 {
   color: #fff;
@@ -217,6 +317,41 @@ input[type="button"] {
 .slack .left-content p {
   font-size: 1.2rem;
   line-height: 1.7rem;
+  font-weight: bold;
+}
+.coworking .right-image {
+  flex-grow: 1;
+  min-width: 250px;
+  text-align: center;
+}
+.coworking .right-image img {
+  width: 100%;
+  margin: 30px 0;
+}
+
+.coworking {
+  display: flex;
+  background-size: 100vh;
+  text-align: left;
+}
+.coworking, .call-to-action {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.coworking img, .call-to-action img {
+  max-width: 225px;
+}
+.coworking .left-content {
+  margin: 0 10%;
+  flex-grow: 2;
+}
+.coworking .left-content h2 {
+  font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
+  padding: 1rem 0;
+  font-size: 2rem;
+}
+.yellow .left-content h2 {
+  color: #fff;
 }
 .slack .right-image {
   flex-grow: 1;
@@ -227,6 +362,7 @@ input[type="button"] {
   width: 100%;
   margin: 30px 0;
 }
+
 footer {
   display: flex;
   flex-direction: column;
@@ -279,30 +415,21 @@ footer .follow #slack img {
 }
 .follow .twitter:hover {
   background: #55acee;
+  content:url("../img/twitter-white.svg");
 }
 .follow .facebook:hover {
   background: #3b5998;
+  content:url("../img/facebook-white.svg");
 }
 .follow .snapchat:hover {
   background: #F7EB20;
+  content:url("../img/snapchat-white.svg");
 }
 .follow .slack:hover {
   background: #3e313c;
+  content:url("../img/slack-white.svg");
 }
-/*footer .follow-logo {
-  width: 30px;
-}*/
 
-.twitter:hover svg.follow-logo path {
-  fill: #fff;
-}
-.facebook:hover svg.follow-logo path {
-  fill: #fff;
-}
-.slack:hover svg.follow-logo path {
-
-  fill: #fff;
-}
 *::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.8);;
 }
@@ -322,14 +449,11 @@ footer .follow #slack img {
   .input-elements input[type="email"] {
     width: auto;
   }
-  nav {
-    padding: 30px 50px 0;
-  }
   nav .logotype {
     width: 100px;
   }
   .hero h2 {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
   }
   .hero h4 {
     font-size: 1.1rem;
@@ -349,26 +473,79 @@ footer .follow #slack img {
   .slack-logo {
     width: 300px;
   }
+  .min-slack-logo{
+    width: 150px;
+  }
   footer .follow ul li {
     margin: 0 20px;
   }
 }
 @media (min-width: 800px) {
+  .section h2 {
+    font-size: 2rem;
+  }
+  .content h2 span {
+    font-size: 2.5rem;
+  }
+  nav {
+    padding: 2rem 5rem;
+  }
   .two-column .column {
     margin: 30px;
   }
+  .three-column .column {
+    margin: 10px;
+    width: 33%;
+    margin-bottom: 3rem;
+  }
+  .coworking .left-content {
+    width: 20%;
+  }
   .section p {
-    padding: 0 10%;
+    padding: 0 20%;
   }
   .two-column {
     flex-wrap: nowrap;
   }
-  .slack, .call-to-action {
+  .three-column {
     flex-wrap: nowrap;
   }
-
+  .section p.subtitle{
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+  .grow h2{
+    font-size: 2rem;
+    }
+  .slack, .call-to-action {
+    /*flex-wrap: nowrap;*/
+  }
+  .slack img, .call-to-action img {
+    max-width: 50%;
+    width: 50%;
+    height: 100%;
+  }
+  .slack .left-content p {
+     margin: 0 4rem;
+   }
+   .slack .left-content .title{
+     flex-direction: row;
+   }
+   .slack .left-content .title h2{
+     font-size: 2.1rem;
+   }
+   .min-slack-logo{
+     width: 120px;
+   }
+   .bottom-image{
+     bottom: 0;
+   }
+   .bottom-image img{
+     width: 100%;
+     max-width: 100%;
+   }
   .hero h2 {
-    font-size: 2.3rem;
+    font-size: 2.5rem;
   }
   .hero h4 {
     font-size: 1.3rem;
@@ -393,6 +570,12 @@ footer .follow #slack img {
   }
 }
 @media (min-width: 1500px) {
+  .content {
+    /*padding: 50px 10%;*/
+  }
+  nav {
+    padding: 1.5rem 10rem;
+  }
   .hero .logo {
     margin: 60px 0;
     width: 225px;
@@ -402,5 +585,13 @@ footer .follow #slack img {
   }
   .hero .logo {
     margin-top: 80px;
+  }
+  .slack .left-content p {
+     margin: 0 8rem;
+   }
+  .slack img, .call-to-action img {
+    max-width: 40%;
+    width: 40%;
+    height: 100%;
   }
 }

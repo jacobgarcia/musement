@@ -11,107 +11,145 @@
   <body>
     <main>
       <div class="hero">
-
+        <nav>
+          <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
+          <div class="anchors">
+            <a href="#community">{{communitynav}}</a>
+            <a href="#events">{{events}}</a>
+          </div>
+        </nav>
         <div class="content">
-          <nav>
-            <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
-          </nav>
           <img src="./static/img/musement.svg" alt="" class="logo"/>
-          <h2>A platform for entrepreneurs. Learn from industry leaders.</h2>
-          <h4>Share your ideas to recieve feedback in order to improve your work.</h4>
+          <h2>{{ what }}</h2>
+          <h4>{{ what2 }}</h4>
           <div class="signup">
-            <p>Please share with use your email until we're ready.</p>
+            <p>{{ email }}</p>
             <div class="input-elements">
-              <input type="email" name="email" value="" placeholder="Email address" id="email-input">
-              <input type="button" name="submit" value="Send" id="submit-button">
+              <input type="email" name="email" value="" placeholder="" id="email-input" required="true">
+              <input type="button" name="submit" value="{{ send }}" id="submit-button">
+            </div>
+            <div class="thanks-email">
             </div>
           </div>
           <div class="learn-more">
-            <p id="learn-more">Learn more</p>
+            <p id="learn-more">{{ learn }}</p>
             <img src="./static/img/arrow.svg" class="arrow" alt="" />
           </div>
         </div>
       </div>
       <div class="content">
         <div class="section develop-your-project">
-          <h2><span>Develop</span> your proyect behaing your idea</h2>
+          <h2><span>{{ build }}</span>{{ idea }}</h2>
           <img src="/static/img/people.svg" class="people" alt="" />
-          <p>The world is full of people passionate of creatig innovative proyects. Experts and liders of industry faithfull for sharing their knowledge and help you building the better version of your proyect.</p>
+          <p>{{ world }}</p>
         </div>
         <div class="section">
-          <h2><span>Feedback</span>, valuable and necessary</h2>
+          <h2><span>{{ second }}</span>{{ feedback }}</h2>
           <div class="two-column">
             <div class="column">
               <img src="/static/img/share.svg" alt="" />
-              <p>Share ideas or proyects with groups of people gives us a different perspective of our job.</p>
+              <p>{{ sharing }}</p>
             </div>
             <div class="column">
               <img src="/static/img/document.svg" alt="" />
-              <p>The feedback of other people enhance and boost our projects.</p>
+              <p>{{ improving }}</p>
             </div>
           </div>
         </div>
-        <div class="section">
-          <h2><span>Share</span> and enhance</h2>
-          <div class="two-column">
+        <!-- Start how it works -->
+        <div class="section blue">
+          <h2>{{ works }}</h2>
+          <div class="three-column">
             <div class="column">
+              <p class="subtitle">{{share}}</p>
               <img src="/static/img/user.svg" alt="" />
-              <p>In musement you can post the project you are working on, upload your progress and give it tracking.</p>
+              <p>{{ post }}</p>
             </div>
             <div class="column">
+              <p class="subtitle">{{contribute}}</p>
               <img src="/static/img/moments.svg" alt="" />
-              <p>The community will help you with valuable feedback, that you will need.</p>
+              <p>{{ community }}</p>
+            </div>
+            <div class="column">
+              <p class="subtitle">{{apply}}</p>
+              <img src="/static/img/apply.svg" alt="" />
+              <p>{{ application }}</p>
             </div>
           </div>
         </div>
+        <!-- End how it works -->
       </div>
-      <div class="content slack">
+      <!-- End hero (section) -->
+
+      <!-- Start full width (section) -->
+      <!-- Start slack -->
+      <div class="content slack yellow" id="community">
         <div class="left-content">
-          <h2>Liders of industry</h2>
-          <p>In musment you will find key people, liders and thrully enthusiasts of industry, that will help you archiving success in your project with their feedback.</p>
-        </div>
-        <div class="right-image">
-          <img src="/static/img/archivements.svg" alt="" />
-        </div>
-      </div>
-      <div class="content slack yellow">
-        <div class="left-content">
-          <h2>Musement in Slack</h2>
-          <p>Join Musement in Slack, share your projects and ideas in which you will be working on so as to get necessary feedback and enhance your project.</p>
-          <img src="/static/img/slack_rgb.png" class="min-slack-logo" alt="" />
-          <a href="http://slack.musement.co" target="_blank"><input type="button" value="Join"></a>
-        </div>
-        <div class="right-image">
-          <img src="/static/img/slack-desktop.svg" alt="Join us on Slack" />
-        </div>
-      </div>
-      <div class="content slack">
-        <div class="left-content">
-          <h2>Coworking afternoons</h2>
-          <p>A free space where you can work in your projects, meet new ideas and entrepreneur people like you.</p>
-          <div class="event-details">
-            <p class="event-detail">Every monday at 16:00</p>
-            <p class="event-detail">Incubadora de Empresa, Tecnológico de Monterrey Campus Toluca</p>
+          <div class="title">
+            <h2>{{ slack }} </h2>
+            <img src="/static/img/slack_rgb.png" class="min-slack-logo" alt=""/>
           </div>
-          <img src="/static/img/meetup.svg" alt="" class="meetup-min"/>
-          <a href="http://www.meetup.com/Musement-Community/" target="_blank"><input type="button" name="name" value="Participate"></a>
+          <p>{{ slackin }}</p>
+          <div class="space">
+            <a href="http://slack.musement.co" target="_blank"><input type="button" value="{{ join }}"></a>
+          </div>
+        </div>
+        <img src="/static/img/dSlack.svg" alt="Join us on Slack" />
+      </div>
+      <!-- End Slack -->
+
+      <!-- Start moment -->
+      <div class="section">
+        <div class="two-column">
+          <div class="column">
+            <h2>{{ moment }}</h2>
+            <img src="/static/img/watch.svg" alt="" />
+            <p>{{ momentdescription }}</p>
+          </div>
+          <div class="column">
+            <h2>{{ leaders }}</h2>
+            <img src="/static/img/archivements.svg" alt="" />
+            <p>{{ people }}</p>
+          </div>
+        </div>
+      </div>
+      <!-- End moment -->
+
+      <!-- Start grow idea -->
+      <div class="content-light grow">
+        <h2>{{ time }}</h2>
+      </div>
+      <!-- End grow idea -->
+
+      <div class="content coworking" id="events">
+        <div class="left-content">
+          <h2>{{ afternoon }}</h2>
+          <p>{{ coworking }}</p>
+          <div class="event-details">
+            <p class="event-detail">{{ date }}</p>
+            <p class="event-detail">{{ place }}</p>
+          </div>
+          <!-- <img src="/static/img/meetup.svg" alt="" class="meetup-min"/> -->
+          <a href="http://www.meetup.com/Musement-Community/" target="_blank"><input type="button" name="name" value="{{ participate }}"></a>
         </div>
         <div class="right-image">
           <img src="/static/img/coworking.svg" alt="" />
         </div>
       </div>
       <div class="call-to-action content">
-        <h2>After knowing a little bit of Musement</h2>
-        <p>Are you in the cuntdown.</p>
+        <h2>{{ after }}</h2>
+        <p>{{ countdown }}</p>
         <div class="input-elements">
-          <input type="email" name="email" value="" placeholder="Email address">
-          <input type="button" name="submit" value="Send">
+          <input type="email" name="email" value="" placeholder="{{ mail }}" required="true" id="email-input2">
+          <input type="button" name="submit" value="{{ send }}" id="submit-button2">
+        </div>
+        <div class="thanks-email">
         </div>
       </div>
     </main>
     <footer>
       <img src="./static/img/musement-logotype.svg" alt="" class="musement-logo"/>
-      <p>Contact us, follow us, be part of the community</p>
+      <p>{{ contact }}</p>
       <div class="follow">
         <ul>
           <li class="twitter"><a href="http://www.twitter.com/musementco" target="_blank"><img src="./static/img/twitter.svg" class="svg follow-logo" alt="Follow us on twitter" /></a></li>
@@ -123,5 +161,15 @@
     </footer>
     <script src="/components/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="/static/js/main.js" charset="utf-8"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73389780-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
   </body>
 </html>
