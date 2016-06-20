@@ -1,13 +1,11 @@
 @font-face {
     font-family: WeblySleekSlim;
-    src: url(../fonts/weblysleeks.ttf);
+    src: url(/static/fonts/weblysleeks.ttf);
 }
-
 @font-face {
     font-family: WeblySleekBold;
-    src: url(../fonts/weblysleekb.ttf);
+    src: url(/static/fonts/weblysleekb.ttf);
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -48,12 +46,18 @@ nav {
   padding: 1rem 1rem 0;
   color: rgb(255, 255, 255);
 }
+nav ul li {
+  display: inline-block;
+}
 nav .logotype {
   width: 90px;
 }
 .hero {
   background: url('/static/img/hero.svg') repeat-x center bottom;
   background-size: 100vh;
+}
+.hero .logo {
+  max-width: 150px;
 }
 .parallax-container, .hero {
   height: 100vh;
@@ -66,11 +70,11 @@ nav .logotype {
 }
 .content .event-detail {
   color: rgb(85, 175, 139);
-  font-weight: 500;
-  font-size: 0.8rem;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
-.hero .arrow {
-  width: 35px;
+.content .section:last-child {
+  margin-bottom: 0;
 }
 .hero .content {
   display: flex;
@@ -93,28 +97,30 @@ h1, h2 {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 .two-column .column {
   display: inline-block;
   margin: 10px;
 }
 .two-column img {
-  max-height: 200px;
+  max-width: 250px;
   margin: 30px 0;
   margin-bottom: 30px;
 }
-.three-column{
+.three-column {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 .three-column .column {
   display: inline-block;
-  margin: 10px;
+  margin: 20px 10%;
   width: 100%
 }
 .three-column img {
-  max-height: 200px;
+  max-width: 200px;
   margin: 30px 0;
   margin-bottom: 30px;
 }
@@ -138,10 +144,7 @@ h1, h2 {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 100px;
-}
-.section:last-child {
-  margin-bottom: 1.9rem;
+  margin-bottom: 50px;
 }
 .section p {
   font-weight: 300;
@@ -202,10 +205,12 @@ input[type="button"] {
   border-radius: 8px;
   display: inline-block;
 }
-.thanks-email{
+.section p {
+  padding: 0 5%;
 }
+/*.thanks-email{
+}*/
 .hero .logo {
-  width: 100px;
   margin: 20px 0;
 }
 .hero .content {
@@ -215,27 +220,33 @@ input[type="button"] {
   padding: 50px 3%;
 }
 .content-light {
-  padding: 1.3rem 10%;
+  padding: 2rem 10%;
 }
 .min-slack-logo{
   width: 150px;
 }
 .learn-more {
   position: absolute;
+  top: -46px;
   width: 100%;
-  right: 0;
+  right: 50%;
   left: 0;
-  bottom: 10px;
   right: calc(50% - 39px);
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.blue{
+.learn-more .arrow {
+  width: 35px;
+}
+.section.blue{
   background: #31586F;
-  border-radius: 50px;
+  border-radius: 20px;
   color: white;
+  padding: 30px 0;
 }
 .blue h2{
-  margin-top: 1.5rem;
   color: white;
   margin-bottom: 1.5rem;
 }
@@ -272,7 +283,7 @@ input[type="button"] {
   color: white;
   font-weight: bold;
 }
-.slack {
+.content.slack {
   display: flex;
   background-size: 100vh;
   text-align: center;
@@ -462,21 +473,59 @@ footer .follow #slack img {
 *::-moz-placeholder {
     /* FF 19+ */
     color: rgba(255, 255, 255, 0.8);;
+
+.two-column .column {
+  margin: 20px 10%;
 }
-*:-ms-input-placeholder {
-    /* IE 10+ */
-    color: rgba(255, 255, 255, 0.8);;
+
+*::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.8); }
+*:-moz-placeholder { color: rgba(255, 255, 255, 0.8); }
+*::-moz-placeholder { color: rgba(255, 255, 255, 0.8); }
+*:-ms-input-placeholder { color: rgba(255, 255, 255, 0.8); }
+
+/*iPhone 5-like sizes*/
+@media (max-width: 350px) {
+  .hero h2 {
+    font-size: 1.25rem;
+  }
+  .hero h4 {
+    display: none;
+  }
+  .hero .signup {
+    margin-top: 30px;
+  }
+  nav ul li {
+    font-size: .9rem;
+  }
+  nav ul.anchors li a {
+    padding-left: 1rem;
+  }
 }
 @media (min-width: 600px) {
+  .two-column .column {
+    margin: 50px 10%;
+  }
+  .hero .logo {
+    max-width: none;
+  }
+  .content {
+    padding: 100px 3%;
+  }
+  .section .column p {
+    padding: 0;
+  }
+  .section {
+  margin-bottom: 75px;
+  }
   .input-elements input[type="email"] {
     width: auto;
   }
   nav .logotype {
     width: 100px;
   }
-  .hero h2 {
+  /*.hero h2 {
     font-size: 2.5rem;
-  }
+  }*/
   .hero h4 {
     font-size: 1.1rem;
   }
@@ -502,6 +551,15 @@ footer .follow #slack img {
     margin: 0 20px;
   }
 }
+@media (min-width: 400px) and (orientation:portrait) {
+  .hero .logo {
+    margin: 30px 0;
+    width: 225px;
+  }
+  .hero .signup {
+    margin-top: 75px;
+  }
+}
 @media (min-width: 800px) {
   .section h2 {
     font-size: 2rem;
@@ -511,9 +569,6 @@ footer .follow #slack img {
   }
   nav {
     padding: 2rem 5rem;
-  }
-  .two-column .column {
-    margin: 30px;
   }
   .three-column .column {
     margin: 10px;
@@ -566,9 +621,9 @@ footer .follow #slack img {
      width: 100%;
      max-width: 100%;
    }
-  .hero h2 {
+  /*.hero h2 {
     font-size: 2.5rem;
-  }
+  }*/
   .hero h4 {
     font-size: 1.3rem;
   }
@@ -582,13 +637,13 @@ footer .follow #slack img {
     width: 175px;
   }
 }
-@media (min-width: 500px) and (orientation:portrait) {
-  .hero .logo {
-    margin: 70px 0;
-    width: 225px;
+@media (min-width: 1000px) {
+  .hero h2 {
+    font-size: 2rem;
   }
-  .hero .signup {
-    margin-top: 100px;
+  .section {
+    max-width: 1200px;
+    margin: 75px auto;
   }
 }
 @media (min-width: 1500px) {
@@ -603,6 +658,7 @@ footer .follow #slack img {
     width: 225px;
   }
   .hero h2 {
+    font-size: 2.5rem;
     margin-bottom: 10px;
   }
   .hero .logo {
