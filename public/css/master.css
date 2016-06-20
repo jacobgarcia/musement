@@ -421,6 +421,9 @@ footer .follow #slack::before {
 footer .follow #slack img {
   width: 90px;
 }
+.content {
+  position: relative;
+}
 .slack .logo {
   width: 88px;
   content:url("../img/slack.svg");
@@ -461,19 +464,6 @@ footer .follow #slack img {
 .follow .slack .logo:hover {
   content:url("../img/slack-white.svg");
 }
-
-
-*::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, 0.8);;
-}
-*:-moz-placeholder {
-    /* FF 4-18 */
-    color: rgba(255, 255, 255, 0.8);;
-}
-*::-moz-placeholder {
-    /* FF 19+ */
-    color: rgba(255, 255, 255, 0.8);;
-
 .two-column .column {
   margin: 20px 10%;
 }
