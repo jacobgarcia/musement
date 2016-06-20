@@ -410,25 +410,47 @@ footer .follow #slack::before {
 footer .follow #slack img {
   width: 90px;
 }
-.slack .svg.follow-logo.replaced-svg {
+.slack .logo {
   width: 88px;
+  content:url("../img/slack.svg");
+}
+.follow .twitter .logo {
+  content:url("../img/twitter.svg");
 }
 .follow .twitter:hover {
   background: #55acee;
+}
+.follow .twitter .logo:hover {
   content:url("../img/twitter-white.svg");
+}
+
+.follow .facebook .logo {
+  content:url("../img/facebook.svg");
 }
 .follow .facebook:hover {
   background: #3b5998;
+}
+.follow .facebook .logo:hover {
   content:url("../img/facebook-white.svg");
+}
+
+.follow .snapchat .logo {
+  content:url("../img/snapchat.svg");
 }
 .follow .snapchat:hover {
   background: #F7EB20;
+}
+.follow .snapchat .logo:hover {
   content:url("../img/snapchat-white.svg");
 }
+
 .follow .slack:hover {
   background: #3e313c;
+}
+.follow .slack .logo:hover {
   content:url("../img/slack-white.svg");
 }
+
 
 *::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.8);;
