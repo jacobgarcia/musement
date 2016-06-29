@@ -24,7 +24,11 @@ $( "#submit-button" ).on("click",function() {
     }
   });
 });
-
+console.log('main.js');
+$('#menu').on('click', function() {
+  console.log('Moved');
+  $('.body').toggleClass('moved');
+})
 $( "#submit-button2" ).on("click",function() {
   $.getJSON("api/user/locale", function(userLocal) {
     var locale = userLocal.locale;
