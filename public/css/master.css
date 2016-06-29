@@ -208,8 +208,26 @@ input[type="button"] {
 .section p {
   padding: 0 5%;
 }
-/*.thanks-email{
-}*/
+.thanks-email {
+  z-index: 100;
+  background: rgb(247, 193, 108);
+  width: 100%;
+  padding: 0;
+  position: fixed;
+  top:  0;
+  transform: translateY(-100px);
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: .5s;
+}
+.thanks-email.visible {
+  transform: translateY(0px);
+  display: block;
+  height: auto;
+  padding: 20px 30px;
+}
 .hero .logo {
   margin: 20px 0;
 }
