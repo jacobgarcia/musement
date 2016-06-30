@@ -473,68 +473,6 @@ footer .follow #slack img {
 *::-moz-placeholder { color: rgba(255, 255, 255, 0.8); }
 *:-ms-input-placeholder { color: rgba(255, 255, 255, 0.8); }
 
-/*---------------------------*/
-/* ---     APP STYLES     ---*/
-/*---------------------------*/
-
-
-
-.side-bar {
-  background: rgb(59, 77, 87);
-  position: absolute;
-  z-index: -10;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  color: #fff;
-}
-.side-bar .search input{
-  background: rgba(0, 0, 0, .5);
-  font-size: 1rem;
-  outline: none;
-}
-.menu #menu {
-  background: rgb(15, 169, 255);
-}
-.body {
-  position: relative;
-  background: #FFF;
-  color: #666;
-  transition: .5s;
-  min-height: 100vh;
-}
-.body.active {
-  transform: translateX(200px);
-}
-.main-feed {
-  padding: 10px 10%;
-}
-.main-feed .moment{
-  min-height: 100px;
-  width: 100%;
-  margin-bottom: 10px;
-  background: rgb(156, 156, 156);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*iPhone 5-like sizes*/
 @media (max-width: 350px) {
   .hero h2 {

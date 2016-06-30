@@ -1,0 +1,131 @@
+a {
+  color: inherit;
+}
+.side-bar {
+  z-index: 0;
+  padding: 20px;
+  background: rgb(59, 77, 87);
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  color: #fff;
+}
+.side-bar .search input{
+  background: rgba(0, 0, 0, .5);
+  font-size: 1rem;
+  outline: none;
+}
+.filter {
+  display: flex;
+}
+.filter p {
+  margin-right: 10px;
+  color: rgb(159, 159, 159);
+  font-size: .9rem;
+}
+.menu {
+  width: 100%;
+  color: rgb(59, 77, 87);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+nav .filter {
+  color: rgb(59, 77, 87);
+}
+.menu .title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.body nav {
+  display: flex;
+  flex-wrap: wrap;
+}
+ul.menu ul li {
+  display: inline-block;
+}
+.menu #menu div {
+  width: 25px;
+  margin-bottom: 5px;
+  height: 3px;
+  background: rgb(59, 77, 87);
+  border-radius: 4px;
+}
+.menu #menu div:last-child {
+  margin-bottom: 0;
+}
+.body {
+  z-index: 1;
+  position: relative;
+  background: #FFF;
+  color: #666;
+  transition: .4s;
+  min-height: 100vh;
+}
+.body.active {
+  transform: translateX(250px);
+}
+.main-feed {
+  padding: 10px 10%;
+}
+.main-feed .moment{
+  min-height: 100px;
+  width: 100%;
+  margin-bottom: 10px;
+  background: rgb(156, 156, 156);
+}
+.profile {
+  display: flex;
+  margin-bottom: 10px;
+}
+.profile .profile-photo {
+  width: 43px;
+  height: 43px;
+  margin-right: 10px;
+}
+.profile-text {
+  display: flex;
+  flex-direction: column;
+}
+.search input {
+  margin: 7px 0 3px;
+  border-radius: 5px;
+  width: 210px;
+}
+.side-options h5 {
+  font-size: .8rem;
+  font-weight: 600;
+  margin: 15px 0 5px;
+}
+.side-options ul {
+}
+.side-options ul li {
+  padding: 10px 18px;
+  padding-left: 28px;
+}
+.side-options .general li {
+  padding-left: 0;
+}
+.side-options .active {
+  background: #fff;
+  color: rgb(59, 77, 87);
+}
+.log-out {
+  position: absolute;
+  bottom: 0;
+  color: rgb(39, 50, 56);
+  text-align: center;
+  margin-bottom: 10px;
+}
+.filter ul.tags li {
+  color: #fff;
+  background: red;
+  font-size: .75rem;
+  border-radius: 5px;
+  padding: 2px 5px;
+  display: inline-block;
+}
