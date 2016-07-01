@@ -4,15 +4,26 @@ angular.module('musementApp')
       .state("landing", {
         url: "/",
         templateUrl: "static/views/landingpage.html",
-        controller: "mainCtrl",
+        // controller: "mainCtrl",
         authenticate: false //Doesn't requires authentication
       })
-      .state("index", {
+      .state("feed", {
         url: "/",
         templateUrl: "static/views/feed.html",
         controller: "feedCtrl",
         authenticate: false //Doesn't requires authentication
       })
+      .state("signup", {
+        url: "/signup",
+        templateUrl: "static/views/signup.html",
+        authenticate: false //Doesn't requires authentication
+      })
+      .state("signin", {
+        url: "/signin",
+        templateUrl: "static/views/signin.html",
+        authenticate: false //Doesn't requires authentication
+      })
+
       // .state("index", {
       //   url: "/",
       //   templateUrl: "static/views/index.html",

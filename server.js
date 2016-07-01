@@ -4,14 +4,14 @@ let http = require('http'),
     express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
-    configDB = require('config/database'),
+    configDB = require("./config/database"),
     morgan = require('morgan');
 
 let app = express(),
     server = http.createServer(app),
     socketio = require('socket.io');
 
-let chat = require("config/sockets").listen(server);
+let chat = require("./config/sockets").listen(server);
 
 // Database Configuration
 mongoose.connect(configDB.url); //connect to database
@@ -24,7 +24,7 @@ app.use('/components', express.static(__dirname + '/bower_components')); //Set b
 
 //Parser
 app.use(bodyParser.json()); /* JSON support */
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev')); // use morgan to log requests to the console
 
 // Load our routes and pass it our app already configured

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/static/css/master.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/static/css/master.min.css" media="screen" charset="utf-8">
     <link rel="icon" href="/static/img/icon.png">
     <link rel="author" href="https://plus.google.com/100163870557696737731" content="Musement"/>
     <link rel="apple-touch-icon-precomposed" href="/static/img/touch-icon.png">
@@ -21,7 +21,8 @@
           <ul class="anchors">
             <li><a href="#community">{{communitynav}}</a></li>
             <li><a href="#events">{{events}}</a></li>
-            <li><input type="button" name="name" value="Login" ng-click="submitForm()"></li>
+            <li><a ui-sref="signup">Sign up</a></li>
+            <li><a ui-sref="feed">Feed</a></li>
           </ul>
         </nav>
         <div class="content">
@@ -31,7 +32,7 @@
           <div class="signup">
             <p>{{ email }}</p>
             <div class="input-elements">
-              <input type="email" name="email" value="" placeholder="" id="email-input" required="true">
+              <input type="email" class="dark-input" name="email" value="" placeholder="Email" id="email-input" required="true">
               <input type="button" name="submit" value="{{ send }}" id="submit-button">
             </div>
             <div class="thanks-email">
@@ -98,7 +99,7 @@
           </div>
           <p>{{ slackin }}</p>
           <div class="space">
-            <a href="http://slack.musement.co" target="_blank"><input type="button" value="{{ join }}"></a>
+            <a href="http://slack.musement.co" target="_blank"><input type="button" class="green" value="{{ join }}"></a>
           </div>
         </div>
         <img src="/static/img/dSlack.svg" alt="Join us on Slack" />
@@ -147,7 +148,7 @@
         <h2>{{ after }}</h2>
         <p>{{ countdown }}</p>
         <div class="input-elements">
-          <input type="email" name="email" value="" placeholder="{{ mail }}" required="true" id="email-input2">
+          <input type="email" class="dark-input" name="email" value="" placeholder="Email" required="true" id="email-input2">
           <input type="button" name="submit" value="{{ send }}" id="submit-button2">
         </div>
         <div class="thanks-email">

@@ -1,0 +1,19 @@
+$gray: #999;
+
+.full-logo {
+  width: 150px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.sign-fields {
+  margin-top: 20px;
+  padding: 20px;
+  input {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
+  input[type="text"], input[type="email"], input[type="password"] {
+    border: 1px solid $gray;
+  }
+}
