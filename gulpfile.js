@@ -1,29 +1,35 @@
-var gulp = require('gulp');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var uglify = require('gulp-uglify');
+var gulp = require('gulp'),
+  uglify = require('gulp-uglify'),
+  cleanCSS = require('gulp-clean-css'),
+  rename = require('gulp-rename'),
+  sass = require('gulp-sass'),
+  nodemon = require('gulp-nodemon'),
+  sourcemaps = require('gulp-sourcemaps'),
+  concat = require('gulp-concat');
 
-var config={
-  scripts: {
-    main:'src/js/main.js',
-    watch:'src/js/**/*.js',
-    output:'public/js'
-  }
-}
-gulp.task('browserify', function() {
-  return browserify(config.scripts.main)
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
-    .pipe(uglify())
-    .pipe(gulp.dest(config.scripts.output));
+gulp.task('sass', function() {
+  return gulp.src('src/css/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(concat('master.css'))
+    .pipe(rename({
+            suffix: '.min'
+        }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('public/css'));
 });
 
-gulp.task('watch', function(){
-  gulp.watch(config.scripts.watch, ['browserify']);
+gulp.task('watch', function() {
+    gulp.watch('./src/css/*.scss', ['sass'])
 });
 
-gulp.task('build', ['browserify']);
+gulp.task('start', function () {
+  nodemon({
+    script: 'server.js'
+  , ext: 'js html'
+  , env: { 'NODE_ENV': 'development' }
+  })
+});
 
-gulp.task('default', ['watch', 'build']);
+gulp.task('default', ['sass','watch','start']);

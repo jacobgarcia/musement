@@ -1,18 +1,36 @@
 angular.module('musementApp')
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
-      .state("index", {
+      .state("landing", {
         url: "/",
-        templateUrl: "static/views/index.html",
-        controller: "mainCtrl",
-        authenticate: false //Requires authentication?
+        templateUrl: "static/views/landingpage.html",
+        // controller: "mainCtrl",
+        authenticate: false //Doesn't requires authentication
       })
-      .state("login", {
-        url: "/login",
-        templateUrl: "static/views/login.html",
-        controller: "loginCtrl",
-        authenticate: false //Requires authentication?
+      .state("feed", {
+        url: "/",
+        templateUrl: "static/views/feed.html",
+        controller: "feedCtrl",
+        authenticate: false //Doesn't requires authentication
       })
+      .state("signup", {
+        url: "/signup",
+        templateUrl: "static/views/signup.html",
+        authenticate: false //Doesn't requires authentication
+      })
+      .state("signin", {
+        url: "/signin",
+        templateUrl: "static/views/signin.html",
+        authenticate: false //Doesn't requires authentication
+      })
+
+      // .state("index", {
+      //   url: "/",
+      //   templateUrl: "static/views/index.html",
+      //   controller: "mainCtrl",
+      //   authenticate: false //Requires authentication
+      // })
+
     // Send to login if the URL was not found
     $urlRouterProvider.otherwise("/");
 
@@ -38,6 +56,9 @@ angular.module('musementApp')
       return false
     } else { //Check that the token is valid, time interval
       var params = self.parseJwt(token);
+      if(!(Math.round(new Date().getTime() / 1000) <= params.exp)) {
+        console.log('Invalid token');
+      }
       return (Math.round(new Date().getTime() / 1000) <= params.exp);
     }
   };
@@ -47,7 +68,7 @@ angular.module('musementApp')
 .run(function ($rootScope, $state, AuthService) {
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
     if (toState.authenticate && !AuthService.isAuthenticated()){ // User isn’t authenticated
-      $state.transitionTo("login"); //If it's not valid redirect to login
+      $state.transitionTo("landing"); //If it's not valid redirect to login
       event.preventDefault();
     }
   });

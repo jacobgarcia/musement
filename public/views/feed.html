@@ -1,0 +1,72 @@
+<body class="app">
+  <div class="side-bar">
+    <div class="profile">
+      <img class="profile-photo" src="" alt="" />
+      <div class="profile-text">
+        <p class="profile-name">Luis Gómez</p>
+        <ul class="tags">
+          <li>Marketing</li>
+          <li>Food</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="search">
+      <input type="search" name="name" value="" placeholder="Search">
+    </div>
+
+    <div class="side-options">
+      <h5>Moments</h5>
+      <ul>
+        <li id="interests" class="active">Interests</li>
+        <li id="connections">Connections</li>
+      </ul>
+      <h5>Projects</h5>
+      <ul>
+        <li><a>Canver</a></li>
+        <li><a>Lidilic</a></li>
+        <li><a>Kinder</a></li>
+        <li><input type="button" name="name" class="green" value=""></li>
+      </ul>
+      <ul class="general">
+        <li><a>Connections</a></li>
+        <li><a>Another</a></li>
+        <li><a>Another</a></li>
+      </ul>
+    </div>
+    <p class="log-out">Log out</p>
+  </div>
+  <div class="body"  ng-class="{'active': bodyMoved}">
+    <header>
+      <nav>
+        <ul class="menu">
+          <li ng-click="bodyMove()" id="menu"><div class=""></div><div class=""></div><div class=""></div></li>
+          <li class="title">Intereses</li>
+          <li>
+            <ul>
+              <li>NO</li>
+              <li>AM</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="filter">
+          <p>Filter:</p>
+          <ul class="tags">
+            <li>Marketing</li>
+            <li>Food</li>
+            <li>Design</li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="main-feed">
+      <div class="moment">
+
+      </div>
+      <div class="moment">
+
+      </div>
+    </main>
+  </div>
+
+</body>

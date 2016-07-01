@@ -1,10 +1,12 @@
+$green: #54ae8a;
+
 @font-face {
     font-family: WeblySleekSlim;
     src: url(/static/fonts/weblysleeks.ttf);
 }
 @font-face {
-    font-family: WeblySleekBold;
-    src: url(/static/fonts/weblysleekb.ttf);
+  font-family: WeblySleekBold;
+  src: url(/static/fonts/weblysleekb.ttf);
 }
 * {
   margin: 0;
@@ -17,25 +19,26 @@ li {
 }
 a {
   text-decoration: none;
-  color: rgb(45, 60, 68);
+  cursor: pointer;
+  // color: rgb(45, 60, 68);
 }
-a:visited {
-  color: rgb(45, 60, 68);
-}
+// a:visited {
+//   color: rgb(45, 60, 68);
+// }
 body {
   font-family: 'WeblySleekSlim', 'Helvetica Neue', Helvetica, sans-serif;
   color: rgb(63,77,85);
   font-weight: 300;
 }
-.anchors{
+.anchors {
   text-align: right;
   width: 100%;
-}
-.anchors a{
-  padding-left: 2rem;
-}
-.anchors a:visited {
-  color: rgb(45, 60, 68);
+  // a {
+  //   padding-left: 2rem;
+  // }
+  // a:visited {
+  //   color: rgb(45, 60, 68);
+  // }
 }
 nav {
   z-index: 3;
@@ -45,20 +48,45 @@ nav {
   flex-direction: row;
   padding: 1rem 1rem 0;
   color: rgb(255, 255, 255);
-}
-nav ul li {
-  display: inline-block;
-}
-nav .logotype {
-  width: 90px;
+    ul li {
+    display: inline-block;
+  }
+  .logotype {
+    width: 90px;
+  }
 }
 .hero {
   background: url('/static/img/hero.svg') repeat-x center bottom;
   background-size: 100vh;
+  .logo {
+    max-width: 150px;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    color: rgb(45, 60, 68);
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 200;
+  }
+  h4 {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  p {
+    font-weight: 300;
+  }
+  .signup {
+    margin-top: 20px;
+    position: relative;
+  }
 }
-.hero .logo {
-  max-width: 150px;
-}
+
 .parallax-container, .hero {
   height: 100vh;
 }
@@ -68,76 +96,54 @@ nav .logotype {
 .event-details {
   margin: 30px 0;
 }
-.content .event-detail {
-  color: rgb(85, 175, 139);
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-.content .section:last-child {
-  margin-bottom: 0;
-}
-.hero .content {
-  display: flex;
-  flex-direction: column;
-  color: rgb(45, 60, 68);
-  align-items: center;
-  height: 100vh;
-  text-align: center;
-  position: relative;
+.content {
+  .event-detail {
+    color: rgb(85, 175, 139);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .section:last-child {
+    margin-bottom: 0;
+  }
+  h2 span {
+    font-weight: 500;
+    font-size: 2rem;
+  }
 }
 h1, h2 {
   font-weight: 400;
   color: rgb(45, 60, 68)
-}
-.content h2 span {
-  font-weight: 500;
-  font-size: 2rem;
 }
 .two-column {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
-}
-.two-column .column {
-  display: inline-block;
-  margin: 10px;
-}
-.two-column img {
-  max-width: 250px;
-  margin: 30px 0;
-  margin-bottom: 30px;
+  .column {
+    display: inline-block;
+    margin: 10px;
+  }
+  img {
+    max-width: 250px;
+    margin: 30px 0;
+    margin-bottom: 30px;
+  }
 }
 .three-column {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
-}
-.three-column .column {
-  display: inline-block;
-  margin: 20px 10%;
-  width: 100%
-}
-.three-column img {
-  max-width: 200px;
-  margin: 30px 0;
-  margin-bottom: 30px;
-}
-.hero h2 {
-  font-size: 1.5rem;
-  font-weight: 200;
-}
-.hero h4 {
-  font-size: 1rem;
-  font-weight: 300;
-}
-.hero p {
-  font-weight: 300;
-}
-.hero .signup {
-  margin-top: 20px;
-  position: relative;
+  .column {
+    display: inline-block;
+    margin: 20px 10%;
+    width: 100%
+  }
+  img {
+    max-width: 200px;
+    margin: 30px 0;
+    margin-bottom: 30px;
+  }
 }
 .section {
   display: flex;
@@ -145,18 +151,18 @@ h1, h2 {
   align-items: center;
   text-align: center;
   margin-bottom: 50px;
+  p {
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 1.7rem;
+  }
+  h2 {
+    font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+  }
 }
-.section p {
-  font-weight: 300;
-  font-size: 1.1rem;
-  line-height: 1.7rem;
-}
-.section h2 {
-  font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: 1.5rem;
-  line-height: 1.7rem;
-}
-.space{
+.space {
   margin: 2rem 0;
 }
 .develop-your-project .people {
@@ -166,16 +172,17 @@ h1, h2 {
 .input-elements {
   padding: 10px 0;
 }
-.input-elements input[type="email"] {
+input[type="text"], input[type="email"], input[type="password"] {
   outline: none;
-  background: rgba(0, 0, 0, .3);
   font-size: 1rem;
-  padding: 3px 20px 3px 10px;
   border-radius: 8px;
+  padding: 3px 20px 3px 10px;
+}
+.input-elements input[type="email"] {
+  background: rgba(0, 0, 0, .3);
   color: rgb(255, 255, 255);
   width: 200px;
 }
-
 input {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -188,6 +195,12 @@ input[type="button"] {
   padding: 0.6rem 3rem;
   color: rgb(255, 255, 255);
   border-radius: 3px;
+}
+input[type="button"].green-button {
+  background: $green;
+}
+input[type="button"].small {
+  padding: 4px 7px;
 }
 .coworking input[type="button"] {
   cursor: pointer;
@@ -254,9 +267,9 @@ input[type="button"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.learn-more .arrow {
-  width: 35px;
+  .arrow {
+    width: 35px;
+  }
 }
 .section.blue{
   background: #31586F;
@@ -399,46 +412,50 @@ footer {
   align-items: center;
   font-weight: 300;
   padding: 75px 0;
+  .musement-logo {
+    width: 200px;
+    margin-bottom: 30px;
+  }
+  p {
+    color: #3F4D55;
+    font-size: .9rem;
+    margin-bottom: 10px;
+  }
+  .follow {
+    ul {
+      display: flex;
+      justify-content: center;
+      li {
+        margin: 0 10px;
+        width: 30px;
+        height: 30px;
+        border: 1px solid #3F4D55;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+    #slack {
+      width: 90px;
+      border-radius: 15px;
+      position: relative;
+      margin-left: 40px;
+      img {
+        width: 90px;
+      }
+    }
+    #slack::before {
+      position: absolute;
+      left: 0;
+      margin-left: -27px;
+      margin-top: 4px;
+      content: '';
+      width: 1px;
+      height: 20px;
+      background: #3F4D55;
+    }
+  }
 }
-footer .musement-logo {
-  width: 200px;
-  margin-bottom: 30px;
-}
-footer p {
-  color: #3F4D55;
-  font-size: .9rem;
-  margin-bottom: 10px;
-}
-footer .follow ul {
-  display: flex;
-  justify-content: center;
-}
-footer .follow ul li {
-  margin: 0 10px;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #3F4D55;
-  border-radius: 50%;
-  cursor: pointer;
-}
-footer .follow #slack {
-  width: 90px;
-  border-radius: 15px;
-  position: relative;
-  margin-left: 40px;
-}
-footer .follow #slack::before {
-  position: absolute;
-  margin-left: -27px;
-  margin-top: 4px;
-  content: '';
-  width: 1px;
-  height: 20px;
-  background: #3F4D55;
-}
-footer .follow #slack img {
-  width: 90px;
-}
+
 .content {
   position: relative;
 }
@@ -446,61 +463,63 @@ footer .follow #slack img {
   width: 88px;
   content:url("../img/slack.svg");
 }
-.follow .twitter .logo {
-  content:url("../img/twitter.svg");
-}
-.follow .twitter:hover {
-  background: #55acee;
-}
-.follow .twitter .logo:hover {
-  content:url("../img/twitter-white.svg");
+.follow {
+  .twitter .logo {
+    content:url("../img/twitter.svg");
+  }
+  .twitter:hover {
+    background: #55acee;
+  }
+  .twitter .logo:hover {
+    content:url("../img/twitter-white.svg");
+  }
+  .facebook .logo {
+    content:url("../img/facebook.svg");
+  }
+  .facebook:hover {
+    background: #3b5998;
+  }
+  .facebook .logo:hover {
+    content:url("../img/facebook-white.svg");
+  }
+  .snapchat .logo {
+    content:url("../img/snapchat.svg");
+  }
+  .snapchat .logo:hover {
+    content:url("../img/snapchat-white.svg");
+  }
+  .snapchat:hover {
+    background: #F7EB20;
+  }
+  .slack:hover {
+    background: #3e313c;
+  }
+  .slack .logo:hover {
+    content:url("../img/slack-white.svg");
+  }
 }
 
-.follow .facebook .logo {
-  content:url("../img/facebook.svg");
-}
-.follow .facebook:hover {
-  background: #3b5998;
-}
-.follow .facebook .logo:hover {
-  content:url("../img/facebook-white.svg");
-}
-
-.follow .snapchat .logo {
-  content:url("../img/snapchat.svg");
-}
-.follow .snapchat:hover {
-  background: #F7EB20;
-}
-.follow .snapchat .logo:hover {
-  content:url("../img/snapchat-white.svg");
-}
-
-.follow .slack:hover {
-  background: #3e313c;
-}
-.follow .slack .logo:hover {
-  content:url("../img/slack-white.svg");
-}
 .two-column .column {
   margin: 20px 10%;
 }
 
-*::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.8); }
-*:-moz-placeholder { color: rgba(255, 255, 255, 0.8); }
-*::-moz-placeholder { color: rgba(255, 255, 255, 0.8); }
-*:-ms-input-placeholder { color: rgba(255, 255, 255, 0.8); }
+.dark-input::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.8); }
+.dark-input:-moz-placeholder { color: rgba(255, 255, 255, 0.8); }
+.dark-input::-moz-placeholder { color: rgba(255, 255, 255, 0.8); }
+.dark-input:-ms-input-placeholder { color: rgba(255, 255, 255, 0.8); }
 
 /*iPhone 5-like sizes*/
 @media (max-width: 350px) {
-  .hero h2 {
-    font-size: 1.25rem;
-  }
-  .hero h4 {
-    display: none;
-  }
-  .hero .signup {
-    margin-top: 30px;
+  .hero {
+    h2 {
+      font-size: 1.25rem;
+    }
+    h4 {
+      display: none;
+    }
+    .signup {
+      margin-top: 30px;
+    }
   }
   nav ul li {
     font-size: .9rem;

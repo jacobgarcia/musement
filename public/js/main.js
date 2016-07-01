@@ -3,6 +3,7 @@ $( "#submit-button2").on("click", submitButton);
 
 function submitButton (email) {
   $('.thanks-email').removeClass('visible');
+
   $.getJSON("api/user/locale", function(userLocal) {
     var locale = userLocal.locale;
     var email = $("#email-input").val() ||  $("#email-input2").val();
