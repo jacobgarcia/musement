@@ -1,6 +1,9 @@
 angular.module('musementApp')
 .controller('mainCtrl', function($scope, loginDataService, localStorageService, $state, AuthService) {
 
+  console.log("STATE:",$state.current.name, $state );
+  // console.log($state.current.name);
+
   //Check if user has a VALID token, redirect if not to landing page and suggest login
   // if (AuthService.isAuthenticated()) {
   //   console.log('You have a token, and it\'s valid, redirecting to index');

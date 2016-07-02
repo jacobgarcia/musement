@@ -1,56 +1,78 @@
-<body class="app">
-  <div class="side-bar">
-    <div class="profile">
-      <img class="profile-photo" src="" alt="" />
-      <div class="profile-text">
-        <p class="profile-name">Luis Gómez</p>
-        <ul class="tags">
-          <li>Marketing</li>
-          <li>Food</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="search">
-      <input type="search" name="name" value="" placeholder="Search">
-    </div>
-
-    <div class="side-options">
-      <h5>Moments</h5>
-      <ul>
-        <li id="interests" class="active">Interests</li>
-        <li id="connections">Connections</li>
-      </ul>
-      <h5>Projects</h5>
-      <ul>
-        <li><a>Canver</a></li>
-        <li><a>Lidilic</a></li>
-        <li><a>Kinder</a></li>
-        <li><input type="button" name="name" class="green" value=""></li>
-      </ul>
-      <ul class="general">
-        <li><a>Connections</a></li>
-        <li><a>Another</a></li>
-        <li><a>Another</a></li>
+<div class="side-bar">
+  <div class="profile">
+    <img class="profile-photo" src="" alt="" />
+    <div class="profile-text">
+      <p class="profile-name">Luis Gómez</p>
+      <ul class="tags">
+        <li>Marketing</li>
+        <li>Food</li>
       </ul>
     </div>
-    <p class="log-out">Log out</p>
   </div>
-  <div class="body"  ng-class="{'active': bodyMoved}">
+
+  <div class="search">
+    <input type="search" name="name" value="" placeholder="Search">
+  </div>
+
+  <div class="side-options">
+    <h5>Moments</h5>
+    <ul class="elements-list">
+      <li ui-sref="feed" ng-click="bodyMove()" id="interests" class="active pointer"><img src="/static/img/buttons/btn_moments.svg" class="icon" alt="" />Interests</li>
+      <li ui-sref="feed.connections" ng-click="bodyMove('feed.connections')" id="connections" class="pointer"><img src="/static/img/buttons/btn_connections.svg" class="icon" alt="" />Connections</li>
+    </ul>
+    <h5>Projects</h5>
+    <ul class="elements-list">
+      <li ui-sref="feed.project({name: 'canver'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Canver</li>
+      <li ui-sref="feed.project({name: 'lidilic'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Lidilic</li>
+      <li ui-sref="feed.project({name: 'kinder'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Kinder</li>
+      <li ng-click="bodyMove()" class="pointer"><input type="button" name="name" class="green-button small" value="New project"></li>
+    </ul>
+    <ul class="general">
+      <li ui-sref="feed.connections" class="pointer"><a>Connections</a></li>
+      <li ui-sref="other" class="pointer"><a>Another</a></li>
+      <li ui-sref="other" class="pointer"><a>Another</a></li>
+    </ul>
+  </div>
+  <p ui-sref="landing" class="log-out"><img src="/static/img/buttons/btn_log out.svg" class="icon" alt="" />Log out</p>
+</div>
+
+
+<div class="notifications" ng-class="{'active': notificationsSeen}">
+  <ul class="menu">
+    <li></li>
+    <li>Notifications</li>
+    <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_cancel.svg" alt="" class="icon"/></li>
+  </ul>
+  <ul>
+    <li>All</li>
+    <li>Moment</li>
+    <li>Feedback</li>
+    <li>Projects</li>
+  </ul>
+  <div class="notifications-list">
+    <div class="notification-item">
+
+    </div>
+  </div>
+</div>
+
+
+<div class="body" ng-class="{'active': bodyMoved}">
+  <div ui-view>
     <header>
       <nav>
         <ul class="menu">
           <li ng-click="bodyMove()" id="menu"><div class=""></div><div class=""></div><div class=""></div></li>
           <li class="title">Intereses</li>
           <li>
-            <ul>
-              <li>NO</li>
-              <li>AM</li>
+            <ul class="menu-icons">
+              <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt="" /></li>
+              <li ng-click="showCreateMoment()"><img src="/static/img/buttons/btn_create.svg" class="icon" alt="" /></li>
             </ul>
           </li>
         </ul>
         <div class="filter">
-          <p>Filter:</p>
+          <p><img src="/static/img/buttons/btn_filter.svg" alt="" class="mini-icon" />Filter:</p>
           <ul class="tags">
             <li>Marketing</li>
             <li>Food</li>
@@ -66,7 +88,19 @@
       <div class="moment">
 
       </div>
+      <div class="moment">
+
+      </div>
+      <div class="moment">
+
+      </div>
+      <div class="moment">
+
+      </div>
+      <div class="moment">
+
+      </div>
     </main>
   </div>
 
-</body>
+</div>

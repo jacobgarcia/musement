@@ -1,9 +1,14 @@
 angular.module('musementApp')
-.controller('feedCtrl', function($scope, feedDataService, $state, AuthService) {
+.controller('feedCtrl', function($scope, $rootScope, $state, $stateParams) {
 
-  $scope.bodyMove = function () {
+  $scope.bodyMove = function (state) {
     $scope.bodyMoved = !$scope.bodyMoved;
   }
+  $scope.app = true;
+  $scope.showNotifications = function () {
+    $scope.notificationsSeen = !$scope.notificationsSeen;
+  }
+
 })
 
 .service('feedDataService', function($http) {

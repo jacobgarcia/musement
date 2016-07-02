@@ -46,7 +46,7 @@ nav {
   width: 100%;
   align-items: center;
   flex-direction: row;
-  padding: 1rem 1rem 0;
+  padding: 16px;
   color: rgb(255, 255, 255);
     ul li {
     display: inline-block;
@@ -200,7 +200,12 @@ input[type="button"].green-button {
   background: $green;
 }
 input[type="button"].small {
-  padding: 4px 7px;
+  padding: 5px 7px;
+  display: block;
+  width: 100%;
+}
+.pointer {
+  cursor: pointer;
 }
 .coworking input[type="button"] {
   cursor: pointer;

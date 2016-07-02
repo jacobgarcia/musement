@@ -1,3 +1,5 @@
+$lightGray: #f1f2f2;
+
 body.app {
   // Used when transforming position when menu moves
   overflow: hidden;
@@ -17,11 +19,13 @@ body.app {
   overflow-y: scroll;
   .search input{
     background: rgba(0, 0, 0, .5);
+    color: #fff;
     font-size: 1rem;
     padding: 2px 4px;
     outline: none;
   }
 }
+
 .filter {
   display: flex;
   p {
@@ -30,23 +34,45 @@ body.app {
     font-size: .9rem;
   }
 }
+.mini-icon {
+  height: 13px;
+}
+.icon {
+  height: 19px;
+}
 .menu {
   width: 100%;
   color: rgb(59, 77, 87);
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
+  li {
+    height: 25px;
+  }
   .title {
     font-weight: 600;
     font-size: 1.1rem;
   }
+  .menu-icons {
+    display: flex;
+    align-items: center;
+    .icon {
+      margin-left: 10px;
+    }
+  }
+  .menu-icons li:first-child img{
+    margin-left: 0;
+  }
 }
 nav .filter {
+  margin-top: 10px;
   color: rgb(59, 77, 87);
 }
 .body nav {
   display: flex;
   flex-wrap: wrap;
+  border-bottom: 1px solid $lightGray;
+  padding-bottom: 10px;
 }
 ul.menu ul li {
   display: inline-block;
@@ -77,12 +103,15 @@ ul.menu ul li {
   filter: grayscale(100%);
 }
 .main-feed {
-  padding: 10px 10%;
+  padding: 10px 16px;
+  //Possible solution for scrolling
+  height: calc(100vh - 83px);
+  overflow-y: scroll;
   .moment{
     min-height: 100px;
     width: 100%;
     margin-bottom: 10px;
-    background: rgb(156, 156, 156);
+    background: rgb(235, 235, 235);
   }
 }
 .profile {
@@ -92,6 +121,16 @@ ul.menu ul li {
     width: 43px;
     height: 43px;
     margin-right: 10px;
+  }
+}
+.elements-list {
+  margin: 0 -20px;
+  li {
+    font-size: 19px;
+    img {
+      height: 19px;
+      margin-right: 10px;
+    }
   }
 }
 .profile-text {
@@ -129,6 +168,7 @@ ul.menu ul li {
   color: rgb(102, 133, 150);
   text-align: center;
   margin: 10px 0;
+  color: $lightGray;
 }
 ul.tags li {
   color: #fff;
@@ -137,4 +177,18 @@ ul.tags li {
   border-radius: 5px;
   padding: 1px 4px;
   display: inline-block;
+}
+
+.notifications {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: $lightGray;
+  z-index: 5;
+  padding: 16px;
+  transform: translateY(-100vh);
+  transition: ease-in-out 0.3s;
+}
+.notifications.active {
+  transform: translateY(0);
 }

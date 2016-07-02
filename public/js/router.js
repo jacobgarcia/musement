@@ -3,33 +3,35 @@ angular.module('musementApp')
   $stateProvider
       .state("landing", {
         url: "/",
-        templateUrl: "static/views/landingpage.html",
-        // controller: "mainCtrl",
+        templateUrl: "/static/views/landingpage.html",
         authenticate: false //Doesn't requires authentication
       })
       .state("feed", {
-        url: "/",
-        templateUrl: "static/views/feed.html",
+        templateUrl: "/static/views/feed.html",
         controller: "feedCtrl",
-        authenticate: false //Doesn't requires authentication
+        authenticate: false //Does require authentication
       })
       .state("signup", {
         url: "/signup",
-        templateUrl: "static/views/signup.html",
+        templateUrl: "/static/views/signup.html",
         authenticate: false //Doesn't requires authentication
       })
       .state("signin", {
         url: "/signin",
-        templateUrl: "static/views/signin.html",
+        templateUrl: "/static/views/signin.html",
         authenticate: false //Doesn't requires authentication
       })
-
-      // .state("index", {
-      //   url: "/",
-      //   templateUrl: "static/views/index.html",
-      //   controller: "mainCtrl",
-      //   authenticate: false //Requires authentication
-      // })
+      .state("feed.connections", {
+        url: "/connections",
+        templateUrl: "/static/views/feed.connections.html",
+        authenticate: false //Doesn't requires authentication
+      })
+      .state("feed.project", {
+        url: "/project/:name",
+        controller: "projectCtrl",
+        templateUrl: "/static/views/feed.project.html",
+        authenticate: false //Doesn't requires authentication
+      })
 
     // Send to login if the URL was not found
     $urlRouterProvider.otherwise("/");
