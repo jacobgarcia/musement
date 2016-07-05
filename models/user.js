@@ -1,40 +1,24 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 
-// User Schema
 var userSchema = new mongoose.Schema({
-    name: String,
-    lastName: {
-        type: String,
-        //required: true
-    },
     email: {
         type: String,
         required: true,
         unique: true
     },
-    password: String,
-    bornDate: Date, //ISO Date
+    image: {
+        type: String,
+        required: true
+    },
+    password: {
+      type: String,
+      required: true
+    },
     username: {
         type: String,
         required: true,
         unique: true
-    },
-    projects: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Project'
-    }],
-    followers: [{
-      type: mongoose.Schema.Types.ObjectId, /* Object ID from user */
-      ref: 'User' /* User Schema. Remember to define it as this in the export module */
-    }],
-    following: [{
-      type: mongoose.Schema.Types.ObjectId, /* Object ID from user */
-      ref: 'User' /* User Schema. Remember to define it as this in the export module */
-    }],
-    image: {
-        type: String,
-        required: true
     }
 });
 
