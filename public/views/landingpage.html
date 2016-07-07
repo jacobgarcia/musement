@@ -1,4 +1,4 @@
-<body ng-app="musementApp" ui-view>
+  <body ng-app="musementApp" ui-view>
     <main>
       <div class="hero">
         <nav>
@@ -6,7 +6,6 @@
           <ul class="anchors">
             <li><a href="#community">{{ 'COMMUNITY_NAV' | translate }}</a></li>
             <li><a href="#events">{{ 'EVENTS' | translate }}</a></li>
-            <li><a ui-sref="signup">Sign up</a></li>
             <li><a ui-sref="feed">Feed</a></li>
           </ul>
         </nav>
@@ -15,13 +14,7 @@
           <h2>{{ 'WHAT' | translate }}</h2>
           <h4>{{ 'WHAT2' | translate }}</h4>
           <div class="signup">
-            <p>{{ 'EMAIL' | translate }}</p>
-            <div class="input-elements">
-              <input type="email" class="dark-input" name="email" value="" placeholder="Email" id="email-input" required="true">
-              <input type="button" name="submit" value="{{ 'SEND' | translate }}" id="submit-button">
-            </div>
-            <div class="thanks-email">
-            </div>
+              <a ui-sref="signup"><input type="button" class="green" value="{{ 'JOIN' | translate }}"></a>
           </div>
         </div>
       </div>

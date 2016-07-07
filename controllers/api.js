@@ -6,8 +6,6 @@ Project = require("models/project.js"),
 Moment = require("models/moment.js"),
 jwt = require('jsonwebtoken'),
 invite = require("config/createinvitation.js"),
-//flash = require('connect-flash'),
-//LocalStrategy = require('passport-local').Strategy,
 router = express.Router();
 
 //Register new user
@@ -19,7 +17,6 @@ router.route('/users/:user_id')
 
 //AUTHENTICATE TO GIVE NEW TOKEN
 router.post('/authenticate', function(req, res) {
-  //console.log("LOGIN INFO:" + req.body);
   // find the user
   User.findOne({
     name: req.body.name

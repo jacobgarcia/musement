@@ -3,18 +3,26 @@ const bcrypt = require('bcrypt-nodejs');
 
 var userSchema = new mongoose.Schema({
     email: {
-        type: String,
-        required: true,
-        unique: true
+      type: String,
+      required: true,
+      unique: true
     },
     image: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
+    moments: [{
+      type: mongoose.Schema.Types.ObjectId, /* Object ID from moments */
+      ref: 'Moment'
+    }],
     password: {
       type: String,
       required: true
     },
+    tags: [{
+      type: mongoose.Schema.Types.ObjectId, /* Object ID from tags */
+      ref: 'Tag'
+    }],
     username: {
         type: String,
         required: true,

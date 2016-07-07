@@ -1,36 +1,40 @@
 const mongoose = require('mongoose');
 
 var momentSchema = new mongoose.Schema({
-  timelapse: {
-    type: Number,
-    required: true
-  },
   description: {
     type: String
   },
-  moment_type: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Moment Type' /* References an specific collection for storing moment types */
-      /****** THIS IS MEANT TO BE REQUIRED, BUT NOT A PRE-ALPHA MILESTONE **************/
-  },
-  attachement: [String],
-  //------------------------- >
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+  feedback: [{
+    user: {
+      type: mongoose.Schema.Types.ObjectId, /* Object ID from moment */
+      ref: 'User', /* Moment Schema. Remember to define it as this in the export module */
+      required: true
+    },
+    comment: String
+  }],
+  files: [{
+    type: String
+  }],
+  hearts: {
+    type: Number,
     required: true
   },
-  //< -------------------------
-  heart: {
-    type: Number,
-    // required: true //Commented, why is a heart required?
+  tags: [{
+    type: mongoose.Schema.Types.ObjectId, /* Object ID from tags */
+    ref: 'Tag'
+  }],
+  project: {
+    type: mongoose.Schema.Types.ObjectId, /* Object ID from project */
+    ref: 'Project', /* Moment Schema. Remember to define it as this in the export module */
+    required: true
+  }
+  question: {
+    type: String
   },
-  //------------------------- >
-  usersHeart: [{
-    type: mongoose.Schema.Types.ObjectId, /* Object ID from moment */
-    ref: 'Moment' /* Moment Schema. Remember to define it as this in the export module */
+  usersHearted: [{
+      type: mongoose.Schema.Types.ObjectId, /* Object ID from moment */
+      ref: 'Moment' /* Moment Schema. Remember to define it as this in the export module */
   }]
-  //< -------------------------
 });
 
 module.exports = mongoose.model('Moment', momentSchema);
