@@ -6,10 +6,10 @@ const express = require('express'),
 module.exports = function(app) {
   app.use('/api', api);
 
-  app.get('/', (req, res) => {
+/*  app.get('/', (req, res) => {
     res.render('index.html', {
-      what: req.i18n.__('What'),
-      what2: req.i18n.__('What 2'),
+      WHAT: req.i18n.__('WHAT'),
+      WHAT2: req.i18n.__('WHAT2'),
       email: req.i18n.__('Email'),
       learn: req.i18n.__('Learn'),
       build: req.i18n.__('Build'),
@@ -50,6 +50,6 @@ module.exports = function(app) {
       events: req.i18n.__('Events'),
       improve: req.i18n.__('Improve'),
       works: req.i18n.__('Works')
-    });
+    }); */
   });
 };

@@ -12,12 +12,12 @@
     "url": "https://github.com/JacobGarcia/Musement.git"
   },
   "dependencies": {
+    "angular-translate-loader-static-files": "^2.11.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "forever-monitor": "^1.7.0",
     "gulp": "^3.9.1",
-    "i18n-2": "^0.6.3",
     "jsonwebtoken": "^6.2.0",
     "mongoose": "^4.4.3",
     "nunjucks": "^2.4.2",

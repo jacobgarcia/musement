@@ -28,10 +28,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev')); // use morgan to log requests to the console
 
 // Load our routes and pass it our app already configured
-
 app.use('/', function(req, res) {
     // Use res.sendfile, as it streams instead of reading the file into memory.
     res.sendFile( __dirname + '/public/views/index.html');
 });
 
-server.listen(80);
+server.listen(8080);

@@ -1,0 +1,57 @@
+{
+  "name": "angular-translate-loader-static-files",
+  "version": "2.11.0",
+  "description": "Creates a loading function for a typical static file url pattern: \"lang-en_US.json\", \"lang-de_DE.json\", etc. Using this builder, the response of these urls must be an object of key-value pairs.",
+  "main": "angular-translate-loader-static-files.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular-translate/bower-angular-translate-loader-static-files.git"
+  },
+  "keywords": [
+    "angular",
+    "translate",
+    "loader"
+  ],
+  "author": {
+    "name": "Pascal Precht"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angular-translate/angular-translate/issues"
+  },
+  "homepage": "https://angular-translate.github.io",
+  "dependencies": {
+    "angular-translate": "~2.11.0"
+  },
+  "gitHead": "bd1da60085085c2ee9fd77a37ede75c7e5f43312",
+  "_id": "angular-translate-loader-static-files@2.11.0",
+  "scripts": {},
+  "_shasum": "59b7ba21339b0e695d174988604ad2b52d687862",
+  "_from": "angular-translate-loader-static-files@latest",
+  "_npmVersion": "2.14.12",
+  "_nodeVersion": "4.3.2",
+  "_npmUser": {
+    "name": "knalli",
+    "email": "knallisworld@googlemail.com"
+  },
+  "maintainers": [
+    {
+      "name": "mchambaud",
+      "email": "mchambaud@gmail.com"
+    },
+    {
+      "name": "knalli",
+      "email": "knallisworld@googlemail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "59b7ba21339b0e695d174988604ad2b52d687862",
+    "tarball": "https://registry.npmjs.org/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.11.0.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-13-west.internal.npmjs.com",
+    "tmp": "tmp/angular-translate-loader-static-files-2.11.0.tgz_1458492533414_0.5593851485755295"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.11.0.tgz"
+}

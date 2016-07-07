@@ -19,21 +19,21 @@
         <nav>
           <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
           <ul class="anchors">
-            <li><a href="#community">{{communitynav}}</a></li>
-            <li><a href="#events">{{events}}</a></li>
+            <li><a href="#community">{{ 'COMMUNITY_NAV' | translate }}</a></li>
+            <li><a href="#events">{{ 'EVENTS' | translate }}</a></li>
             <li><a ui-sref="signup">Sign up</a></li>
             <li><a ui-sref="feed">Feed</a></li>
           </ul>
         </nav>
         <div class="content">
           <img src="./static/img/musement.svg" alt="" class="logo"/>
-          <h2>{{ what }}</h2>
-          <h4>{{ what2 }}</h4>
+          <h2>{{ 'WHAT' | translate }}</h2>
+          <h4>{{ 'WHAT2' | translate }}</h4>
           <div class="signup">
-            <p>{{ email }}</p>
+            <p>{{ 'EMAIL' | translate }}</p>
             <div class="input-elements">
               <input type="email" class="dark-input" name="email" value="" placeholder="Email" id="email-input" required="true">
-              <input type="button" name="submit" value="{{ send }}" id="submit-button">
+              <input type="button" name="submit" value="{{ 'SEND' | translate }}" id="submit-button">
             </div>
             <div class="thanks-email">
             </div>
@@ -43,45 +43,45 @@
 
       <div class="content">
         <div class="learn-more">
-          <p id="learn-more">{{ learn }}</p>
+          <p id="learn-more">{{ 'LEARN' | translate }}</p>
           <img src="./static/img/arrow.svg" class="arrow" alt="" />
         </div>
         <div class="section develop-your-project">
-          <h2><span>{{ build }}</span>{{ idea }}</h2>
+          <h2><span>{{ 'BUILD' | translate }}</span>{{ 'IDEA' | translate }}</h2>
           <img src="/static/img/people.svg" class="people" alt="" />
-          <p>{{ world }}</p>
+          <p>{{ 'PASSION' | translate }}</p>
         </div>
         <div class="section">
-          <h2><span>{{ second }}</span>{{ feedback }}</h2>
+          <h2><span>{{ 'SECOND_HEADER' | translate }}</span>{{ 'SECOND_HEADER_TEXT' | translate }}</h2>
           <div class="two-column">
             <div class="column">
               <img src="/static/img/share.svg" alt="" />
-              <p>{{ sharing }}</p>
+              <p>{{ 'SHARING' | translate }}</p>
             </div>
             <div class="column">
               <img src="/static/img/document.svg" alt="" />
-              <p>{{ improving }}</p>
+              <p>{{ 'IMPROVING' | translate }}</p>
             </div>
           </div>
         </div>
         <!-- Start how it works -->
         <div class="section blue">
-          <h2>{{ works }}</h2>
+          <h2>{{ 'WORKS' | translate }}</h2>
           <div class="three-column">
             <div class="column">
-              <p class="subtitle">{{share}}</p>
+              <p class="subtitle">{{ 'SHARE' | translate }}</p>
               <img src="/static/img/user.svg" alt="" />
-              <p>{{ post }}</p>
+              <p>{{ 'POST' | translate }}</p>
             </div>
             <div class="column">
-              <p class="subtitle">{{contribute}}</p>
+              <p class="subtitle">{{ 'CONTRIBUTE' | translate }}</p>
               <img src="/static/img/moments.svg" alt="" />
-              <p>{{ community }}</p>
+              <p>{{ 'COMMUNITY' | translate }}</p>
             </div>
             <div class="column">
-              <p class="subtitle">{{apply}}</p>
+              <p class="subtitle">{{ 'APPLY' | translate }}</p>
               <img src="/static/img/apply.svg" alt="" />
-              <p>{{ application }}</p>
+              <p>{{ 'APPLICATION' | translate }}</p>
             </div>
           </div>
         </div>
@@ -94,12 +94,12 @@
       <div class="content slack yellow" id="community">
         <div class="left-content">
           <div class="title">
-            <h2>{{ slack }} </h2>
+            <h2>{{ 'SLACK' | translate }} </h2>
             <img src="/static/img/slack_rgb.png" class="min-slack-logo" alt=""/>
           </div>
-          <p>{{ slackin }}</p>
+          <p>{{ 'SLACKIN' | translate }}</p>
           <div class="space">
-            <a href="http://slack.musement.co" target="_blank"><input type="button" class="green" value="{{ join }}"></a>
+            <a href="http://slack.musement.co" target="_blank"><input type="button" class="green" value="{{ 'JOIN' | translate }}"></a>
           </div>
         </div>
         <img src="/static/img/dSlack.svg" alt="Join us on Slack" />
@@ -110,14 +110,14 @@
       <div class="section">
         <div class="two-column">
           <div class="column">
-            <h2>{{ moment }}</h2>
+            <h2>{{ 'MOMENT' | translate }}</h2>
             <img src="/static/img/watch.svg" alt="" />
-            <p>{{ momentdescription }}</p>
+            <p>{{ 'MOMENT_DESCRIPTION' | translate }}</p>
           </div>
           <div class="column">
-            <h2>{{ leaders }}</h2>
+            <h2>{{ 'LEADERS' | translate }}</h2>
             <img src="/static/img/archivements.svg" alt="" />
-            <p>{{ people }}</p>
+            <p>{{ 'KEY_PEOPLE' | translate }}</p>
           </div>
         </div>
       </div>
@@ -125,31 +125,31 @@
 
       <!-- Start grow idea -->
       <div class="content-light grow">
-        <h2>{{ time }}</h2>
+        <h2>{{ 'TIME' | translate }}</h2>
       </div>
       <!-- End grow idea -->
 
       <div class="content coworking" id="events">
         <div class="left-content">
-          <h2>{{ afternoon }}</h2>
-          <p>{{ coworking }}</p>
+          <h2>{{ 'AFTERNOON' | translate }}</h2>
+          <p>{{ 'COWORKING' | translate }}</p>
           <div class="event-details">
-            <p class="event-detail">{{ date }}</p>
-            <p class="event-detail">{{ place }}</p>
+            <p class="event-detail">{{ 'DATE' | translate }}</p>
+            <p class="event-detail">{{ 'PLACE' | translate }}</p>
           </div>
           <!-- <img src="/static/img/meetup.svg" alt="" class="meetup-min"/> -->
-          <a href="http://www.meetup.com/Musement-Community/" target="_blank"><input type="button" name="name" value="{{ participate }}"></a>
+          <a href="http://www.meetup.com/Musement-Community/" target="_blank"><input type="button" name="name" value="{{ 'PARTICIPATE' | translate }}"></a>
         </div>
         <div class="right-image">
           <img src="/static/img/coworking.svg" alt="" />
         </div>
       </div>
       <div class="call-to-action content">
-        <h2>{{ after }}</h2>
-        <p>{{ countdown }}</p>
+        <h2>{{ 'AFTER' | translate }}</h2>
+        <p>{{ 'COUNTDOWN' | translate }}</p>
         <div class="input-elements">
           <input type="email" class="dark-input" name="email" value="" placeholder="Email" required="true" id="email-input2">
-          <input type="button" name="submit" value="{{ send }}" id="submit-button2">
+          <input type="button" name="submit" value="{{ 'SEND' | translate }}" id="submit-button2">
         </div>
         <div class="thanks-email">
         </div>
@@ -157,7 +157,7 @@
     </main>
     <footer>
       <img src="./static/img/musement-logotype.svg" alt="" class="musement-logo"/>
-      <p>{{ contact }}</p>
+      <p>{{ 'CONTACT' | translate }}</p>
       <div class="follow">
         <ul>
           <li class="twitter"><a href="http://www.twitter.com/musementco" target="_blank"><div class="logo" alt="Follow us on Twitter" /></div></a></li>

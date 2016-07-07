@@ -10,7 +10,7 @@ var insertInvite = function(req, callback) {
   // Set the information needed
   newGuest.email = req.body.email;
   console.log("Email: " + newGuest.email);
-  // newGuest.whatismusement = req.body.whatismusement;
+  // newGuest.WHATismusement = req.body.WHATismusement;
 
   var email = new sendgrid.Email();
   email.addTo(newGuest.email);

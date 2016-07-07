@@ -2674,7 +2674,7 @@ function formatArgs() {
   var c = 'color: ' + this.color;
   args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
 
-  // the final "%c" is somewhat tricky, because there could be other
+  // the final "%c" is someWHAT tricky, because there could be other
   // arguments passed either before or after the %c, so we need to
   // figure out the correct index to insert the CSS into
   var index = 0;
