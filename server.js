@@ -34,4 +34,4 @@ app.use('/', function(req, res) {
     res.sendFile( __dirname + '/public/views/index.html');
 });
 
-server.listen(80);
+server.listen(8080);
