@@ -4,6 +4,7 @@ const express = require('express'),
 User = require("models/user.js"),
 Project = require("models/project.js"),
 Moment = require("models/moment.js"),
+Tag = require("models/tag.js"),
 jwt = require('jsonwebtoken'),
 invite = require("config/createinvitation.js"),
 router = express.Router();
@@ -43,22 +44,8 @@ router.post('/authenticate', function(req, res) {
           token: token
         });
       }
-
     }
-
   });
-});
-
-// Locale information about user
-router.get('/user/locale', function(req, res) {
-  if (req.i18n.locale === undefined) {
-      // The user is not logged in
-      res.json({});
-  } else {
-      res.json({
-        locale: req.i18n.locale
-      });
-    }
 });
 
 router.post('/invitation', function(req, res) {
@@ -70,6 +57,13 @@ router.post('/invitation', function(req, res) {
        res.json({'message': 'Ops! Please try again :', 'success': false})
      }
    });
+});
+
+// Tag consulting
+router.get('/tags', function(req, res){
+  Tag.find({}, function(err, tags){
+    res.json(tags);
+  });
 });
 
 // ********************************
