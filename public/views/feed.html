@@ -10,6 +10,9 @@
       <img src="/static/img/musement-logotype-white.svg" alt="" style="position: absolute; width: 110px; top: -30px; margin: 0 50px;"/>
       <div class="profile" ui-sref="feed.profile" ng-click="bodyMove()">
         <img class="profile-photo" src="" alt="" />
+        <p ng-model="user">
+
+        </p>
         <div class="profile-text">
           <p class="profile-name">John Appleseed</p>
           <p class="profile-username">@jappleseed</p>
@@ -71,6 +74,27 @@
   </div>
 </div>
 
+<div class="create-moment" ng-class="{'active': momentSeen}">
+  <div class="">
+    <ul class="menu">
+      <!-- <li></li> -->
+      <li class="title">New Moment</li>
+      <li ng-click="showCreateMoment()">Cancel</li>
+    </ul>
+    <label for="description">Description</label>
+    <textarea type="text" name="description" value="" placeholder="What were you working on? What was your progress?"></textarea>
+    <label for="question">Question</label>
+    <input type="text" name="question" value="" placeholder="What do you need feedback on?">
+    <label for="interests">Related interests</label>
+    <input type="text" name="interests" value="" placeholder="Marketing, Design, Entrepreneurship, Idea">
+    <label for="files">File</label>
+    <input type="file" name="name" value="">
+    <label for="project">Project</label>
+    <select class="" name="project">
+    </select>
+    <input type="button" name="create" value="create">
+  </div>
+</div>
 
 <div class="body" ng-class="{'active': bodyMoved}">
   <div class="inner-body" ui-view>
@@ -109,9 +133,6 @@
             <p class="question">Question here</p>
           </div>
         </div>
-        <div class="moment-image">
-          <img src="" alt="" />
-        </div>
         <ul class="moment-tags tags">
           <li>iOS</li>
           <li>Food</li>
@@ -122,7 +143,7 @@
         </div>
         <div class="moment-stats">
           <div class="hearts">
-            <p>32</p>
+            <p>102</p>
           </div>
           <div class="feedback-icon">
             <p>Add feedback</p>
@@ -153,7 +174,7 @@
         </div>
         <div class="moment-stats">
           <div class="hearts">
-            <p>32</p>
+            <p>42</p>
           </div>
           <div class="feedback-icon">
             <p>Add feedback</p>
@@ -171,9 +192,6 @@
             <p class="question">Question here</p>
           </div>
         </div>
-        <div class="moment-image">
-          <img src="" alt="" />
-        </div>
         <ul class="moment-tags tags">
           <li>iOS</li>
           <li>Food</li>
@@ -190,15 +208,6 @@
             <p>Add feedback</p>
           </div>
         </div>
-      </div>
-      <div class="moment">
-
-      </div>
-      <div class="moment">
-
-      </div>
-      <div class="moment">
-
       </div>
     </main>
   </div>

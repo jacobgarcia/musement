@@ -7,17 +7,17 @@ angular.module('musementApp')
   localStorageService.remove('token');
 
   $scope.submitForm = function(login_info) {
-    loginDataService.authenticate(login_info, function(response) {
 
+    loginDataService.authenticate(login_info, function(response) {
       //Set local storage var token for accessing everywhere
       localStorageService.set('token', response.data.token);
       $scope.data = response.data; //Set data, it contains the server response message
-
       if (response.data.token) { //If we recieved a token go to index
         $state.go('index');
       }
 
     });
+
   };
 })
 
