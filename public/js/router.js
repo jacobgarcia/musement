@@ -21,6 +21,11 @@ angular.module('musementApp')
         templateUrl: "/static/views/signin.html",
         authenticate: false //Doesn't requires authentication
       })
+      .state("feed.profile", {
+        url: "/user",
+        templateUrl: "/static/views/profile.html",
+        authenticate: false //Doesn't requires authentication
+      })
       .state("feed.connections", {
         url: "/connections",
         templateUrl: "/static/views/feed.connections.html",

@@ -5,11 +5,10 @@
 </div> -->
 
 <div class="supper-wrapper">
-
   <div class="side-bar">
     <div class="side-bar-content">
       <img src="/static/img/musement-logotype-white.svg" alt="" style="position: absolute; width: 110px; top: -30px; margin: 0 50px;"/>
-      <div class="profile">
+      <div class="profile" ui-sref="feed.profile" ng-click="bodyMove()">
         <img class="profile-photo" src="" alt="" />
         <div class="profile-text">
           <p class="profile-name">John Appleseed</p>
@@ -17,9 +16,9 @@
         </div>
       </div>
 
-      <div class="search">
+      <!-- <div class="search">
         <input type="search" name="name" value="" placeholder="Search">
-      </div>
+      </div> -->
 
       <div class="side-options">
         <h5>Moments</h5>
@@ -34,7 +33,7 @@
           <li ui-sref="feed.project({name: 'kinder'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Kinder</li>
           <li ng-click="bodyMove()" class="pointer"><input type="button" name="name" class="green-button small" value="New project"></li>
         </ul>
-        <ul class="general">
+        <!-- <ul class="general">
           <li ui-sref="feed.connections" class="pointer"><a>Connections</a></li>
           <li ui-sref="other" class="pointer"><a>Another</a></li>
           <li ui-sref="other" class="pointer"><a>Another</a></li>
@@ -42,7 +41,7 @@
           <li ui-sref="other" class="pointer"><a>Another</a></li>
           <li ui-sref="other" class="pointer"><a>Another</a></li>
           <li ui-sref="other" class="pointer"><a>Another</a></li>
-        </ul>
+        </ul> -->
       </div>
       <div class="log-out">
         <img src="/static/img/buttons/btn_log out.svg" class="icon" alt="" />
@@ -79,7 +78,7 @@
       <nav>
         <ul class="menu">
           <li ng-click="bodyMove()" id="menu"><div class=""></div><div class=""></div><div class=""></div></li>
-          <li class="title">Intereses</li>
+          <li class="title">Interests</li>
           <li>
             <ul class="menu-icons">
               <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt="" /></li>
