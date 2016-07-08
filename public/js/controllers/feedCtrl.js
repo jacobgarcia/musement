@@ -8,6 +8,9 @@ angular.module('musementApp')
   $scope.showNotifications = function () {
     $scope.notificationsSeen = !$scope.notificationsSeen;
   }
+  $scope.showCreateMoment = function () {
+    $scope.momentSeen = !$scope.momentSeen;
+  }
 
 })
 

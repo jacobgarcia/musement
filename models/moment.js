@@ -27,7 +27,7 @@ var momentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId, /* Object ID from project */
     ref: 'Project', /* Moment Schema. Remember to define it as this in the export module */
     required: true
-  }
+  },
   question: {
     type: String
   },

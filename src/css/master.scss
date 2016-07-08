@@ -1,13 +1,7 @@
 $green: #54ae8a;
 
-@font-face {
-    font-family: WeblySleekSlim;
-    src: url(/static/fonts/weblysleeks.ttf);
-}
-@font-face {
-  font-family: WeblySleekBold;
-  src: url(/static/fonts/weblysleekb.ttf);
-}
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,700';
+
 * {
   margin: 0;
   padding: 0;
@@ -26,7 +20,7 @@ a {
 //   color: rgb(45, 60, 68);
 // }
 body {
-  font-family: 'WeblySleekSlim', 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
   color: rgb(63,77,85);
   font-weight: 300;
 }
@@ -157,7 +151,7 @@ h1, h2 {
     line-height: 1.7rem;
   }
   h2 {
-    font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
     font-size: 1.5rem;
     line-height: 1.7rem;
   }
@@ -172,7 +166,7 @@ h1, h2 {
 .input-elements {
   padding: 10px 0;
 }
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"], textarea {
   outline: none;
   font-size: 1rem;
   border-radius: 8px;
@@ -354,7 +348,7 @@ input[type="button"].small {
   margin-bottom: 20px;
 }
 .slack .left-content .title h2 {
-  font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
   padding: 1rem;
   font-size: 2rem;
 }
@@ -393,7 +387,7 @@ input[type="button"].small {
   flex-grow: 2;
 }
 .coworking .left-content h2 {
-  font-family: 'WeblySleekBold', 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
   padding: 1rem 0;
   font-size: 2rem;
 }

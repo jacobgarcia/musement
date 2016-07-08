@@ -6,11 +6,11 @@
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
     <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-startup-image" href="/startup.png">
+    <link rel="apple-touch-startup-image" href="/static/img/launch-screen.png">
     <link rel="stylesheet" href="/static/css/master.min.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body ng-app="musementApp" ng-class="{ app: app }" ui-view>
+
   </body>
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -24,6 +24,8 @@
   </script>
   <script src="/components/angular/angular.min.js" charset="utf-8"></script>
   <script src="/components/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
+  <script src="/static/js/angular-translate/angular-translate.js"></script>
+  <script src="/static/js/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
   <script src="/components/angular-local-storage/dist/angular-local-storage.min.js" charset="utf-8"></script>
   <script src="/components/angular-jwt/dist/angular-jwt.min.js" charset="utf-8"></script>
   <!-- APP -->
@@ -32,6 +34,4 @@
   <script src="/static/js/controllers/mainCtrl.js" charset="utf-8"></script>
   <script src="/static/js/controllers/feedCtrl.js" charset="utf-8"></script>
   <script src="/static/js/controllers/projectCtrl.js" charset="utf-8"></script>
-  <script src="/static/js/angular-translate/angular-translate.js"></script>
-  <script src="/static/js/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 </html>

@@ -1,12 +1,12 @@
 'use strict';
 
-const express = require('express'),
-User = require("models/user.js"),
-Project = require("models/project.js"),
-Moment = require("models/moment.js"),
-jwt = require('jsonwebtoken'),
-invite = require("config/createinvitation.js"),
-router = express.Router();
+let express = require('express'),
+  User = require("../models/user.js"),
+  Project = require("../models/project.js"),
+  Moment = require("../models/moment.js"),
+  jwt = require('jsonwebtoken'),
+  invite = require("../config/createinvitation.js"),
+  router = express.Router();
 
 //Register new user
 router.route('/users/:user_id')
@@ -18,6 +18,7 @@ router.route('/users/:user_id')
 //AUTHENTICATE TO GIVE NEW TOKEN
 router.post('/authenticate', function(req, res) {
   // find the user
+  console.dir(req.body);
   User.findOne({
     name: req.body.name
   }, function(err, user) {
@@ -43,7 +44,6 @@ router.post('/authenticate', function(req, res) {
           token: token
         });
       }
-
     }
 
   });
@@ -276,7 +276,7 @@ router.route('/moments/:moment_id')
 router.route('/users/:user_id/projects')
   .get(function (req, res) {
     //Get projects of user
-    Project.find({"user": req.params.user_id})
+    Project.find({'user': req.params.user_id})
     .exec(
       function(err, projects) {
         if (err) {
@@ -288,7 +288,6 @@ router.route('/users/:user_id/projects')
 
   })
   .post(function (req, res) {
-
     let project = new Project();
     project.title = req.body.title;
     project.description = req.body.description;

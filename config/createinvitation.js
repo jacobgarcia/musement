@@ -1,4 +1,4 @@
-var Guest = require("models/guest.js");
+var Guest = require("../models/guest.js");
 // var newEmail = require('config/sendEmail.js');
 const sendgrid  = require('sendgrid')('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');
 
