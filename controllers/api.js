@@ -20,7 +20,7 @@ router.post('/authenticate', function(req, res) {
   // find the user
   console.dir(req.body);
   User.findOne({
-    name: req.body.name
+    username: req.body.username //We need to work with username or email
   }, function(err, user) {
     if (err) throw err;
     if (!user) {
