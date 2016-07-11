@@ -4,9 +4,9 @@
     <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
   </div>
   <div class="sign-fields">
-    <input type="text" name="name" placeholder="Username or email">
-    <input type="password" name="name" placeholder="Password">
-    <input type="button" class="green-button small" value="Sign in" ui-sref="feed">
+    <input type="text" name="user" ng-model="user" placeholder="Username or email">
+    <input type="password" name="password" ng-model="pass" placeholder="Password">
+    <input type="button" class="green-button small" value="Sign in" ng-click="login(user,pass)">
     <div class="">
       <p><a ng-click="">Need help?</a></p>
       <p>Not a member? <a ui-sref="signup">Sign up</a></p>

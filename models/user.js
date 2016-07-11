@@ -11,6 +11,11 @@ var userSchema = new mongoose.Schema({
       type: String,
       required: true
     },
+    bio: String,
+    location: {
+      city: String,
+      state: String
+    },
     moments: [{
       type: mongoose.Schema.Types.ObjectId, /* Object ID from moments */
       ref: 'Moment'

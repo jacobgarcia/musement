@@ -1,4 +1,4 @@
-var ipAddress = 'localhost';
+var ipAddress = 'localhost:8080';
 
 angular.module('musementApp',['ui.router', 'LocalStorageModule', 'angular-jwt','pascalprecht.translate'])//, 'ngFileUpload'
 

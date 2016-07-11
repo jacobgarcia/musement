@@ -1,6 +1,5 @@
 angular.module('musementApp')
-.controller('feedCtrl', function($scope, $rootScope, $state, $stateParams) {
-
+.controller('feedCtrl', function($scope, $rootScope, $state, $stateParams, loginDataService) {
   $scope.bodyMove = function (state) {
     $scope.bodyMoved = !$scope.bodyMoved;
   }
@@ -11,13 +10,20 @@ angular.module('musementApp')
   $scope.showCreateMoment = function () {
     $scope.momentSeen = !$scope.momentSeen;
   }
+  $scope.showMomentDetails = function () {
+    $scope.momentDetailsSeen = !$scope.notificationsSeen;
+  }
+
+  $scope.signin = function (user, password) {
+
+  }
 
 })
 
 .service('feedDataService', function($http) {
 
-  // this.authenticate = function(login_info, callback) {
-  //   $http.post('http://' + ipAddress + '/api/authenticate', login_info)
+  // this.getMoments = function(login_info, callback) {
+  //   $http.get('http://' + ipAddress + '/api/authenticate', login_info)
   //   .then(callback)
   // };
 

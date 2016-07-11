@@ -33,13 +33,14 @@ router.post('/authenticate', function(req, res) {
       } else {
         // if user is found and password is right
         // create a token and --- sign with the user information --- and secret password
-        var token = jwt.sign({"name": user.name, "email": user.email}, "svuadyIUUVas87gdas78ngd87asgd87as", {
+        var token = jwt.sign({"_id": user._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
           expiresIn: 216000 // expires in 6 hours
         });
         //console.dir(token)
         // return the information including token as JSON
         res.json({
           success: true,
+          _id: user._id,
           message: 'Logged in',
           token: token
         });
@@ -132,24 +133,29 @@ router.route('/users')
 
 router.route('/users/:user_id')
   .get(function (req, res) {
+
     User.findById(req.params.user_id,
-      'username email name lastName image following follow bornDate',
+      '-password', //Return all excepting password
       function(err, user) {
         if (err) {
           res.send(err);
         } else {
-          res.json(user);
+          res.json({"user": user, "success": true});
         }
       });
   })
   .put(function (req, res) {
+    var token = req.body.token || req.query.token || req.headers['x-access-token']; // check header or url parameters or post parameters for token
+    var decoded = jwt.decode(token);
+    var _id = decoded._id;
+
     //UPDATE USER PROFILE
-    res.json({'message':'not supported yet.'});
+    res.json({'message':'not supported yet.', 'success': false});
   })
   .delete(function (req, res) {
     //DELETE USER
       //Authenticate logged user is deleting himself
-    res.json({'message':'not supported yet.'});
+    res.json({'message':'not supported yet.', 'success': false});
   });
 
 // *************************************
