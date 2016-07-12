@@ -28,7 +28,7 @@
       <img src="" alt="" />
     </div>
     <div class="user-info">
-      <p class="name">{{user.name}} {{user.lastName}}</p>
+      <p class="name">{{user.name}} {{user.surname}}</p>
       <p class="username">{{user.username}}</p>
       <p class="bio">{{user.bio}}</p>
       <p class="location">{{user.location.city}}, {{user.location.state}}</p>
@@ -39,7 +39,7 @@
   <div class="moment" ng-repeat="moment in user.moments">
     <div class="moment-text">
       <div class="moment-info">
-        <p class="user-name">{{user.name}} {{user.lastName}}</p>
+        <p class="user-name">{{user.name}} {{user.surname}}</p>
         <p>{{moment.description}}</p>
         <p class="question">{{moment.question}}</p>
       </div>
