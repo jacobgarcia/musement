@@ -10,3 +10,7 @@ angular.module('musementApp')
   }
 
 });
+// 
+// .service('mainServiceProvider', function() {
+//
+// })

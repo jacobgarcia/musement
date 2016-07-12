@@ -7,11 +7,6 @@ angular.module('musementApp')
         templateUrl: "/static/views/landingpage.html",
         authenticate: false //Doesn't requires authentication
       })
-      .state("feed", {
-        templateUrl: "/static/views/feed.html",
-        controller: "feedCtrl",
-        authenticate: true //Does require authentication
-      })
       .state("signup", {
         url: "/signup",
         templateUrl: "/static/views/signup.html",
@@ -23,26 +18,37 @@ angular.module('musementApp')
         templateUrl: "/static/views/signin.html",
         authenticate: false //Doesn't requires authentication
       })
+      .state("feed", {
+        url: "/",
+        controller: "feedCtrl",
+        templateUrl: "/static/views/feed.html",
+        authenticate: true //Does require authentication
+      })
       .state("feed.profile", {
-        url: "/user",
+        url: "user/:username",
         controller: "profileCtrl",
         templateUrl: "/static/views/profile.html",
         authenticate: true //Doesn't requires authentication
       })
       .state("feed.connections", {
-        url: "/connections",
+        url: "connections",
         templateUrl: "/static/views/feed.connections.html",
         authenticate: true //Doesn't requires authentication
       })
       .state("feed.new-project", {
-        url: "/project/new",
+        url: "project/new",
         templateUrl: "/static/views/feed.new-project.html",
         authenticate: true
       })
       .state("feed.project", {
-        url: "/project/:name",
+        url: "project/:name",
         controller: "projectCtrl",
         templateUrl: "/static/views/feed.project.html",
+        authenticate: true //Doesn't requires authentication
+      })
+      .state("feed.not-found", {
+        url: "not-found",
+        templateUrl: "/static/views/feed.not-found.html",
         authenticate: true //Doesn't requires authentication
       })
 

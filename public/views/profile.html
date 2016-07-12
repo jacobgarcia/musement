@@ -35,15 +35,16 @@
       <p class="work not-available">Not available for work</p>
     </div>
   </div>
-  <div class="moment">
+
+  <div class="moment" ng-repeat="moment in user.moments">
     <div class="moment-text">
       <div class="moment-info">
-        <p class="user-name">User full name</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p class="question">Question here</p>
+        <p class="user-name">{{user.name}} {{user.lastName}}</p>
+        <p>{{moment.description}}</p>
+        <p class="question">{{moment.question}}</p>
       </div>
     </div>
-    <div class="moment-image">
+    <div class="moment-image" ng-if="!!moment.files.lenght">
       <img src="" alt="" />
     </div>
     <ul class="moment-tags tags">

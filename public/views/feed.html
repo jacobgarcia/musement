@@ -2,11 +2,11 @@
   <div class="side-bar">
     <div class="side-bar-content">
       <img src="/static/img/musement-logotype-white.svg" alt="" style="position: absolute; width: 110px; top: -30px; margin: 0 50px;"/>
-      <div class="profile" ui-sref="feed.profile" ng-click="bodyMove()">
+      <div class="profile" ui-sref="feed.profile({username:'cesargdm3'})" ng-click="bodyMove()">
         <img class="profile-photo" src="" alt="" />
         <div class="profile-text">
-          <p class="profile-name">John Appleseed</p>
-          <p class="profile-username">@jappleseed</p>
+          <p class="profile-name">{{thisUser.name}} {{thisUser.lastName}}</p>
+          <p class="profile-username">@{{thisUser.username}}</p>
         </div>
       </div>
       <!-- <div class="search">
@@ -66,21 +66,21 @@
       <li ng-click="showCreateMoment()">Cancel</li>
     </ul>
     <label for="description">Description</label>
-    <textarea type="text" name="description" value="" placeholder="What were you working on? What was your progress?"></textarea>
+    <textarea type="text" ng-model="newMoment.description" name="description" value="" placeholder="What were you working on? What was your progress?"></textarea>
     <label for="question">Question</label>
-    <input type="text" name="question" value="" placeholder="What do you need feedback on?">
-    <label for="interests">Related interests</label>
-    <input type="text" name="interests" value="" placeholder="Marketing, Design, Entrepreneurship, Idea">
+    <input type="text" ng-model="newMoment.question" name="question" value="" placeholder="What do you need feedback on?">
+    <label for="tags">Related interests</label>
+    <input type="text" ng-model="newMoment.tags" name="tags" value="" placeholder="Marketing, Design, Entrepreneurship, Idea">
     <label for="files">File</label>
-    <input type="file" name="name" value="">
+    <input type="file" ng-model="newMoment.files" name="name" value="">
     <label for="project">Project</label>
-    <select class="" name="project">
+    <select class="" ng-model="newMoment.project" name="project">
       <option value="">Project 1</option>
       <option value="">Project 1</option>
       <option value="">Project 1</option>
       <option value="">Project 1</option>
     </select>
-    <input type="button" name="create" value="create">
+    <input type="button" name="create" value="create" ng-click="setMoment(newMoment)">
   </div>
 </div>
 

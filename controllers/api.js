@@ -41,6 +41,7 @@ router.post('/authenticate', function(req, res) {
         res.json({
           success: true,
           _id: user._id,
+          username: user.username,
           message: 'Logged in',
           token: token
         });
@@ -131,18 +132,20 @@ router.route('/users')
     });
   });
 
-router.route('/users/:user_id')
+//Find by user_id or username
+router.route('/users/id=:user_id?') //just when the url has "id=" it will run, otherwise it will look for a username
   .get(function (req, res) {
-
+    console.log("ID");
     User.findById(req.params.user_id,
       '-password', //Return all excepting password
       function(err, user) {
         if (err) {
-          res.send(err);
+          res.send({"error": err, "success": false});
         } else {
           res.json({"user": user, "success": true});
         }
       });
+
   })
   .put(function (req, res) {
     var token = req.body.token || req.query.token || req.headers['x-access-token']; // check header or url parameters or post parameters for token
@@ -158,6 +161,36 @@ router.route('/users/:user_id')
     res.json({'message':'not supported yet.', 'success': false});
   });
 
+  router.route('/users/:username')
+    .get(function (req, res) {
+      console.log("Username: " + req.params.username);
+      User.findOne({"username": req.params.username},
+        '-password', //Return all excepting password
+        function(err, user) {
+          if (err) {
+            res.send({"error": err, "success": false});
+          } else if (!user) {
+            res.send({"error": {"message": "No user found"}, "success": false});
+          } else {
+            res.json({"user": user, "success": true});
+          }
+        });
+
+    })
+    .put(function (req, res) {
+      var token = req.body.token || req.query.token || req.headers['x-access-token']; // check header or url parameters or post parameters for token
+      var decoded = jwt.decode(token);
+      var _id = decoded._id;
+
+      //UPDATE USER PROFILE
+      res.json({'message':'not supported yet.', 'success': false});
+    })
+    .delete(function (req, res) {
+      //DELETE USER
+        //Authenticate logged user is deleting himself
+      res.json({'message':'not supported yet.', 'success': false});
+    });
+
 // *************************************
 // ***                               ***
 // ***            MOMENTS            ***
@@ -167,32 +200,45 @@ router.route('/users/:user_id')
 router.route('/users/:user_id/moments')
   .get(function (req, res) {
     //Get moments of user
-      //Validate user is accessing it's own moments or of people he follows
     Moment.find({"user": req.params.user_id})
+    .sort('-_id')
     .exec(
       function(err, moments) {
         if (err) {
-          res.send(err);
+          res.json({'error': err, success: false});
         } else {
-          res.json(moments);
+          res.json({'moments': moments, success: true});
         }
       });
   })
   .post(function (req, res) {
-    let moment = new Moment();
-    moment.timelapse = req.body.timelapse;
-    moment.description = req.body.description;
-    moment.moment_type = req.body.moment_type;
-    moment.attachement = req.body.attachement;
-    moment.user = req.params.user_id;
-    moment.save(function(err) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json({message: 'Moment created!', moment: moment});
-      }
-    });
-    //Add new moment to user, can add within project
+    var token = req.body.token || req.query.token || req.headers['x-access-token']; // check header or url parameters or post parameters for token
+    var decoded = jwt.decode(token);
+    var decoded_id = decoded._id;
+    console.log('decoded', decoded_id);
+    console.log('params', req.params.user_id);
+    if(decoded_id === req.params.user_id) { //Verify that is the user who is adding a moment to himself
+      let moment = new Moment();
+      // moment.timelapse = req.body.timelapse;
+      //moment.project
+      moment.description = req.body.description;
+      moment.files = req.body.files;
+      moment.tags = req.body.tags;
+      moment.project = req.body.project;
+      moment.question = req.body.question;
+      moment.user = req.params.user_id; //Use the user from the url, no need to add it on the body
+      // moment.usersHearted = req.body.usersHearted;
+
+      moment.save(function(err) {
+        if (err) {
+          res.json({'error': err, 'success': false});
+        } else {
+          res.json({'message': 'Moment created!', 'moment': moment, 'sucess': true});
+        }
+      });
+    } else {
+      res.json({'message': 'You are trying to add a new moment to other person that is not you.', 'success': false})
+    }
   });
 
 router.route('/moments/:moment_id')
@@ -203,17 +249,17 @@ router.route('/moments/:moment_id')
     .exec(
       function(err, moment) {
         if (err) {
-          res.send(err);
+          res.json({'error': err, 'success': true});
         } else if (!moment) {
-          res.json({"message": "No moment found.", "success": false});
+          res.json({'message': "No moment found.", 'success': false});
         } else {
-          res.json(moment);
+          res.json({'moment': moment, 'success': true});
         }
       });
   })
   .put(function (req, res) {
     //Update moment of the user
-    res.json({'message':'not supported yet.'});
+    res.json({'message':'not supported yet.', 'sucess': false});
   })
   .delete(function (req, res) {
     //Remove moment from user
