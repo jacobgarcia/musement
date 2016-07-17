@@ -28,22 +28,23 @@
       <img src="" alt="" />
     </div>
     <div class="user-info">
-      <p class="name">John Appleseed</p>
-      <p class="username">@jappleseed</p>
-      <p class="bio">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <p class="location">Cupertino, CA</p>
+      <p class="name">{{user.name}} {{user.surname}}</p>
+      <p class="username">{{user.username}}</p>
+      <p class="bio">{{user.bio}}</p>
+      <p class="location">{{user.location.city}}, {{user.location.state}}</p>
       <p class="work not-available">Not available for work</p>
     </div>
   </div>
-  <div class="moment">
+
+  <div class="moment" ng-repeat="moment in user.moments">
     <div class="moment-text">
       <div class="moment-info">
-        <p class="user-name">User full name</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p class="question">Question here</p>
+        <p class="user-name">{{user.name}} {{user.surname}}</p>
+        <p>{{moment.description}}</p>
+        <p class="question">{{moment.question}}</p>
       </div>
     </div>
-    <div class="moment-image">
+    <div class="moment-image" ng-if="!!moment.files.lenght">
       <img src="" alt="" />
     </div>
     <ul class="moment-tags tags">
