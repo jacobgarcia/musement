@@ -1,4 +1,4 @@
-db.tag.insert([
+db.tags.insert([
   {"name":"3D"},
   {"name":"Art"},
   {"name":"Artificial Intelligence"},
