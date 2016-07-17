@@ -18,37 +18,49 @@ router.route('/users/:user_id')
 
 //AUTHENTICATE TO GIVE NEW TOKEN
 router.post('/authenticate', function(req, res) {
-  // find the user
-  // console.dir(req.body);
-  User.findOne({
-    username: req.body.username //We need to work with username or email
-  }, function(err, user) {
-    if (err) throw err;
-    if (!user) {
-      res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
-    } else if (user) {
-      if (user.password != req.body.password) { // check if password matches
-        // console.log(user.password);
-        // console.log('Wrong password');
+  /* Verify that the username is really there. Done for security reasons. */
+  if (req.body.username) {
+    /* Determine if the username is an email or a simple string */
+    var field;
+    if(req.body.username.search(/@/) !== -1)
+      field = 'email';
+    else
+      field = 'username';
+      
+    // find the user
+    User.findOne({
+      //DONE: We need to work with username OR email
+      [field]: req.body.username
+    }, function(err, user) {
+      if (err) throw err;
+      if (!user) {
         res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
-      } else {
-        // if user is found and password is right
-        // create a token and --- sign with the user information --- and secret password
-        var token = jwt.sign({"_id": user._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
-          expiresIn: 216000 // expires in 6 hours
-        });
-        //console.dir(token)
-        // return the information including token as JSON
-        res.json({
-          success: true,
-          _id: user._id,
-          username: user.username,
-          message: 'Logged in',
-          token: token
-        });
+      } else if (user) {
+        if (user.password != req.body.password) { // check if password matches
+          res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
+        } else {
+          // if user is found and password is right
+          // create a token and --- sign with the user information --- and secret password
+          var token = jwt.sign({"_id": user._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
+            expiresIn: 216000 // expires in 6 hours
+          });
+
+          // return the information including token as JSON
+          res.json({
+            success: true,
+            _id: user._id,
+            username: user.username,
+            message: 'Logged in',
+            token: token
+          });
+        }
       }
-    }
-  });
+    });
+  }
+  else {
+    /* In case the username field is in blank, end the connection with the client */
+    res.json({ success: false, message: 'Authentication failed. No user specified.' });
+  }
 });
 
 router.post('/invitation', function(req, res) {

@@ -45,6 +45,7 @@ angular.module('musementApp',['ui.router', 'LocalStorageModule', 'angular-jwt','
 .controller("mainCtrl", function($scope, $state, localStorageService, jwtHelper) {
 
   $scope.state = $state;
+
   //Decode token and asign info to user info div
   $scope.user = jwtHelper.decodeToken(localStorageService.get('token'));
   console.log("MAIN CTRL");

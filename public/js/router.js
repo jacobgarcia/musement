@@ -19,7 +19,7 @@ angular.module('musementApp')
         authenticate: false //Doesn't requires authentication
       })
       .state("feed", {
-        url: "/",
+        url: "/feed",
         controller: "feedCtrl",
         templateUrl: "/static/views/feed.html",
         authenticate: true //Does require authentication
@@ -53,7 +53,7 @@ angular.module('musementApp')
       })
 
 
-    // Send to login if the URL was not found
+    // Send to landingpage if the URL was not found
     $urlRouterProvider.otherwise("/");
 
     // delete the # in the url
