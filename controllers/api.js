@@ -1,4 +1,5 @@
 'use strict';
+//TODO: Update API routes names
 
 let express = require('express'),
   User = require("../models/user.js"),
@@ -16,6 +17,40 @@ router.route('/users/:user_id')
   res.status(501).json({'message':'Not yet supported.', 'success': false});
 });
 
+router.post('/signup', function(req, res){
+  // find a user whose email or username is the same as the forms email/username respectively
+  // we are checking to see if the user trying to signup already exists
+  User.findOne({
+      $or: [{
+      'email': req.body.email},
+      {'username': req.body.username}]
+  }, function (err, user) {
+      // if there are any errors, return the error
+      if (err) throw err;
+
+      // return shit if the user is already registered
+      if (user) {
+        res.json({ success: false, message: 'That email or username is already registered. Try with another values.' });
+      } else {
+          // if there is no user with that email
+          // create the user
+          var newUser = new User();
+
+          // set the user's local credentials
+          newUser.email = req.body.email;
+          newUser.username = req.body.username;
+          newUser.password = newUser.generateHash(req.body.password);
+          newUser.image = "/static/img/default.jpg"; //TODO: possible change of path
+
+          // save the user
+          newUser.save(function (err) {
+              if (err) throw err;
+              res.json({message: 'Successfully created ' + newUser.username});
+          });
+      }
+  });
+});
+
 //AUTHENTICATE TO GIVE NEW TOKEN
 router.post('/authenticate', function(req, res) {
   /* Verify that the username is really there. Done for security reasons. */
@@ -26,7 +61,7 @@ router.post('/authenticate', function(req, res) {
       field = 'email';
     else
       field = 'username';
-      
+
     // find the user
     User.findOne({
       //DONE: We need to work with username OR email
@@ -116,7 +151,7 @@ router.use(function(req, res, next) {
 router.route('/users')
 .post(function (req, res) {
   var user = new User();
-  //console.log(req);
+
   user.name = req.body.name;
   user.lastName = req.body.lastName;
   user.email = req.body.email;
