@@ -45,17 +45,17 @@ router.post('/signup', function(req, res){
           // save the user
           newUser.save(function (err) {
               if (err) throw err;
-              
+
               // create a token and --- sign with the user information --- and secret password
-              var token = jwt.sign({"_id": user._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
+              var token = jwt.sign({"_id": newUser._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
                 expiresIn: 216000 // expires in 6 hours
               });
 
               // return the information including token as JSON
               res.json({
                 success: true,
-                _id: user._id,
-                username: user.username,
+                _id: newUser._id,
+                username: newUser.username,
                 message: 'Logged in',
                 token: token
               });
