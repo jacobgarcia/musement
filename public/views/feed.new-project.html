@@ -10,4 +10,30 @@
       </li>
     </ul>
   </nav>
+  <main>
+    <div class="project">
+      <div class="project-type">
+        <div class="type">
+          <input type="radio" ng-model="project.type" id="product" name="type" value="product">
+          <label for="product">Product</label>
+        </div>
+        <div class="type">
+          <input type="radio" ng-model="project.type" id="service" name="type" value="service">
+          <label for="service">Service</label>
+        </div>
+      </div>
+      <input type="text" name="name" placeholder="Name">
+      <div class="project-color">
+        <input type="radio" name="color" value="">
+        <input type="radio" name="color" value="">
+        <input type="radio" name="color" value="">
+        <input type="radio" name="color" value="">
+        <input type="radio" name="color" value="">
+      </div>
+      <textarea name="description" placeholder="Description..."></textarea>
+      <div class="project-members">
+
+      </div>
+    </div>
+  </main>
 </header>

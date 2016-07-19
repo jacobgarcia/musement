@@ -100,6 +100,72 @@ body.app {
   transform: rotate(-35deg);
   font-weight: 600;
 }
+.project {
+  padding: 20px;
+  input[type="text"], textarea {
+    width: 100%;
+    border: 1px solid $gray;
+    border-radius: 5px;
+  }
+  .project-type .type:first-child input[type="radio"] {
+    border-radius: 5px 0 0 5px;
+  }
+  .project-type .type:last-child input[type="radio"] {
+    border-radius: 0 5px 5px 0;
+  }
+  .project-color {
+    margin: 20px 0;
+    input[type="radio"] {
+      width: 40px;
+      height: 40px;
+      border-radius: 5px;
+      background: red;
+      position: relative;
+    }
+    input[type="radio"]:checked::before {
+      display: block;
+      position: absolute;
+      content: '';
+      width: 30px;
+      height: 30px;
+      background: #fff;
+    }
+  }
+  .project-type {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    .type {
+      width: 150px;
+      height: 30px;
+      position: relative;
+    }
+    input[type="radio"] {
+      border: 1px solid $gray;
+      width: 100%;
+      height: 100%;
+      background: rgb(255, 255, 255);
+      transition: 0.5s;
+    }
+    input[type="radio"]:checked {
+      background: $gray;
+    }
+    input[type="radio"]:checked + label {
+      color: #fff;
+    }
+    label {
+      padding-top: 4px;
+      color: $gray;
+      text-align: center;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      top: 0;
+      width: 100%;
+      position: absolute;
+    }
+  }
+}
 .side-bar {
   z-index: 0;
   background: $darkBlue;
