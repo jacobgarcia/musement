@@ -16,7 +16,7 @@ let chat = require("./config/sockets").listen(server);
 
 // Database Configuration
 mongoose.connect(configDB.url); //connect to database
-mongoose.set('debug', false);
+mongoose.set('debug', true);
 
 //Parser
 app.use(bodyParser.json()); /* JSON support */
@@ -28,8 +28,6 @@ app.use('/static', express.static(__dirname + '/public'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use('/components', express.static(__dirname + '/bower_components')); //Set bower_components to just components
 app.use('/api', API);
-
-
 
 // Load our routes and pass it our app already configured
 app.use('/', function(req, res) {

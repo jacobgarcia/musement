@@ -1,12 +1,14 @@
 'use strict';
+//TODO: Update API routes names
 
 let express = require('express'),
-    User = require("../models/user.js"),
-    Project = require("../models/project.js"),
-    Moment = require("../models/moment.js"),
-    jwt = require('jsonwebtoken'),
-    invite = require("../config/createinvitation.js"),
-    router = express.Router();
+  User = require("../models/user.js"),
+  Project = require("../models/project.js"),
+  Moment = require("../models/moment.js"),
+  Tag = require("models/tag.js"),
+  jwt = require('jsonwebtoken'),
+  invite = require("../config/createinvitation.js"),
+  router = express.Router();
 
 //Register new user
 router.route('/users/:user_id')
@@ -15,52 +17,98 @@ router.route('/users/:user_id')
   res.status(501).json({'message':'Not yet supported.', 'success': false});
 });
 
-//AUTHENTICATE TO GIVE NEW TOKEN
-router.post('/authenticate', function(req, res) {
-  // find the user
-  // console.dir(req.body);
+router.post('/signup', function(req, res){
+  // find a user whose email or username is the same as the forms email/username respectively
+  // we are checking to see if the user trying to signup already exists
   User.findOne({
-    username: req.body.username //We need to work with username or email
-  }, function(err, user) {
-    if (err) throw err;
-    if (!user) {
-      res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
-    } else if (user) {
-      if (user.password != req.body.password) { // check if password matches
-        // console.log(user.password);
-        // console.log('Wrong password');
-        res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
-      } else {
-        // if user is found and password is right
-        // create a token and --- sign with the user information --- and secret password
-        var token = jwt.sign({"_id": user._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
-          expiresIn: 216000 // expires in 6 hours
-        });
-        //console.dir(token)
-        // return the information including token as JSON
-        res.json({
-          success: true,
-          _id: user._id,
-          username: user.username,
-          message: 'Logged in',
-          token: token
-        });
-      }
-    }
+      $or: [{
+      'email': req.body.email},
+      {'username': req.body.username}]
+  }, function (err, user) {
+      // if there are any errors, return the error
+      if (err) throw err;
 
+      // return shit if the user is already registered
+      if (user) {
+        res.json({ success: false, message: 'That email or username is already registered. Try with another values.' });
+      } else {
+          // if there is no user with that email
+          // create the user
+          var newUser = new User();
+
+          // set the user's local credentials
+          newUser.email = req.body.email;
+          newUser.username = req.body.username;
+          newUser.password = newUser.generateHash(req.body.password);
+          newUser.image = "/static/img/default.jpg"; //TODO: possible change of path
+
+          // save the user
+          newUser.save(function (err) {
+              if (err) throw err;
+
+              // create a token and --- sign with the user information --- and secret password
+              var token = jwt.sign({"_id": newUser._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
+                expiresIn: 216000 // expires in 6 hours
+              });
+
+              // return the information including token as JSON
+              res.json({
+                success: true,
+                _id: newUser._id,
+                username: newUser.username,
+                message: 'Logged in',
+                token: token
+              });
+          });
+      }
   });
 });
 
-// Locale information about user
-router.get('/user/locale', function(req, res) {
-  if (req.i18n.locale === undefined) {
-      // The user is not logged in
-      res.json({});
-  } else {
-      res.json({
-        locale: req.i18n.locale
-      });
-    }
+//AUTHENTICATE TO GIVE NEW TOKEN
+router.post('/authenticate', function(req, res) {
+  /* Verify that the username is really there. Done for security reasons. */
+  if (req.body.username) {
+    /* Determine if the username is an email or a simple string */
+    var field;
+    if(req.body.username.search(/@/) !== -1)
+      field = 'email';
+    else
+      field = 'username';
+
+    // find the user
+    User.findOne({
+      //DONE: We need to work with username OR email
+      [field]: req.body.username
+    }, function(err, user) {
+      if (err) throw err;
+      if (!user) {
+        res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
+      } else if (user) {
+        if (user.password != req.body.password) { // check if password matches
+          res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
+        } else {
+          // if user is found and password is right
+          // create a token and --- sign with the user information --- and secret password
+          var token = jwt.sign({"_id": user._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
+            expiresIn: 216000 // expires in 6 hours
+          });
+
+          // return the information including token as JSON
+          res.json({
+            success: true,
+            _id: user._id,
+            username: user.username,
+            message: 'Logged in',
+            token: token
+          });
+        }
+      }
+    });
+  }
+  else {
+    /* In case the username field is in blank, end the connection with the client */
+    res.json({ success: false, message: 'Authentication failed. No user specified.' });
+  }
 });
 
 router.post('/invitation', function(req, res) {
@@ -72,6 +120,13 @@ router.post('/invitation', function(req, res) {
        res.json({'message': 'Ops! Please try again :', 'success': false})
      }
    });
+});
+
+// Tag consulting
+router.get('/tags', function(req, res){
+  Tag.find({}, function(err, tags){
+    res.json(tags);
+  });
 });
 
 // ********************************
@@ -109,7 +164,7 @@ router.use(function(req, res, next) {
 router.route('/users')
 .post(function (req, res) {
   var user = new User();
-  //console.log(req);
+
   user.name = req.body.name;
   user.lastName = req.body.lastName;
   user.email = req.body.email;
