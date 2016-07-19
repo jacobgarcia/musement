@@ -5,6 +5,7 @@ $green: #20ad8a;
 $darkGreen: #3f4d55;
 $darkBlue: #3b4d57;
 $yellow: rgb(247,193,108);
+$red: #ed3c40;
 
 body.app {
   overflow: hidden;
@@ -290,6 +291,7 @@ ul.menu ul li {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: calc(100vh - 68px);
   background: #F5F5F5;
   .moment {
     border-radius: 5px;
@@ -354,6 +356,12 @@ ul.menu ul li {
         padding-left: 25px;
         display: inline-block;
       }
+      .hearts.liked {
+        color: $red;
+        p {
+          background: url('/static/img/buttons/red-heart.svg') no-repeat left center;
+        }
+      }
       .hearts {
         p {
           background: url('/static/img/buttons/heart.svg') no-repeat left center;
@@ -361,7 +369,7 @@ ul.menu ul li {
         }
         text-align: center;
         width: 35%;
-        color: red;
+        color: $gray;
       }
       .feedback-icon {
         p {

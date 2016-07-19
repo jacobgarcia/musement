@@ -9,6 +9,7 @@ angular.module('musementApp')
       })
       .state("signup", {
         url: "/signup",
+        controller: "signupCtrl",
         templateUrl: "/static/views/signup.html",
         authenticate: false //Doesn't requires authentication
       })
@@ -19,7 +20,7 @@ angular.module('musementApp')
         authenticate: false //Doesn't requires authentication
       })
       .state("feed", {
-        url: "/feed",
+        url: "/",
         controller: "feedCtrl",
         templateUrl: "/static/views/feed.html",
         authenticate: true //Does require authentication

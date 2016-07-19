@@ -4,13 +4,13 @@
     <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
   </div>
   <div class="sign-fields">
-    <input type="text" name="name" placeholder="Username">
-    <input type="email" name="name" placeholder="Email">
-    <input type="password" name="name" placeholder="Password">
-    <input type="button" class="green-button small" value="Sign up" ui-sref="feed">
+    <input type="email" ng-model="email" name="name" placeholder="Email">
+    <input type="password" ng-model="password" name="name" placeholder="Password">
+    <input type="text" ng-model="username" name="name" placeholder="Username">
+    <input type="button" class="green-button small" value="Sign up" ng-click="signup()">
     <div class="">
-      <p><a ng-click="">Need help?</a></p>
       <p>Already a member? <a ui-sref="signin">Sign in</a></p>
+      <p><a ng-click="">Need help?</a></p>
     </div>
   </div>
 </body>

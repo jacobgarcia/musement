@@ -3,22 +3,25 @@ angular.module('musementApp')
 
   console.log('Hello world!');
 
-  $scope.login = function(user, pass) {
+  $scope.login = function(user, password) {
 
-    var login_info = {};
-    login_info.username = user;
-    login_info.password = pass;
+    var loginInfo = {};
+    loginInfo.username = user;
+    loginInfo.email = user;
+    loginInfo.password = password;
 
-    loginDataService.authenticate(login_info, function(response) {
+    loginDataService.authenticate(loginInfo, function(res) {
       //Set local storage var token for accessing everywhere
+      let data = res.data;
 
-      if (response.data.success) {
-        localStorageService.set('token', response.data.token); //Set the token for reuse in every request
-        localStorageService.set('user_id', response.data._id); //Set the user_id in the localStorageService
-        localStorageService.set('username', response.data.username); //Set the user_id in the localStorageService
+      if (data.success) {
+        localStorageService.clearAll();
+        localStorageService.set('token', data.token); //Set the token for reuse in every request
+        localStorageService.set('user_id', data._id); //Set the user_id in the localStorageService
+        localStorageService.set('username', data.username); //Set the user_id in the localStorageService
         $state.go('feed'); //Go to feed state :)
       } else {
-        alert(response.data.message)
+        alert(response.data.message);
       }
 
     });

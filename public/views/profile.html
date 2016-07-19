@@ -36,28 +36,28 @@
     </div>
   </div>
 
-  <div class="moment" ng-repeat="moment in user.moments">
+  <div class="moment" ng-repeat="moment in interests.moments" ng-click="showMomentDetails(moment_id)" ng-model="moments">
     <div class="moment-text">
+      <div class="user-image">
+        <img src="" alt="" />
+      </div>
       <div class="moment-info">
-        <p class="user-name">{{user.name}} {{user.surname}}</p>
+        <p class="user-name" ng-click="$state.go(moment.user.name); $event.stopPropagation();">{{moment.user.name}} {{moment.user.surname}}</p>
         <p>{{moment.description}}</p>
         <p class="question">{{moment.question}}</p>
       </div>
     </div>
-    <div class="moment-image" ng-if="!!moment.files.lenght">
-      <img src="" alt="" />
-    </div>
-    <ul class="moment-tags tags">
+    <ul class="moment-tags tags" ng-if="!!moment.tags.length">
       <li>iOS</li>
       <li>Food</li>
       <li>Design</li>
     </ul>
     <div class="feedback-count">
-      <p>0 feedbacks</p>
+      <p>{{moment.feedback.length}} feedbacks</p>
     </div>
     <div class="moment-stats">
-      <div class="hearts">
-        <p>32</p>
+      <div class="hearts" ng-click="heart($index, moment._id); $event.stopPropagation();" ng-class="{liked: ((moment.hearts | contains:user_id) || moment.liked)}">
+        <p>{{moment.hearts.length}}</p>
       </div>
       <div class="feedback-icon">
         <p>Add feedback</p>

@@ -5,7 +5,7 @@ let express = require('express'),
   User = require("../models/user.js"),
   Project = require("../models/project.js"),
   Moment = require("../models/moment.js"),
-  Tag = require("models/tag.js"),
+  Tag = require("../models/tag.js"),
   jwt = require('jsonwebtoken'),
   invite = require("../config/createinvitation.js"),
   router = express.Router();
@@ -21,45 +21,51 @@ router.post('/signup', function(req, res){
   // find a user whose email or username is the same as the forms email/username respectively
   // we are checking to see if the user trying to signup already exists
   User.findOne({
-      $or: [{
-      'email': req.body.email},
-      {'username': req.body.username}]
-  }, function (err, user) {
-      // if there are any errors, return the error
-      if (err) throw err;
-
-      // return shit if the user is already registered
-      if (user) {
-        res.json({ success: false, message: 'That email or username is already registered. Try with another values.' });
+      $or: [
+      { 'email': req.body.email },
+      { 'username': req.body.username }
+    ]
+  }, {'email': 1, 'username': 1}, function (err, docs) { // if there are any errors, return the error
+      if (err) {
+        res.status(500).json({'error': err, 'success': "false", 'message': "Error finding that user or email."}); // return shit if the user is already registered
       } else {
-          // if there is no user with that email
-          // create the user
-          var newUser = new User();
+        if (docs) {
+          if (docs.username == req.body.username && docs.email == req.body.email) {
+            res.status(400).json({'success': false, 'message': "That email and username are already registered. Try with another ones." });
+          } else if (docs.email == req.body.email) {
+              res.status(400).json({'success': false, 'message': "That email is already registered. Try with another one." });
+          } else if (docs.username == req.body.username) {
+              res.status(400).json({'success': false, 'message': "That username is already registered. Try with another one." });
+          }
+        } else {
 
-          // set the user's local credentials
-          newUser.email = req.body.email;
-          newUser.username = req.body.username;
-          newUser.password = newUser.generateHash(req.body.password);
-          newUser.image = "/static/img/default.jpg"; //TODO: possible change of path
+            var newUser = new User();
+            // set the user's local credentials
+            newUser.email = req.body.email;
+            newUser.username = req.body.username;
+            newUser.password = newUser.generateHash(req.body.password);
+            newUser.image = "/static/img/default.jpg"; //TODO: possible change of path
+            // Save the user
+            newUser.save(function (err) {
+                if (err) {
+                  res.status(500).json({'success': false, 'error': err, 'message': "Could not save user."});
+                } else {
+                  // Create a token and --- sign with the user information --- and secret password
+                  var token = jwt.sign({"_id": newUser._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
+                    expiresIn: 216000 // expires in 6 hours
+                  });
 
-          // save the user
-          newUser.save(function (err) {
-              if (err) throw err;
-
-              // create a token and --- sign with the user information --- and secret password
-              var token = jwt.sign({"_id": newUser._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
-                expiresIn: 216000 // expires in 6 hours
-              });
-
-              // return the information including token as JSON
-              res.json({
-                success: true,
-                _id: newUser._id,
-                username: newUser.username,
-                message: 'Logged in',
-                token: token
-              });
-          });
+                  // Return the information including token as JSON
+                  res.json({
+                    'success': true,
+                    '_id': newUser._id,
+                    'username': newUser.username,
+                    'message': 'Logged in',
+                    'token': token
+                  });
+                }
+            });
+        }
       }
   });
 });
@@ -67,24 +73,19 @@ router.post('/signup', function(req, res){
 //AUTHENTICATE TO GIVE NEW TOKEN
 router.post('/authenticate', function(req, res) {
   /* Verify that the username is really there. Done for security reasons. */
-  if (req.body.username) {
-    /* Determine if the username is an email or a simple string */
-    var field;
-    if(req.body.username.search(/@/) !== -1)
-      field = 'email';
-    else
-      field = 'username';
-
-    // find the user
+  if (req.body.username || req.body.email) {
     User.findOne({
-      //DONE: We need to work with username OR email
-      [field]: req.body.username
+        $or: [
+        { 'email': req.body.email },
+        { 'username': req.body.username }
+      ]
     }, function(err, user) {
-      if (err) throw err;
-      if (!user) {
+      if (err) {
+        res.json({'error': err })
+      } else if (!user) {
         res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
       } else if (user) {
-        if (user.password != req.body.password) { // check if password matches
+        if (!user.comparePassword(req.body.password)) { // check if password matches
           res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
         } else {
           // if user is found and password is right
@@ -92,22 +93,20 @@ router.post('/authenticate', function(req, res) {
           var token = jwt.sign({"_id": user._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
             expiresIn: 216000 // expires in 6 hours
           });
-
-          // return the information including token as JSON
+          // Return the information including token as JSON
           res.json({
-            success: true,
-            _id: user._id,
-            username: user.username,
-            message: 'Logged in',
-            token: token
+            'success': true,
+            '_id': user._id,
+            'username': user.username,
+            'message': 'Logged in',
+            'token': token
           });
         }
       }
     });
-  }
-  else {
+  } else {
     /* In case the username field is in blank, end the connection with the client */
-    res.json({ success: false, message: 'Authentication failed. No user specified.' });
+    res.json({ 'success': false, 'message': "Authentication failed. No user specified." });
   }
 });
 
@@ -146,7 +145,7 @@ router.use(function(req, res, next) {
       if (err) {
         return res.status(401).json({'success': false, 'message': 'Failed to authenticate token.'});
       } else { //Send the decoded token to the request body
-        req.decoded = decoded; // if everything is good, save to request for use in other routes
+        req.U_ID = decoded._id; //Save the decoded user_id from the token to use in next routes
         next();
       }
     });
@@ -343,15 +342,18 @@ router.route('/moments/:moment_id/likes')
     });
 })
 .post(function (req, res) {
-  Moment.findByIdAndUpdate(req.params.moment_id, {
-            $addToSet: { usersHeart: req.body.hearter }
-        }, function(err) {
-            if (err) {
-              res.status(500).json({'error': err, 'success': false});
-            } else {
-              res.json({"message": "Successfully liked", "success": true});
-            }
-        });
+  console.log(req.user);
+  Moment.findById(req.params.moment_id)
+  .update({ $addToSet: { hearts: req.U_ID } })
+  .exec(function(err, result) {
+      if (err) {
+        res.status(500).json({'error': err, 'success': false});
+      } else if (result.nModified == 0) {
+        res.json({'message': "Already liked.", 'success': false});
+      } else {
+        res.json({'message': "Successfully liked", "success": true});
+      }
+  });
 })
 .delete(function (req, res) { //Unheart
   //Remove like from moment

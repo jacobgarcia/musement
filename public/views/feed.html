@@ -2,11 +2,11 @@
   <div class="side-bar">
     <div class="side-bar-content">
       <img src="/static/img/musement-logotype-white.svg" alt="" style="position: absolute; width: 110px; top: -30px; margin: 0 50px;"/>
-      <div class="profile" ui-sref="feed.profile({username:'cesargdm3'})" ng-click="bodyMove()">
+      <div class="profile" ui-sref="feed.profile({username: username})" ng-click="bodyMove()">
         <img class="profile-photo" src="" alt="" />
         <div class="profile-text">
           <p class="profile-name">{{thisUser.name}} {{thisUser.lastName}}</p>
-          <p class="profile-username">@{{thisUser.username}}</p>
+          <p class="profile-username">@{{username}}</p>
         </div>
       </div>
       <!-- <div class="search">
@@ -30,9 +30,9 @@
           <li ui-sref="other" class="pointer"><a>Another</a></li>
         </ul> -->
       </div>
-      <div class="log-out">
-        <img src="/static/img/buttons/btn_log out.svg" class="icon" alt="" />
-        <p ui-sref="landing">Log out</p>
+      <div class="log-out" ng-click="logout()">
+        <img src="/static/img/buttons/btn_log out.svg" class="icon" alt=""/>
+        <p>Log out</p>
       </div>
     </div>
 
@@ -148,13 +148,13 @@
       </nav>
     </header>
     <main class="main-feed">
-      <div class="moment" ng-repeat="moment in interests.moments" ng-click="showMomentDetails(moment_id)">
+      <div class="moment" ng-repeat="moment in interests.moments" ng-click="showMomentDetails(moment_id)" ng-model="moments">
         <div class="moment-text">
-          <div class="user-image">
+          <div class="user-image" ui-sref="feed.profile({username: moment.user.username})" ng-click="$event.stopPropagation();">
             <img src="" alt="" />
           </div>
           <div class="moment-info">
-            <p class="user-name">{{moment.user.name}} {{moment.user.surname}}</p>
+            <p class="user-name" ng-click="$state.go(moment.user.name); $event.stopPropagation();">{{moment.user.name}} {{moment.user.surname}}</p>
             <p>{{moment.description}}</p>
             <p class="question">{{moment.question}}</p>
           </div>
@@ -168,8 +168,8 @@
           <p>{{moment.feedback.length}} feedbacks</p>
         </div>
         <div class="moment-stats">
-          <div class="hearts">
-            <p>{{moment.usersHearted.length}}</p>
+          <div class="hearts" ng-click="heart($index, moment._id); $event.stopPropagation();" ng-class="{liked: ((moment.hearts | contains:user_id) || moment.liked)}">
+            <p>{{moment.hearts.length}}</p>
           </div>
           <div class="feedback-icon">
             <p>Add feedback</p>
