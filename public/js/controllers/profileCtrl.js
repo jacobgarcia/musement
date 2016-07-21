@@ -7,7 +7,7 @@ angular.module('musementApp')
     if (response.data.success) {
       $scope.user = response.data.user;
       var user_id = response.data.user._id;
-      
+
       profileDataService.getProfileMoments(user_id, function (response) {
         $scope.user.moments = response.data.moments;
       });
@@ -23,12 +23,12 @@ angular.module('musementApp')
 .service('profileDataService', function($http) {
 
   this.getProfileInfo = function(user_id, callback) {
-    $http.get('http://' + ipAddress + '/api/users/' + user_id )
+    $http.get(host + '/api/users/' + user_id )
     .then(callback);
   }
 
   this.getProfileMoments = function(user_id, callback) {
-    $http.get('http://' + ipAddress + '/api/users/' + user_id + '/moments')
+    $http.get(host + '/api/users/' + user_id + '/moments')
     .then(callback);
   }
 

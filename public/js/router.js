@@ -13,10 +13,10 @@ angular.module('musementApp')
         templateUrl: "/static/views/signup.html",
         authenticate: false //Doesn't requires authentication
       })
-      .state("signin", {
-        url: "/signin",
+      .state("login", {
+        url: "/login",
         controller: 'loginCtrl',
-        templateUrl: "/static/views/signin.html",
+        templateUrl: "/static/views/login.html",
         authenticate: false //Doesn't requires authentication
       })
       .state("feed", {

@@ -1,15 +1,17 @@
 <body>
+  <a href="/">
   <div class="full-logo">
     <img src="./static/img/musement.svg" alt="" class="logo"/>
     <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
   </div>
+  </a>
   <div class="sign-fields">
     <input type="text" name="user" ng-model="user" placeholder="Username or email">
     <input type="password" name="password" ng-model="pass" placeholder="Password">
     <input type="button" class="green-button small" value="Sign in" ng-click="login(user,pass)">
     <div class="">
-      <p><a ng-click="">Need help?</a></p>
       <p>Not a member? <a ui-sref="signup">Sign up</a></p>
+      <p><a ng-click="">Need help?</a></p>
     </div>
   </div>
 </body>

@@ -22,8 +22,8 @@ router.post('/signup', function(req, res){
   // we are checking to see if the user trying to signup already exists
   User.findOne({
       $or: [
-      { 'email': req.body.email },
-      { 'username': req.body.username }
+      { 'email': req.body.email.toLowerCase() }, //SET EMAIL AND USERNAME TO LOWERCASE
+      { 'username': req.body.username.toLowerCase() } //SET EMAIL AND USERNAME TO LOWERCASE
     ]
   }, {'email': 1, 'username': 1}, function (err, docs) { // if there are any errors, return the error
       if (err) {
@@ -161,7 +161,7 @@ router.use(function(req, res, next) {
 // *************************************
 
 router.route('/users')
-.post(function (req, res) {
+.post(function (onreq, res) {
   var user = new User();
 
   user.name = req.body.name;
@@ -248,7 +248,7 @@ router.route('/users/id=:user_id?') //just when the url has "id=" it will run, o
 router.route('/users/:user_id/moments')
   .get(function (req, res) {
     //Get moments of user
-    Moment.find({"user": req.params.user_id})
+    Moment.find({"user": req.params.user_id}, '-feedback.user -feedback.text -feedback.comment -feedback.attachments -feedback.upvotes')
     .sort('-_id')
     .exec(
       function(err, moments) {
@@ -306,7 +306,7 @@ router.route('/moments/:moment_id')
     });
 })
 .put(function (req, res) {
-  //Update moment of the user
+  //Edit moment of the user
   res.status(501).json({'message':'Not yet supported.', 'success': false});
 })
 .delete(function (req, res) {
@@ -324,6 +324,39 @@ router.route('/moments/:moment_id')
         res.json({"message": "Successfully deleted moment", "status": moment});
       }
     });
+});
+
+router.route('/moments/:moment_id/feedback')
+.get(function (req, res) { //Get detailed information of the moment
+  //TODO: Validate the user adds a moment for him (and not someone else)
+  Moment.findById(req.params.moment_id, 'feedback')
+  .populate('feedback.user','username name surname')
+  .sort('-feedback._id')
+  .exec(
+    function(err, moment) {
+      if (err) {
+        res.status(500).json({'error': err, 'success': false});
+      } else if (!moment) {
+        res.json({"message": "No moment found.", "success": false});
+      } else {
+        res.json(moment);
+      }
+    });
+})
+.post(function (req, res) {
+
+  let feedback = req.body.text;
+  let attachments = req.body.attachments;
+
+  Moment.findById(req.params.moment_id) //User, comment
+  .update({ $addToSet: { 'feedback': {'user': req.U_ID, 'text': feedback} } })
+  .exec(function(err) {
+      if (err) {
+        res.status(500).json({'error': err, 'success': false});
+      } else {
+        res.json({'message': "Feedback sent.", "success": true});
+      }
+  });
 });
 
 router.route('/moments/:moment_id/likes')
@@ -368,6 +401,49 @@ router.route('/moments/:moment_id/likes')
               }
           });
 });
+
+// router.route('/moments/:moment_id/upvotes')
+// .get(function (req, res) { //Get detailed information of the moment
+//   //TODO: Validate the user adds a moment for him (and not someone else)
+//   Moment.findById(req.params.moment_id)
+//   .exec(
+//     function(err, moment) {
+//       if (err) {
+//         res.status(500).json({'error': err, 'success': false});
+//       } else if (!moment) {
+//         res.json({"message": "No moment found.", "success": false});
+//       } else {
+//         res.json(moment);
+//       }
+//     });
+// })
+// .post(function (req, res) {
+//   console.log(req.user);
+//   Moment.findById(req.params.moment_id)
+//   .update({ $addToSet: { hearts: req.U_ID } })
+//   .exec(function(err, result) {
+//       if (err) {
+//         res.status(500).json({'error': err, 'success': false});
+//       } else if (result.nModified == 0) {
+//         res.json({'message': "Already liked.", 'success': false});
+//       } else {
+//         res.json({'message': "Successfully liked", "success": true});
+//       }
+//   });
+// })
+// .delete(function (req, res) { //Unheart
+//   //Remove like from moment
+//     //Validate user owns the moment
+//     Moment.findByIdAndUpdate(req.params.moment_id, {
+//               $pull: {usersHeart: req.body.hearter}
+//           }, function(err) {
+//               if (err) {
+//                 res.status(500).json({'error': err, 'success': false});
+//               } else {
+//                 res.json({"message": "Successfully un-liked", "success": true});
+//               }
+//           });
+// });
 
 // *************************************
 // ***                               ***

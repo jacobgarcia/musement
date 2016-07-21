@@ -12,9 +12,15 @@ var momentSchema = new mongoose.Schema({
       ref: 'User', /* Moment Schema. Remember to define it as this in the export module */
       required: true
     },
-    comment: String
+    upvotes: [{
+      type: mongoose.Schema.Types.ObjectId, /* Object ID from moment */
+      ref: 'User', /* Moment Schema. Remember to define it as this in the export module */
+      required: true
+    }],
+    attachments: [String],
+    text: String
   }],
-  files: [ String ],
+  attachments: [String],
   tags: [{
     type: mongoose.Schema.Types.ObjectId, /* Object ID from tags */
     ref: 'Tag'

@@ -1,16 +1,36 @@
 <body>
-  <div class="full-logo">
-    <img src="./static/img/musement.svg" alt="" class="logo"/>
-    <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
-  </div>
+  <a href="/">
+    <div class="full-logo">
+      <img src="./static/img/musement.svg" alt="" class="logo"/>
+      <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
+    </div>
+  </a>
   <div class="sign-fields">
-    <input type="email" ng-model="email" name="name" placeholder="Email">
-    <input type="password" ng-model="password" name="name" placeholder="Password">
-    <input type="text" ng-model="username" name="name" placeholder="Username">
-    <input type="button" class="green-button small" value="Sign up" ng-click="signup()">
+    <input type="email" ng-model="user.email" name="name" placeholder="Email">
+    <input type="password" ng-model="user.password" name="name" placeholder="Password">
+    <input type="button" class="green-button small" value="Sign Up" ng-click="next()">
     <div class="">
-      <p>Already a member? <a ui-sref="signin">Sign in</a></p>
+      <p>Already a member? <a ui-sref="login">Log in</a></p>
       <p><a ng-click="">Need help?</a></p>
+    </div>
+  </div>
+  <div class="complete-signup sign-fields" ng-hide="next">
+    <div class="">
+      <h5>One more step</h5>
+      <h2>Complete your <span>signup</span></h2>
+      <input type="text" name="name" ng-model="user.name" placeholder="Name" required="true">
+      <input type="text" name="surname" ng-model="user.surname" placeholder="Surname" required="true">
+      <input type="email" name="username" ng-model="user.username" placeholder="username" required="true">
+    </div>
+    <div class="profile-picture">
+      <div class="photo" style="background-image:url({{image_url}})">
+        <input type="file" name="name" ng-model="user.photo">
+      </div>
+      <p>You allway can add or change your photo later.</p>
+    </div>
+    <div class="">
+      <input type="button" name="done" value="DONE" ng-click="signup(user)" class="green-button">
+      <p>Will be necessary to improve your experience in musement</p>
     </div>
   </div>
 </body>

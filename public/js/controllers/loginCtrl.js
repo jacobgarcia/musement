@@ -2,12 +2,13 @@ angular.module('musementApp')
 .controller('loginCtrl', function($scope, loginDataService, localStorageService, $state, jwtHelper) {
 
   console.log('Hello world!');
+  $scope.next = true;
 
   $scope.login = function(user, password) {
 
     var loginInfo = {};
-    loginInfo.username = user;
-    loginInfo.email = user;
+    loginInfo.username = user.toLowerCase();
+    loginInfo.email = user.toLowerCase(); //IMPORTANT!
     loginInfo.password = password;
 
     loginDataService.authenticate(loginInfo, function(res) {
@@ -21,18 +22,19 @@ angular.module('musementApp')
         localStorageService.set('username', data.username); //Set the user_id in the localStorageService
         $state.go('feed'); //Go to feed state :)
       } else {
-        alert(response.data.message);
+        alert(data.message);
       }
 
     });
 
   };
+
 })
 
 .service('loginDataService', function($http) {
 
   this.authenticate = function(login_info, callback) {
-    $http.post('http://' + ipAddress + '/api/authenticate', login_info)
+    $http.post(host + '/api/authenticate', login_info)
     .then(callback)
   };
 
