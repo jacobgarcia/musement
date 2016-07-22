@@ -3,7 +3,7 @@ angular.module('musementApp')
 
   var username = $stateParams.username;
 
-  profileDataService.getProfileInfo(username, function(response) {
+  profileDataService.getProfileInfo('u=' + username, function(response) {
     if (response.data.success) {
       $scope.user = response.data.user;
       var user_id = response.data.user._id;

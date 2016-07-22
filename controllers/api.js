@@ -42,9 +42,11 @@ router.post('/signup', function(req, res){
             var newUser = new User();
             // set the user's local credentials
             newUser.email = req.body.email;
+            newUser.surname = req.body.surname;
+            newUser.name = req.body.name;
             newUser.username = req.body.username;
             newUser.password = newUser.generateHash(req.body.password);
-            newUser.image = "/static/img/default.jpg"; //TODO: possible change of path
+            newUser.image = req.body.image || "/static/img/default.jpg"; //TODO: possible change of path
             // Save the user
             newUser.save(function (err) {
                 if (err) {
@@ -180,8 +182,39 @@ router.route('/users')
   });
 });
 
+
+router.route('/users/u=:username?')
+.get(function (req, res) {
+  console.log('USERNAME: '+ req.params.username);
+  // console.log("Username: " + req.params.username);
+  User.findOne({"username": req.params.username}, '-password') //Return all excepting password
+  .exec(function(err, user) {
+    if (err) {
+      res.status(500).json({'error': err, 'success': false});
+    } else if (!user) {
+      res.status(404).json({'error': {'message': 'No username found.'}, 'success': false});
+    } else {
+      res.json({"user": user, "success": true});
+    }
+  });
+
+})
+.put(function (req, res) {
+  var token = req.body.token || req.query.token || req.headers['x-access-token']; // check header or url parameters or post parameters for token
+  var decoded = jwt.decode(token);
+  var _id = decoded._id;
+
+  //UPDATE USER PROFILE
+  res.status(501).json({'message':'Not yet supported.', 'success': false});
+})
+.delete(function (req, res) {
+  //DELETE USER
+    //Authenticate logged user is deleting himself
+  res.status(501).json({'message':'Not yet supported.', 'success': false});
+});
+
 //Find by user_id or username
-router.route('/users/id=:user_id?') //just when the url has "id=" it will run, otherwise it will look for a username
+router.route('/users/:user_id') //just when the url has "id=" it will run, otherwise it will look for a username
 .get(function (req, res) {
   // console.log("ID");
   User.findById(req.params.user_id,
@@ -208,36 +241,6 @@ router.route('/users/id=:user_id?') //just when the url has "id=" it will run, o
     //Authenticate logged user is deleting himself
   res.status(501).json({'message':'Not yet supported.', 'success': false});
 });
-
-  router.route('/users/:username')
-    .get(function (req, res) {
-      // console.log("Username: " + req.params.username);
-      User.findOne({"username": req.params.username},
-        '-password', //Return all excepting password
-        function(err, user) {
-          if (err) {
-            res.status(500).json({'error': err, 'success': false});
-          } else if (!user) {
-            res.status(404).json({'error': {'message': 'No username found.'}, 'success': false});
-          } else {
-            res.json({"user": user, "success": true});
-          }
-        });
-
-    })
-    .put(function (req, res) {
-      var token = req.body.token || req.query.token || req.headers['x-access-token']; // check header or url parameters or post parameters for token
-      var decoded = jwt.decode(token);
-      var _id = decoded._id;
-
-      //UPDATE USER PROFILE
-      res.status(501).json({'message':'Not yet supported.', 'success': false});
-    })
-    .delete(function (req, res) {
-      //DELETE USER
-        //Authenticate logged user is deleting himself
-      res.status(501).json({'message':'Not yet supported.', 'success': false});
-    });
 
 // *************************************
 // ***                               ***
@@ -294,6 +297,14 @@ router.route('/moments/:moment_id')
   //Get detailed information of the moment
     //Validate the user adds a moment for him (and not someone else)
   Moment.findById(req.params.moment_id)
+  .populate({
+    path: 'feedback',
+      populate: {
+        path: 'user',
+        model: 'User',
+        select: 'username'
+      }
+   })
   .exec(
     function(err, moment) {
       if (err) {
@@ -330,7 +341,6 @@ router.route('/moments/:moment_id/feedback')
 .get(function (req, res) { //Get detailed information of the moment
   //TODO: Validate the user adds a moment for him (and not someone else)
   Moment.findById(req.params.moment_id, 'feedback')
-  .populate('feedback.user','username name surname')
   .sort('-feedback._id')
   .exec(
     function(err, moment) {

@@ -20,8 +20,13 @@ $gray: #999;
   input[type="text"], input[type="email"], input[type="password"] {
     border: 1px solid $gray;
   }
+  .ng-submitted {
+    .ng-empty {
+      border: 2px solid red;
+    }
+  }
   input[type="text"].ng-invalid.ng-touched, input[type="email"].ng-invalid.ng-touched, input[type="password"].ng-invalid.ng-touched {
-    border: 1px solid red;
+    border: 2px solid red;
   }
 }
 .complete-signup {

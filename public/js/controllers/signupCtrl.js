@@ -5,7 +5,6 @@ angular.module('musementApp')
   $scope.next = true;
 
   $scope.next = function() {
-    console.log('hey');
     if (this.user.email && this.user.password) {
         $scope.next = false;
     } else {
@@ -21,6 +20,7 @@ angular.module('musementApp')
     signupInfo.name = user.name;
     signupInfo.surname = user.surname;
     signupInfo.password = user.password;
+    signupInfo.image = $scope.image_url || user.image;
 
     console.log(signupInfo);
 
@@ -48,7 +48,7 @@ angular.module('musementApp')
     if (!newValue) { return; }
     let hash = md5(newValue.toLowerCase());
     $scope.image_url = "https://www.gravatar.com/avatar/" + hash + "?s=" + 200 + "&d=identiconf=404";
-    console.log($scope.image_url);
+
   })
 
 })

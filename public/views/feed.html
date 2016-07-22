@@ -1,11 +1,11 @@
-<div class="supper-wrapper">
+<div class="supper-wrapper" id="supper-wrapper">
   <div class="side-bar">
     <div class="side-bar-content">
       <img src="/static/img/musement-logotype-white.svg" alt="" style="position: absolute; width: 110px; top: -30px; margin: 0 50px;"/>
       <div class="profile" ui-sref="feed.profile({username: username})" ng-click="bodyMove()">
         <img class="profile-photo" src="" alt="" />
         <div class="profile-text">
-          <p class="profile-name">{{thisUser.name}} {{thisUser.lastName}}</p>
+          <p class="profile-name">{{this_user.name}} {{this_user.surname}}</p>
           <p class="profile-username">@{{username}}</p>
         </div>
       </div>
@@ -84,7 +84,7 @@
   </div>
 </div>
 
-<div class="moment-details" ng-class="{'active': momentDetailsSeen}">
+<!-- <div class="moment-details" ng-class="{'active': momentDetailsSeen}">
   <header>
     <nav>
       <ul class="menu">
@@ -120,7 +120,7 @@
     <input type="text" name="name" value="">
     <input type="button" name="name" value="Send">
   </div>
-</div>
+</div> -->
 
 <div class="body" ng-class="{'active': bodyMoved}">
   <div class="inner-body" ui-view>
@@ -148,7 +148,7 @@
       </nav>
     </header>
     <main class="main-feed">
-      <div class="moment" ng-repeat="moment in interests.moments" ng-click="showMomentDetails(moment_id)" ng-model="moments">
+      <div class="moment" ng-repeat="moment in interests.moments" ng-click="showDetails(moment._id)" ng-model="moments">
         <div class="moment-text">
           <div class="user-image" ui-sref="feed.profile({username: moment.user.username})" ng-click="$event.stopPropagation();">
             <img src="" alt="" />

@@ -182,7 +182,7 @@ input {
   -moz-appearance: none;
   appearance: none;
 }
-input[type="button"] {
+input[type="button"], input[type="submit"] {
   cursor: pointer;
   background: rgb(247, 193, 108);
   font-size: 1rem;
@@ -190,7 +190,7 @@ input[type="button"] {
   color: rgb(255, 255, 255);
   border-radius: 3px;
 }
-input[type="button"].green-button {
+input[type="button"].green-button, input[type="submit"].green-button {
   background: $green;
 }
 input[type="button"].small {
@@ -211,11 +211,13 @@ input[type="button"].small {
   display: block;
   margin-top: 1rem;
 }
-.input-elements input[type="button"] {
-  padding: 3px 10px;
-  margin-left: -20px;
-  border-radius: 8px;
-  display: inline-block;
+.input-elements {
+  input[type="button"], input[type="submit"]  {
+    padding: 3px 10px;
+    margin-left: -20px;
+    border-radius: 8px;
+    display: inline-block;
+  }
 }
 .section p {
   padding: 0 5%;

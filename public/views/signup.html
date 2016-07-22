@@ -6,9 +6,11 @@
     </div>
   </a>
   <div class="sign-fields">
-    <input type="email" ng-model="user.email" name="name" placeholder="Email">
-    <input type="password" ng-model="user.password" name="name" placeholder="Password">
-    <input type="button" class="green-button small" value="Sign Up" ng-click="next()">
+    <form class="" ng-submit="next()">
+      <input type="email" ng-model="user.email" name="name" placeholder="Email">
+      <input type="password" ng-model="user.password" name="name" placeholder="Password">
+      <input type="submit" class="green-button small" value="Sign Up">
+    </form>
     <div class="">
       <p>Already a member? <a ui-sref="login">Log in</a></p>
       <p><a ng-click="">Need help?</a></p>
@@ -20,7 +22,7 @@
       <h2>Complete your <span>signup</span></h2>
       <input type="text" name="name" ng-model="user.name" placeholder="Name" required="true">
       <input type="text" name="surname" ng-model="user.surname" placeholder="Surname" required="true">
-      <input type="email" name="username" ng-model="user.username" placeholder="username" required="true">
+      <input type="text" name="username" ng-model="user.username" placeholder="username" required="true">
     </div>
     <div class="profile-picture">
       <div class="photo" style="background-image:url({{image_url}})">
