@@ -263,12 +263,9 @@ router.route('/users/:user_id/moments')
       });
   })
   .post(function (req, res) {
-    var token = req.body.token || req.query.token || req.headers['x-access-token']; // check header or url parameters or post parameters for token
-    var decoded = jwt.decode(token);
-    var decoded_id = decoded._id;
-    // console.log('decoded', decoded_id);
-    // console.log('params', req.params.user_id);
-    if(decoded_id === req.params.user_id) { //Verify that is the user who is adding a moment to himself
+    var user_id = req.U_ID;
+
+    if(user_id === req.params.user_id) { //Verify that is the user who is adding a moment to himself
       let moment = new Moment();
       // moment.timelapse = req.body.timelapse;
       //moment.project
@@ -297,6 +294,7 @@ router.route('/moments/:moment_id')
   //Get detailed information of the moment
     //Validate the user adds a moment for him (and not someone else)
   Moment.findById(req.params.moment_id)
+  .populate('user','name surname username image')
   .populate({
     path: 'feedback',
       populate: {
@@ -593,7 +591,7 @@ router.route('/users/:user_id/interests/moments')
   //NOTICE: Not yet implemented
   //
   Moment.find()
-  .populate('user','username name surname')
+  .populate('user','username name surname image')
   .sort('-_id')
   .exec(function(err, moments) {
     if (err) {

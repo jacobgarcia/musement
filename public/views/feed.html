@@ -3,7 +3,7 @@
     <div class="side-bar-content">
       <img src="/static/img/musement-logotype-white.svg" alt="" style="position: absolute; width: 110px; top: -30px; margin: 0 50px;"/>
       <div class="profile" ui-sref="feed.profile({username: username})" ng-click="bodyMove()">
-        <img class="profile-photo" src="" alt="" />
+        <img class="profile-photo" src="{{this_user.image}}" alt="" />
         <div class="profile-text">
           <p class="profile-name">{{this_user.name}} {{this_user.surname}}</p>
           <p class="profile-username">@{{username}}</p>
@@ -150,19 +150,17 @@
     <main class="main-feed">
       <div class="moment" ng-repeat="moment in interests.moments" ng-click="showDetails(moment._id)" ng-model="moments">
         <div class="moment-text">
-          <div class="user-image" ui-sref="feed.profile({username: moment.user.username})" ng-click="$event.stopPropagation();">
-            <img src="" alt="" />
+          <div class="user-image" ng-click="showUserDetails(moment.user.username); $event.stopPropagation();">
+            <img src="{{moment.user.image}}" alt="" />
           </div>
           <div class="moment-info">
-            <p class="user-name" ng-click="$state.go(moment.user.name); $event.stopPropagation();">{{moment.user.name}} {{moment.user.surname}}</p>
+            <p class="user-name" ng-click="showUserDetails(moment.user.username); $event.stopPropagation();">{{moment.user.name}} {{moment.user.surname}}</p>
             <p>{{moment.description}}</p>
             <p class="question">{{moment.question}}</p>
           </div>
         </div>
         <ul class="moment-tags tags" ng-if="!!moment.tags.length">
-          <li>iOS</li>
-          <li>Food</li>
-          <li>Design</li>
+          <li ng-repeat="tag in moment.tags.name">{{tag}}</li>
         </ul>
         <div class="feedback-count">
           <p>{{moment.feedback.length}} feedbacks</p>
