@@ -6,10 +6,13 @@
     </div>
   </a>
   <div class="sign-fields">
-    <form class="" ng-submit="submit()">
+    <form name="signup" ng-submit="submit()">
       <input type="email" ng-model="user.email" name="name" placeholder="Email" required>
       <input type="password" ng-model="user.password" name="name" placeholder="Password" required>
-      <input type="password" ng-model="user.confirm_password" name="name" placeholder="Confirm Password" required>
+      <input type="password" ng-model="user.confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+      <div ng-messages="signup.confirm_password.$error" ng-if='signup.confirm_password.$touched'>
+        <span ng-message="password">Password different</span>
+      </div>
       <input type="submit" class="green-button small" value="Sign Up">
     </form>
     <div class="">
