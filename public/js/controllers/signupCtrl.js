@@ -2,10 +2,19 @@
 angular.module('musementApp')
 .controller('signupCtrl', function($scope, signupDataService, localStorageService, $state) {
 
+  //OUR FUNCTIONS
   $scope.next = true;
+  $scope.submit = true;
+
+  $scope.submit = function() {
+    if (this.user.password == this.user.confirm_password)
+      $scope.next();
+    else
+      console.log("Ay que las passwords");
+  }
 
   $scope.next = function() {
-    if (this.user.email && this.user.password) {
+    if (this.user.email && this.user.password ) {
         $scope.next = false;
     } else {
       console.log('no...');

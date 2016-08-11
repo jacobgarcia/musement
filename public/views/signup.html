@@ -6,9 +6,10 @@
     </div>
   </a>
   <div class="sign-fields">
-    <form class="" ng-submit="next()">
-      <input type="email" ng-model="user.email" name="name" placeholder="Email">
-      <input type="password" ng-model="user.password" name="name" placeholder="Password">
+    <form class="" ng-submit="submit()">
+      <input type="email" ng-model="user.email" name="name" placeholder="Email" required>
+      <input type="password" ng-model="user.password" name="name" placeholder="Password" required>
+      <input type="password" ng-model="user.confirm_password" name="name" placeholder="Confirm Password" required>
       <input type="submit" class="green-button small" value="Sign Up">
     </form>
     <div class="">
@@ -28,7 +29,7 @@
       <div class="photo" style="background-image:url({{image_url}})">
         <input type="file" name="name" ng-model="user.photo">
       </div>
-      <p>You allway can add or change your photo later.</p>
+      <p>You always can add or change your photo later.</p>
     </div>
     <div class="">
       <input type="button" name="done" value="DONE" ng-click="signup(user)" class="green-button">
