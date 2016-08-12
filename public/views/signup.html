@@ -11,7 +11,7 @@
       <input type="password" ng-model="user.password" name="name" placeholder="Password" required>
       <input type="password" ng-model="user.confirm_password" name="confirm_password" placeholder="Confirm Password" required>
       <div ng-messages="signup.confirm_password.$error" ng-if='signup.confirm_password.$touched'>
-        <span ng-message="password">Password different</span>
+        <span ng-message="password">Passwords do not match</span>
       </div>
       <input type="submit" class="green-button small" value="Sign Up">
     </form>
@@ -22,8 +22,7 @@
   </div>
   <div class="complete-signup sign-fields" ng-hide="next">
     <div class="">
-      <h5>One more step</h5>
-      <h2>Complete your <span>signup</span></h2>
+      <h2>Complete the <span style="font-weight:bold">Sign up</span></h2>
       <input type="text" name="name" ng-model="user.name" placeholder="Name" required="true">
       <input type="text" name="surname" ng-model="user.surname" placeholder="Surname" required="true">
       <input type="text" name="username" ng-model="user.username" placeholder="username" required="true">
@@ -32,11 +31,11 @@
       <div class="photo" style="background-image:url({{image_url}})">
         <input type="file" name="name" ng-model="user.photo">
       </div>
-      <p>You always can add or change your photo later.</p>
+      <p>What about a profile picture?</p>
     </div>
     <div class="">
       <input type="button" name="done" value="DONE" ng-click="signup(user)" class="green-button">
-      <p>Will be necessary to improve your experience in musement</p>
+      <p>Will be necessary to improve your experience in Musement</p>
     </div>
   </div>
 </body>

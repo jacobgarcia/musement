@@ -45,12 +45,13 @@ $gray: #999;
   width: 100%;
   transition: 0.5s;
   transform: translateX(0);
+  text-align: center;
   .photo {
     width: 125px;
     height: 125px;
     border-radius: 50%;
     margin: 0 auto;
-    background: red;
+    background: #28AE8B;
     margin-bottom: 20px;
     background-size: cover;
     background-position: center center;

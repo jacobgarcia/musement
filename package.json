@@ -4,9 +4,7 @@
   "description": "Main packages for the beta build",
   "main": "server.js",
   "author": "Musement",
-  "license": {
-    "private": true
-  },
+  "license": "UNLICENSED",
   "repository": {
     "type": "git",
     "url": "https://github.com/JacobGarcia/Musement.git"
