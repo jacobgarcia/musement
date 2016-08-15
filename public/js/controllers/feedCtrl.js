@@ -1,25 +1,27 @@
 angular.module('musementApp')
 .controller('feedCtrl', function($scope, $rootScope, $state, $stateParams, loginDataService, localStorageService, profileDataService, feedDataService, $compile, $sce) {
 
-  $scope.app = true; //UI attribute, important!
-  $scope.interests = {};
-  this.username = localStorageService.get('username');
-  $scope.username = localStorageService.get('username');
-  let user_id = localStorageService.get('user_id');
-  $scope.user_id = user_id;
 
-  feedDataService.getInterestsFeed(user_id, function(response) {
-    $scope.interests.moments = response.data.moments;
-    // console.log(response.data.moments);
-  });
+  let user_id = localStorageService.get('user_id');
   let detailCounter = 0;
 
+  $scope.app = true; //UI attribute, important!
+  $scope.interests = {};
+  $scope.username = localStorageService.get('username');
+  $scope.user_id = user_id;
+
+  this.username = localStorageService.get('username');
+
+  //Load the moments
+  feedDataService.getInterestsFeed(user_id, function(response) {
+    $scope.interests.moments = response.data.moments;
+  });
 
   $scope.showDetails = function (moment_id) {
 
     var supperWrapper = angular.element(document.getElementById('supper-wrapper'));
 
-    var content = $compile('<div class="moment-details" id="detail' + detailCounter +  '" ng-controller="momentCtrl" ng-init="init(\'' + moment_id + '\')" style="z-index: ' + (5 + detailCounter) + ' " ng-class="{\'active\': momentDetailsSeen}"><header><nav><ul class="menu"><li ng-click="removeDetail(\'detail' + detailCounter + '\')" id="menu"><</li><li class="title">Moment Details</li><li></li></ul></nav></header><main class="main-feed"><div class="moment"><div class="moment-text"><div class="user-image" ng-click="showUserDetails(moment.user.username)"><img src="{{moment.user.image}}" alt=""/></div><div class="moment-info"><p class="user-name">{{moment.user.name}} {{moment.user.surname}}</p><p>{{moment.description}}</p><p class="question">{{moment.question}}</p></div></div><ul class="moment-tags tags"><li>iOS</li><li>Food</li><li>Design</li></ul></div><div class="feedback" ng-repeat="feedback in moment.feedback"><p><span class="username" ng-click="showUserDetails(feedback.user.username)">@{{feedback.user.username}}</span>: {{feedback.text || feedback.comment}}</p></div></main><div class="comment"><input type="text" ng-model="feedback.text" value=""><input type="button" ng-click="setFeedback(feedback)" value="Send"></div></div>')($scope);
+    var content = $compile('<div class="moment-details" id="detail' + detailCounter +  '" ng-controller="momentCtrl" ng-init="init(\'' + moment_id + '\')" style="z-index: ' + (5 + detailCounter) + ' " ng-class="{\'active\': momentDetailsSeen}"><header><nav><ul class="menu"><li ng-click="removeDetail(\'detail' + detailCounter + '\')" id="menu"><</li><li class="title">Moment Details</li><li></li></ul></nav></header><main class="main-feed"><div class="moment"><div class="moment-text"><div class="user-image" ng-click="showUserDetails(moment.user.username)"><img src="{{moment.user.image}}" alt=""/></div><div class="moment-info"><p class="user-name">{{moment.user.name}} {{moment.user.surname}}</p><p>{{moment.description}}</p><p class="question">{{moment.question}}</p></div></div><ul class="moment-tags tags"><li>iOS</li><li>Food</li><li>Design</li></ul></div><div class="feedback-wrapper" id="feedback-wrapper"><div class="feedback" ng-repeat="feedback in moment.feedback"><p><span class="username" ng-click="showUserDetails(feedback.user.username)">@{{feedback.user.username}}</span>: {{feedback.text || feedback.comment}}</p></div></div></main><div class="comment"><input type="text" ng-model="feedback.text" value=""><input type="button" ng-click="setFeedback(feedback)" value="Send"></div></div>')($scope);
 
     detailCounter++;
 
@@ -44,14 +46,22 @@ angular.module('musementApp')
   profileDataService.getProfileInfo(user_id, function(response) {
     let user = response.data.user;
     console.log(user);
-    $scope.this_user = {};
-    $scope.this_user.name = user.name;
-    $scope.this_user.surname = user.surname;
+    $scope.this_user = user;
+
   });
 
   $scope.setMoment = function (moment) {
     feedDataService.setMoment(moment, user_id, function (response) {
-      console.log(response);
+      console.log(response.data);
+      if (response.data.success == true) {
+        $scope.showCreateMoment(); //Hide new moment
+        //TODO: Maybe add a new animation when a moment has been created, in the midtime we will just reload the feed
+        feedDataService.getInterestsFeed(user_id, function(response) { //Reload the moments
+          $scope.interests.moments = response.data.moments;
+        });
+      } else {
+        alert(response.error);
+      }
     });
   };
 
@@ -151,37 +161,39 @@ angular.module('musementApp')
   };
 
   $scope.removeDetail = function(element) {
-    console.log('removing element: ' + element);
     document.getElementById(element).remove()
   }
 
 
 })
 
-.controller('momentCtrl', function($scope, momentDataService) {
+.controller('momentCtrl', function($scope, $compile, momentDataService) {
 
   $scope.setFeedback = function (feedback) {
 
     feedback.moment_id = $scope.moment._id;
 
     momentDataService.setFeedback(feedback, function(res) {
-      if (res.data.success == true) {
+      if (res.data.success) {
+        //Insert directly into html instead of making a new request
+        var feedbackWrapper = angular.element(document.getElementById('feedback-wrapper'));
+        var content = $compile('<div class="feedback"><p><span class="username" ng-click="showUserDetails(\''+ $scope.username +'\')">@'+ $scope.username +'</span>: ' + feedback.text + '</p></div>')($scope);
+        feedbackWrapper.append(content);
+
         feedback.text = "";
       }
-    })
+    });
   }
 
   $scope.init = function(moment_id) {
 
     momentDataService.getMoment(moment_id, function(response) {
-      console.log(response.data.moment);
       $scope.moment = response.data.moment;
     })
 
   };
 
   $scope.removeDetail = function(element) {
-    console.log('removing element: ' + element);
     document.getElementById(element).remove()
   }
   // momentDataService.getMoment(this.)

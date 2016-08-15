@@ -9,6 +9,7 @@ angular.module('musementApp')
       var user_id = response.data.user._id;
 
       profileDataService.getProfileMoments(user_id, function (response) {
+        console.log('Profile moments');
         $scope.user.moments = response.data.moments;
       });
 

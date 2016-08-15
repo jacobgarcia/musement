@@ -43,13 +43,18 @@ $gray: #999;
   width: 100%;
   transition: 0.5s;
   transform: translateX(0);
+  input:last-child {
+    margin-bottom: 0;
+  }
   .photo {
     width: 125px;
     height: 125px;
+    z-index: 1;
     border-radius: 50%;
     margin: 0 auto;
-    background: red;
+    position: relative;
     margin-bottom: 20px;
+    background: transparent;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

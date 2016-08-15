@@ -13,6 +13,9 @@ body.app {
   width: 100%;
   height: 100%;
 }
+header.large-header {
+  display: none;
+}
 .supper-wrapper {
   display: flex;
   overflow: hidden;
@@ -69,6 +72,7 @@ body.app {
   img {
     width: 60px;
     height: 60px;
+    border-radius: 50%;
   }
   .member {
     margin-right: 20px;
@@ -412,6 +416,7 @@ ul.menu ul li {
     width: 43px;
     height: 43px;
     margin-right: 10px;
+    border-radius: 50%;
   }
   .profile-name {
     overflow: hidden;
@@ -488,7 +493,7 @@ ul.tags li {
   background: $lightGray;
   z-index: 100;
   padding: 16px;
-  transform: translateY(-100vh);
+  transform: translateY(-150vh);
   transition: ease-in-out 0.3s;
 }
 .moment-details {
@@ -565,10 +570,23 @@ ul.tags li {
   }
   body.app {
     overflow: auto;
+    flex-direction: column;
   }
   body.app nav {
-    padding: 26px;
-    padding-bottom: 16px;
+    position: absolute;
+    padding: 16px 36px;
+    display: flex;
+    justify-content: center;
+    ul {
+      max-width: 1000px;
+      height: 25px;
+      .title {
+        display: none;
+      }
+    }
+    ul.menu-icons li,ul.menu-icons li img  {
+      height: 21px;
+    }
   }
   body.ng-scope.app {
     display: flex;
@@ -582,5 +600,21 @@ ul.tags li {
   }
   .side-bar {
     position: relative;
+    background: #F5F5F5;
+    color: #666;
+    flex-shrink: 0;
+    width: 225px;
+    .log-out {
+      color: #666;
+    }
+  }
+  header {
+    display: none;
+  }
+  header.large-header {
+    display: block;
+  }
+  .supper-wrapper .body .inner-body, .supper-wrapper .side-bar {
+    padding-top: 58px;
   }
 }

@@ -1,3 +1,17 @@
+<header class="large-header">
+  <nav>
+    <ul class="menu">
+      <li ng-click="bodyMove()" id="menu"><div class=""></div><div class=""></div><div class=""></div></li>
+      <li class="title">Interests</li>
+      <li>
+        <ul class="menu-icons">
+          <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt=""></li>
+          <li ng-click="showCreateMoment()"><img src="/static/img/buttons/btn_create.svg" class="icon" alt=""></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
 <div class="supper-wrapper" id="supper-wrapper">
   <div class="side-bar">
     <div class="side-bar-content">
@@ -20,9 +34,10 @@
         </ul>
         <h5>Projects</h5>
         <ul class="elements-list">
-          <li ui-sref="feed.project({name: 'canver'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Canver</li>
-          <li ui-sref="feed.project({name: 'lidilic'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Lidilic</li>
-          <li ui-sref="feed.project({name: 'kinder'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Kinder</li>
+          <li ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.title})" ng-click="bodyMove()" class="pointer">{{project.title}}</li>
+          <!-- <li ui-sref="feed.project({name: 'canver'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Canver</li>
+          <li ui-sref="feed.project({name: 'lidilic'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Lidilic</li>  -->
+          <!-- <li ui-sref="feed.project({name: 'kinder'})" ng-click="bodyMove()" ><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Kinder</li> -->
           <li ui-sref="feed.new-project" ng-click="bodyMove()" class="pointer"><input type="button" name="name" class="green-button small" value="New project"></li>
         </ul>
         <!-- <ul class="general">
@@ -177,5 +192,5 @@
     </main>
   </div>
 
-</div>
+  </div>
 </div>

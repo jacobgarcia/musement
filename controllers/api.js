@@ -187,7 +187,8 @@ router.route('/users/u=:username?')
 .get(function (req, res) {
   console.log('USERNAME: '+ req.params.username);
   // console.log("Username: " + req.params.username);
-  User.findOne({"username": req.params.username}, '-password') //Return all excepting password
+  User.findOne({'username': req.params.username}, '-password') //Return all excepting password
+  .populate('projects')
   .exec(function(err, user) {
     if (err) {
       res.status(500).json({'error': err, 'success': false});
@@ -217,15 +218,16 @@ router.route('/users/u=:username?')
 router.route('/users/:user_id') //just when the url has "id=" it will run, otherwise it will look for a username
 .get(function (req, res) {
   // console.log("ID");
-  User.findById(req.params.user_id,
-    '-password', //Return all excepting password
-    function(err, user) {
-      if (err) {
-        res.status(500).json({'error': err, 'success': false});
-      } else {
-        res.json({"user": user, "success": true});
-      }
-    });
+  User.findById(req.params.user_id, '-password') //Return all excepting password
+  .populate('projects', 'title')
+  .exec(
+  function(err, user) {
+    if (err) {
+      res.status(500).json({'error': err, 'success': false});
+    } else {
+      res.json({"user": user, "success": true});
+    }
+  });
 
 })
 .put(function (req, res) {
@@ -281,7 +283,7 @@ router.route('/users/:user_id/moments')
         if (err) {
           res.status(500).json({'error': err, 'success': false});
         } else {
-          res.json({'message': 'Moment created!', 'moment': moment, 'sucess': true});
+          res.json({'message': 'Moment created!', 'moment': moment, 'success': true});
         }
       });
     } else {
@@ -392,7 +394,7 @@ router.route('/moments/:moment_id/likes')
       } else if (result.nModified == 0) {
         res.json({'message': "Already liked.", 'success': false});
       } else {
-        res.json({'message': "Successfully liked", "success": true});
+        res.json({'message': "Successfully liked", 'success': true});
       }
   });
 })
@@ -405,7 +407,7 @@ router.route('/moments/:moment_id/likes')
               if (err) {
                 res.status(500).json({'error': err, 'success': false});
               } else {
-                res.json({"message": "Successfully un-liked", "success": true});
+                res.json({"message": "Successfully un-liked", 'success': true});
               }
           });
 });
@@ -459,16 +461,40 @@ router.route('/moments/:moment_id/likes')
 // ***                               ***
 // *************************************
 
+//Get projects by username
+router.route('/users/u=:username/p=:project')
+  .get(function (req, res) {
+    //Get projects of user
+    User.findOne({'username': req.params.username}, 'projects')
+    .populate('projects')
+    .exec(function(err, user) {
+
+      var hasProject = false;
+
+      user.projects.filter(function(project) {
+        hasProject = (project._doc.title || project.title_) == req.params.project;
+      });
+
+      if (err || !hasProject) {
+        res.status(500).json({'error': err || "No project found", 'success': false});
+      } else {
+        res.json({'project': user.projects[0], 'success': true});
+      }
+    });
+
+  })
+
 router.route('/users/:user_id/projects')
   .get(function (req, res) {
     //Get projects of user
-    Project.find({'user': req.params.user_id})
+    User.find({'_id': req.params.user_id}, 'projects')
+    .populate('projects', 'title')
     .exec(
       function(err, projects) {
         if (err) {
           res.status(500).json({'error': err, 'success': false});
         } else {
-          res.json(projects);
+          res.json({'projects': projects, 'success': true});
         }
       });
 
@@ -483,7 +509,7 @@ router.route('/users/:user_id/projects')
       if (err) {
         res.status(500).json({'error': err, 'success': false});
       } else {
-        res.json({message: 'Moment created!', moment: project});
+        res.json({message: 'Project created!', moment: project});
       }
     });
   });
@@ -491,7 +517,17 @@ router.route('/users/:user_id/projects')
 router.route('/projects/:project_id')
   .get(function (req, res) {
     Project.findById(req.params.project_id)
-    .populate('users','image username')
+    .lean()
+    .populate('members moments', 'name surname username image')
+    .populate({
+      path: 'moments',
+      model: 'Moment',
+      populate: {
+        path: 'user',
+        model: 'User',
+        select: 'name username surname image'
+      }
+     })
     .exec(function (err, project) {
       if (err) {
         res.status(500).json({'error': err, 'success': false});
@@ -499,6 +535,7 @@ router.route('/projects/:project_id')
         res.json(project);
       }
     })
+
   })
   .put(function (req, res) {
     //Update project info
