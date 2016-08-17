@@ -1,25 +1,28 @@
 <body>
-  <a href="/">
-    <div class="full-logo">
-      <img src="./static/img/musement.svg" alt="" class="logo"/>
-      <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
-    </div>
-  </a>
-  <div class="sign-fields">
-    <form name="signup" ng-submit="submit()">
-      <input type="email" ng-model="user.email" name="name" placeholder="Email" required>
-      <input type="password" ng-model="user.password" name="name" placeholder="Password" required>
-      <input type="password" ng-model="user.confirm_password" name="confirm_password" placeholder="Confirm Password" required>
-      <div ng-messages="signup.confirm_password.$error" ng-if='signup.confirm_password.$touched'>
-        <span ng-message="password">Password different</span>
+  <div class="sign-form">
+    <a href="/">
+      <div class="full-logo">
+        <img src="./static/img/musement.svg" alt="" class="logo"/>
+        <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
       </div>
-      <input type="submit" class="green-button small" value="Sign Up">
-    </form>
-    <div class="">
-      <p>Already a member? <a ui-sref="login">Log in</a></p>
-      <p><a ng-click="">Need help?</a></p>
+    </a>
+    <div class="sign-fields">
+      <form name="signup" ng-submit="submit()">
+        <input type="email" ng-model="user.email" name="name" placeholder="Email" required>
+        <input type="password" ng-model="user.password" name="name" placeholder="Password" required>
+        <input type="password" ng-model="user.confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+        <div ng-messages="signup.confirm_password.$error" ng-if='signup.confirm_password.$touched'>
+          <span ng-message="password">Password different</span>
+        </div>
+        <input type="submit" class="green-button small" value="Sign Up">
+      </form>
+      <div class="">
+        <p>Already a member? <a ui-sref="login">Log in</a></p>
+        <p><a ng-click="">Need help?</a></p>
+      </div>
     </div>
   </div>
+
   <div class="complete-signup sign-fields" ng-hide="next">
     <div class="">
       <h5>One more step</h5>

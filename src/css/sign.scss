@@ -1,5 +1,7 @@
 $gray: #999;
-
+.sign-form {
+  width: 100%;
+}
 .full-logo {
   width: 150px;
   margin: 0 auto;
@@ -75,6 +77,6 @@ $gray: #999;
   }
 }
 .complete-signup.ng-hide {
-  display: flex!important;
+  transition: 0.5s;
   transform: translateX(100%);
 }
