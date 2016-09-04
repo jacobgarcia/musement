@@ -21,7 +21,7 @@ angular.module('musementApp')
     }
   }
 
-  $scope.signup = function (user) {
+  $scope.sign = function (user) {
 
     let signupInfo = {};
     signupInfo.username = user.username.toLowerCase(); //IMPORTANT

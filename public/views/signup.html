@@ -1,19 +1,4 @@
 <body>
-<!--<<<<<<< HEAD
-  <a href="/">
-    <div class="full-logo">
-      <img src="./static/img/musement.svg" alt="" class="logo"/>
-      <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
-    </div>
-  </a>
-  <div class="sign-fields">
-    <form name="signup" ng-submit="submit()">
-      <input type="email" ng-model="user.email" name="name" placeholder="Email" required>
-      <input type="password" ng-model="user.password" name="name" placeholder="Password" required>
-      <input type="password" ng-model="user.confirm_password" name="confirm_password" placeholder="Confirm Password" required>
-      <div ng-messages="signup.confirm_password.$error" ng-if='signup.confirm_password.$touched'>
-        <span ng-message="password">Passwords do not match</span>
-=======-->
   <div class="sign-form">
     <a href="/">
       <div class="full-logo">
@@ -27,14 +12,13 @@
         <input type="password" ng-model="user.password" name="name" placeholder="Password" required>
         <input type="password" ng-model="user.confirm_password" name="confirm_password" placeholder="Confirm Password" required>
         <div ng-messages="signup.confirm_password.$error" ng-if='signup.confirm_password.$touched'>
-          <span ng-message="password">Password different</span>
+          <span ng-message="password">Passwords do not match</span>
         </div>
         <input type="submit" class="green-button small" value="Sign Up">
       </form>
       <div class="">
         <p>Already a member? <a ui-sref="login">Log in</a></p>
         <p><a ng-click="">Need help?</a></p>
-<!-->>>>>>> 440d8d40998d0cbda3a54528391ed14504c5400b-->
       </div>
     </div>
   </div>
@@ -53,7 +37,7 @@
       <p>What about a profile picture?</p>
     </div>
     <div class="">
-      <input type="button" name="done" value="DONE" ng-click="signup(user)" class="green-button">
+      <input type="button" name="done" value="DONE" ng-click="sign(user)" class="green-button">
       <p>Will be necessary to improve your experience in Musement</p>
     </div>
   </div>
