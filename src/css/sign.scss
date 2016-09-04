@@ -52,25 +52,40 @@ $gray: #999;
     margin-bottom: 0;
   }
   .photo {
+    width: 125px;
+    height: 125px;
+    z-index: 1;
+    border-radius: 50%;
+    margin: 0 auto;
+    position: relative;
+    margin-bottom: 20px;
+    background: transparent;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     img{
-      width: 125px;
-      height: 125px;
-      z-index: 1;
-      border-radius: 50%;
-      margin: 0 auto;
-      position: relative;
-      margin-bottom: 20px;
-      background: transparent;
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
+
     }
     input {
       opacity: 0;
       height: 100%;
       width: 100%;
       margin: 0;
+      position: absolute;
     }
+  }
+  .photo img{
+    width: 125px;
+    height: 125px;
+    z-index: 0;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    top:0;
+    background: transparent;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
   .profile-picture {
     display: flex;

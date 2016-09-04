@@ -32,8 +32,8 @@
       </div>
       <div class="profile-picture">
         <div class="photo">
-          <img ngf-thumbnail="user.image">
           <input type="file" ngf-select name="file" ng-model="user.image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="5MB"/>
+          <img ngf-thumbnail="user.image">
         </div>
         <p>What about a profile picture?</p>
         <i ng-show="upload_form.file.$error.maxSize">File too large {{user.image.size / 1000000|number:1}}MB: max 5M</i><br>
