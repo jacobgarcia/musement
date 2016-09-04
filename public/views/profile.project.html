@@ -1,0 +1,62 @@
+<header>
+  <nav>
+    <ul class="menu">
+      <li ng-click="bodyMove()" id="menu"><div class=""></div><div class=""></div><div class=""></div></li>
+      <li class="title">{{project.name}}</li>
+      <li>
+        <ul class="menu-icons">
+          <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt="" /></li>
+          <li ng-click="showCreateMoment()"><img src="/static/img/buttons/btn_create.svg" class="icon" alt="" /></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
+<main class="main-feed">
+  <div class="user-profile project">
+    <div class="user-info">
+      <h1>{{project.title}}</h1>
+      <p class="bio">{{project.description}}</p>
+      <h5>Members</h5>
+      <div class="members">
+        <div class="member" ng-repeat="member in project.members">
+          <img src="{{member.image}}" alt=""/>
+          <p>{{member.name}}</p>
+          <p>{{member.username}}</p>
+        </div>
+        <!-- <img src="" alt="" /> -->
+      </div>
+    </div>
+  </div>
+  <div class="moment" ng-repeat="moment in project.moments">
+    <div class="moment-text">
+      <div class="user-image">
+        <img src="{{moment.user.image}}" alt="" />
+      </div>
+      <div class="moment-info">
+        <p class="user-name">{{moment.user.name}} {{moment.user.surname}}</p>
+        <p>{{moment.description}}</p>
+        <p class="question">{{moment.question}}</p>
+      </div>
+    </div>
+    <div class="moment-image">
+      <img src="" alt="" />
+    </div>
+    <ul class="moment-tags tags">
+      <li>iOS</li>
+      <li>Food</li>
+      <li>Design</li>
+    </ul>
+    <div class="feedback-count">
+      <p>0 feedbacks</p>
+    </div>
+    <div class="moment-stats">
+      <div class="hearts">
+        <p>32</p>
+      </div>
+      <div class="feedback-icon">
+        <p>Add feedback</p>
+      </div>
+    </div>
+  </div>
+</main>

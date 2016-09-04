@@ -1,4 +1,19 @@
+<header class="large-header">
+  <nav>
+    <ul class="menu">
+      <li ui-sref="feed" id="menu"></li>
+      <li class="title">Moments</li>
+      <li>
+        <ul class="menu-icons">
+          <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt=""></li>
+          <li ng-click="showCreateMoment()"><img src="/static/img/buttons/btn_create.svg" class="icon" alt=""></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
 <div class="supper-wrapper" id="supper-wrapper">
+  <div class="super-hover" ng-class="{'active': momentSeen}" ng-click="momentSeen=false"></div>
   <div class="side-bar">
     <div class="side-bar-content">
       <img src="/static/img/musement-logotype-white.svg" alt="" style="position: absolute; width: 110px; top: -30px; margin: 0 50px;"/>
@@ -15,14 +30,15 @@
       <div class="side-options">
         <h5>Moments</h5>
         <ul class="elements-list">
-          <li ui-sref="feed" ng-click="bodyMove()" id="interests" class="active pointer"><img src="/static/img/buttons/btn_moments.svg" class="icon" alt="" />Interests</li>
+          <li ui-sref="feed" ng-click="bodyMove()" id="interests" class="active pointer"><img src="/static/img/buttons/btn_moments.svg" class="icon" alt="" />Moments</li>
           <!-- <li ui-sref="feed.connections" ng-click="bodyMove('feed.connections')" id="connections" class="pointer"><img src="/static/img/buttons/btn_connections.svg" class="icon" alt="" />Connections</li> -->
         </ul>
         <h5>Projects</h5>
         <ul class="elements-list">
-          <li ui-sref="feed.project({name: 'canver'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Canver</li>
-          <li ui-sref="feed.project({name: 'lidilic'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Lidilic</li>
-          <li ui-sref="feed.project({name: 'kinder'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Kinder</li>
+          <li ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.title})" ng-click="bodyMove()" class="pointer">{{project.title}}</li>
+          <!-- <li ui-sref="feed.project({name: 'canver'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Canver</li>
+          <li ui-sref="feed.project({name: 'lidilic'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Lidilic</li>  -->
+          <!-- <li ui-sref="feed.project({name: 'kinder'})" ng-click="bodyMove()" ><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Kinder</li> -->
           <li ui-sref="feed.new-project" ng-click="bodyMove()" class="pointer"><input type="button" name="name" class="green-button small" value="New project"></li>
         </ul>
         <!-- <ul class="general">
@@ -148,16 +164,19 @@
       </nav>
     </header>
     <main class="main-feed">
-      <div class="moment" ng-repeat="moment in interests.moments" ng-click="showDetails(moment._id)" ng-model="moments">
+      <div class="moment" ng-repeat="moment in interests.moments" ui-sref="feed.profile({username: moment.user.username})" ng-model="moments">
         <div class="moment-text">
-          <div class="user-image" ng-click="showUserDetails(moment.user.username); $event.stopPropagation();">
+          <div class="user-image" ui-sref="feed.profile({username: moment.user.username})">
             <img src="{{moment.user.image}}" alt="" />
           </div>
           <div class="moment-info">
-            <p class="user-name" ng-click="showUserDetails(moment.user.username); $event.stopPropagation();">{{moment.user.name}} {{moment.user.surname}}</p>
+            <p class="user-name" ng-click="console.log(moment);" ui-sref="feed.profile({username: moment.user.username})">{{moment.user.name}} {{moment.user.surname}}</p>
             <p>{{moment.description}}</p>
             <p class="question">{{moment.question}}</p>
           </div>
+        </div>
+        <div class="moment-attachments" ng-if="moment.attachments.length > 0">
+          <img  ng-repeat="attachment in moment.attachments" src="{{attachment}}" alt="" />
         </div>
         <ul class="moment-tags tags" ng-if="!!moment.tags.length">
           <li ng-repeat="tag in moment.tags.name">{{tag}}</li>
@@ -177,5 +196,5 @@
     </main>
   </div>
 
-</div>
+  </div>
 </div>

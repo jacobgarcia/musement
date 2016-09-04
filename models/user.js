@@ -26,6 +26,10 @@ var userSchema = new mongoose.Schema({
       type: String,
       required: true
     },
+    projects: [{
+      type: mongoose.Schema.Types.ObjectId, /* Object ID from projects */
+      ref: 'Project'
+    }],
     tags: [{
       type: mongoose.Schema.Types.ObjectId, /* Object ID from tags */
       ref: 'Tag'

@@ -1,5 +1,7 @@
 $gray: #999;
-
+.sign-form {
+  width: 100%;
+}
 .full-logo {
   width: 150px;
   margin: 0 auto;
@@ -45,14 +47,26 @@ $gray: #999;
   width: 100%;
   transition: 0.5s;
   transform: translateX(0);
+/*<<<<<<< HEAD
   text-align: center;
+=======*/
+  input:last-child {
+    margin-bottom: 0;
+  }
+/*>>>>>>> 440d8d40998d0cbda3a54528391ed14504c5400b*/
   .photo {
     width: 125px;
     height: 125px;
+    z-index: 1;
     border-radius: 50%;
     margin: 0 auto;
+/*<<<<<<< HEAD
     background: #28AE8B;
+=======*/
+    position: relative;
+/*>>>>>>> 440d8d40998d0cbda3a54528391ed14504c5400b*/
     margin-bottom: 20px;
+    background: transparent;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -71,6 +85,6 @@ $gray: #999;
   }
 }
 .complete-signup.ng-hide {
-  display: flex!important;
+  transition: 0.5s;
   transform: translateX(100%);
 }

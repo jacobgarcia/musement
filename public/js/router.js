@@ -17,45 +17,46 @@ angular.module('musementApp')
         url: "/login",
         controller: 'loginCtrl',
         templateUrl: "/static/views/login.html",
-        authenticate: false //Doesn't requires authentication
+        authenticate: false
       })
       .state("feed", {
         url: "/",
         controller: "feedCtrl",
         templateUrl: "/static/views/feed.html",
-        authenticate: true //Does require authentication
+        authenticate: true
       })
       .state("feed.profile", {
-        url: "user/:username",
+        url: "user/:username/",
         controller: "profileCtrl",
         templateUrl: "/static/views/profile.html",
-        authenticate: true //Doesn't requires authentication
+        authenticate: true
+      })
+      .state("feed.project", {
+        url: "user/:username/:projectname/",
+        controller: "projectCtrl",
+        templateUrl: "/static/views/profile.project.html",
+        authenticate: true
       })
       .state("feed.connections", {
-        url: "connections",
+        url: "connections/",
         templateUrl: "/static/views/feed.connections.html",
-        authenticate: true //Doesn't requires authentication
+        authenticate: true
       })
       .state("feed.new-project", {
         url: "project/new",
         templateUrl: "/static/views/feed.new-project.html",
         authenticate: true
       })
-      .state("feed.project", {
-        url: "project/:name",
-        controller: "projectCtrl",
-        templateUrl: "/static/views/feed.project.html",
-        authenticate: true //Doesn't requires authentication
-      })
+
       .state("feed.not-found", {
         url: "not-found",
         templateUrl: "/static/views/feed.not-found.html",
-        authenticate: true //Doesn't requires authentication
+        authenticate: true
       })
 
 
     // Send to landingpage if the URL was not found
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("not-found");
 
     // delete the # in the url
     $locationProvider.html5Mode({
