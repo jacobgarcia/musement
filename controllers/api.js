@@ -2,14 +2,41 @@
 //TODO: Update API routes names
 
 let express = require('express'),
+  jwt = require('jsonwebtoken'),
+  multer = require('multer'),
   User = require("../models/user.js"),
   Project = require("../models/project.js"),
   Moment = require("../models/moment.js"),
   Tag = require("../models/tag.js"),
-  jwt = require('jsonwebtoken'),
   invite = require("../config/createinvitation.js"),
   router = express.Router();
 
+/* MULTER DEFINITIONS. PLEASE DONT TOUCH THIS */
+/* Multer's disk storage settings */
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '/static/uploads/')
+    },
+    filename: function (req, file, cb) {
+        var datetimestamp = Date.now();
+        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+    }
+});
+
+/* Single file upload using this variable */
+var upload = multer({storage: storage}).single('file');
+
+/* API path that will upload the files */
+router.post('/upload', function(req, res) {
+    upload(req, res, function(err){
+        if(err)
+          res.status(400).json({'message':'Could not uplad the file. Please verify its integrity.', 'success':false});
+         else
+            res.status(200).json({'message':'File successfully uploaded','success':true});
+    });
+});
+
+/********************************************/
 //Register new user
 router.route('/users/:user_id')
 .post(function (req, res) {
