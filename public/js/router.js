@@ -50,6 +50,7 @@ angular.module('musementApp')
       })
       .state("feed.new-project", {
         url: "project/new",
+        controller: "projectCtrl",
         templateUrl: "/static/views/feed.new-project.html",
         authenticate: true
       })

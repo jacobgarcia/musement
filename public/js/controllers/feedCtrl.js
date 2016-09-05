@@ -1,5 +1,5 @@
 angular.module('musementApp')
-.controller('feedCtrl', function($scope, $rootScope, $state, $stateParams, loginDataService, localStorageService, profileDataService, feedDataService, $compile, $sce) {
+.controller('feedCtrl', function($scope, $rootScope, $state, $stateParams, loginDataService, localStorageService, profileDataService, feedDataService, $compile, $sce, $window, Upload) {
 
 
   let user_id = localStorageService.get('user_id');
@@ -44,8 +44,42 @@ angular.module('musementApp')
 
   });
 
-  $scope.setMoment = function (moment) {
-    feedDataService.setMoment(moment, user_id, function (response) {
+  $scope.submitMoment = function(moment){
+    //check if form is valid
+    if (this.create_moment.files.$valid && this.newMoment.files)
+        $scope.upload(moment, this.newMoment.files);
+    else
+      console.log("Could not upload image");
+  }
+
+  $scope.upload = function(moment, file){
+    Upload.upload({url: 'http://localhost:8080/api/upload', data:{ file: file }})
+    .then(function (resp) { //upload function returns a promise
+                if(resp.data.error_code === 0){
+                    // If the file successfully uploaded, then submit the user info
+                    console.log(resp.data.file_name);
+                    $scope.setMoment(moment, resp.data.file_name);
+                } else {
+                    console.log('An error occured: ' + JSON.stringify(resp.data.error_desc));
+                }
+            }, function (resp) { //catch error
+                console.log('Error status: ' + resp.status);
+                $window.alert('Error status: ' + resp.status);
+    });
+  }
+
+  $scope.setMoment = function (moment, image) {
+
+    let momentInfo = {};
+
+    momentInfo.description = this.newMoment.description;
+    momentInfo.attachments = 'static/uploads/' + image;
+    momentInfo.tags = null;
+    momentInfo.project = this.newMoment.project;
+    momentInfo.question = this.newMoment.question;
+
+    console.log(momentInfo);
+    feedDataService.setMoment(momentInfo, user_id, function (response) {
       console.log(response.data);
       if (response.data.success == true) {
         $scope.showCreateMoment(); //Hide new moment

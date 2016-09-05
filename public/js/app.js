@@ -1,7 +1,7 @@
 var ipAddress = 'localhost:8080';
 var host = 'http://localhost:8080'; //Change in production
 
-angular.module('musementApp',['ui.router', 'LocalStorageModule', 'angular-jwt','pascalprecht.translate'])//, 'ngFileUpload'
+angular.module('musementApp',['ui.router', 'LocalStorageModule', 'angular-jwt','pascalprecht.translate', 'ngFileUpload'])//, 'ngFileUpload'
 
 .factory('httpRequestInterceptor', function (localStorageService) {
   return {
@@ -70,4 +70,20 @@ angular.module('musementApp',['ui.router', 'LocalStorageModule', 'angular-jwt','
 
     }
   }
-});
+})
+
+.directive('fileModel', ['$parse', function ($parse) {
+return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+        var model = $parse(attrs.fileModel);
+        var modelSetter = model.assign;
+
+        element.bind('change', function(){
+            scope.$apply(function(){
+                modelSetter(scope, element[0].files[0]);
+            });
+        });
+    }
+};
+}]);

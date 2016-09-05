@@ -36,11 +36,11 @@
         </ul>
         <h5>Projects</h5>
         <ul class="elements-list">
-          <li ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.title})" ng-click="bodyMove()" class="pointer">{{project.title}}</li>
+          <li ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.name})" ng-click="bodyMove()" class="pointer">{{project.name}}</li>
           <!-- <li ui-sref="feed.project({name: 'canver'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Canver</li>
           <li ui-sref="feed.project({name: 'lidilic'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Lidilic</li>  -->
           <!-- <li ui-sref="feed.project({name: 'kinder'})" ng-click="bodyMove()" ><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Kinder</li> -->
-          <li ui-sref="feed.new-project" ng-click="bodyMove()" class="pointer"><input type="button" name="name" class="green-button small" value="New project"></li>
+          <li ui-sref="feed.new-project" ng-click="bodyMove()" class="pointer"><input type="button" name="name" class="green-button small" value="New Project"></li>
         </ul>
         <!-- <ul class="general">
           <li ui-sref="feed.connections" class="pointer"><a>Connections</a></li>
@@ -49,7 +49,7 @@
       </div>
       <div class="log-out" ng-click="logout()">
         <img src="/static/img/buttons/btn_log out.svg" class="icon" alt=""/>
-        <p>Log out</p>
+        <p>Log Out</p>
       </div>
     </div>
 
@@ -82,6 +82,7 @@
       <li class="title">New Moment</li>
       <li ng-click="showCreateMoment()">Cancel</li>
     </ul>
+<<<<<<< HEAD
     <label for="description">Description</label>
     <textarea type="text" ng-model="newMoment.description" name="description" value="" placeholder="What were you working on? What was your progress?"></textarea>
     <label for="question">Question</label>
@@ -98,6 +99,27 @@
       <option value="">Project 1</option>
     </select>
     <input type="button" name="create" value="Create" ng-click="setMoment(newMoment)">
+=======
+    <form name="create_moment">
+      <label for="description">Description</label>
+      <textarea type="text" ng-model="newMoment.description" name="description" value="" placeholder="What were you working on? What was your progress?"></textarea>
+      <label for="question">Question</label>
+      <input type="text" ng-model="newMoment.question" name="question" value="" placeholder="What do you need feedback on?">
+      <label for="tags">Related interests</label>
+      <input type="text" ng-model="newMoment.tags" name="tags" value="" placeholder="Marketing, Design, Entrepreneurship, Idea">
+      <label for="files">File</label>
+        <input type="file" ngf-select name="files" ng-model="newMoment.files" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="5MB"/>
+        <i ng-show="create_moment.files.$error.maxSize">File too large {{user.image.size / 1000000|number:1}}MB: max 5M</i><br>
+      <label for="project">Project</label>
+      <select class="" ng-model="newMoment.project" name="project">
+        <option value="">Project 1</option>
+        <option value="">Project 1</option>
+        <option value="">Project 1</option>
+        <option value="">Project 1</option>
+      </select>
+      <input type="button" name="create" value="create" ng-click="submitMoment(newMoment)">
+    </form>
+>>>>>>> 2208e415c28401b1fefac9c973a4bb409de2d621
   </div>
 </div>
 

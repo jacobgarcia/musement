@@ -2,21 +2,43 @@
 //TODO: Update API routes names
 
 let express = require('express'),
+  jwt = require('jsonwebtoken'),
+  multer = require('multer'),
+  path = require('path'),
   User = require("../models/user.js"),
   Project = require("../models/project.js"),
   Moment = require("../models/moment.js"),
   Tag = require("../models/tag.js"),
-  jwt = require('jsonwebtoken'),
   invite = require("../config/createinvitation.js"),
   router = express.Router();
 
-//Register new user
-router.route('/users/:user_id')
-.post(function (req, res) {
-  console.log('Creating user...');
-  res.status(501).json({'message':'Not yet supported.', 'success': false});
+/* MULTER DEFINITIONS. PLEASE DONT TOUCH THIS */
+/* Multer's disk storage settings */
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads/');
+    },
+    filename: function (req, file, cb) {
+        var datetimestamp = Date.now();
+        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+    }
 });
 
+/* Single file upload using this variable */
+var upload = multer({storage: storage}).single('file');
+
+/* API path that will upload the files */
+router.post('/upload', function(req, res) {
+    upload(req, res, function(err){
+        if(err)
+          res.json({error_code:1, error_desc:err});
+        else
+          res.json({error_code:0, file_name:req.file.filename});
+    });
+});
+
+/********************************************/
+//Register new user
 router.post('/signup', function(req, res){
   // find a user whose email or username is the same as the forms email/username respectively
   // we are checking to see if the user trying to signup already exists
@@ -47,6 +69,7 @@ router.post('/signup', function(req, res){
             newUser.username = req.body.username;
             newUser.password = newUser.generateHash(req.body.password);
             newUser.image = req.body.image || "/static/img/default.jpg"; //TODO: possible change of path
+
             // Save the user
             newUser.save(function (err) {
                 if (err) {
@@ -186,7 +209,6 @@ router.route('/users')
 router.route('/users/u=:username?')
 .get(function (req, res) {
   console.log('USERNAME: '+ req.params.username);
-  // console.log("Username: " + req.params.username);
   User.findOne({'username': req.params.username}, '-password') //Return all excepting password
   .populate('projects')
   .exec(function(err, user) {
@@ -219,7 +241,7 @@ router.route('/users/:user_id') //just when the url has "id=" it will run, other
 .get(function (req, res) {
   // console.log("ID");
   User.findById(req.params.user_id, '-password') //Return all excepting password
-  .populate('projects', 'title')
+  .populate('projects', 'name')
   .exec(
   function(err, user) {
     if (err) {
@@ -269,15 +291,13 @@ router.route('/users/:user_id/moments')
 
     if(user_id === req.params.user_id) { //Verify that is the user who is adding a moment to himself
       let moment = new Moment();
-      // moment.timelapse = req.body.timelapse;
-      //moment.project
+
       moment.description = req.body.description;
-      moment.files = req.body.files;
+      moment.attachments = req.body.attachments;
       moment.tags = req.body.tags;
       moment.project = req.body.project;
       moment.question = req.body.question;
       moment.user = req.params.user_id; //Use the user from the url, no need to add it on the body
-      // moment.usersHearted = req.body.usersHearted;
 
       moment.save(function(err) {
         if (err) {
@@ -501,17 +521,23 @@ router.route('/users/:user_id/projects')
   })
   .post(function (req, res) {
     let project = new Project();
-    project.title = req.body.title;
-    project.description = req.body.description;
-    project.users = req.body.users;
 
-    project.save(function(err) {
-      if (err) {
-        res.status(500).json({'error': err, 'success': false});
-      } else {
-        res.json({message: 'Project created!', moment: project});
-      }
-    });
+    project.admin = req.U_ID;
+    project.category = req.body.category;
+    project.description = req.body.description;
+    project.name = req.body.name;
+
+    project.save(function(err, project) {
+      User.findByIdAndUpdate(req.U_ID,
+          {$push: {"projects":  project.id}},
+          {safe: true, upsert: true},
+          function(err){
+            if (err)
+              res.status(500).json({'error': err, 'success': false});
+            else
+              res.json({message: 'Project created!', project: project});
+          });
+      });
   });
 
 router.route('/projects/:project_id')
