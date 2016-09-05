@@ -31,6 +31,12 @@ angular.module('musementApp')
         templateUrl: "/static/views/profile.html",
         authenticate: true
       })
+      .state("feed.moment", {
+        url: "user/:username/moments/:moment_id",
+        controller: "momentCtrl",
+        templateUrl: "/static/views/moment.html",
+        authenticate: true
+      })
       .state("feed.project", {
         url: "user/:username/:projectname/",
         controller: "projectCtrl",

@@ -1,4 +1,4 @@
-<header>
+<header class="mobile-header">
   <nav>
     <ul class="menu">
       <li ng-click="bodyMove()" id="menu"><div class=""></div><div class=""></div><div class=""></div></li>
@@ -19,10 +19,10 @@
       <p class="bio">{{project.description}}</p>
       <h5>Members</h5>
       <div class="members">
-        <div class="member" ng-repeat="member in project.members">
+        <div class="member" ng-repeat="member in project.members" ui-sref="feed.profile({username: member.username})">
           <img src="{{member.image}}" alt=""/>
           <p>{{member.name}}</p>
-          <p>{{member.username}}</p>
+          <p class="profile-username">@{{member.username}}</p>
         </div>
         <!-- <img src="" alt="" /> -->
       </div>

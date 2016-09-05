@@ -1,0 +1,38 @@
+<header class="mobile-header ng-scope">
+  <nav>
+    <ul class="menu">
+      <li ng-click="bodyMove()" id="menu"><div class=""></div><div class=""></div><div class=""></div></li>
+      <li class="title ng-binding"></li>
+      <li>
+        <ul class="menu-icons">
+          <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt=""></li>
+          <li ng-click="showCreateMoment()"><img src="/static/img/buttons/btn_create.svg" class="icon" alt=""></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
+<main class="main-feed">
+  <div class="moment">
+    <div class="moment-text">
+      <div class="user-image" ui-sref="feed.profile({username: moment.user.username})">
+        <img src="{{moment.user.image}}" alt="" />
+      </div>
+      <div class="moment-info">
+        <p class="user-name" ng-click="console.log(moment);" ui-sref="feed.profile({username: moment.user.username})">{{moment.user.name}} {{moment.user.surname}}</p>
+        <p>{{moment.description}}</p>
+        <p class="question">{{moment.question}}</p>
+      </div>
+    </div>
+  </div>
+  <div id="feedback-wrapper">
+    <div class="feedback" ng-repeat="feedback in moment.feedback">
+      <p class="username" ui-sref="feed.profile({username: feedback.user.username})">@{{feedback.user.username}}</p>
+      <p>{{feedback.text}}</p>
+    </div>
+  </div>
+</main>
+<div class="comment">
+  <input type="text" name="name" ng-model="feedback.text">
+  <input type="button" name="name" value="Send" ng-click="setFeedback(feedback)">
+</div>
