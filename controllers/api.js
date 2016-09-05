@@ -75,6 +75,7 @@ router.post('/signup', function(req, res){
             newUser.username = req.body.username;
             newUser.password = newUser.generateHash(req.body.password);
             newUser.image = req.body.image || "/static/img/default.jpg"; //TODO: possible change of path
+
             // Save the user
             newUser.save(function (err) {
                 if (err) {
@@ -297,15 +298,13 @@ router.route('/users/:user_id/moments')
 
     if(user_id === req.params.user_id) { //Verify that is the user who is adding a moment to himself
       let moment = new Moment();
-      // moment.timelapse = req.body.timelapse;
-      //moment.project
+
       moment.description = req.body.description;
-      moment.files = req.body.files;
+      moment.attachments = req.body.attachments;
       moment.tags = req.body.tags;
       moment.project = req.body.project;
       moment.question = req.body.question;
       moment.user = req.params.user_id; //Use the user from the url, no need to add it on the body
-      // moment.usersHearted = req.body.usersHearted;
 
       moment.save(function(err) {
         if (err) {
