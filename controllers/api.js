@@ -534,13 +534,17 @@ router.route('/users/:user_id/projects')
     project.description = req.body.description;
     project.name = req.body.name;
 
-    project.save(function(err) {
-      if (err) {
-        res.status(500).json({'error': err, 'success': false});
-      } else {
-        res.json({message: 'Project created!', moment: project});
-      }
-    });
+    project.save(function(err, project) {
+      User.findByIdAndUpdate(req.U_ID,
+          {$push: {"projects":  project.id}},
+          {safe: true, upsert: true},
+          function(err){
+            if (err)
+              res.status(500).json({'error': err, 'success': false});
+            else
+              res.json({message: 'Project created!', project: project});
+          });
+      });
   });
 
 router.route('/projects/:project_id')
