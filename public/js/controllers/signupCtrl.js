@@ -32,10 +32,11 @@ angular.module('musementApp')
   $scope.upload = function(file){
     Upload.upload({url: 'http://localhost:8080/api/upload', data:{ file: file }})
     .then(function (resp) { //upload function returns a promise
-                if(resp.data.error_code === 0){ //validate success
-                    $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+                if(resp.data.error_code === 0){
+                    // If the file successfully uploaded, then submit the user info
+                    $scope.sign(resp.data.file_name);
                 } else {
-                    $window.alert('An error occured: ' + JSON.stringify(resp.data.error_desc));
+                    console.log('An error occured: ' + JSON.stringify(resp.data.error_desc));
                 }
             }, function (resp) { //catch error
                 console.log('Error status: ' + resp.status);
@@ -43,15 +44,15 @@ angular.module('musementApp')
     });
   }
 
-  $scope.sign = function (user) {
+  $scope.sign = function (image) {
 
     let signupInfo = {};
-    signupInfo.username = user.username.toLowerCase(); //IMPORTANT
-    signupInfo.email = user.email.toLowerCase(); //IMPORTANT
-    signupInfo.name = user.name;
-    signupInfo.surname = user.surname;
-    signupInfo.password = user.password;
-    signupInfo.image = $scope.user.image || user.image;
+    signupInfo.username = this.user.username.toLowerCase(); //IMPORTANT
+    signupInfo.email = this.user.email.toLowerCase(); //IMPORTANT
+    signupInfo.name = this.user.name;
+    signupInfo.surname = this.user.surname;
+    signupInfo.password = this.user.password;
+    signupInfo.image = 'static/uploads/' + image;
 
     console.log(signupInfo);
 

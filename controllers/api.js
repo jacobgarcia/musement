@@ -33,7 +33,7 @@ router.post('/upload', function(req, res) {
         if(err)
           res.json({error_code:1, error_desc:err});
         else
-          res.json({error_code:0, error_desc:null});
+          res.json({error_code:0, file_name:req.file.filename});
     });
 });
 
