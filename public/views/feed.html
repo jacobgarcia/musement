@@ -38,10 +38,6 @@
           <li ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.name})" ng-click="bodyMove()" class="pointer">{{project.name}}</li>
           <li ui-sref="feed.new-project" ng-click="bodyMove()" class="pointer"><input type="button" name="name" class="green-button small" value="New Project"></li>
         </ul>
-        <!-- <ul class="general">
-          <li ui-sref="feed.connections" class="pointer"><a>Connections</a></li>
-          <li ui-sref="other" class="pointer"><a>Another</a></li>
-        </ul> -->
       </div>
       <div class="log-out" ng-click="logout()">
         <img src="/static/img/buttons/btn_log out.svg" class="icon" alt=""/>
@@ -92,8 +88,8 @@
         <input type="file" ngf-select name="files" ng-model="newMoment.files" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="5MB"/>
         <i ng-show="create_moment.files.$error.maxSize">File too large {{user.image.size / 1000000|number:1}}MB: max 5M</i><br>
       <label for="project">Project</label>
-      <select class="" ng-init="newMoment.project = projects[0]" ng-model="newMoment.project" name="project" required>
-        <option ng-repeat="project in this_user.projects" value="{{project.id}}">{{project.name}}</option>
+      <select class="" ng-model="newMoment.project" name="project">
+        <option value="{{project._id}}" ng-repeat="project in this_user.projects">{{project.name}}</option>
       </select>
       <input type="button" name="create" value="create" ng-click="submitMoment(newMoment)">
     </form>
@@ -140,7 +136,7 @@
           </div>
         </div>
         <div class="moment-attachments" ng-if="moment.attachments.length > 0">
-          <img  ng-repeat="attachment in moment.attachments" src="{{attachment}}" alt="" />
+          <img  ng-repeat="attachment in moment.attachments" src="/{{attachment}}" alt="" />
         </div>
         <ul class="moment-tags tags" ng-if="!!moment.tags.length">
           <li ng-repeat="tag in moment.tags.name">{{tag}}</li>

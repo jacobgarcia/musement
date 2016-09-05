@@ -20,6 +20,7 @@
     "angular-local-storage": "^0.2.7",
     "angular-ui-router": "^0.2.18",
     "angular-jwt": "^0.0.9",
+    "ng-file-upload": "^12.2.5",
     "ng-tags-input": "^3.1.1"
   }
 }

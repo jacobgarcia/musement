@@ -594,6 +594,12 @@ ul.tags li {
 }
 
 @media (min-width: 600px) {
+  .side-options {
+    .active {
+      background: transparent;
+      font-weight: 600;
+    }
+  }
   .notifications {
     width: 300px;
     position: absolute;

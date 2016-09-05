@@ -15,14 +15,13 @@ angular.module('musementApp')
 
   $scope.next = function() {
     if (this.user.email && this.user.password ) {
-        $scope.next = false;
+        $scope.next = false
     } else {
-      console.log('no...');
+      console.log('no...')
     }
   }
 
   $scope.done = function(){
-    //check if form is valid
     if (this.upload_form.file.$valid && this.user.image)
         $scope.upload(this.user.image);
     else
@@ -54,8 +53,6 @@ angular.module('musementApp')
     signupInfo.password = this.user.password;
     signupInfo.image = 'static/uploads/' + image;
 
-    console.log(signupInfo);
-
     signupDataService.signup(signupInfo, function (res) {
       if (res.data.success == true) {
         let data = res.data;
@@ -67,7 +64,6 @@ angular.module('musementApp')
 
         $state.go('feed');
       } else {
-        console.log(res.data);
         alert(res.data.message);
       }
     });

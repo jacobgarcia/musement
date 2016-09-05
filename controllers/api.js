@@ -241,7 +241,7 @@ router.route('/users/:user_id') //just when the url has "id=" it will run, other
 .get(function (req, res) {
   // console.log("ID");
   User.findById(req.params.user_id, '-password') //Return all excepting password
-  .populate('projects', 'name')
+  .populate('projects', 'name description')
   .exec(
   function(err, user) {
     if (err) {
@@ -484,52 +484,50 @@ router.route('/moments/:moment_id/likes')
 //Get projects by username
 router.route('/users/u=:username/p=:project')
   .get(function (req, res) {
-    //Get projects of user
-    User.findOne({'username': req.params.username}, 'projects')
-    .populate('projects')
-    .exec(function(err, user) {
-
-      var hasProject = false;
-
-      user.projects.filter(function(project) {
-        hasProject = (project._doc.title || project.title_) == req.params.project;
-      });
-
-      if (err || !hasProject) {
-        res.status(500).json({'error': err || "No project found", 'success': false});
-      } else {
-        res.json({'project': user.projects[0], 'success': true});
+    User.findOne({'username': req.params.username})
+    .exec(function(err, userfound){
+      if (err) res.status(500).json({'err':err})
+      if (!userfound) res.status(500)
+      else {
+        let user = userfound;
+        Project.findOne({'name': req.params.project, 'members': userfound._id})
+        .exec(function(err, project) {
+          if (err) {
+            res.status(500).json({'error': err});
+          } else {
+            res.json({'project': project, 'success': true});
+          }
+        });
       }
-    });
-
+    })
   })
 
 router.route('/users/:user_id/projects')
   .get(function (req, res) {
     //Get projects of user
-    User.find({'_id': req.params.user_id}, 'projects')
-    .populate('projects', 'title')
-    .exec(
-      function(err, projects) {
-        if (err) {
-          res.status(500).json({'error': err, 'success': false});
-        } else {
-          res.json({'projects': projects, 'success': true});
-        }
-      });
+    Projects.find({'members':req.params.user_id})
+    .populate('members','name username surname image')
+    .exec(function(err, projects) {
+      if (err) res.status(500).json({'err':err})
+      else {
+        res.status(200).json({'projects': projects})
+      }
+    })
 
   })
   .post(function (req, res) {
     let project = new Project();
-
     project.admin = req.U_ID;
     project.category = req.body.category;
     project.description = req.body.description;
     project.name = req.body.name;
-
+    project.members = [req.U_ID]
     project.save(function(err, project) {
+      if (err) {
+        res.json({'err':err})
+      }
       User.findByIdAndUpdate(req.U_ID,
-          {$push: {"projects":  project.id}},
+          {$push: {"projects":  project._id}},
           {safe: true, upsert: true},
           function(err){
             if (err)
@@ -585,13 +583,13 @@ router.route('/projects/:project_id')
 
 router.route('/projects/:project_id/moments')
   .get(function (req, res) {
-    Project.findById(req.params.project_id)
-    .populate('moments')
-    .exec(function (err, project) {
+    Moment.find({'project':req.params.project_id})
+    .populate('user')
+    .exec(function (err, moments) {
       if (err) {
         res.status(500).json({'error': err, 'success': false});
       } else {
-        res.json(project);
+        res.json(moments);
       }
     });
   })
