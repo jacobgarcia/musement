@@ -1,6 +1,6 @@
 'user strict';
 angular.module('musementApp')
-.controller('signupCtrl', function($scope, signupDataService, localStorageService, $state) {
+.controller('signupCtrl', function($scope, signupDataService, localStorageService, $state, $window, Upload) {
 
   //OUR FUNCTIONS
   $scope.next = true;
@@ -19,6 +19,28 @@ angular.module('musementApp')
     } else {
       console.log('no...');
     }
+  }
+
+  $scope.done = function(){
+    //check if form is valid
+    if (this.upload_form.file.$valid && this.user.image)
+        $scope.upload(this.user.image);
+    else
+      console.log("Could not upload image");
+  }
+
+  $scope.upload = function(file){
+    Upload.upload({url: 'http://localhost:8080/api/upload', data:{ file: file }})
+    .then(function (resp) { //upload function returns a promise
+                if(resp.data.error_code === 0){ //validate success
+                    $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+                } else {
+                    $window.alert('An error occured: ' + JSON.stringify(resp.data.error_desc));
+                }
+            }, function (resp) { //catch error
+                console.log('Error status: ' + resp.status);
+                $window.alert('Error status: ' + resp.status);
+    });
   }
 
   $scope.sign = function (user) {

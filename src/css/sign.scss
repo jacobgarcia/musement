@@ -63,15 +63,13 @@ $gray: #999;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    img{
-
-    }
     input {
       opacity: 0;
       height: 100%;
       width: 100%;
       margin: 0;
       position: absolute;
+      cursor: pointer;
     }
   }
   .photo img{

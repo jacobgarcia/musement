@@ -4,6 +4,7 @@
 let express = require('express'),
   jwt = require('jsonwebtoken'),
   multer = require('multer'),
+  path = require('path'),
   User = require("../models/user.js"),
   Project = require("../models/project.js"),
   Moment = require("../models/moment.js"),
@@ -15,7 +16,7 @@ let express = require('express'),
 /* Multer's disk storage settings */
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '/static/uploads/')
+        cb(null, 'public/uploads/');
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();
@@ -30,9 +31,9 @@ var upload = multer({storage: storage}).single('file');
 router.post('/upload', function(req, res) {
     upload(req, res, function(err){
         if(err)
-          res.status(400).json({'message':'Could not uplad the file. Please verify its integrity.', 'success':false});
-         else
-            res.status(200).json({'message':'File successfully uploaded','success':true});
+          res.json({error_code:1, error_desc:err});
+        else
+          res.json({error_code:0, error_desc:null});
     });
 });
 
