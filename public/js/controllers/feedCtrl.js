@@ -11,6 +11,9 @@ angular.module('musementApp')
   $scope.user_id = user_id;
   $scope.tags = [];
 
+  /* Default selected project */
+  //$scope.defaultSelectedProject = this.newMoment.project[0].id;
+
   this.username = localStorageService.get('username');
 
   // Load tags when creating a moment
@@ -73,7 +76,7 @@ angular.module('musementApp')
   $scope.setMoment = function (moment, image) {
 
     let momentInfo = {};
-    
+
     momentInfo.description = this.newMoment.description;
     momentInfo.attachments = 'static/uploads/' + image;
     momentInfo.tags = this.newMoment.tags;

@@ -22,10 +22,9 @@
         <input type="radio" ng-model="project.type" id="service" name="type" value="service">
         <label for="service">Service</label>
       </div>
-      <input type="button" name="create" value="create" ng-click="submitProject(project)">
     </div>
     <label for="name">Name of the project</label>
-    <input type="text" name="name" placeholder="Name" id="name">
+    <input ng-model="project.name" type="text" name="name" placeholder="Name" id="name">
     <label>Pick a color</label>
     <div class="project-color">
       <input type="radio" name="color" value="">
@@ -35,10 +34,10 @@
       <input type="radio" name="color" value="">
     </div>
     <label for="description">Description</label>
-    <textarea name="description" id="description" placeholder="Description..."></textarea>
+    <textarea ng-model="project.description" name="description" id="description" placeholder="Description..."></textarea>
     <div class="project-members">
       <label>Members</label>
     </div>
-    <input type="button" name="name" value="Create moment">
+      <input type="button" name="create" value="create" ng-click="submitProject(project)">
   </div>
 </main>

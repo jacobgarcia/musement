@@ -37,9 +37,6 @@
         <h5>Projects</h5>
         <ul class="elements-list">
           <li ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.name})" ng-click="bodyMove()" class="pointer">{{project.name}}</li>
-          <!-- <li ui-sref="feed.project({name: 'canver'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Canver</li>
-          <li ui-sref="feed.project({name: 'lidilic'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Lidilic</li>  -->
-          <!-- <li ui-sref="feed.project({name: 'kinder'})" ng-click="bodyMove()" ><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Kinder</li> -->
           <li ui-sref="feed.new-project" ng-click="bodyMove()" class="pointer"><input type="button" name="name" class="green-button small" value="New Project"></li>
         </ul>
         <!-- <ul class="general">
@@ -96,11 +93,8 @@
         <input type="file" ngf-select name="files" ng-model="newMoment.files" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="5MB"/>
         <i ng-show="create_moment.files.$error.maxSize">File too large {{user.image.size / 1000000|number:1}}MB: max 5M</i><br>
       <label for="project">Project</label>
-      <select class="" ng-model="newMoment.project" name="project">
-        <option value="">Project 1</option>
-        <option value="">Project 1</option>
-        <option value="">Project 1</option>
-        <option value="">Project 1</option>
+      <select class="" ng-init="newMoment.project = projects[0]" ng-model="newMoment.project" name="project" required>
+        <option ng-repeat="project in this_user.projects" value="{{project.id}}">{{project.name}}</option>
       </select>
       <input type="button" name="create" value="create" ng-click="submitMoment(newMoment)">
     </form>
