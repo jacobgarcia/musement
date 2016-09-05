@@ -73,10 +73,10 @@ angular.module('musementApp')
   $scope.setMoment = function (moment, image) {
 
     let momentInfo = {};
-
+    
     momentInfo.description = this.newMoment.description;
     momentInfo.attachments = 'static/uploads/' + image;
-    momentInfo.tags = null;
+    momentInfo.tags = this.newMoment.tags;
     momentInfo.project = this.newMoment.project;
     momentInfo.question = this.newMoment.question;
 

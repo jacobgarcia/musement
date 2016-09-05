@@ -82,31 +82,13 @@
       <li class="title">New Moment</li>
       <li ng-click="showCreateMoment()">Cancel</li>
     </ul>
-<<<<<<< HEAD
-    <label for="description">Description</label>
-    <textarea type="text" ng-model="newMoment.description" name="description" value="" placeholder="What were you working on? What was your progress?"></textarea>
-    <label for="question">Question</label>
-    <input type="text" ng-model="newMoment.question" name="question" value="" placeholder="What do you need feedback on?">
-    <label for="tags">Related interests</label>
-    <input type="text" ng-model="newMoment.tags" name="tags" value="" placeholder="Marketing, Design, Entrepreneurship, Idea">
-    <label for="files">File</label>
-    <input type="file" ng-model="newMoment.files" name="name" value="">
-    <label for="project">Project</label>
-    <select class="" ng-model="newMoment.project" name="project">
-      <option value="">Project 1</option>
-      <option value="">Project 1</option>
-      <option value="">Project 1</option>
-      <option value="">Project 1</option>
-    </select>
-    <input type="button" name="create" value="Create" ng-click="setMoment(newMoment)">
-=======
     <form name="create_moment">
       <label for="description">Description</label>
       <textarea type="text" ng-model="newMoment.description" name="description" value="" placeholder="What were you working on? What was your progress?"></textarea>
       <label for="question">Question</label>
       <input type="text" ng-model="newMoment.question" name="question" value="" placeholder="What do you need feedback on?">
       <label for="tags">Related Interests (Max. 3)</label>
-        <tags-input ng-model="tags" display-property="name" placeholder="Add Topic" replace-spaces-with-dashes="false" max-tags="3" min-length="0"  add-from-autocomplete-only="true">
+        <tags-input ng-model="newMoment.tags" display-property="name" placeholder="Add Topic" replace-spaces-with-dashes="false" max-tags="3" min-length="0"  add-from-autocomplete-only="true">
           <auto-complete source="loadTags($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="35"></auto-complete>
         </tags-input>
 
@@ -122,7 +104,6 @@
       </select>
       <input type="button" name="create" value="create" ng-click="submitMoment(newMoment)">
     </form>
->>>>>>> 2208e415c28401b1fefac9c973a4bb409de2d621
   </div>
 </div>
 
