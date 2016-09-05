@@ -3,6 +3,7 @@
     <ul class="menu">
       <li ui-sref="feed" id="menu"></li>
       <li class="title">Moments</li>
+      <li class="search"><input type="search" name="name" placeholder="Search"></li>
       <li>
         <ul class="menu-icons">
           <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt=""></li>
@@ -12,8 +13,8 @@
     </ul>
   </nav>
 </header>
+<div class="super-hover" ng-class="{'active': momentSeen}" ng-click="momentSeen=false"></div>
 <div class="supper-wrapper" id="supper-wrapper">
-  <div class="super-hover" ng-class="{'active': momentSeen}" ng-click="momentSeen=false"></div>
   <div class="side-bar">
     <div class="side-bar-content">
       <img src="/static/img/musement-logotype-white.svg" alt="" style="position: absolute; width: 110px; top: -30px; margin: 0 50px;"/>
@@ -30,7 +31,7 @@
       <div class="side-options">
         <h5>Moments</h5>
         <ul class="elements-list">
-          <li ui-sref="feed" ng-click="bodyMove()" id="interests" class="active pointer"><img src="/static/img/buttons/btn_moments.svg" class="icon" alt="" />Moments</li>
+          <li ui-sref="feed" ng-click="bodyMove()" id="interests" class="active pointer"><img src="/static/img/buttons/btn_moments.svg" class="icon" alt="" /><p>Moments</p></li>
           <!-- <li ui-sref="feed.connections" ng-click="bodyMove('feed.connections')" id="connections" class="pointer"><img src="/static/img/buttons/btn_connections.svg" class="icon" alt="" />Connections</li> -->
         </ul>
         <h5>Projects</h5>
@@ -81,6 +82,24 @@
       <li class="title">New Moment</li>
       <li ng-click="showCreateMoment()">Cancel</li>
     </ul>
+<<<<<<< HEAD
+    <label for="description">Description</label>
+    <textarea type="text" ng-model="newMoment.description" name="description" value="" placeholder="What were you working on? What was your progress?"></textarea>
+    <label for="question">Question</label>
+    <input type="text" ng-model="newMoment.question" name="question" value="" placeholder="What do you need feedback on?">
+    <label for="tags">Related interests</label>
+    <input type="text" ng-model="newMoment.tags" name="tags" value="" placeholder="Marketing, Design, Entrepreneurship, Idea">
+    <label for="files">File</label>
+    <input type="file" ng-model="newMoment.files" name="name" value="">
+    <label for="project">Project</label>
+    <select class="" ng-model="newMoment.project" name="project">
+      <option value="">Project 1</option>
+      <option value="">Project 1</option>
+      <option value="">Project 1</option>
+      <option value="">Project 1</option>
+    </select>
+    <input type="button" name="create" value="Create" ng-click="setMoment(newMoment)">
+=======
     <form name="create_moment">
       <label for="description">Description</label>
       <textarea type="text" ng-model="newMoment.description" name="description" value="" placeholder="What were you working on? What was your progress?"></textarea>
@@ -103,50 +122,15 @@
       </select>
       <input type="button" name="create" value="create" ng-click="submitMoment(newMoment)">
     </form>
+>>>>>>> 2208e415c28401b1fefac9c973a4bb409de2d621
   </div>
 </div>
 
-<!-- <div class="moment-details" ng-class="{'active': momentDetailsSeen}">
-  <header>
-    <nav>
-      <ul class="menu">
-        <li ng-click="showMomentDetails(null)" id="menu"><</li>
-        <li class="title">Moment Details</li>
-        <li></li>
-      </ul>
-    </nav>
-  </header>
-  <main class="main-feed">
-    <div class="moment">
-      <div class="moment-text">
-        <div class="user-image">
-          <img src="" alt="" />
-        </div>
-        <div class="moment-info">
-          <p class="user-name">User full name</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p class="question">Question here</p>
-        </div>
-      </div>
-      <ul class="moment-tags tags">
-        <li>iOS</li>
-        <li>Food</li>
-        <li>Design</li>
-      </ul>
-      <div class="feedback-count">
-        <p>0 feedbacks</p>
-      </div>
-    </div>
-  </main>
-  <div class="comment">
-    <input type="text" name="name" value="">
-    <input type="button" name="name" value="Send">
-  </div>
-</div> -->
+
 
 <div class="body" ng-class="{'active': bodyMoved}">
   <div class="inner-body" ui-view>
-    <header>
+    <header class="mobile-header">
       <nav>
         <ul class="menu">
           <li ng-click="bodyMove()" id="menu"><div class=""></div><div class=""></div><div class=""></div></li>
@@ -170,7 +154,7 @@
       </nav>
     </header>
     <main class="main-feed">
-      <div class="moment" ng-repeat="moment in interests.moments" ui-sref="feed.profile({username: moment.user.username})" ng-model="moments">
+      <div class="moment" ng-repeat="moment in interests.moments" ui-sref="feed.moment({username: moment.user.username, moment_id: moment._id})" ng-model="moments">
         <div class="moment-text">
           <div class="user-image" ui-sref="feed.profile({username: moment.user.username})">
             <img src="{{moment.user.image}}" alt="" />
