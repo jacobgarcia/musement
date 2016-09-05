@@ -528,9 +528,11 @@ router.route('/users/:user_id/projects')
   })
   .post(function (req, res) {
     let project = new Project();
-    project.title = req.body.title;
+
+    project.admin = req.U_ID;
+    project.category = req.body.category;
     project.description = req.body.description;
-    project.users = req.body.users;
+    project.name = req.body.name;
 
     project.save(function(err) {
       if (err) {

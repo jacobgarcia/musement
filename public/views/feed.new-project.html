@@ -2,7 +2,7 @@
   <nav>
     <ul class="menu">
       <li></li>
-      <li class="title">New project</li>
+      <li class="title">New Project</li>
       <li>
         <ul class="menu-icons">
           <li ui-sref="feed"><img src="/static/img/buttons/btn_cancel.svg" class="icon" alt="" /></li>
@@ -22,7 +22,7 @@
           <label for="service">Service</label>
         </div>
       </div>
-      <input type="text" name="name" placeholder="Name">
+      <input type="text" name="name" placeholder="Name" ng-model="project.name">
       <div class="project-color">
         <input type="radio" name="color" value="">
         <input type="radio" name="color" value="">
@@ -30,10 +30,11 @@
         <input type="radio" name="color" value="">
         <input type="radio" name="color" value="">
       </div>
-      <textarea name="description" placeholder="Description..."></textarea>
+      <textarea name="description" placeholder="Description..." ng-model="project.description"></textarea>
       <div class="project-members">
 
       </div>
+      <input type="button" name="create" value="create" ng-click="submitProject(project)">
     </div>
   </main>
 </header>
