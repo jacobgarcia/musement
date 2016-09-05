@@ -35,7 +35,7 @@
         </ul>
         <h5>Projects</h5>
         <ul class="elements-list">
-          <li ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.title})" ng-click="bodyMove()" class="pointer">{{project._id}}</li>
+          <li ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.name})" ng-click="bodyMove()" class="pointer">{{project.name}}</li>
           <!-- <li ui-sref="feed.project({name: 'canver'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Canver</li>
           <li ui-sref="feed.project({name: 'lidilic'})" ng-click="bodyMove()" class="pointer"><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Lidilic</li>  -->
           <!-- <li ui-sref="feed.project({name: 'kinder'})" ng-click="bodyMove()" ><img src="/static/img/buttons/btn_project.svg" class="icon" alt="" />Kinder</li> -->

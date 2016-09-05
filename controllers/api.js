@@ -39,12 +39,6 @@ router.post('/upload', function(req, res) {
 
 /********************************************/
 //Register new user
-router.route('/users/:user_id')
-.post(function (req, res) {
-  console.log('Creating user...');
-  res.status(501).json({'message':'Not yet supported.', 'success': false});
-});
-
 router.post('/signup', function(req, res){
   // find a user whose email or username is the same as the forms email/username respectively
   // we are checking to see if the user trying to signup already exists
@@ -215,7 +209,6 @@ router.route('/users')
 router.route('/users/u=:username?')
 .get(function (req, res) {
   console.log('USERNAME: '+ req.params.username);
-  // console.log("Username: " + req.params.username);
   User.findOne({'username': req.params.username}, '-password') //Return all excepting password
   .populate('projects')
   .exec(function(err, user) {
@@ -248,7 +241,7 @@ router.route('/users/:user_id') //just when the url has "id=" it will run, other
 .get(function (req, res) {
   // console.log("ID");
   User.findById(req.params.user_id, '-password') //Return all excepting password
-  .populate('projects', 'title')
+  .populate('projects', 'name')
   .exec(
   function(err, user) {
     if (err) {
