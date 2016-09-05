@@ -75,14 +75,16 @@
       <li class="title">New Moment</li>
       <li ng-click="showCreateMoment()">Cancel</li>
     </ul>
-
     <form name="create_moment">
       <label for="description">Description</label>
       <textarea type="text" ng-model="newMoment.description" name="description" value="" placeholder="What were you working on? What was your progress?"></textarea>
       <label for="question">Question</label>
       <input type="text" ng-model="newMoment.question" name="question" value="" placeholder="What do you need feedback on?">
-      <label for="tags">Related interests</label>
-      <input type="text" ng-model="newMoment.tags" name="tags" value="" placeholder="Marketing, Design, Entrepreneurship, Idea">
+      <label for="tags">Related Interests (Max. 3)</label>
+        <tags-input ng-model="newMoment.tags" display-property="name" placeholder="Add Topic" replace-spaces-with-dashes="false" max-tags="3" min-length="0"  add-from-autocomplete-only="true">
+          <auto-complete source="loadTags($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="35"></auto-complete>
+        </tags-input>
+
       <label for="files">File</label>
         <input type="file" ngf-select name="files" ng-model="newMoment.files" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="5MB"/>
         <i ng-show="create_moment.files.$error.maxSize">File too large {{user.image.size / 1000000|number:1}}MB: max 5M</i><br>

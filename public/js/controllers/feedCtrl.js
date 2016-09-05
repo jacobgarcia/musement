@@ -1,5 +1,5 @@
 angular.module('musementApp')
-.controller('feedCtrl', function($scope, $rootScope, $state, $stateParams, loginDataService, localStorageService, profileDataService, feedDataService, $compile, $sce, $window, Upload) {
+.controller('feedCtrl', function($scope, $rootScope, $state, $stateParams, loginDataService, localStorageService, profileDataService, feedDataService, $compile, $sce, $window, Upload, $http) {
 
 
   let user_id = localStorageService.get('user_id');
@@ -9,22 +9,27 @@ angular.module('musementApp')
   $scope.interests = {};
   $scope.username = localStorageService.get('username');
   $scope.user_id = user_id;
+  $scope.tags = [];
+
+  /* Default selected project */
+  //$scope.defaultSelectedProject = this.newMoment.project[0].id;
 
   this.username = localStorageService.get('username');
+
+  // Load tags when creating a moment
+  $scope.loadTags = function($query) {
+    return $http.get(host + '/api/tags',{cache: true}).then(function(response) {
+      var tags = response.data;
+      return tags.filter(function(tag) {
+        return tag.name.toLowerCase().indexOf($query.toLowerCase()) != -1;
+      });
+    });
+  };
 
   //Load the moments
   feedDataService.getInterestsFeed(user_id, function(response) {
     $scope.interests.moments = response.data.moments;
   });
-
-  // $scope.showDetails = function (moment_id) {
-  //
-  //   var supperWrapper = angular.element(document.getElementById('supper-wrapper'));
-  //   var content = $compile('<div class="moment-details" id="detail' + detailCounter +  '" ng-controller="momentCtrl" ng-init="init(\'' + moment_id + '\')" style="z-index: ' + (5 + detailCounter) + ' " ng-class="{\'active\': momentDetailsSeen}"><header><nav><ul class="menu"><li ng-click="removeDetail(\'detail' + detailCounter + '\')" id="menu"><</li><li class="title">Moment Details</li><li></li></ul></nav></header><main class="main-feed"><div class="moment"><div class="moment-text"><div class="user-image" ng-click="showUserDetails(moment.user.username)"><img src="{{moment.user.image}}" alt=""/></div><div class="moment-info"><p class="user-name">{{moment.user.name}} {{moment.user.surname}}</p><p>{{moment.description}}</p><p class="question">{{moment.question}}</p></div></div><ul class="moment-tags tags"><li>iOS</li><li>Food</li><li>Design</li></ul></div><div class="feedback-wrapper" id="feedback-wrapper"><div class="feedback" ng-repeat="feedback in moment.feedback"><p><span class="username" ng-click="showUserDetails(feedback.user.username)">@{{feedback.user.username}}</span>: {{feedback.text || feedback.comment}}</p></div></div></main><div class="comment"><input type="text" ng-model="feedback.text" value=""><input type="button" ng-click="setFeedback(feedback)" value="Send"></div></div>')($scope);
-  //   detailCounter++;
-  //   supperWrapper.append(content);
-  //
-  // }
 
   $scope.showUserDetails = function (username) {
 
@@ -66,10 +71,11 @@ angular.module('musementApp')
 
   $scope.setMoment = function (moment, image) {
 
-    let momentInfo = {}
-    momentInfo.description = this.newMoment.description
-    momentInfo.attachments = 'static/uploads/' + image
-    momentInfo.tags = null
+    let momentInfo = {};
+
+    momentInfo.description = this.newMoment.description;
+    momentInfo.attachments = 'static/uploads/' + image;
+    momentInfo.tags = this.newMoment.tags;
     momentInfo.project = this.newMoment.project;
     momentInfo.question = this.newMoment.question;
 
@@ -184,6 +190,4 @@ angular.module('musementApp')
   $scope.removeDetail = function(element) {
     document.getElementById(element).remove()
   }
-
-
-})
+});
