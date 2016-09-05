@@ -5,6 +5,7 @@ angular.module('musementApp')
 
   profileDataService.getProfileInfo('u=' + username, function(response) {
     if (response.data.success) {
+      console.log(response.data);
       $scope.user = response.data.user;
       var user_id = response.data.user._id;
 

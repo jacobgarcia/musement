@@ -39,25 +39,21 @@ angular.module('musementApp')
 
   profileDataService.getProfileInfo(user_id, function(response) {
     let user = response.data.user;
-    console.log(user);
     $scope.this_user = user;
-
   });
 
   $scope.submitMoment = function(moment){
-    //check if form is valid
     if (this.create_moment.files.$valid && this.newMoment.files)
         $scope.upload(moment, this.newMoment.files);
-    else
+    else {
       console.log("Could not upload image");
+    }
   }
 
   $scope.upload = function(moment, file){
     Upload.upload({url: 'http://localhost:8080/api/upload', data:{ file: file }})
     .then(function (resp) { //upload function returns a promise
                 if(resp.data.error_code === 0){
-                    // If the file successfully uploaded, then submit the user info
-                    console.log(resp.data.file_name);
                     $scope.setMoment(moment, resp.data.file_name);
                 } else {
                     console.log('An error occured: ' + JSON.stringify(resp.data.error_desc));
@@ -70,11 +66,10 @@ angular.module('musementApp')
 
   $scope.setMoment = function (moment, image) {
 
-    let momentInfo = {};
-
-    momentInfo.description = this.newMoment.description;
-    momentInfo.attachments = 'static/uploads/' + image;
-    momentInfo.tags = null;
+    let momentInfo = {}
+    momentInfo.description = this.newMoment.description
+    momentInfo.attachments = 'static/uploads/' + image
+    momentInfo.tags = null
     momentInfo.project = this.newMoment.project;
     momentInfo.question = this.newMoment.question;
 
@@ -173,8 +168,6 @@ angular.module('musementApp')
       if (response.data.success) {
         $scope.user = response.data.user;
         let user_id = response.data.user._id;
-        console.log('USER', response.data.user);
-
         profileDataService.getProfileMoments(user_id, function (response) {
           $scope.user.moments = response.data.moments;
         });

@@ -9,7 +9,7 @@ var projectSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: true
+    // required: true
   },
   description: String,
   members: [{

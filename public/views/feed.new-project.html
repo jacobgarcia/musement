@@ -10,19 +10,7 @@
       </li>
     </ul>
   </nav>
-<<<<<<< HEAD
 </header>
-<main>
-  <div class="project">
-    <div class="project-type">
-      <div class="type">
-        <input type="radio" ng-model="project.type" id="product" name="type" value="product">
-        <label for="product">Product</label>
-      </div>
-      <div class="type">
-        <input type="radio" ng-model="project.type" id="service" name="type" value="service">
-        <label for="service">Service</label>
-=======
   <main>
     <div class="project">
       <div class="project-type">
@@ -34,8 +22,10 @@
           <input type="radio" ng-model="project.type" id="service" name="type" value="service">
           <label for="service">Service</label>
         </div>
+
       </div>
-      <input type="text" name="name" placeholder="Name" ng-model="project.name">
+      <label for="project-name">Name of the project</label>
+      <input type="text" id="project-name" placeholder="Name" ng-model="project.name">
       <div class="project-color">
         <input type="radio" name="color" value="">
         <input type="radio" name="color" value="">
@@ -43,28 +33,12 @@
         <input type="radio" name="color" value="">
         <input type="radio" name="color" value="">
       </div>
-      <textarea name="description" placeholder="Description..." ng-model="project.description"></textarea>
+      <label for="project-description">Describe your project</label>
+      <textarea id="project-description" placeholder="Description..." ng-model="project.description"></textarea>
+      <label for="service">Category</label>
+      <input type="text" ng-model="project.category" id="category">
       <div class="project-members">
-
->>>>>>> 2208e415c28401b1fefac9c973a4bb409de2d621
       </div>
       <input type="button" name="create" value="create" ng-click="submitProject(project)">
     </div>
-    <label for="name">Name of the project</label>
-    <input type="text" name="name" placeholder="Name" id="name">
-    <label>Pick a color</label>
-    <div class="project-color">
-      <input type="radio" name="color" value="">
-      <input type="radio" name="color" value="">
-      <input type="radio" name="color" value="">
-      <input type="radio" name="color" value="">
-      <input type="radio" name="color" value="">
-    </div>
-    <label for="description">Description</label>
-    <textarea name="description" id="description" placeholder="Description..."></textarea>
-    <div class="project-members">
-      <label>Members</label>
-    </div>
-    <input type="button" name="name" value="Create moment">
-  </div>
 </main>
