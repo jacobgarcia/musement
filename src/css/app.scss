@@ -125,20 +125,22 @@ header.large-header {
   }
   .project-color {
     margin: 20px 0;
-    input[type="radio"] {
-      width: 40px;
-      height: 40px;
-      border-radius: 5px;
-      background: red;
-      position: relative;
+    label > input{ /* HIDE RADIO */
+      visibility: hidden; /* Makes input not-clickable */
+      position: absolute; /* Remove input from document flow */
     }
-    input[type="radio"]:checked::before {
-      display: block;
-      position: absolute;
-      content: '';
+    label > input + img{ /* IMAGE STYLES */
+      cursor:pointer;
+      border:2px solid transparent;
       width: 30px;
       height: 30px;
-      background: #fff;
+      margin-right: 6px;
+    }
+    label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+       content: '';
+       width: 40px;
+       height: 40px;
+       background: #fff;
     }
   }
   .project-type {
