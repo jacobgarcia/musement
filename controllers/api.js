@@ -517,11 +517,13 @@ router.route('/users/:user_id/projects')
   })
   .post(function (req, res) {
     let project = new Project();
+
     project.admin = req.U_ID;
     project.category = req.body.category;
     project.description = req.body.description;
     project.name = req.body.name;
-    project.members = [req.U_ID]
+    project.members = [req.U_ID];
+
     project.save(function(err, project) {
       if (err) {
         res.json({'err':err})
