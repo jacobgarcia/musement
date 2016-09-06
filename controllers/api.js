@@ -525,21 +525,19 @@ router.route('/users/:user_id/projects')
   .post(function (req, res) {
     let project = new Project();
 
-    console.log("MEMBERS: " + req.body.members.concat(req.U_ID));
     project.admin = req.U_ID;
     project.category = req.body.category;
     project.description = req.body.description;
     project.name = req.body.name;
-
     project.members = req.body.members.concat(req.U_ID);
 
     project.save(function(err, project) {
       if (err) {
         res.json({'err':err})
       }
-      User.findByIdAndUpdate(req.U_ID,
+      User.update({_id: {$in: project.members}},
           {$push: {"projects":  project._id}},
-          {safe: true, upsert: true},
+          {multi: true },
           function(err){
             if (err)
               res.status(500).json({'error': err, 'success': false});
