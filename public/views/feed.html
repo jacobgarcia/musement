@@ -139,7 +139,7 @@
           <img  ng-repeat="attachment in moment.attachments" src="/{{attachment}}" alt="" />
         </div>
         <ul class="moment-tags tags" ng-if="!!moment.tags.length">
-          <li ng-repeat="tag in moment.tags.name">{{tag}}</li>
+          <li ng-repeat="tag in moment.tags">{{tag.name}}</li>
         </ul>
         <div class="feedback-count">
           <p>{{moment.feedback.length}} feedbacks</p>

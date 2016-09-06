@@ -208,7 +208,6 @@ router.route('/users')
 
 router.route('/users/u=:username?')
 .get(function (req, res) {
-  console.log('USERNAME: '+ req.params.username);
   User.findOne({'username': req.params.username}, '-password') //Return all excepting password
   .populate('projects')
   .exec(function(err, user) {
@@ -325,6 +324,7 @@ router.route('/moments/:moment_id')
         select: 'username'
       }
    })
+  .populate('tags')
   .exec(
     function(err, moment) {
       if (err) {
@@ -655,6 +655,7 @@ router.route('/users/:user_id/interests/moments')
   //
   Moment.find()
   .populate('user','username name surname image')
+  .populate('tags')
   .sort('-_id')
   .exec(function(err, moments) {
     if (err) {
