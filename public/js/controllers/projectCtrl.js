@@ -38,6 +38,7 @@ angular.module('musementApp')
     projectInfo.description = this.project.description;
     projectInfo.name = this.project.name;
     projectInfo.members = this.project.members;
+    projectInfo.color = "/static/img/project-colors/project_" + this.project.color + ".svg";
 
     projectDataService.setProject(projectInfo, user_id, function (response) {
       if (response.data.success == true) {

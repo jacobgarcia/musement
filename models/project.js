@@ -9,7 +9,11 @@ var projectSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    // required: true
+    required: true
+  },
+  color: {
+    type: String,
+    required: true
   },
   description: String,
   members: [{
@@ -20,7 +24,10 @@ var projectSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Moment'
   }],
-  name: String
+  name: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = mongoose.model('Project', projectSchema);

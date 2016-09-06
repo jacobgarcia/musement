@@ -530,7 +530,7 @@ router.route('/users/:user_id/projects')
     project.description = req.body.description;
     project.name = req.body.name;
     project.members = req.body.members.concat(req.U_ID);
-
+    project.color = req.body.color;
     project.save(function(err, project) {
       if (err) {
         res.json({'err':err})
