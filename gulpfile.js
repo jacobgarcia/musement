@@ -1,11 +1,13 @@
 var gulp = require('gulp'),
-  uglify = require('gulp-uglify'),
-  cleanCSS = require('gulp-clean-css'),
-  rename = require('gulp-rename'),
-  sass = require('gulp-sass'),
-  nodemon = require('gulp-nodemon'),
-  sourcemaps = require('gulp-sourcemaps'),
-  concat = require('gulp-concat');
+    sourcemaps = require('gulp-sourcemaps'),
+    rename = require('gulp-rename'),
+    babel = require('gulp-babel'),
+    sass = require('gulp-sass'),
+    cleanCSS = require('gulp-clean-css'),
+    htmlmin = require('gulp-htmlmin'),
+    minifyjs = require('gulp-js-minify'),
+    concat = require('gulp-concat'),
+    nodemon = require('gulp-nodemon')
 
 gulp.task('sass', function() {
   return gulp.src('src/css/*.scss')
@@ -20,8 +22,29 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('public/css'));
 });
 
-gulp.task('watch', function() {
-    gulp.watch('./src/css/*.scss', ['sass'])
+gulp.task('htmlminify', function() {
+  return gulp.src(['./src/views/*/*.html','./src/views/*.html'])
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('./public/views'))
+});
+
+gulp.task('babel', function () {
+  return gulp.src("./src/js/**/*.js")
+    .pipe(sourcemaps.init())
+    .pipe(babel().on('error', (error) => console.error(error)))
+    .pipe(minifyjs())
+    .pipe(concat("app.js"))
+    .pipe(rename({
+            suffix: '.min'
+        }))
+    .pipe(sourcemaps.write("."))
+    .pipe(gulp.dest("./public/js"));
+});
+
+gulp.task('watch', function () {
+  gulp.watch("./src/views/**/*.html", ['htmlminify'])
+  gulp.watch('./src/js/**/*.js', ['babel']);
+  gulp.watch('./src/css/*.scss', ['sass']);
 });
 
 gulp.task('start', function () {
@@ -32,4 +55,4 @@ gulp.task('start', function () {
   })
 });
 
-gulp.task('default', ['sass','watch','start']);
+gulp.task('default', ['sass','htmlminify','babel','watch','start']);

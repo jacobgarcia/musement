@@ -11,7 +11,6 @@ angular.module('musementApp')
   $scope.user_id = user_id;
   $scope.tags = [];
 
-
   /* Default selected project */
   //$scope.defaultSelectedProject = this.newMoment.project[0].id;
 
@@ -130,24 +129,24 @@ angular.module('musementApp')
 
   //Creates a new moment to the user
   this.setMoment = function(moment, user_id, callback) {
-    $http.post(host + '/api/users/' + user_id + '/moments', moment)
+    $http.post(window.host + '/api/users/' + user_id + '/moments', moment)
     .then(callback);
   }
 
   //Creates a new project to the user
   this.setProject = function(project, user_id, callback) {
-    $http.post(host + '/api/users/' + user_id + '/projects', project)
+    $http.post(window.host + '/api/users/' + user_id + '/projects', project)
     .then(callback);
   }
 
   //Returns moments of the interests
   this.getInterestsFeed = function(user_id, callback) {
-    $http.get(host + '/api/users/' + user_id + '/interests/moments')
+    $http.get(window.host + '/api/users/' + user_id + '/interests/moments')
     .then(callback)
   }
 
   this.heartMoment = function(moment_id, callback) {
-    $http.post(host + '/api/moments/' + moment_id + '/likes/')
+    $http.post(window.host + '/api/moments/' + moment_id + '/likes/')
     .then(callback);
   }
 

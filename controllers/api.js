@@ -662,10 +662,11 @@ router.route('/users/:user_id/interests/moments')
   //
   Moment.find()
   .populate('user','username name surname image')
-  .populate('tags')
+  // .populate('tags')
   .sort('-_id')
   .exec(function(err, moments) {
     if (err) {
+      console.log(err);
       res.status(500).json({'error': err, 'success': false});
     } else {
       res.json({'moments': moments, 'success': true});
