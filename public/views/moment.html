@@ -16,7 +16,7 @@
   <div class="moment">
     <div class="moment-text">
       <div class="user-image" ui-sref="feed.profile({username: moment.user.username})">
-        <img src="{{moment.user.image}}" alt="" />
+        <img src="../../../{{moment.user.image}}"/>
       </div>
       <div class="moment-info">
         <p class="user-name" ng-click="console.log(moment);" ui-sref="feed.profile({username: moment.user.username})">{{moment.user.name}} {{moment.user.surname}}</p>
