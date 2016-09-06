@@ -88,8 +88,7 @@
         <input type="file" ngf-select name="files" ng-model="newMoment.files" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="5MB"/>
         <i ng-show="create_moment.files.$error.maxSize">File too large {{user.image.size / 1000000|number:1}}MB: max 5M</i><br>
       <label for="project">Project</label>
-      <select class="" ng-model="newMoment.project" name="project">
-        <option value="{{project._id}}" ng-repeat="project in this_user.projects">{{project.name}}</option>
+      <select ng-options="project.name for project in this_user.projects track by project.id" class="" ng-model="newMoment.project" name="project" ng-init="newMoment.project = newMoment.project || this_user.projects[0]" >
       </select>
       <input type="button" name="create" value="create" ng-click="submitMoment(newMoment)">
     </form>
