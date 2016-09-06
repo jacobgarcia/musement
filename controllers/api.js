@@ -153,6 +153,13 @@ router.get('/tags', function(req, res){
   });
 });
 
+// Members consulting
+router.get('/members', function(req, res){
+  User.find({}, 'name surname username image',function(err, users){
+    res.json(users);
+  });
+});
+
 // ********************************
 // **                            **
 // **  MIDDLEWARE TOKEN-ACCESS   **
@@ -518,11 +525,13 @@ router.route('/users/:user_id/projects')
   .post(function (req, res) {
     let project = new Project();
 
+    console.log("MEMBERS: " + req.body.members.concat(req.U_ID));
     project.admin = req.U_ID;
     project.category = req.body.category;
     project.description = req.body.description;
     project.name = req.body.name;
-    project.members = [req.U_ID];
+
+    project.members = req.body.members.concat(req.U_ID);
 
     project.save(function(err, project) {
       if (err) {

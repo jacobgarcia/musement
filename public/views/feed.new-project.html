@@ -36,7 +36,36 @@
     <label for="description">Description</label>
     <textarea ng-model="project.description" name="description" id="description" placeholder="Description..."></textarea>
     <div class="project-members">
+
       <label>Members</label>
+      <tags-input ng-model="project.members" display-property="name" placeholder="Add Member" replace-spaces-with-dashes="false" max-tags="3" min-length="0"  add-from-autocomplete-only="true" template="tag-project">
+        <auto-complete source="loadMembers($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="35" template="autocomplete-project"></auto-complete>
+      </tags-input>
+
+      <script type="text/ng-template" id="tag-project">
+        <div class="tag-template">
+          <div class="left-panel">
+            <img ng-src="../{{data.image}}" ng-if="data.image"/>
+          </div>
+          <div class="right-panel">
+            <span>{{$getDisplayText()}}</span>
+            <a class="remove-button" ng-click="$removeTag()">&#10006;</a>
+          </div>
+        </div>
+      </script>
+
+      <script type="text/ng-template" id="autocomplete-project">
+        <div class="autocomplete-template">
+          <div class="left-panel">
+            <img ng-src="../{{data.image}}"/>
+          </div>
+          <div class="right-panel">
+            <span ng-bind-html="$highlight($getDisplayText())"></span>
+            <span>{{data.surname}}</span>
+            <span>{{data.username}}</span>
+          </div>
+        </div>
+      </script>
     </div>
       <input type="button" name="create" value="create" ng-click="submitProject(project)">
   </div>

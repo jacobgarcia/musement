@@ -1,9 +1,22 @@
 angular.module('musementApp')
-.controller('projectCtrl', function($scope, $rootScope, $stateParams, projectDataService, localStorageService) {
+.controller('projectCtrl', function($scope, $rootScope, $stateParams, projectDataService, localStorageService, $http) {
 
   let username = $stateParams.username;
   let projectname = $stateParams.projectname;
   let user_id = localStorageService.get('user_id');
+
+  $scope.members = []; //TODO: Optimize member retrieving
+
+  $scope.loadMembers = function($query) {
+    return $http.get(host + '/api/members',{cache: true}).then(function(response) {
+      var members = response.data;
+      return members.filter(function(member) {
+        return member.name.toLowerCase().indexOf($query.toLowerCase()) != -1;
+      });
+    });
+  };
+
+  // Load members when creating a project
 
   projectDataService.getUsernameProject(username, projectname, function(response) {
     console.log("DATA",response.data);
@@ -24,6 +37,7 @@ angular.module('musementApp')
     projectInfo.category = this.project.type;
     projectInfo.description = this.project.description;
     projectInfo.name = this.project.name;
+    projectInfo.members = this.project.members;
 
     projectDataService.setProject(projectInfo, user_id, function (response) {
       if (response.data.success == true) {

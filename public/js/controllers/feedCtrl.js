@@ -11,6 +11,7 @@ angular.module('musementApp')
   $scope.user_id = user_id;
   $scope.tags = [];
 
+
   /* Default selected project */
   //$scope.defaultSelectedProject = this.newMoment.project[0].id;
 
