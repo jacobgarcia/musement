@@ -7,6 +7,7 @@ angular.module('musementApp')
 
   $scope.members = []; //TODO: Optimize member retrieving
 
+  // Load members when creating a project
   $scope.loadMembers = function($query) {
     return $http.get(host + '/api/members',{cache: true}).then(function(response) {
       var members = response.data;
@@ -16,10 +17,8 @@ angular.module('musementApp')
     });
   };
 
-  // Load members when creating a project
 
   projectDataService.getUsernameProject(username, projectname, function(response) {
-    console.log("DATA",response.data);
     let project_id = response.data.project._id;
     projectDataService.getProject(project_id, function(response) {
       let project = response.data;
