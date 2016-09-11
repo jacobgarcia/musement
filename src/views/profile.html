@@ -25,7 +25,7 @@
 <main class="main-feed">
   <div class="user-profile">
     <div class="user-image">
-      <img src="../../{{user.image}}" alt="" />
+      <img src="{{user.image}}" alt="" />
     </div>
     <div class="user-info">
       <p class="name">{{user.name}} {{user.surname}}</p>
@@ -39,7 +39,7 @@
   <div class="moment" ng-repeat="moment in user.moments" ng-click="showMomentDetails(moment_id)" ng-model="moments">
     <div class="moment-text">
       <div class="user-image">
-        <img src="../../{{user.image}}" alt="" />
+        <img src="{{user.image}}" alt="" />
       </div>
       <div class="moment-info">
         <p class="user-name" ng-click="$state.go(moment.user.name); $event.stopPropagation();">{{moment.user.name}} {{moment.user.surname}}</p>

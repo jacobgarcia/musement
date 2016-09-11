@@ -1,6 +1,6 @@
 var ipAddress = 'localhost:8080';
-var host = 'http://localhost:8080'; //Change in production
-
+window.host = 'http://localhost:8080'; //Change in production
+window.HOST='http://localhost:8080';
 angular.module('musementApp',['ui.router', 'LocalStorageModule', 'angular-jwt','pascalprecht.translate', 'ngFileUpload', 'ngTagsInput'])//, 'ngFileUpload'
 
 .factory('httpRequestInterceptor', function (localStorageService) {

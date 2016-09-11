@@ -22,7 +22,7 @@ var momentSchema = new mongoose.Schema({
   }],
   attachments: [String],
   tags: [{
-    type: mongoose.Schema.Types.ObjectId, /* Object ID from tags */
+    type: String, /* Object ID from tags */
     ref: 'Tag'
   }],
   project: {
