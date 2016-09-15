@@ -35,7 +35,7 @@
         </ul>
         <h5>Projects</h5>
         <ul class="elements-list">
-          <li ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.name})" ng-click="bodyMove()" class="pointer">{{project.name}}</li>
+          <li ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.name})" ng-click="bodyMove()" class="pointer"><img src="{{project.color}}">{{project.name}}</li>
           <li ui-sref="feed.new-project" ng-click="bodyMove()" class="pointer"><input type="button" name="name" class="green-button small" value="New Project"></li>
         </ul>
       </div>
