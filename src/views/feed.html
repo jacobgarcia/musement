@@ -18,7 +18,7 @@
     <div class="side-bar-content">
       <img src="/static/img/musement-logotype-white.svg" alt="" style="position: absolute; width: 110px; top: -30px; margin: 0 50px;"/>
       <div class="profile" ui-sref="feed.profile({username: username})" ng-click="bodyMove()">
-        <img class="profile-photo" src="{{this_user.image}}" alt="" />
+        <img class="profile-photo" src="/{{this_user.image}}" alt="" />
         <div class="profile-text">
           <p class="profile-name">{{this_user.name}} {{this_user.surname}}</p>
           <p class="profile-username">@{{username}}</p>

@@ -74,7 +74,7 @@ angular.module('musementApp')
     let momentInfo = {};
 
     momentInfo.description = this.newMoment.description;
-    momentInfo.attachments = 'static/uploads/' + image;
+    momentInfo.attachments = '/static/uploads/' + image;
     momentInfo.tags = this.newMoment.tags;
     momentInfo.project = this.newMoment.project._id;
     momentInfo.question = this.newMoment.question;
