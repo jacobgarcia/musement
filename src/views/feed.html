@@ -67,7 +67,7 @@
   </div>
 </div>
 
-<div class="create-moment" ng-class="{'active': momentSeen}">
+<div class="create-moment" ng-class="{'active': momentSeen}" ng-form="createMomentForm">
   <div class="">
     <ul class="menu">
       <!-- <li></li> -->
@@ -91,7 +91,7 @@
       <select ng-options="project.name for project in this_user.projects" class="" ng-model="newMoment.project" name="project" required>
         <option style="display:none" value="">Select a Project</option>
       </select>
-      <input type="button" name="create" value="create" ng-click="submitMoment(newMoment)">
+      <input type="button" name="create" value="Create" ng-click="submitMoment(newMoment)" ng-class="{'inactive': !createMomentForm.$valid}">
     </form>
   </div>
 </div>

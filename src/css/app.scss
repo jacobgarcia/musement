@@ -610,6 +610,19 @@ ul.tags li {
   transform: translateX(0);
 }
 .create-moment {
+  width: 400px;
+  height: 470px;
+  border-radius: 5px;
+  left: calc(50% - 220px);
+  input[type="button"]{
+    margin-top: 20px;
+  }
+  input[name="create"].inactive {
+    background: $gray;
+  }
+  &.active {
+    top: calc(50% - 200px);
+  }
   ul {
     margin-bottom: 20px;
   }
@@ -617,6 +630,8 @@ ul.tags li {
     width: 100%;
     display: block;
     margin-bottom: 15px;
+    background: #f3f3f3;
+    border: none;
   }
   label {
     display: block;
@@ -705,16 +720,7 @@ ul.tags li {
       height: 21px;
     }
   }
-  .create-moment {
-    width: 400px;
-    height: 440px;
-    // box-shadow: 0px 0px 10px rgba(0, 0, 0, .3);
-    border-radius: 5px;
-    left: calc(50% - 220px);
-    input[type="button"]{
-      margin-top: 20px;
-    }
-  }
+
   * [ng-click], * [ui-sref]  {
     cursor: pointer;
     -webkit-user-select: none;
@@ -738,9 +744,6 @@ ul.tags li {
   .super-hover.active {
     z-index: 80;
     opacity: 1;
-  }
-  .create-moment.active {
-    top: calc(50% - 200px);
   }
   body.ng-scope.app {
     display: flex;
