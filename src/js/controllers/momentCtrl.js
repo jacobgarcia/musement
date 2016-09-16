@@ -2,11 +2,9 @@ angular.module('musementApp')
 .controller('momentCtrl', function($scope, $compile, momentDataService, $stateParams) {
 
   let moment_id = $stateParams.moment_id;
-  console.log(moment_id);
+
   $scope.setFeedback = function (feedback) {
-
     feedback.moment_id = $scope.moment._id;
-
     momentDataService.setFeedback(feedback, function(res) {
       if (res.data.success) {
         //Insert directly into html instead of making a new request

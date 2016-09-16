@@ -22,25 +22,25 @@ angular.module('musementApp')
   }
 
   $scope.done = function(){
-    if (this.upload_form.file.$valid && this.user.image)
-        $scope.upload(this.user.image);
-    else
-      console.log("Could not upload image");
+    if (this.user.image.type) { //Check if its a file, if it's upload
+      $scope.upload(this.user.image)
+    } else {
+      $scope.sign(this.user.image)
+    }
   }
 
   $scope.upload = function(file){
-    Upload.upload({url: 'http://localhost:8080/api/upload', data:{ file: file }})
-    .then(function (resp) { //upload function returns a promise
-                if(resp.data.error_code === 0){
-                    // If the file successfully uploaded, then submit the user info
-                    $scope.sign(resp.data.file_name);
-                } else {
-                    console.log('An error occured: ' + JSON.stringify(resp.data.error_desc));
-                }
-            }, function (resp) { //catch error
-                console.log('Error status: ' + resp.status);
-                $window.alert('Error status: ' + resp.status);
-    });
+    console.log(file);
+    if (!file) { //If user doesnt want to upload a photo, set the gravatar one
+        $scope.sign(); //Send no image
+    } else {
+      Upload.upload({url: 'http://localhost:8080/api/upload', data:{ file: file }})
+      .then(function (res) { //upload function returns a promise
+            $scope.sign('/static/uploads/' + res.data.file_name);
+        }, function (errRes) { //catch error
+            $window.alert('Error status: ' + errRes.status);
+      });
+    }
   }
 
   $scope.sign = function (image) {
@@ -51,7 +51,7 @@ angular.module('musementApp')
     signupInfo.name = this.user.name;
     signupInfo.surname = this.user.surname;
     signupInfo.password = this.user.password;
-    signupInfo.image = 'static/uploads/' + image;
+    signupInfo.image = image
 
     signupDataService.signup(signupInfo, function (res) {
       if (res.data.success == true) {

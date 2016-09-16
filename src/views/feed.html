@@ -125,6 +125,9 @@
     </header>
     <main class="main-feed">
       <div class="moment" ng-repeat="moment in interests.moments" ui-sref="feed.moment({username: moment.user.username, moment_id: moment._id})" ng-model="moments">
+        <div class="project-name" ng-if="moment.project.name">
+          <p>{{moment.project.name}}</p>
+        </div>
         <div class="moment-text">
           <div class="user-image" ui-sref="feed.profile({username: moment.user.username})">
             <img src="{{moment.user.image}}" alt="" />
@@ -136,7 +139,7 @@
           </div>
         </div>
         <div class="moment-attachments" ng-if="moment.attachments.length > 0">
-          <img  ng-repeat="attachment in moment.attachments" src="/{{attachment}}" alt="" />
+          <img  ng-repeat="attachment in moment.attachments" src="{{attachment}}" alt="" />
         </div>
         <ul class="moment-tags tags" ng-if="!!moment.tags.length">
           <li ng-repeat="tag in moment.tags">{{tag.name}}</li>

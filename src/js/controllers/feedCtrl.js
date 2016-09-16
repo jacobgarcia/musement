@@ -50,9 +50,8 @@ angular.module('musementApp')
   $scope.submitMoment = function(moment){
     if (this.create_moment.files.$valid && this.newMoment.files)
         $scope.upload(moment, this.newMoment.files);
-    else {
+    else
       console.log("Could not upload image");
-    }
   }
 
   $scope.upload = function(moment, file){

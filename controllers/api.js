@@ -68,7 +68,7 @@ router.post('/signup', function(req, res){
             newUser.name = req.body.name;
             newUser.username = req.body.username;
             newUser.password = newUser.generateHash(req.body.password);
-            newUser.image = req.body.image || "/static/img/default.jpg"; //TODO: possible change of path
+            newUser.image = req.body.image || null; //TODO: possible change of path
 
             // Save the user
             newUser.save(function (err) {
@@ -523,28 +523,34 @@ router.route('/users/:user_id/projects')
 
   })
   .post(function (req, res) {
-    let project = new Project();
 
-    project.admin = req.U_ID;
-    project.category = req.body.category;
-    project.description = req.body.description;
-    project.name = req.body.name;
-    project.members = req.body.members.concat(req.U_ID);
-    project.color = req.body.color;
+    let project = new Project({
+      admin: req.U_ID,
+      category: req.body.category,
+      description: req.body.description,
+      name: req.body.name,
+      color: req.body.color
+    })
+    if (!req.body.members)
+      project.members = [req.U_ID]
+    else
+      project.members = req.body.members.push(req.U_ID)
     project.save(function(err, project) {
       if (err) {
-        res.json({'err':err})
+        console.log('Error');
+        res.status(500).json({'err':err})
       }
-      User.update({_id: {$in: project.members}},
-          {$push: {"projects":  project._id}},
-          {multi: true },
-          function(err){
-            if (err)
-              res.status(500).json({'error': err, 'success': false});
-            else
-              res.json({message: 'Project created!', project: project});
-          });
-      });
+      console.log(project);
+        User.update({_id: {$in: project.members}},
+            {$push: {"projects":  project._id}},
+            {multi: true })
+        .exec(function(err){
+          if (err)
+            res.status(500).json({'error': err, 'success': false});
+          else
+            res.json({message: 'Project created!', project: project});
+        });
+    });
   });
 
 router.route('/projects/:project_id')
@@ -661,7 +667,7 @@ router.route('/users/:user_id/interests/moments')
   //NOTICE: Not yet implemented
   //
   Moment.find()
-  .populate('user','username name surname image')
+  .populate('user project','username name surname image color')
   // .populate('tags')
   .sort('-_id')
   .exec(function(err, moments) {
