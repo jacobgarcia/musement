@@ -10,6 +10,7 @@ let express = require('express'),
   Moment = require("../models/moment.js"),
   Tag = require("../models/tag.js"),
   invite = require("../config/createinvitation.js"),
+  angular = require("../config/angular.js"),
   router = express.Router();
 
 /* MULTER DEFINITIONS. PLEASE DONT TOUCH THIS */
@@ -69,19 +70,18 @@ router.post('/signup', function(req, res){
             newUser.username = req.body.username;
             newUser.password = newUser.generateHash(req.body.password);
             newUser.image = req.body.image || null; //TODO: possible change of path
-
             // Save the user
             newUser.save(function (err) {
-                if (err) {
-                  res.status(500).json({'success': false, 'error': err, 'message': "Could not save user."});
-                } else {
+                if (err)
+                  res.status(500).json({'error': err, 'message': "Could not save user."});
+                else {
                   // Create a token and --- sign with the user information --- and secret password
-                  var token = jwt.sign({"_id": newUser._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
+                  var token = jwt.sign({"_id": newUser._id}, angular.secret, {
                     expiresIn: 216000 // expires in 60 hours
                   });
 
                   // Return the information including token as JSON
-                  res.json({
+                  res.status(200).json({
                     'success': true,
                     '_id': newUser._id,
                     'username': newUser.username,
@@ -105,21 +105,21 @@ router.post('/authenticate', function(req, res) {
         { 'username': req.body.username }
       ]
     }, function(err, user) {
-      if (err) {
-        res.json({'error': err })
-      } else if (!user) {
-        res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
-      } else if (user) {
-        if (!user.comparePassword(req.body.password)) { // check if password matches
-          res.json({ success: false, message: 'Authentication failed. Wrong user or password.' });
-        } else {
+      if (err)
+        res.status(500).json({'error': err})
+      else if (!user)
+        res.status(401).json({'message': "Authentication failed. Wrong user or password."})
+      else if (user) {
+        if (!user.comparePassword(req.body.password)) // check if password matches
+          res.status(401).json({'message': "Authentication failed. Wrong user or password."})
+        else {
           // if user is found and password is right
           // create a token and --- sign with the user information --- and secret password
-          var token = jwt.sign({"_id": user._id}, "svuadyIUUVas87gdas78ngd87asgd87as", {
+          var token = jwt.sign({"_id": user._id}, angular.secret, {
             expiresIn: 216000 // expires in 6 hours
           });
           // Return the information including token as JSON
-          res.json({
+          res.status(200).json({
             'success': true,
             '_id': user._id,
             'username': user.username,
@@ -131,7 +131,7 @@ router.post('/authenticate', function(req, res) {
     });
   } else {
     /* In case the username field is in blank, end the connection with the client */
-    res.json({ 'success': false, 'message': "Authentication failed. No user specified." });
+    res.status(401).json({ 'success': false, 'message': "Authentication failed. No user specified." });
   }
 });
 
@@ -173,7 +173,7 @@ router.use(function(req, res, next) {
 
   if (token) {
     var decodedToken = jwt.decode(token); //Decode token
-    jwt.verify(token, "svuadyIUUVas87gdas78ngd87asgd87as", function(err, decoded) { // decode token
+    jwt.verify(token, angular.secret, function(err, decoded) { // decode token
       if (err) {
         return res.status(401).json({'success': false, 'message': 'Failed to authenticate token.'});
       } else { //Send the decoded token to the request body
@@ -228,21 +228,7 @@ router.route('/users/u=:username?')
   });
 
 })
-.put(function (req, res) {
-  var token = req.body.token || req.query.token || req.headers['x-access-token']; // check header or url parameters or post parameters for token
-  var decoded = jwt.decode(token);
-  var _id = decoded._id;
 
-  //UPDATE USER PROFILE
-  res.status(501).json({'message':'Not yet supported.', 'success': false});
-})
-.delete(function (req, res) {
-  //DELETE USER
-    //Authenticate logged user is deleting himself
-  res.status(501).json({'message':'Not yet supported.', 'success': false});
-});
-
-//Find by user_id or username
 router.route('/users/:user_id') //just when the url has "id=" it will run, otherwise it will look for a username
 .get(function (req, res) {
   // console.log("ID");
@@ -263,20 +249,22 @@ router.route('/users/:user_id') //just when the url has "id=" it will run, other
   var decoded = jwt.decode(token);
   var _id = decoded._id;
 
-  //UPDATE USER PROFILE
-  res.status(501).json({'message':'Not yet supported.', 'success': false});
+  //TODO: Update user
+  res.status(501).json({'message':'Not yet supported.'})
 })
 .delete(function (req, res) {
-  //DELETE USER
-    //Authenticate logged user is deleting himself
-  res.status(501).json({'message':'Not yet supported.', 'success': false});
+  //TODO: *Deactivate* user
+  //Authenticate logged user is deleting himself
+  res.status(501).json({'message':'Not yet supported.'})
 });
 
-// *************************************
-// ***                               ***
-// ***            MOMENTS            ***
-// ***                               ***
-// *************************************
+
+
+/*************************************
+ ***                               ***
+ ***            MOMENTS            ***
+ ***                               ***
+ *************************************/
 
 router.route('/users/:user_id/moments')
   .get(function (req, res) {
@@ -286,42 +274,36 @@ router.route('/users/:user_id/moments')
     .sort('-_id')
     .exec(
       function(err, moments) {
-        if (err) {
+        if (err)
           res.status(500).json({'error': err});
-        } else {
+        else
           res.status(200).json({'moments': moments});
-        }
       });
   })
   .post(function (req, res) {
-    var user_id = req.U_ID;
-
     if(user_id === req.params.user_id) { //Verify that is the user who is adding a moment to himself
-      let moment = new Moment();
-
-      moment.description = req.body.description;
-      moment.attachments = req.body.attachments;
-      moment.tags = req.body.tags;
-      moment.project = req.body.project;
-      moment.question = req.body.question;
-      moment.user = req.params.user_id; //Use the user from the url, no need to add it on the body
-
-      moment.save(function(err) {
-        if (err) {
+      let moment = new Moment({
+        description: req.body.description,
+        attachments: req.body.attachments,
+        tags: req.body.tags,
+        project: req.body.project,
+        question: req.body.question,
+        user: req.U_ID, //Use user from the req U_ID (this cannot be changed from the client)
+      })
+      moment.save(function(err, moment) {
+        if (err)
           res.status(500).json({'error': err, 'success': false});
-        } else {
-          res.json({'message': 'Moment created!', 'moment': moment, 'success': true});
-        }
-      });
+        else
+          res.status(201).json({'message': 'Moment created!', 'moment': moment, 'success': true});
+      })
     } else {
-      res.json({'message': 'You are trying to add a new moment to other person that is not you.', 'success': false})
+      res.status(401).json({'message': 'You are trying to add a new moment to other person that is not you.'})
     }
   });
 
 router.route('/moments/:moment_id')
 .get(function (req, res) {
-  //Get detailed information of the moment
-    //Validate the user adds a moment for him (and not someone else)
+  //TODO: validate the user adds a moment for him (and not someone else)
   Moment.findById(req.params.moment_id)
   .populate('user','name surname username image')
   .populate({
@@ -333,112 +315,100 @@ router.route('/moments/:moment_id')
       }
    })
   .populate('tags')
-  .exec(
-    function(err, moment) {
-      if (err) {
-        res.status(500).json({'error': err, 'success': false});
-      } else if (!moment) {
-        res.json({'message': "No moment found.", 'success': false});
-      } else {
-        res.json({'moment': moment, 'success': true});
-      }
-    });
+  .exec(function(err, moment) {
+    if (err)
+      res.status(500).json({'error': err});
+    else if (!moment)
+      res.status(404).json({'message': "No moment found."});
+    else
+      res.status(200).json({'moment': moment});
+  })
 })
 .put(function (req, res) {
-  //Edit moment of the user
-  res.status(501).json({'message':'Not yet supported.', 'success': false});
+  //TODO: edit moment of the user
+  res.status(501).json({'message':'Not yet supported.'})
 })
 .delete(function (req, res) {
-  //Remove moment from user
-    //Validate user owns the moment
-  Moment.findByIdAndRemove(req.params.moment_id)
-  .exec(
-    function(err, moment) {
-      // console.log(moment);
-      if (err) {
-        res.status(500).json({'error': err, 'success': false});
-      } else if (!moment) {
-        res.json({"message": "No moment found, couldn't delete.", "success": false});
-      } else {
-        res.json({"message": "Successfully deleted moment", "status": moment});
-      }
-    });
-});
+  //TODO: Validate user owns the moment
+  res.status(501).json({'message':'Not yet supported.'})
+  // Moment.findByIdAndRemove(req.params.moment_id)
+  // .exec(function(err, moment) {
+  //   if (err)
+  //     res.status(500).json({'error': err, 'success': false})
+  //   else if (!moment)
+  //     res.status(404).json({"message": "No moment found, couldn't delete."})
+  //   else
+  //     res.status(200).json({"message": "Successfully deleted moment"})
+  // })
+})
 
 router.route('/moments/:moment_id/feedback')
 .get(function (req, res) { //Get detailed information of the moment
-  //TODO: Validate the user adds a moment for him (and not someone else)
-  Moment.findById(req.params.moment_id, 'feedback')
+  Moment.findById(req.U_ID)
+  .populate('feedback')
   .sort('-feedback._id')
-  .exec(
-    function(err, moment) {
-      if (err) {
-        res.status(500).json({'error': err, 'success': false});
-      } else if (!moment) {
-        res.json({"message": "No moment found.", "success": false});
-      } else {
-        res.json(moment);
-      }
-    });
+  .exec(function(err, moment) {
+    if (err)
+      res.status(500).json({'error': err});
+    else if (!moment)
+      res.status(404).json({'message': "No moment found."});
+    else
+      res.status(200).json(moment);
+  });
 })
 .post(function (req, res) {
 
   let feedback = req.body.text;
-  let attachments = req.body.attachments;
+  //TODO: add attachments into the feedback
+  //let attachments = req.body.attachments;
 
   Moment.findById(req.params.moment_id) //User, comment
   .update({ $addToSet: { 'feedback': {'user': req.U_ID, 'text': feedback} } })
   .exec(function(err) {
       if (err) {
-        res.status(500).json({'error': err, 'success': false});
+        res.status(500).json({'error': err});
       } else {
-        res.json({'message': "Feedback sent.", "success": true});
+        res.status(201).json({'message': "Feedback sent."});
       }
   });
 });
 
 router.route('/moments/:moment_id/likes')
-.get(function (req, res) { //Get detailed information of the moment
-  //TODO: Validate the user adds a moment for him (and not someone else)
+.get(function (req, res) {
   Moment.findById(req.params.moment_id)
-  .exec(
-    function(err, moment) {
-      if (err) {
-        res.status(500).json({'error': err, 'success': false});
-      } else if (!moment) {
-        res.json({"message": "No moment found.", "success": false});
-      } else {
-        res.json(moment);
-      }
-    });
+  .exec(function(err, moment) {
+    if (err)
+      res.status(500).json({'error': err})
+    else if (!moment)
+      res.status(404).json({'error': {'message': "No moment found."}})
+    else
+      res.status(201).json(moment)
+  })
 })
 .post(function (req, res) {
   console.log(req.user);
   Moment.findById(req.params.moment_id)
   .update({ $addToSet: { hearts: req.U_ID } })
-  .exec(function(err, result) {
-      if (err) {
-        res.status(500).json({'error': err, 'success': false});
-      } else if (result.nModified == 0) {
-        res.json({'message': "Already liked.", 'success': false});
-      } else {
-        res.json({'message': "Successfully liked", 'success': true});
-      }
+  .exec(function(err) {
+      if (err)
+        res.status(500).json({'error': err})
+      else if (result.nModified == 0) //If the moment wasn't modified, means it didn't liked
+        res.status(400).json({'message': "Already liked."})
+      else
+        res.status(201).json({'message': "Successfully liked"})
   });
 })
 .delete(function (req, res) { //Unheart
   //Remove like from moment
-    //Validate user owns the moment
-    Moment.findByIdAndUpdate(req.params.moment_id, {
-              $pull: {usersHeart: req.body.hearter}
-          }, function(err) {
-              if (err) {
-                res.status(500).json({'error': err, 'success': false});
-              } else {
-                res.json({"message": "Successfully un-liked", 'success': true});
-              }
-          });
-});
+  Moment.findByIdAndUpdate(req.params.moment_id,
+    {$pull: {usersHeart: req.U_ID}})
+  .exec(function(err) {
+    if (err)
+      res.status(500).json({'error': err})
+    else
+      res.status(200).json({"message": "Successfully un-liked"})
+  })
+})
 
 // router.route('/moments/:moment_id/upvotes')
 // .get(function (req, res) { //Get detailed information of the moment
