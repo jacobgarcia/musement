@@ -124,38 +124,7 @@
       </nav>
     </header>
     <main class="main-feed">
-      <div class="moment" ng-repeat="moment in interests.moments" ui-sref="feed.moment({username: moment.user.username, moment_id: moment._id})" ng-model="moments">
-        <div class="project-name" ng-if="moment.project.name">
-          <p>{{moment.project.name}}</p>
-        </div>
-        <div class="moment-text">
-          <div class="user-image" ui-sref="feed.profile({username: moment.user.username})">
-            <img src="{{moment.user.image}}" alt="" />
-          </div>
-          <div class="moment-info">
-            <p class="user-name" ng-click="console.log(moment);" ui-sref="feed.profile({username: moment.user.username})">{{moment.user.name}} {{moment.user.surname}}</p>
-            <p>{{moment.description}}</p>
-            <p class="question">{{moment.question}}</p>
-          </div>
-        </div>
-        <div class="moment-attachments" ng-if="moment.attachments.length > 0">
-          <img  ng-repeat="attachment in moment.attachments" src="{{attachment}}" alt="" />
-        </div>
-        <ul class="moment-tags tags" ng-if="!!moment.tags.length">
-          <li ng-repeat="tag in moment.tags">{{tag.name}}</li>
-        </ul>
-        <div class="feedback-count">
-          <p>{{moment.feedback.length}} feedbacks</p>
-        </div>
-        <div class="moment-stats">
-          <div class="hearts" ng-click="heart($index, moment._id); $event.stopPropagation();" ng-class="{liked: ((moment.hearts | contains:user_id) || moment.liked)}">
-            <p>{{moment.hearts.length}}</p>
-          </div>
-          <div class="feedback-icon">
-            <p>Add feedback</p>
-          </div>
-        </div>
-      </div>
+      <moment ng-repeat="moment in interests.moments"></moment>
     </main>
   </div>
 

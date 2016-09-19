@@ -282,13 +282,14 @@ router.route('/users/:user_id/moments')
   .get(function (req, res) {
     //Get moments of user
     Moment.find({"user": req.params.user_id}, '-feedback.user -feedback.text -feedback.comment -feedback.attachments -feedback.upvotes')
+    .populate('user','image name username')
     .sort('-_id')
     .exec(
       function(err, moments) {
         if (err) {
-          res.status(500).json({'error': err, 'success': false});
+          res.status(500).json({'error': err});
         } else {
-          res.json({'moments': moments, success: true});
+          res.status(200).json({'moments': moments});
         }
       });
   })

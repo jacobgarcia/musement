@@ -9,9 +9,9 @@ angular.module('musementApp')
       $scope.user = response.data.user;
       var user_id = response.data.user._id;
 
-      profileDataService.getProfileMoments(user_id, function (response) {
-        console.log('Profile moments');
-        $scope.user.moments = response.data.moments;
+      profileDataService.getProfileMoments(user_id, function (res) {
+        console.log('Profile moments',res.data.moments);
+        $scope.user.moments = res.data.moments;
       });
 
     } else {
@@ -21,17 +21,3 @@ angular.module('musementApp')
   });
 
 })
-
-.service('profileDataService', function($http) {
-
-  this.getProfileInfo = function(user_id, callback) {
-    $http.get(window.host + '/api/users/' + user_id )
-    .then(callback);
-  }
-
-  this.getProfileMoments = function(user_id, callback) {
-    $http.get(window.host + '/api/users/' + user_id + '/moments')
-    .then(callback);
-  }
-
-});
