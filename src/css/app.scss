@@ -223,8 +223,8 @@ header.large-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  li {
-    height: 25px;
+  .menu-icons li {
+    height: 19px;
   }
   li.search {
     flex-grow: 1;
@@ -261,7 +261,8 @@ header.large-header {
   display: flex;
   flex-wrap: wrap;
   border-bottom: 1px solid $lightGray;
-  padding-bottom: 10px;
+  padding-bottom: 14px;
+  padding-top: 14px;
   .filter {
     margin-top: 10px;
     color: rgb(59, 77, 87);
@@ -274,8 +275,8 @@ ul.menu ul li {
   width: 48px;
   cursor: pointer;
   div {
-    width: 25px;
-    margin-bottom: 5px;
+    width: 22px;
+    margin-bottom: 7px;
     height: 3px;
     background: rgb(59, 77, 87);
     border-radius: 4px;
@@ -544,7 +545,7 @@ ul.menu ul li {
   color: rgb(102, 133, 150);
   text-align: center;
   margin: 10px 0;
-  color: $lightGray;
+  color: #666;
   img {
     margin-right: 10px;
   }
