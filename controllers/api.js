@@ -72,9 +72,10 @@ router.post('/signup', function(req, res){
 })
 //AUTHENTICATE TO GIVE NEW TOKEN
 router.post('/authenticate', function(req, res) {
+  console.log(req.body);
   if (!req.body || !(req.body.email || req.body.username))
-    return res.status(401).json({'message': "Authentication failed. No user specified." });
-  User.findOne({ $or: [ { 'email': req.body.email }, { 'username': req.body.username } ] })
+    return res.status(400).json({'message': "Authentication failed. No user specified." });
+  User.findOne({ $or: [ { 'email': req.body.email.toLowerCase() }, { 'username': req.body.username.toLowerCase() } ] })
   .exec(function(err, user) {
     if (err)
       res.status(500).json({'error': err})
