@@ -1,4 +1,6 @@
-var gulp = require('gulp'),
+'use strict'
+
+let gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     rename = require('gulp-rename'),
     babel = require('gulp-babel'),
@@ -30,7 +32,7 @@ gulp.task('htmlminify', function() {
 
 gulp.task('babel', function () {
   return gulp.src("./src/js/**/*.js")
-    .pipe(sourcemaps.init())
+    .pipe(sourcemaps.init()) //TODO: remove on deployment
     .pipe(babel().on('error', (error) => console.error(error)))
     .pipe(minifyjs())
     .pipe(concat("app.js"))

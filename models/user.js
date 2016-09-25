@@ -39,13 +39,14 @@ var userSchema = new mongoose.Schema({
         required: true,
         unique: true
     }
-});
+})
 
-// ============================= METHODS =======================================
-// generating a hash
-userSchema.methods.generateHash = function (password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
+userSchema.pre('save', function(next, callback){
+  this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8), function(err){
+      if (err) callback({error:{errmsg:"Error making hash sync"}},null)
+  })
+  next()
+})
 
 userSchema.methods.comparePassword = function (password) {
   return bcrypt.compareSync(password, this.password);
