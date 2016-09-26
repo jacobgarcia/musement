@@ -18,9 +18,9 @@ let invite = require("../config/createinvitation.js"),
 
 //storage and upload
 var storage = multer.diskStorage({
-  destination: (req, file, callback) => cb(null, 'public/uploads/'),
+  destination: (req, file, callback) => callback(null, 'public/uploads/'),
   filename: (req, file, callback) => {
-    cb(null, file.fieldname + '-' + Date.now() + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+    callback(null, file.fieldname + '-' + Date.now() + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
   }
 })
 var upload = multer({storage: storage}).single('file') //single file upload using this variable
@@ -186,7 +186,7 @@ router.route('/users/u=:username?')
 router.route('/users/:user_id') //just when the url has "id=" it will run, otherwise it will look for a username
 .get(function (req, res) {
   User.findById(req.params.user_id, '-password') //Return all excepting password
-  .populate('projects', 'name description')
+  .populate('projects', 'name description color')
   .exec(function(err, user) {
     if (err)
     res.status(500).json({'error': err})
@@ -222,7 +222,7 @@ router.route('/users/:user_id/moments')
   })
 })
 .post(function (req, res) {
-  if(U_ID !== req.params.user_id) { //Verify that is the user who is adding a moment to himself
+  if(req.U_ID !== req.params.user_id) { //Verify that is the user who is adding a moment to himself
     return res.status(401).json({'error':{'errmsg': "You're trying to add a moment to otherone that is not you"}})
   }
   new Moment({
@@ -365,7 +365,7 @@ router.route('/users/u=:username/p=:project')
 router.route('/users/:user_id/projects')
 .get(function (req, res) { //remove like from moment
   Projects.find({'members':req.params.user_id})
-  .populate('members','name username surname image')
+  .populate('members','name username surname image color')
   .exec(function(err, projects) {
     if (err)
       res.status(500).json({'err':err})
@@ -389,9 +389,9 @@ router.route('/users/:user_id/projects')
     if (err)
       return res.status(500).json({'err':err})
     User.update(
-      {_id: {$in: project.members}},
-      {$push: {"projects":  project._id}}, //TODO: remove this
-      {multi: true}
+      { _id: {$in: project.members} },
+      { $push: {"projects":  project._id} },
+      { multi: true }
     )
     .exec(function(err){
       if (err)
@@ -406,14 +406,14 @@ router.route('/projects/:project_id')
 .get(function (req, res) {
   Project.findById(req.params.project_id)
   .lean()
-  .populate('members moments', 'name surname username image')
+  .populate('members moments', 'name surname username image color')
   .populate({
     path: 'moments',
     model: 'Moment',
     populate: {
       path: 'user',
       model: 'User',
-      select: 'name username surname image'
+      select: 'name username surname image color'
     }
   })
   .exec(function (err, project) {

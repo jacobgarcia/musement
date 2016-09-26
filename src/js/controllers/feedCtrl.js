@@ -43,8 +43,8 @@ angular.module('musementApp')
   //TODO: profileDataService.getConnectionsFeed(this.user_id, function())
 
   profileDataService.getProfileInfo(user_id, function(response) {
-    let user = response.data.user;
-    $scope.this_user = user;
+    let user = response.data.user
+    $scope.this_user = user
   });
 
   $scope.submitMoment = function(moment){

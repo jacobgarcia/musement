@@ -15,7 +15,7 @@
   <div class="project">
     <div class="project-type">
       <div class="type">
-        <input type="radio" ng-model="project.type" id="product" name="type" value="product">
+        <input type="radio" ng-model="project.type" id="product" name="type" value="product" required="true">
         <label for="product">Product</label>
       </div>
       <div class="type">
@@ -24,7 +24,7 @@
       </div>
     </div>
     <label for="name">Name of the project</label>
-    <input ng-model="project.name" type="text" name="name" placeholder="Name" id="name">
+    <input ng-model="project.name" type="text" name="name" placeholder="Name" id="name" required="true">
     <label>Pick a color</label>
     <div class="project-color">
       <label>
@@ -69,7 +69,7 @@
       </label>
     </div>
     <label for="description">Description</label>
-    <textarea ng-model="project.description" name="description" id="description" placeholder="Description..."></textarea>
+    <textarea ng-model="project.description" name="description" id="description" placeholder="Description..." required="true"></textarea>
     <div class="project-members">
 
       <label>Members</label>

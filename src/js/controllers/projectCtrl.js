@@ -38,15 +38,13 @@ angular.module('musementApp')
     projectInfo.members = this.project.members;
     projectInfo.color = "/static/img/project-colors/project_" + this.project.color + ".svg";
 
-    projectDataService.setProject(projectInfo, user_id, function (response) {
-      if (response.data.success == true) {
-        $scope.showCreateMoment()
-        feedDataService.getInterestsFeed(user_id, function(response) { //Reload the moments
-          $scope.interests.moments = response.data.moments;
-        })
-      } else {
-        alert(response.error);
+    projectDataService.setProject(projectInfo, user_id, function (res) {
+      if (res.status == 201) {
+        console.log(window.host + "/user/" + localStorageService.get('username') + "/" + res.data.project.name)
+        $scope.this_user.projects.push(projectInfo)
       }
+    }, function(res){
+      alert(res.data.err.message);
     });
   };
 })

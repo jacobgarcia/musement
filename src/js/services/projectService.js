@@ -1,9 +1,9 @@
 angular.module('musementApp')
 .service('projectDataService', function($http) {
 
-  this.setProject = function(project, user_id, callback) {
+  this.setProject = function(project, user_id, callback, errCallback) {
     $http.post(window.host + '/api/users/' + user_id + '/projects', project)
-    .then(callback);
+    .then(callback, errCallback);
   }
 
   this.getProject = function (project_id, callback) {
