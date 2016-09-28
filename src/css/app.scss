@@ -304,10 +304,14 @@ ul.menu ul li {
   background: rgb(207, 207, 207);
   border-radius: 50%;
 }
+aside {
+  display: none;
+}
 .main-feed {
   padding: 10px 16px;
   overflow-y: scroll;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   align-items: center;
   min-height: calc(100vh - 68px);
@@ -562,12 +566,17 @@ auto-complete {
   .autocomplete {
     position: absolute;
     top: 0;
+    z-index: 1;
     border-radius: 5px;
     background: #fff;
     padding: 10px 20px;
     box-shadow: 0px 0px 5px rgba(0,0,0,.2);
     max-height: 200px;
     overflow-y: scroll;
+    li {
+      margin: 10px 0;
+      cursor: pointer;
+    }
   }
 }
 .tags {
@@ -659,6 +668,9 @@ input {
   width: 100%;
   .host {
     margin-bottom: 10px;
+    .tags {
+      background: $lightGray;
+    }
   }
   .form-content {
     background: #fff;
@@ -717,6 +729,12 @@ input {
     margin-bottom: 5px;
   }
 }
+.facebook {
+  iframe {
+    height: 28px;
+    margin: 10px auto 0;
+  }
+}
 .super-hover {
   position: absolute;
   width: 100%;
@@ -729,6 +747,30 @@ input {
   background: rgba(0, 0, 0, 0.2);
   opacity: 0;
   transition: 0.5s;
+}
+@media (min-width: 900px) {
+  aside {
+    display: block;
+    min-width: 250px;
+    max-width: 300px;
+    background: $lighterGray;
+    padding: 10px 16px;
+    overflow-y: scroll;
+    .slack-join {
+      p {
+        margin: 10px 0;
+      }
+    }
+    p {
+      font-size: 0.85rem;
+    }
+    div {
+      background: #fff;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+  }
 }
 @media (min-width: 600px) {
   .create-moment {
@@ -758,6 +800,12 @@ input {
     ul {
         display: none;
     }
+  }
+  .body .inner-body {
+    flex-direction: row;
+  }
+  .main-feed {
+    flex-direction: column;
   }
   .profile-username {
     font-size: 0.9rem;
