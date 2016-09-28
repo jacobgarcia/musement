@@ -62,7 +62,7 @@ router.post('/signup', function(req, res){
           if (err)
             res.status(500).json({'error': err, 'message': "Could not save user."});
           else { // Create a token and --- sign with the user information --- and secret password
-            var token = jwt.sign({"_id": newUser._id}, jwtConfig.secret, { expiresIn: 216000 }) //Expires in 60 hours
+            var token = jwt.sign({"_id": user._id}, jwtConfig.secret, { expiresIn: 216000 }) //Expires in 60 hours
             res.status(200).json({ '_id': user._id, 'username': user.username, 'token': token }) // Return the information including token as JSON
           }
         })
@@ -171,7 +171,7 @@ router.route('/users')
 router.route('/users/u=:username?')
 .get(function (req, res) {
   User.findOne({'username': req.params.username}, '-password') //Return all excepting password
-  .populate('projects')
+  .populate('projects tags')
   .exec(function(err, user) {
     if (err) {
       res.status(500).json({'error': err, 'success': false});
@@ -212,7 +212,7 @@ router.route('/users/:user_id') //just when the url has "id=" it will run, other
 router.route('/users/:user_id/moments')
 .get(function (req, res) { //Get moments of user
   Moment.find({"user": req.params.user_id}, '-feedback.user -feedback.text -feedback.comment -feedback.attachments -feedback.upvotes')
-  .populate('user','image name username')
+  .populate('user tags','image name username')
   .sort('-_id')
   .exec(function(err, moments) {
     if (err)
@@ -245,7 +245,7 @@ router.route('/moments/:moment_id')
 .get(function (req, res) {
   //TODO: validate the user adds a moment for him (and not someone else)
   Moment.findById(req.params.moment_id)
-  .populate('user','name surname username image')
+  .populate('user tags','name surname username image')
   .populate({
     path: 'feedback',
     populate: {
@@ -254,7 +254,6 @@ router.route('/moments/:moment_id')
       select: 'username'
     }
   })
-  .populate('tags')
   .exec(function(err, moment) {
     if (err)
     res.status(500).json({'error': err});
@@ -436,7 +435,7 @@ router.route('/projects/:project_id')
 router.route('/projects/:project_id/moments')
 .get(function (req, res) {
   Moment.find({'project':req.params.project_id})
-  .populate('user')
+  .populate('user tags')
   .exec(function (err, moments) {
     if (err) {
       res.status(500).json({'error': err});
@@ -482,7 +481,7 @@ router.route('/users/:user_id/interests/moments')
 .get(function(req, res) {
   //TODO: Not yet implemented
   Moment.find()
-  .populate('user project','username name surname image color')
+  .populate('user project tags','username name surname image color')
   // .populate('tags')
   .sort('-_id')
   .exec(function(err, moments) {

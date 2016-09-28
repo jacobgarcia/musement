@@ -54,19 +54,18 @@ angular.module('musementApp')
     signupInfo.image = image
 
     signupDataService.signup(signupInfo, function (res) {
-      if (res.data.success == true) {
-        let data = res.data;
+      if (res.status == 200) {
         //Set localStorage keys
-        localStorageService.clearAll();
-        localStorageService.set('token', data.token);
-        localStorageService.set('username', data.username);
-        localStorageService.set('user_id', data._id);
-
-        $state.go('feed');
-      } else {
-        alert(res.data.message);
+        localStorageService.clearAll()
+        localStorageService.set('token', res.data.token)
+        localStorageService.set('username', res.data.username)
+        localStorageService.set('user_id', res.data._id)
+        $state.go('feed')
       }
-    });
+    }, function(res) {
+      console.log(res);
+      alert('Error')
+    })
 
   }
   /* Gravatar routine */

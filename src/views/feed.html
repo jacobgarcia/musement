@@ -68,7 +68,7 @@
 </div>
 
 <div class="create-moment" ng-class="{'active': momentSeen}" ng-form="createMomentForm">
-  <div class="">
+  <div class="form-content">
     <ul class="menu">
       <!-- <li></li> -->
       <li class="title">New Moment</li>
@@ -84,8 +84,9 @@
           <auto-complete source="loadTags($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="35"></auto-complete>
         </tags-input>
 
-      <label for="files">File</label>
-        <input type="file" ngf-select name="files" ng-model="newMoment.files" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="5MB"/>
+        <label>Files</label>
+        <label for="file" class="file-label"></label>
+        <input type="file" ngf-select name="files" ng-model="newMoment.files" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="5MB" id="file"/>
         <i ng-show="create_moment.files.$error.maxSize">File too large {{user.image.size / 1000000|number:1}}MB: max 5M</i><br>
       <label for="project">Project</label>
       <select ng-options="project.name for project in this_user.projects" class="" ng-model="newMoment.project" name="project" required>

@@ -271,6 +271,7 @@ header.large-header {
 ul.menu ul li {
   display: inline-block;
 }
+
 .menu li#menu {
   width: 48px;
   cursor: pointer;
@@ -398,7 +399,6 @@ ul.menu ul li {
       -webkit-overflow-scrolling: touch;
       padding: 5px 0 10px;
       display: flex;
-      margin-bottom: 10px;
       img {
         padding-right: 20px;
         flex-shrink: 0;
@@ -414,7 +414,6 @@ ul.menu ul li {
       }
     }
     .moment-tags {
-      padding: 10px 15px;
       li {
         border: 1px solid $darkBlue;
         background: #fff;
@@ -558,6 +557,43 @@ ul.tags li {
   padding: 1px 4px;
   display: inline-block;
 }
+auto-complete {
+  position: relative;
+  .autocomplete {
+    position: absolute;
+    top: 0;
+    border-radius: 5px;
+    background: #fff;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,.2);
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+}
+.tags {
+  padding: 5px 15px;
+  border-radius: 5px;
+  input.input {
+    padding: 0;
+    width: 100px;
+    display: inline-block;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+.create-moment ul.tag-list {
+  flex-grow: 1;
+  margin-bottom: 0;
+
+  li {
+    margin-right: 10px;
+    display: inline-block;
+  }
+}
+input {
+  display: inline-block;
+}
+
 
 .notifications, .create-moment{
   position: fixed;
@@ -569,6 +605,10 @@ ul.tags li {
   padding: 16px;
   transform: translateY(-150vh);
   transition: ease-in-out 0.3s;
+}
+.super-hover.active {
+  z-index: 80;
+  opacity: 1;
 }
 .moment-details {
   position: fixed;
@@ -611,22 +651,59 @@ ul.tags li {
   transform: translateX(0);
 }
 .create-moment {
-  width: 400px;
-  height: 470px;
   border-radius: 5px;
-  left: calc(50% - 220px);
+  background: transparent;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: scroll;
+  width: 100%;
+  .host {
+    margin-bottom: 10px;
+  }
+  .form-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+  }
   input[type="button"]{
     margin-top: 20px;
   }
   input[name="create"].inactive {
     background: $gray;
   }
-  &.active {
-    top: calc(50% - 200px);
-  }
   ul {
     margin-bottom: 20px;
   }
+  input[type="file"] {
+    opacity: 0;
+    display: none;
+  }
+  .file-label {
+    width: 75px;
+    height: 75px;
+    background: $lightGray;
+    border-radius: 5px;
+    border: 2px dashed $gray ;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+  }
+  .file-label::before {
+    content: 'Filename';
+    font-size: 0.9rem;
+    text-align: center;
+    width: 71px;
+    height: 1rem;
+    margin-top: 55px;
+    top: 0;
+    left: 0;
+    position: absolute;
+  }
+  // input[type="file"] + label {
+  //   width: 75px;
+  //   height: 75px;
+  //   background: red;
+  // }
   input, textarea {
     width: 100%;
     display: block;
@@ -640,8 +717,26 @@ ul.tags li {
     margin-bottom: 5px;
   }
 }
-
+.super-hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: 0.5s;
+}
 @media (min-width: 600px) {
+  .create-moment {
+    width: 400px;
+    left: calc(50% - 220px);
+    background: transparent;
+    display: flex;
+  }
   .body.active {
     box-shadow: none;
   }
@@ -729,23 +824,8 @@ ul.tags li {
     -ms-user-select: none;
     user-select: none;
   }
-  .super-hover {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 0;
-    background: rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transition: 0.5s;
-  }
-  .super-hover.active {
-    z-index: 80;
-    opacity: 1;
-  }
+
+
   body.ng-scope.app {
     display: flex;
   }
