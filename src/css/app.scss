@@ -18,7 +18,14 @@ body.app {
 header.large-header {
   display: none;
 }
-
+.no-moments {
+  width: 100%;
+  text-align: center;
+  .no-moments-header {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+}
 .supper-wrapper {
   display: flex;
   overflow: hidden;

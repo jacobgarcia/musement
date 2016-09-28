@@ -29,4 +29,8 @@
     </div>
   </div>
   <moment ng-repeat="moment in project.moments"></moment>
+  <div ng-if="project.moments.length == 0" class="no-moments">
+    <p class="no-moments-header">No moments in this project yet :/</p>
+    <p ng-click="showCreateMoment()">What about publishing one now?</p>
+  </div>
 </main>
