@@ -1,0 +1,124 @@
+html, body, h1, h2 ,h3, p, ul, li, div, span, input {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+body {
+  padding: 20px;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+nav ul {
+  display: flex;
+  justify-content: space-between;
+}
+nav ul li {
+  display: inline-block;
+}
+.moment {
+  margin-top: 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+.moment #user-image {
+  flex-shrink: 0; /*Important*/
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  display: inline-block;
+}
+.moment-user {
+  display: flex;
+  justify-content: space-between;
+}
+.moment-user input.share {
+  width: 25px;
+  height: 25px;
+}
+.moment-body {
+  padding: 10px;
+  line-height: 1.25rem;
+}
+.moment .user-info {
+  display: inline-block;
+  margin: 0 10px 10px;
+  flex-grow: 1;
+}
+.moment .user-info #user-username, .moment .user-info #user-name {
+  display: inline-block;
+}
+.moment .user-info #user-username {
+  color: rgb(149, 149, 149);
+}
+.feedback {
+  margin: 15px 0;
+}
+.feedback-user {
+  font-size: .9rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 10px;
+}
+.feedback-user .user-info {
+  margin-left: 10px;
+}
+.feedback-user .upvote {
+  flex-shrink: 0;
+  text-align: center;
+  font-size: .85rem;
+  color: rgb(149, 149, 149);
+  margin: 10px 10px 0;
+}
+.more-feedback-user {
+  margin-left: 82px;
+  font-size: .9rem;
+  justify-content: space-between;;
+  display: flex;
+}
+.more-feedback-user .feedback-count {
+  margin-right: 10px;
+}
+.more-feedback-user a {
+  font-weight: 600;
+  color: rgb(89, 129, 255);
+}
+.moment .user-info .date,.moment .user-info .feedback-body {
+  font-size: .85rem;
+  color: rgb(149, 149, 149);
+}
+.moment img.attachment {
+  width: 100%;
+  min-height: 100px;
+  max-height: 250px;
+  border: 1px solid black;
+  border-right: 0;
+  border-left: 0;
+}
+.upvote input {
+  background: red;
+  width: 15px;
+  height: 18px;
+}
+.moment .tags {
+  margin: 10px 0 5px;
+}
+.moment .actions {
+  display: flex;
+  border-top: 1px solid black;
+}
+.moment .actions input {
+  flex-grow: 1;
+  background: #fff;
+  padding: 10px;
+}
+.moment .actions input.feedback-button {
+  background: rgb(27, 27, 27);
+  color: #fff;
+}
+span.tag {
+  border-radius: 3px;
+  border: 1px solid #000;
+  padding: 2px 10px 2px 20px;
+  font-size: .85rem;
+}
