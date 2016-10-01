@@ -18,6 +18,7 @@ angular.module('musementApp')
   }
 
   momentDataService.getMoment(moment_id, function(response) {
+    console.log(response.data.moment);
     $scope.moment = response.data.moment;
   })
 

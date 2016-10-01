@@ -245,15 +245,12 @@ router.route('/moments/:moment_id')
 .get(function (req, res) {
   //TODO: validate the user adds a moment for him (and not someone else)
   Moment.findById(req.params.moment_id)
-  .populate('user tags','name surname username image')
   .populate({
-    path: 'feedback',
-    populate: {
-      path: 'user',
-      model: 'User',
-      select: 'username'
-    }
+    path: 'feedback.user',
+    model: 'User',
+    select: 'username name'
   })
+  .populate('user tags feedback','name surname username image')
   .exec(function(err, moment) {
     if (err)
     res.status(500).json({'error': err});
