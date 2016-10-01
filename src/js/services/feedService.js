@@ -18,9 +18,10 @@ angular.module('musementApp')
     .then(callback)
   }
 
-  this.heartMoment = function(moment_id, callback) {
-    $http.post(window.host + '/api/moments/' + moment_id + '/likes/')
-    .then(callback);
+  this.heartMoment = function(moment_id, callback,errCallback) {
+    console.log(window.host + '/api/moments/' + moment_id + '/likes')
+    $http.post(window.host + '/api/moments/' + moment_id + '/likes')
+    .then(callback,errCallback);
   }
 
   //TODO: Returns moments of the connections

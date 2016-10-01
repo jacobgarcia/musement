@@ -105,15 +105,16 @@ angular.module('musementApp')
   };
 
   $scope.heart = function (index, moment_id) {
-
+    console.log('Heart')
     feedDataService.heartMoment(moment_id, function (res) {
-      if (res.data.success) {
+      console.log('Got response');
+      if (res.status == 200) {
         $scope.interests.moments[index].hearts.length++; //Increment counter if hearted succeed
         $scope.interests.moments[index].liked = true;
       } else {
         console.log(res.data);
       }
-    });
+    }, (err) => console.log(err))
   }
   //UI functions:
   $scope.bodyMove = function (state) { $scope.bodyMoved = !$scope.bodyMoved; }

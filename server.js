@@ -9,10 +9,7 @@ let http = require('http'),
     morgan = require('morgan')
 
 let app = express(),
-    server = http.createServer(app),
-    socketio = require('socket.io')
-
-let chat = require("./config/sockets").listen(server)
+    server = http.createServer(app)
 
 // Database Configuration
 mongoose.connect(configDB.url); //connect to database
