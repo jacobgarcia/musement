@@ -1,0 +1,47 @@
+<body>
+  <div class="sign-form">
+    <a href="/">
+      <div class="full-logo">
+        <img src="./static/img/musement.svg" alt="" class="logo"/>
+        <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
+      </div>
+    </a>
+    <div class="sign-fields">
+      <form name="signup" ng-submit="submit()">
+        <input type="email" ng-model="user.email" name="name" placeholder="Email" required>
+        <input type="password" ng-model="user.password" name="name" placeholder="Password" required>
+        <input type="password" ng-model="user.confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+        <div ng-messages="signup.confirm_password.$error" ng-if='signup.confirm_password.$touched'>
+          <span ng-message="password">Passwords do not match</span>
+        </div>
+        <input type="submit" class="green-button small" value="Sign Up">
+      </form>
+      <div class="">
+        <p>Already a member? <a ui-sref="login">Log in</a></p>
+        <p><a ng-click="">Need help?</a></p>
+      </div>
+    </div>
+  </div>
+  <form name="upload_form">
+    <div class="complete-signup sign-fields" ng-hide="next">
+      <div class="">
+        <h2>Complete the <span style="font-weight:bold">Sign up</span></h2>
+        <input type="text" name="name" ng-model="user.name" placeholder="Name" required="true">
+        <input type="text" name="surname" ng-model="user.surname" placeholder="Surname" required="true">
+        <input type="text" name="username" ng-model="user.username" placeholder="Username" required="true">
+      </div>
+      <div class="profile-picture">
+        <div class="photo">
+          <input type="file" ngf-select name="file" ng-model="user.image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="5MB"/>
+          <img ngf-thumbnail="user.image">
+        </div>
+        <p>What about a profile picture?</p>
+        <i ng-show="upload_form.file.$error.maxSize">File too large {{user.image.size / 1000000|number:1}}MB: max 5M</i><br>
+      </div>
+      <div class="">
+        <input type="button" name="done" value="DONE" ng-click="done()" class="green-button">
+        <p>Will be necessary to improve your experience in Musement</p>
+      </div>
+    </div>
+  </form>
+</body>

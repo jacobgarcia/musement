@@ -1,0 +1,147 @@
+  <body ng-app="musementApp" ui-view>
+    <main>
+      <div class="hero">
+        <nav>
+          <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
+          <ul class="anchors">
+            <li><a href="#community">{{ 'COMMUNITY_NAV' | translate }}</a></li>
+            <li><a href="#events">{{ 'EVENTS' | translate }}</a></li>
+          </ul>
+        </nav>
+        <div class="content">
+          <img src="./static/img/musement.svg" alt="" class="logo"/>
+          <h2>{{ 'WHAT' | translate }}</h2>
+          <h4>{{ 'WHAT2' | translate }}</h4>
+          <div class="signup">
+              <a ui-sref="signup"><input type="button" class="green" value="{{ 'JOIN' | translate }}"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="learn-more">
+          <p id="learn-more">{{ 'LEARN' | translate }}</p>
+          <img src="./static/img/arrow.svg" class="arrow" alt="" />
+        </div>
+        <div class="section develop-your-project">
+          <h2><span>{{ 'BUILD' | translate }}</span>{{ 'IDEA' | translate }}</h2>
+          <img src="/static/img/people.svg" class="people" alt="" />
+          <p>{{ 'PASSION' | translate }}</p>
+        </div>
+        <div class="section">
+          <h2><span>{{ 'SECOND_HEADER' | translate }}</span>{{ 'SECOND_HEADER_TEXT' | translate }}</h2>
+          <div class="two-column">
+            <div class="column">
+              <img src="/static/img/share.svg" alt="" />
+              <p>{{ 'SHARING' | translate }}</p>
+            </div>
+            <div class="column">
+              <img src="/static/img/document.svg" alt="" />
+              <p>{{ 'IMPROVING' | translate }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- Start how it works -->
+        <div class="section blue">
+          <h2>{{ 'WORKS' | translate }}</h2>
+          <div class="three-column">
+            <div class="column">
+              <p class="subtitle">{{ 'SHARE' | translate }}</p>
+              <img src="/static/img/user.svg" alt="" />
+              <p>{{ 'POST' | translate }}</p>
+            </div>
+            <div class="column">
+              <p class="subtitle">{{ 'CONTRIBUTE' | translate }}</p>
+              <img src="/static/img/moments.svg" alt="" />
+              <p>{{ 'COMMUNITY' | translate }}</p>
+            </div>
+            <div class="column">
+              <p class="subtitle">{{ 'APPLY' | translate }}</p>
+              <img src="/static/img/apply.svg" alt="" />
+              <p>{{ 'APPLICATION' | translate }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- End how it works -->
+      </div>
+      <!-- End hero (section) -->
+
+      <!-- Start full width (section) -->
+      <!-- Start slack -->
+      <div class="content slack yellow" id="community">
+        <div class="left-content">
+          <div class="title">
+            <h2>{{ 'SLACK' | translate }} </h2>
+            <img src="/static/img/slack_rgb.png" class="min-slack-logo" alt=""/>
+          </div>
+          <p>{{ 'SLACKIN' | translate }}</p>
+          <div class="space">
+            <a href="http://slack.musement.co" target="_blank"><input type="button" class="green" value="{{ 'JOIN' | translate }}"></a>
+          </div>
+        </div>
+        <img src="/static/img/dSlack.svg" alt="Join us on Slack" />
+      </div>
+      <!-- End Slack -->
+
+      <!-- Start moment -->
+      <div class="section">
+        <div class="two-column">
+          <div class="column">
+            <h2>{{ 'MOMENT' | translate }}</h2>
+            <img src="/static/img/watch.svg" alt="" />
+            <p>{{ 'MOMENT_DESCRIPTION' | translate }}</p>
+          </div>
+          <div class="column">
+            <h2>{{ 'LEADERS' | translate }}</h2>
+            <img src="/static/img/archivements.svg" alt="" />
+            <p>{{ 'KEY_PEOPLE' | translate }}</p>
+          </div>
+        </div>
+      </div>
+      <!-- End moment -->
+
+      <!-- Start grow idea -->
+      <div class="content-light grow">
+        <h2>{{ 'TIME' | translate }}</h2>
+      </div>
+      <!-- End grow idea -->
+
+      <div class="content coworking" id="events">
+        <div class="left-content">
+          <h2>{{ 'AFTERNOON' | translate }}</h2>
+          <p>{{ 'COWORKING' | translate }}</p>
+          <div class="event-details">
+            <p class="event-detail">{{ 'DATE' | translate }}</p>
+            <p class="event-detail">{{ 'PLACE' | translate }}</p>
+          </div>
+          <!-- <img src="/static/img/meetup.svg" alt="" class="meetup-min"/> -->
+          <a href="http://www.meetup.com/Musement-Community/" target="_blank"><input type="button" name="name" value="{{ 'PARTICIPATE' | translate }}"></a>
+        </div>
+        <div class="right-image">
+          <img src="/static/img/coworking.svg" alt="" />
+        </div>
+      </div>
+      <div class="call-to-action content">
+        <h2>{{ 'AFTER' | translate }}</h2>
+        <p>{{ 'COUNTDOWN' | translate }}</p>
+        <div class="input-elements">
+          <input type="email" class="dark-input" name="email" value="" placeholder="Email" required="true" id="email-input2">
+          <input type="button" name="submit" value="{{ 'SEND' | translate }}" id="submit-button2">
+        </div>
+        <div class="thanks-email">
+        </div>
+      </div>
+    </main>
+    <footer>
+      <img src="./static/img/musement-logotype.svg" alt="" class="musement-logo"/>
+      <p>{{ 'CONTACT' | translate }}</p>
+      <div class="follow">
+        <ul>
+          <li class="twitter"><a href="http://www.twitter.com/musementco" target="_blank"><div class="logo" alt="Follow us on Twitter" /></div></a></li>
+          <li class="facebook"><a href="http://www.facebook.com/musementco" target="_blank"><div class="logo" alt="" /></div></a></li>
+          <li class="snapchat"><a href="http://www.snapchat.com/add/musementco" target="_blank"><div class="logo" alt="" /></div></a></li>
+          <li class="slack" id="slack"><a href="http://slack.musement.co" target="_blank"><div class="logo" alt="" /></div></a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>

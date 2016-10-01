@@ -1,18 +1,11 @@
 const mongoose = require('mongoose');
 
-// User Schema
+// Guest Schema
 var guestSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
     email: {
         type: String,
         required: true,
         unique: true
-    },
-    whatismusement: {
-        type: String,
     }
 });
 

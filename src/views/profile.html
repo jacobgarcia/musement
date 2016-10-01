@@ -1,0 +1,43 @@
+<header class="mobile-header">
+  <nav>
+    <ul class="menu">
+      <li ng-click="bodyMove()" id="menu"><div class=""></div><div class=""></div></li>
+      <li class="title">Perfil</li>
+      <li>
+        <ul class="menu-icons">
+          <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt="" /></li>
+          <li ng-click="showCreateMoment()"><img src="/static/img/buttons/btn_create.svg" class="icon" alt="" /></li>
+        </ul>
+      </li>
+    </ul>
+    <!-- <div class="filter">
+      <img src="/static/img/buttons/btn_filter.svg" alt="" class="mini-icon" />
+      <p>Filter:</p>
+      <ul class="tags">
+        <li>Marketing</li>
+        <li>Food</li>
+        <li>Design</li>
+      </ul>
+    </div> -->
+  </nav>
+</header>
+
+<main class="main-feed">
+  <div class="user-profile">
+    <div class="user-image">
+      <img src="{{user.image}}" alt="" />
+    </div>
+    <div class="user-info">
+      <p class="name">{{user.name}} {{user.surname}}</p>
+      <p class="username">@{{user.username}}</p>
+      <p class="bio">{{user.bio}}</p>
+      <p class="location">{{user.location.city}}, {{user.location.state}}</p>
+      <p class="work not-available">Not available for work</p>
+    </div>
+  </div>
+  <moment ng-repeat="moment in user.moments"></moment>
+  <div ng-if="user.moments.length == 0" class="no-moments">
+    <p class="no-moments-header">No moments yet :(</p>
+    <p ng-click="showCreateMoment()">What about publishing one now?</p>
+  </div>
+</main>

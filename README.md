@@ -1,11 +1,11 @@
-# Musement 
+# Musement
 
 <img src=http://i.imgur.com/pG2FYHp.jpg">
 ###### Musement is a community from people who want to share their ideas and projects. Creating the moment.
 
 ## Developer Install
 
-Install Node.js. 
+Install Node.js.
 
 ```bash
 # Node v4.2.x - recommended
@@ -28,7 +28,7 @@ npm install
 ```
 Install local development dependencies
 ```bash
-npm install mocha 
+npm install mocha
 ```
 Install mongoDB in your computer
 ```bash
@@ -36,10 +36,9 @@ Install mongoDB in your computer
 ```
 Run the project
 ```bash
-npm run serve
+> gulp
 ```
 Test the project
 ```bash
 npm run test
 ```
-
