@@ -24,7 +24,7 @@ npm install
 
 ### Building Musement
 
-Musement currently uses Angular as the main frontend framework, Gulp as the babel compiler, CSS and HTML minification and more.
+Musement currently uses Angular as the main frontend framework, Webpack as compiler and module manager, Gulp in CSS and HTML minification and more.
 
 Compile files in the project
 ```bash
