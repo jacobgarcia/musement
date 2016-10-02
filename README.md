@@ -20,13 +20,23 @@ macOS, Ubuntu Linux
 
 ```bash
 npm install
-bower install
 ```
+
 ### Building Musement
 
 Musement currently uses Angular as the main frontend framework, Gulp as the babel compiler, CSS and HTML minification and more.
 
-Run and compile files in the project
+Compile files in the project
 ```bash
-gulp
+gulp build
+```
+
+Test the project
+```bash
+gulp test
+```
+
+Run the project
+```bash
+npm start
 ```
