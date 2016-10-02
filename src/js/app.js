@@ -1,8 +1,17 @@
-var ipAddress = 'localhost:8080';
-window.host = 'http://localhost:8080'; //Change in production
-window.HOST='http://localhost:8080';
-angular.module('musementApp',['ui.router', 'LocalStorageModule', 'angular-jwt','pascalprecht.translate', 'ngFileUpload', 'ngTagsInput'])//, 'ngFileUpload'
+require('angular')
+require('angular-ui-router')
+require('angular-local-storage')
+require('angular-jwt')
+require('angular-translate')
+require('ng-file-upload')
+require('ng-tags-input')
+require('angular-translate-loader-static-files')
 
+var ipAddress = 'localhost:8080'
+window.host = 'http://localhost:8080' //Change in production
+window.HOST='http://localhost:8080'
+
+angular.module('musementApp',['ui.router', 'LocalStorageModule', 'angular-jwt','pascalprecht.translate', 'ngFileUpload', 'ngTagsInput'])//, 'ngFileUpload'
 .factory('httpRequestInterceptor', function (localStorageService) {
   return {
     request: function (config) {
@@ -47,7 +56,7 @@ angular.module('musementApp',['ui.router', 'LocalStorageModule', 'angular-jwt','
   $scope.state = $state;
 
   //Decode token and asign info to user info div
-  $scope.user = jwtHelper.decodeToken(localStorageService.get('token'));
+  $scope.user = jwtHelper.decodeToken(localStorageService.get('token'))
 })
 
 .directive('confirmPwd', function($interpolate, $parse) {
@@ -59,7 +68,7 @@ angular.module('musementApp',['ui.router', 'LocalStorageModule', 'angular-jwt','
       var pwdFn = $interpolate(attr.confirmPwd)(scope);
 
       scope.$watch(pwdFn, function(newVal) {
-          ngModelCtrl.$setValidity('password', ngModelCtrl.$viewValue == newVal);
+          ngModelCtrl.$setValidity('password', ngModelCtrl.$viewValue == newVal)
       })
 
       ngModelCtrl.$validators.password = function(modelValue, viewValue) {
@@ -75,14 +84,14 @@ angular.module('musementApp',['ui.router', 'LocalStorageModule', 'angular-jwt','
 return {
     restrict: 'A',
     link: function(scope, element, attrs) {
-        var model = $parse(attrs.fileModel);
-        var modelSetter = model.assign;
+        var model = $parse(attrs.fileModel)
+        var modelSetter = model.assign
 
         element.bind('change', function(){
             scope.$apply(function(){
-                modelSetter(scope, element[0].files[0]);
-            });
-        });
+                modelSetter(scope, element[0].files[0])
+            })
+        })
     }
-};
-}]);
+}
+}])

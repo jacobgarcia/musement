@@ -3,11 +3,10 @@
 let gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     rename = require('gulp-rename'),
-    babel = require('gulp-babel'),
     sass = require('gulp-sass'),
     cleanCSS = require('gulp-clean-css'),
     htmlmin = require('gulp-htmlmin'),
-    minifyjs = require('gulp-js-minify'),
+    webpack = require('webpack-stream'),
     concat = require('gulp-concat'),
     nodemon = require('gulp-nodemon')
 
@@ -21,40 +20,39 @@ gulp.task('sass', function() {
             suffix: '.min'
         }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('public/css'));
-});
+    .pipe(gulp.dest('public/css'))
+})
 
 gulp.task('htmlminify', function() {
   return gulp.src(['./src/views/*/*.html','./src/views/*.html'])
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('./public/views'))
-});
+})
 
-gulp.task('babel', function () {
-  return gulp.src("./src/js/**/*.js")
-    .pipe(sourcemaps.init()) //TODO: remove on deployment
-    .pipe(babel().on('error', (error) => console.error(error)))
-    .pipe(minifyjs())
-    .pipe(concat("app.js"))
-    .pipe(rename({
-            suffix: '.min'
-        }))
-    .pipe(sourcemaps.write("."))
-    .pipe(gulp.dest("./public/js"));
-});
+gulp.task('webpack', function(){
+  return gulp.src(['./src/js/**/*.js'])
+  .pipe(
+    webpack(require(__dirname + '/webpack.config.js'))
+    .on('error', (err) => {
+      if (err) console.log('--- Webpack error ---\n', err)
+    })
+  )
+  .pipe(rename('bundle.js'))
+  .pipe(gulp.dest('public/js'))
+})
 
 gulp.task('watch', function () {
   gulp.watch("./src/views/**/*.html", ['htmlminify'])
-  gulp.watch('./src/js/**/*.js', ['babel']);
-  gulp.watch('./src/css/*.scss', ['sass']);
-});
+  gulp.watch('./src/js/**/*.js', ['webpack'])
+  gulp.watch('./src/css/*.scss', ['sass'])
+})
 
 gulp.task('start', function () {
   nodemon({
-    script: 'server.js'
-  , ext: 'js html'
-  , env: { 'NODE_ENV': 'development' }
+    script: 'server.js',
+    ext: 'js html',
+    env: { 'NODE_ENV': 'development' }
   })
-});
+})
 
-gulp.task('default', ['sass','htmlminify','babel','watch','start']);
+gulp.task('default', ['sass','htmlminify','webpack','watch','start'])
