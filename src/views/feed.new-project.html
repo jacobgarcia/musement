@@ -80,7 +80,7 @@
       <script type="text/ng-template" id="tag-project">
         <div class="tag-template">
           <div class="left-panel">
-            <img ng-src="../{{data.image}}" ng-if="data.image"/>
+            <img class="profile-image" ng-src="{{data.image}}" ng-if="data.image"/>
           </div>
           <div class="right-panel">
             <span>{{$getDisplayText()}}</span>
@@ -92,11 +92,11 @@
       <script type="text/ng-template" id="autocomplete-project">
         <div class="autocomplete-template">
           <div class="left-panel">
-            <img ng-src="../{{data.image}}"/>
+            <img class="profile-image" ng-src="{{data.image}}"/>
           </div>
           <div class="right-panel">
             <span ng-bind-html="$highlight($getDisplayText())"></span>
-            <span>{{data.surname}}</span>
+            <!-- <span>{{data.surname}}</span> -->
             <span>{{data.username}}</span>
           </div>
         </div>

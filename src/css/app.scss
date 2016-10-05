@@ -74,6 +74,49 @@ header.large-header {
   .user-info {
     margin-top: 0;
   }
+  .project-members {
+    .tags {
+      border: 1px solid $gray;
+    }
+    tags-input {
+      width: 100%;
+    }
+    auto-complete {
+      width: 100%;
+      .right-panel {
+        margin: 0 0 0 5px;
+        span {
+          font-size: 13px;
+          em {
+            font-style: none;
+            font-weight: 600;
+          }
+        }
+      }
+      li {
+        height: 40px;
+        img {
+          height: 30px;
+          width: 30px;
+        }
+        &.selected  {
+          background: rgb(244, 244, 244);
+        }
+      }
+    }
+    .autocomplete {
+      display: block;
+      width: 100%;
+      width: 200px;
+    }
+
+    input[type="text"] {
+      border: none;
+    }
+    .profile-image {
+      border-radius: 50%;
+    }
+  }
 }
 .members {
   display: flex;
@@ -576,12 +619,14 @@ auto-complete {
     z-index: 1;
     border-radius: 5px;
     background: #fff;
-    padding: 10px 20px;
+    padding: 5px 0;
     box-shadow: 0px 0px 5px rgba(0,0,0,.2);
     max-height: 200px;
     overflow-y: scroll;
     li {
-      margin: 10px 0;
+      display: flex;
+      width: 100%;
+      padding: 5px 20px;
       cursor: pointer;
     }
   }
@@ -918,8 +963,8 @@ input {
 }
 
 .tag-template .left-panel img {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   vertical-align: middle;
 }
 

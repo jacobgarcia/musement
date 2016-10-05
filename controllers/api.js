@@ -385,10 +385,12 @@ router.route('/users/:user_id/projects')
     name: req.body.name,
     color: req.body.color
   })
-  if (!req.body.members)
+  if (!req.body.members || req.body.members.length == 0)
     project.members = [req.U_ID]
-  else
+  else {
+    console.log(req.body.members);
     project.members = req.body.members.push(req.U_ID)
+  }
   project.save(function(err, project) {
     if (err)
       return res.status(500).json({'err':err})

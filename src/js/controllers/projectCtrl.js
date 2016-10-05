@@ -32,11 +32,12 @@ angular.module('musementApp')
 
     let projectInfo = {};
 
-    projectInfo.category = this.project.type;
-    projectInfo.description = this.project.description;
-    projectInfo.name = this.project.name;
-    projectInfo.members = this.project.members;
-    projectInfo.color = "/static/img/project-colors/project_" + this.project.color + ".svg";
+    projectInfo.category = this.project.type
+    projectInfo.description = this.project.description
+    projectInfo.name = this.project.name
+    //TODO: Get only the IDs
+    projectInfo.members = this.project.members
+    projectInfo.color = "/static/img/project-colors/project_" + this.project.color + ".svg"
 
     projectDataService.setProject(projectInfo, user_id, function (res) {
       if (res.status == 201) {
