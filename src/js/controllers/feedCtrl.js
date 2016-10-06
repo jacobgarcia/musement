@@ -48,17 +48,30 @@ angular.module('musementApp')
   });
 
   $scope.submitMoment = function(moment){
-    if (this.create_moment.files.$valid && this.newMoment.files)
-        $scope.upload(moment, this.newMoment.files);
-    else
-      console.log("Could not upload image");
+      if (this.create_moment.description && this.create_moment.description.$valid){
+        if (moment.tags){
+            if (moment.tags.length <= 3){
+              if (this.create_moment.files.$valid && this.newMoment && this.newMoment.files)
+                  $scope.upload(moment, this.newMoment.files);
+              else
+                  $scope.setMoment(moment, null);
+            }
+        }
+      else{
+        if (this.create_moment.files.$valid && this.newMoment && this.newMoment.files)
+            $scope.upload(moment, this.newMoment.files);
+        else
+            $scope.setMoment(moment, null);
+      }
+    }
   }
 
   $scope.upload = function(moment, file){
+    console.log(JSON.stringify(file));
     Upload.upload({url: 'http://localhost:8080/api/upload', data:{ file: file }})
     .then(function (resp) { //upload function returns a promise
                 if(resp.data.error_code === 0){
-                    $scope.setMoment(moment, resp.data.file_name);
+                    $scope.setMoment(moment, '/static/uploads/' + resp.data.file_name);
                 } else {
                     console.log('An error occured: ' + JSON.stringify(resp.data.error_desc));
                 }
@@ -69,11 +82,10 @@ angular.module('musementApp')
   }
 
   $scope.setMoment = function (moment, image) {
-
     let momentInfo = {};
 
     momentInfo.description = this.newMoment.description;
-    momentInfo.attachments = '/static/uploads/' + image;
+    momentInfo.attachments =  image;
     momentInfo.tags = this.newMoment.tags;
     momentInfo.project = this.newMoment.project._id;
     momentInfo.question = this.newMoment.question;
