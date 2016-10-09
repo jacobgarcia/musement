@@ -18,6 +18,11 @@ angular.module('musementApp')
     .then(callback)
   }
 
+  this.setUserPro = function(user_id, callback, errCallback) {
+    $http.post(window.host + '/api/users/' + user_id + '/pro')
+    .then(callback, errCallback)
+  }
+
   this.heartMoment = function(moment_id, callback,errCallback) {
     console.log(window.host + '/api/moments/' + moment_id + '/likes')
     $http.post(window.host + '/api/moments/' + moment_id + '/likes')

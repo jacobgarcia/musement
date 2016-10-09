@@ -6,8 +6,13 @@ angular.module('musementApp')
   }
 
   this.setFeedback = function(feedback, callback) {
-    console.log('Service feedback', feedback);
     $http.post(window.host + '/api/moments/' + feedback.moment_id + '/feedback', feedback)
     .then(callback)
   }
+
+  this.getTags = function(callback, errCallback) {
+    $http.get(host + '/api/tags')
+    .then(callback, errCallback)
+  }
+
 })

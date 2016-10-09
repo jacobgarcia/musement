@@ -24,8 +24,7 @@
   </div>
   <form name="upload_form">
     <div class="complete-signup sign-fields" ng-hide="next">
-      <div class="">
-        <h2>Complete the <span style="font-weight:bold">Sign up</span></h2>
+      <div>
         <input type="text" name="name" ng-model="user.name" placeholder="Name" required="true">
         <input type="text" name="surname" ng-model="user.surname" placeholder="Surname" required="true">
         <input type="text" name="username" ng-model="user.username" placeholder="Username" required="true">
@@ -39,9 +38,24 @@
         <i ng-show="upload_form.file.$error.maxSize">File too large {{user.image.size / 1000000|number:1}}MB: max 5M</i><br>
       </div>
       <div class="">
-        <input type="button" name="done" value="DONE" ng-click="done()" class="green-button">
-        <p>Will be necessary to improve your experience in Musement</p>
+        <input type="button" name="done" value="NEXT" ng-click="nextToTags()" class="green-button">
       </div>
     </div>
   </form>
+  <div class="select-interests" ng-class="{'active': showTags}">
+    <div class="interest-body">
+      <h2>Select <span>{{3 - selectedTags.length}}</span> of your main interests</h2>
+      <p>In witch area you consider to have more knowledge or experience? Help the community with your feedback and your interests will grow.</p>
+      <ul class="selected-tags">
+        <li ng-repeat="tag in selectedTags">{{tag.name}}</li>
+      </ul>
+      <ul>
+        <li class="tag" ng-repeat="tag in tags | limitTo: 15" ng-click="selectTag(tag,$index)">{{tag.name}}</li>
+      </ul>
+      <p class="more" ng-click="random()">more</p>
+    </div>
+    <div>
+      <input type="button" value="DONE" class="green-button" ng-click="signUp()">
+    </div>
+  </div>
 </body>

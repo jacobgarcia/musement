@@ -24,15 +24,17 @@
 
 <main class="main-feed">
   <div class="user-profile">
-    <div class="user-image">
+    <div class="user-image" ng-class="{'mask': this_user.pro}">
       <img src="{{user.image}}" alt="" />
     </div>
     <div class="user-info">
       <p class="name">{{user.name}} {{user.surname}}</p>
-      <p class="username">@{{user.username}}</p>
+      <p class="username">@{{user.username}}<span ng-if="user.pro">PRO</span></p>
       <p class="bio">{{user.bio}}</p>
-      <p class="location">{{user.location.city}}, {{user.location.state}}</p>
-      <p class="work not-available">Not available for work</p>
+      <ul class="tags">
+        <li ng-repeat="tag in user.tags">{{tag.name}}</li>
+      </ul>
+      <p ng-if="user.location.state" class="location">{{user.location.city}}, {{user.location.state}}</p>
     </div>
   </div>
   <moment ng-repeat="moment in user.moments"></moment>

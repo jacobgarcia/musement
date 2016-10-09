@@ -1,15 +1,15 @@
 angular.module('musementApp')
 .controller('feedCtrl', function($scope, $rootScope, $state, $stateParams, loginDataService, localStorageService, profileDataService, feedDataService, $compile, $sce, $window, Upload, $http) {
 
+  let user_id = localStorageService.get('user_id')
+  let detailCounter = 0
 
-  let user_id = localStorageService.get('user_id');
-  let detailCounter = 0;
-
-  $scope.app = true; //UI attribute, important!
-  $scope.interests = {};
-  $scope.username = localStorageService.get('username');
-  $scope.user_id = user_id;
-  $scope.tags = [];
+  $scope.app = true //UI attribute, important!
+  $scope.interests = {}
+  $scope.username = localStorageService.get('username')
+  $scope.user_id = user_id
+  $scope.tags = []
+  $scope.proVisible = false
 
   /* Default selected project */
   //$scope.defaultSelectedProject = this.newMoment.project[0].id;
@@ -22,9 +22,24 @@ angular.module('musementApp')
       var tags = response.data;
       return tags.filter(function(tag) {
         return tag.name.toLowerCase().indexOf($query.toLowerCase()) != -1;
-      });
-    });
-  };
+      })
+    })
+  }
+
+  $scope.showPro = function () {
+    $scope.proVisible = !$scope.proVisible
+  }
+
+  $scope.tryPro = function () {
+    feedDataService.setUserPro(user_id,
+    function(res){
+      $scope.proVisible = false
+      $scope.this_user.pro = true
+    },
+    function(errRes){
+      console.log(errRes);
+    })
+  }
 
   //Load the moments
   feedDataService.getInterestsFeed(user_id, function(response) {
@@ -32,7 +47,6 @@ angular.module('musementApp')
   });
 
   $scope.showUserDetails = function (username) {
-
     var supperWrapper = angular.element(document.getElementById('supper-wrapper'));
     var content = $compile('<div class="moment-details" id="detail' + detailCounter +  '" ng-controller="userCtrl" ng-init="init(\'' + username + '\')" style="z-index: ' + (5 + detailCounter) + ' " ng-class="{\'active\': momentDetailsSeen}"><header><nav><ul class="menu"><li ng-click="removeDetail(\'detail' + detailCounter + '\')" id="menu"><</li><li class="title">{{user.username}}</li><li></li></ul></nav></header><main class="main-feed"><div class="user-profile"><div class="user-image"><img src="{{user.image}}" alt="" /></div><div class="user-info"><p class="name">{{user.name}} {{user.surname}}</p><p class="username">@{{user.username}}</p><p class="bio">{{user.bio}}</p><p class="location">{{user.location.city}}, {{user.location.state}}</p><p class="work not-available">Not available for work</p></div></div><div class="moment" ng-repeat="moment in user.moments" ng-click="showDetails(moment._id)" ng-model="moments"><div class="moment-text"><div class="user-image" ng-click="showUserDetails(moment.user.username); $event.stopPropagation();"><img src="{{user.image}}" alt="" /></div><div class="moment-info"><p class="user-name" ng-click="showUserDetails(moment.user.username); $event.stopPropagation();">{{moment.user.name}} {{moment.user.surname}}</p><p>{{moment.description}}</p><p class="question">{{moment.question}}</p></div></div><ul class="moment-tags tags" ng-if="!!moment.tags.length"><li ng-repeat="tag in moment.tags.name">{{tag}}</li></ul><div class="feedback-count"><p>{{moment.feedback.length}} feedbacks</p></div><div class="moment-stats"><div class="hearts" ng-click="heart($index, moment._id); $event.stopPropagation();" ng-class="{liked: ((moment.hearts | contains:user_id) || moment.liked)}"><p>{{moment.hearts.length}}</p></div><div class="feedback-icon"><p>Add feedback</p></div></div></div></main></div>')($scope);
     detailCounter++;
@@ -105,14 +119,11 @@ angular.module('musementApp')
   };
 
   $scope.heart = function (index, moment_id) {
-    console.log('Heart')
     feedDataService.heartMoment(moment_id, function (res) {
-      console.log('Got response');
-      if (res.status == 200) {
+      if (res.status == 200 || res.status == 201) {
         $scope.interests.moments[index].hearts.length++; //Increment counter if hearted succeed
         $scope.interests.moments[index].liked = true;
       } else {
-        console.log(res.data);
       }
     }, (err) => console.log(err))
   }

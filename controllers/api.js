@@ -54,6 +54,7 @@ router.post('/signup', function(req, res){
           email: req.body.email,
           surname: req.body.surname,
           name: req.body.name,
+          tags: req.body.tags,
           username: req.body.username,
           password: req.body.password,
           image: req.body.image || null
@@ -82,6 +83,7 @@ router.post('/authenticate', function(req, res) {
     else if (!user)
       res.status(401).json({'message': "Authentication failed. Wrong user or password."})
     else {
+      console.log(user);
       if (!user.comparePassword(req.body.password)) // check if password matches
         res.status(401).json({'message': "Authentication failed. Wrong user or password."})
       else {
@@ -105,9 +107,9 @@ router.get('/tags', function(req, res){
   Tag.find({})
   .exec(function(err, tags){
     if (err)
-    res.status(500).json({'error': err})
+      res.status(500).json({'error': err})
     else
-    res.json(tags);
+      res.json(tags);
   })
 })
 // Members consulting
@@ -149,24 +151,25 @@ router.use(function(req, res, next) {
 ***                                ***
 *************************************/
 
-router.route('/users')
-.post(function (onreq, res) {
-  new User({
-    name: req.body.name,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: req.body.password,
-    bornDate: req.body.bornDate,
-    username: req.body.username,
-    image: req.body.image
-  })
-  .save(function (err, user) {
-    if (err)
-    res.status(500).json({'error': err, 'success': false});
-    else
-    res.status(201).json({message: 'Successfully created new user' + user.name});
-  })
-})
+// router.route('/users')
+// .post(function (onreq, res) {
+//   new User({
+//     name: req.body.name,
+//     lastName: req.body.lastName,
+//     email: req.body.email,
+//     password: req.body.password,
+//     bornDate: req.body.bornDate,
+//     username: req.body.username,
+//     tags: req.body.tags,
+//     image: req.body.image
+//   })
+//   .save(function (err, user) {
+//     if (err)
+//     res.status(500).json({'error': err, 'success': false});
+//     else
+//     res.status(201).json({message: 'Successfully created new user' + user.name});
+//   })
+// })
 
 router.route('/users/u=:username?')
 .get(function (req, res) {
@@ -186,7 +189,7 @@ router.route('/users/u=:username?')
 router.route('/users/:user_id') //just when the url has "id=" it will run, otherwise it will look for a username
 .get(function (req, res) {
   User.findById(req.params.user_id, '-password') //Return all excepting password
-  .populate('projects', 'name description color')
+  .populate('projects tags', 'name description color')
   .exec(function(err, user) {
     if (err)
     res.status(500).json({'error': err})
@@ -201,6 +204,26 @@ router.route('/users/:user_id') //just when the url has "id=" it will run, other
 .delete(function (req, res) {
   //TODO: *Deactivate* user, validate user us deleting himself
   res.status(501).json({'message':'Not yet supported.'})
+})
+
+
+router.route('/users/:user_id/pro')
+.post(function(req,res){
+  if (req.params.user_id !== req.U_ID)
+    return res.status(401).json({err: {message: "What ya' doing updating a user that's not you?"}})
+  User.findById(req.params.user_id)
+  .exec(function(err,user) {
+    if (err)
+      return res.status(500).json({err:err})
+    if (!user)
+      return res.status(404).json({err: {message: "User not found"}})
+    user.pro = true
+    user.save(function(err, user){
+      if (err)
+        return res.status(500).json({err:err})
+      res.status(200).json({message: "You're pro now", user: user})
+    })
+  })
 })
 
 /*************************************
@@ -314,8 +337,8 @@ router.route('/moments/:moment_id/likes')
 .post(function (req, res) {
   console.log('Got post!',req.params.moment_id)
   Moment.findById(req.params.moment_id)
-  // .update({ $addToSet: { hearts: req.U_ID } })
-  .exec(function(err) {
+  .update({ $addToSet: { hearts: req.U_ID } })
+  .exec(function(err, result) {
     console.log('result', result.nModified)
     if (err) {
       console.log(err);

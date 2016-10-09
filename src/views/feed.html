@@ -35,8 +35,12 @@
         </ul>
         <h5>Projects</h5>
         <ul class="elements-list">
-          <li ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.name})" ng-click="bodyMove()" class="pointer"><img src="{{project.color}}">{{project.name}}</li>
-          <li ui-sref="feed.new-project" ng-click="bodyMove()" class="pointer"><input type="button" name="name" class="green-button small" value="New Project"></li>
+          <li ng-if="this_user.pro" ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.name})" ng-click="bodyMove()" class="pointer"><img src="{{project.color}}">{{project.name}}</li>
+          <li ng-if="this_user.pro" ui-sref="feed.new-project" ng-click="bodyMove()" class="pointer">
+            <input type="button" name="name" class="green-button small" value="New Project">
+          </li>
+          <li ng-if="!this_user.pro" class="pro-text">Projects are only for pro users</li>
+          <li ng-if="!this_user.pro" class="pro-button"><input type="button" value="Try PRO now" ng-click="bodyMove();showPro()"></li>
         </ul>
       </div>
       <div class="log-out" ng-click="logout()">
@@ -66,7 +70,30 @@
     </div>
   </div>
 </div>
+<div class="pro-wrapper" ng-class="{'active': proVisible}">
+  <div class="pro-content">
+    <div class="pro-header">
+      <ul class="menu">
+        <li><h2>PRO</h2></li>
+        <li class="cancel" ng-click="showPro()">Cancel</li>
+      </ul>
+    </div>
+    <div class="pro-body">
+      <h3>Create and share projects</h3>
+      <ul>
+        <li>Create your own projects</li>
+        <li>Add teammates and work together</li>
+        <li>Upload moments of your projects</li>
+        <li>Publish moments as projects and more (comming soon)</li>
+      </ul>
+      <p class="cta">
+        Do you want a free PRO version trial for 3 months?
+        <input type="button" name="name" value="Try PRO now" ng-click="tryPro()">
+      </p>
+    </div>
+  </div>
 
+</div>
 <div class="create-moment" ng-class="{'active': momentSeen}" ng-form="createMomentForm">
   <div class="form-content">
     <ul class="menu">
@@ -105,7 +132,7 @@
       <nav>
         <ul class="menu">
           <li ng-click="bodyMove()" id="menu"><div class=""></div><div class=""></div></li>
-          <li class="title">Interests</li>
+          <li class="title">Moments</li>
           <li>
             <ul class="menu-icons">
               <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt="" /></li>

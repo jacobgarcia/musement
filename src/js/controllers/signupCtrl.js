@@ -1,16 +1,30 @@
 'user strict';
 angular.module('musementApp')
-.controller('signupCtrl', function($scope, signupDataService, localStorageService, $state, $window, Upload) {
+.controller('signupCtrl', function($scope, signupDataService, localStorageService, $state, $window, Upload, momentDataService) {
 
   //OUR FUNCTIONS
   $scope.next = true;
   $scope.submit = true;
+  $scope.tags = []
+  $scope.selectedTags = []
 
   $scope.submit = function() {
     if (this.user.password == this.user.confirm_password)
       $scope.next();
     else
       console.log("Ay que las passwords");
+  }
+
+  $scope.selectTag = function (tag,index) {
+    if ($scope.selectedTags.length < 3) {
+      $scope.tags.splice(index,1)
+      $scope.selectedTags.push(tag)
+    }
+  }
+
+  $scope.random = function () {
+    console.log(1 - Math.random())
+    return 1 - Math.random()
   }
 
   $scope.next = function() {
@@ -21,16 +35,27 @@ angular.module('musementApp')
     }
   }
 
-  $scope.done = function(){
-    if (this.user.image.type) { //Check if its a file, if it's upload
+  momentDataService.getTags(function(res){
+    $scope.tags = res.data
+  }, function(errRes){
+    console.log(errRes)
+  })
+
+  $scope.nextToTags = function(){
+    if (this.user.name && this.user.username)
+      $scope.showTags = true
+    else
+      console.log('Not complete...');
+  }
+
+  $scope.signUp = function() {
+    if (this.user.image.type) //Check if its a file, if it's upload
       $scope.upload(this.user.image)
-    } else {
+    else
       $scope.sign(this.user.image)
-    }
   }
 
   $scope.upload = function(file){
-    console.log(file);
     if (!file) { //If user doesnt want to upload a photo, set the gravatar one
         $scope.sign(); //Send no image
     } else {
@@ -45,13 +70,20 @@ angular.module('musementApp')
 
   $scope.sign = function (image) {
 
-    let signupInfo = {};
+    let signupInfo = {}
+    let tags = []
     signupInfo.username = this.user.username.toLowerCase(); //IMPORTANT
     signupInfo.email = this.user.email.toLowerCase(); //IMPORTANT
     signupInfo.name = this.user.name;
     signupInfo.surname = this.user.surname;
     signupInfo.password = this.user.password;
     signupInfo.image = image
+
+    for (var i = 0; i < $scope.selectedTags.length; i++) {
+      tags.push($scope.selectedTags[i]._id)
+    }
+
+    signupInfo.tags = tags
 
     signupDataService.signup(signupInfo, function (res) {
       if (res.status == 200) {

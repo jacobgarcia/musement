@@ -50,7 +50,7 @@ gulp.task('watch', function () {
 gulp.task('start', function () {
   nodemon({
     script: 'server.js',
-    ext: 'js html',
+    ext: 'js',
     env: { 'NODE_ENV': 'development' }
   })
 })

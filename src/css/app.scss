@@ -13,6 +13,7 @@ body.app {
   z-index: 100;
   width: 100%;
   height: 100%;
+  height: 100vh;
   background: $lighterGray;
 }
 header.large-header {
@@ -24,6 +25,69 @@ header.large-header {
   .no-moments-header {
     font-size: 2rem;
     margin-bottom: 10px;
+  }
+}
+.select-interests {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  text-align: center;
+  transform: translateX(100%);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  transition: 0.5s;
+  .interest-body {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .green-button {
+    width: 100%;
+    max-width: 360px;
+  }
+  &.active {
+    transform: translateX(0);
+  }
+  h2 span {
+    color: $green;
+    font-weight: 500;
+  }
+  p {
+    margin: 20px 0;
+  }
+  li.tag, .selected-tags li {
+    background: #FFF;
+    border: 1px solid $green;
+    display: inline-block;
+    color: #fff;
+    font-weight: 500;
+    margin: 5px;
+    color: $green;
+    padding: 3px 7px;
+    border-radius: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+  }
+  .more {
+    cursor: pointer;
+  }
+  .selected-tags {
+    margin-bottom: 20px;
+    li {
+      background: $red;
+      color: #FFF;
+      border-color: $red;
+    }
+
   }
 }
 .supper-wrapper {
@@ -45,6 +109,11 @@ header.large-header {
     margin: 0 auto;
     width: 80px;
     height: 80px;
+    // &.mask {
+    //   mask: url('/static/img/mask.svg');
+    //   -webkit-mask-image: url('/static/img/mask.svg');
+    //   border: 6px solid $yellow;
+    // }
   }
   .user-info {
     margin-top: 15px;
@@ -52,9 +121,27 @@ header.large-header {
     .name {
       font-size: 0.9rem;
     }
+    .tags {
+      li {
+        display: inline-block;
+        margin: 0 5px 5px;
+        padding: 3px 9px;
+        border-radius: 9px;
+      }
+    }
     .username {
-      margin-bottom: 5px;
+      margin: 5px 0;
       color: $gray;
+      font-size: 0.9rem;
+      span {
+        font-size: 0.7rem;
+        margin-left: 5px;
+        background: rgb(222, 229, 232);
+        padding: 2px 4px;
+        color: #FFF;
+        font-weight: 600;
+        border-radius: 3px;
+      }
     }
     .location {
       margin-top: 5px;
@@ -550,6 +637,27 @@ aside {
       margin-right: 10px;
     }
   }
+  .pro-button input{
+    width: 100%;
+    padding: 6px;
+  }
+  .pro-text {
+    margin-left: 15px;
+    font-size: 0.85rem;
+    color: $gray;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 10px;
+      height: 10px;
+      background: $gray;
+      top: 13px;
+      left: 13px;
+      border-radius: 50%;
+    }
+  }
 }
 .profile-text {
   display: flex;
@@ -594,11 +702,15 @@ aside {
 .log-out {
   display: flex;
   justify-content: center;
+  align-items: center;
   font-weight: 600;
   color: rgb(102, 133, 150);
   text-align: center;
-  margin: 10px 0;
+  margin: 10px 0 15px;
   color: #666;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
   img {
     margin-right: 10px;
   }
@@ -645,7 +757,6 @@ auto-complete {
 .create-moment ul.tag-list {
   flex-grow: 1;
   margin-bottom: 0;
-
   li {
     margin-right: 10px;
     display: inline-block;
@@ -654,15 +765,14 @@ auto-complete {
 input {
   display: inline-block;
 }
-
-
-.notifications, .create-moment{
+.notifications, .create-moment, .pro-wrapper {
   position: fixed;
   -webkit-overflow-scrolling: touch;
   width: 100%;
   height: 100vh;
   background: #fff;
   z-index: 100;
+  left: 0;
   padding: 16px;
   transform: translateY(-150vh);
   transition: ease-in-out 0.3s;
@@ -705,11 +815,76 @@ input {
     }
   }
 }
-.notifications.active, .create-moment.active {
+.notifications.active, .create-moment.active, .pro-wrapper.active {
   transform: translateY(0);
+}
+.cancel {
+  cursor: pointer;
 }
 .moment-details.active {
   transform: translateX(0);
+}
+.pro-wrapper {
+  overflow-y: scroll;
+  background: rgba(0, 0, 0, 0.0);
+  &.active {
+    background: rgba(0,0,0,0.2);
+  }
+  .pro-content {
+    max-width: 300px;
+    margin: 0 auto;
+    background: #FFF;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    > div {
+      padding: 20px;
+    }
+    .pro-body {
+      h3 {
+        margin-bottom: 20px;
+        font-weight: 200;
+      }
+      .cta {
+        text-align: center;
+        font-size: .825rem;
+        margin: 30px 10px 0;
+        input {
+          display: block;
+          margin: 15px auto 0;
+        }
+      }
+      ul {
+        li {
+          padding-left: 13px;
+          margin-left: 5px;
+          position: relative;
+          margin-bottom: 7px;
+        }
+        li::before {
+          content: '';
+          display: block;
+          height: 7px;
+          width: 7px;
+          border-radius: 50%;
+          background: $yellow;
+          position: absolute;
+          left: 0;
+          top: 6px;
+        }
+      }
+    }
+    .pro-header {
+      background: $green;
+      .cancel {
+        color: #FFF;
+      }
+      h2 {
+        font-weight: 600;
+        color: #fff;
+      }
+    }
+  }
 }
 .create-moment {
   border-radius: 5px;
@@ -944,6 +1119,7 @@ input {
     width: 225px;
     .log-out {
       color: #666;
+      position: relative;
     }
   }
   header.mobile-header {
