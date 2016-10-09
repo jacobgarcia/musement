@@ -10,6 +10,17 @@ let gulp = require('gulp'),
     concat = require('gulp-concat'),
     nodemon = require('gulp-nodemon')
 
+gulp.task('min-sass', function() {
+  return gulp.src('src/css/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(concat('master.css'))
+    .pipe(rename({
+            suffix: '.min'
+        }))
+    .pipe(gulp.dest('public/css'))
+})
+
 gulp.task('sass', function() {
   return gulp.src('src/css/*.scss')
     .pipe(sourcemaps.init())
@@ -55,5 +66,5 @@ gulp.task('start', function () {
   })
 })
 
-gulp.task('build',['sass','htmlminify','webpack'])
+gulp.task('build',['min-sass','htmlminify','webpack'])
 gulp.task('test', ['sass','htmlminify','webpack','watch','start'])

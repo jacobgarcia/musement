@@ -81,7 +81,6 @@ angular.module('musementApp')
   }
 
   $scope.upload = function(moment, file){
-    console.log(JSON.stringify(file));
     Upload.upload({url: 'http://localhost:8080/api/upload', data:{ file: file }})
     .then(function (resp) { //upload function returns a promise
                 if(resp.data.error_code === 0){
@@ -96,28 +95,26 @@ angular.module('musementApp')
   }
 
   $scope.setMoment = function (moment, image) {
-    let momentInfo = {};
+    let momentInfo = {}
 
-    momentInfo.description = this.newMoment.description;
-    momentInfo.attachments =  image;
-    momentInfo.tags = this.newMoment.tags;
-    momentInfo.project = this.newMoment.project._id;
-    momentInfo.question = this.newMoment.question;
+    momentInfo.description = this.newMoment.description
+    momentInfo.attachments =  image
+    momentInfo.tags = this.newMoment.tags
+    momentInfo.project = this.newMoment.project._id
+    momentInfo.question = this.newMoment.question
 
-    console.log(momentInfo);
     feedDataService.setMoment(momentInfo, user_id, function (response) {
-      console.log(response.data);
       if (response.data.success == true) {
         $scope.showCreateMoment(); //Hide new moment
         //TODO: Maybe add a new animation when a moment has been created, in the midtime we will just reload the feed
         feedDataService.getInterestsFeed(user_id, function(response) { //Reload the moments
           $scope.interests.moments = response.data.moments;
-        });
+        })
       } else {
         alert(response.error);
       }
-    });
-  };
+    })
+  }
 
   $scope.logout = function () {
     localStorageService.clearAll();
@@ -126,7 +123,7 @@ angular.module('musementApp')
 
   $scope.setProject = function (project) {
     feedDataService.setProject(project, this.user_id, function (response) {
-      console.log(response);
+      // console.log(response);
     });
   };
 

@@ -6,11 +6,11 @@ angular.module('musementApp')
   $scope.setFeedback = function (feedback) {
     feedback.moment_id = $scope.moment._id;
     momentDataService.setFeedback(feedback, function(res) {
-      if (res.data.success) {
+      if (res.status == 200 || res.status == 201) {
         //Insert directly into html instead of making a new request
         var feedbackWrapper = angular.element(document.getElementById('feedback-wrapper'));
-        var content = $compile('<div class="feedback"><p><span class="username" ng-click="showUserDetails(\''+ $scope.username +'\')">@'+ $scope.username +'</span>: ' + feedback.text + '</p></div>')($scope);
-        feedbackWrapper.append(content);
+        var content = $compile('<div class="feedback"><p><span class="username" ng-click="showUserDetails(\''+ $scope.username +'\')">@'+ $scope.username +'</span>: ' + feedback.text + '</p></div>')($scope)
+        feedbackWrapper.append(content)
 
         feedback.text = "";
       }
