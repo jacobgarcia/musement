@@ -59,6 +59,9 @@ angular.module('musementApp')
   profileDataService.getProfileInfo(user_id, function(response) {
     let user = response.data.user
     $scope.this_user = user
+
+    console.log(user)
+    
   });
 
   $scope.submitMoment = function(moment){
@@ -123,7 +126,7 @@ angular.module('musementApp')
 
   $scope.setProject = function (project) {
     feedDataService.setProject(project, this.user_id, function (response) {
-      // console.log(response);
+      console.log('Set project')
     });
   };
 
@@ -158,6 +161,9 @@ angular.module('musementApp')
     profileDataService.getProfileInfo('u=' + username, function(response) {
       if (response.data.success) {
         $scope.user = response.data.user;
+
+        console.log(response.data.user);
+
         let user_id = response.data.user._id;
         profileDataService.getProfileMoments(user_id, function (response) {
           $scope.user.moments = response.data.moments;
