@@ -50,6 +50,11 @@ header.large-header {
     max-width: 400px;
     margin: 0 auto;
   }
+  .done-button{
+    input[name="create"].inactive {
+      background: $gray;
+    }
+  }
   .green-button {
     width: 100%;
     max-width: 360px;

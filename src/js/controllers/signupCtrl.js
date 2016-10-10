@@ -53,10 +53,13 @@ angular.module('musementApp')
   }
 
   $scope.signUp = function() {
-    if (this.user.image.type) //Check if its a file, if it's upload
-      $scope.upload(this.user.image)
-    else
-      $scope.sign(this.user.image)
+    //Validate that the tags are exactly 3, not less
+    if ($scope.selectedTags.length >= 3){
+      if (this.user.image.type) //Check if its a file, if it's upload
+        $scope.upload(this.user.image)
+      else
+        $scope.sign(this.user.image)
+    }
   }
 
   $scope.upload = function(file){
