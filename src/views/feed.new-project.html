@@ -13,7 +13,7 @@
 </header>
 <main>
   <div class="project">
-    <div class="project-type">
+    <!-- <div class="project-type">
       <div class="type">
         <input type="radio" ng-model="project.type" id="product" name="type" value="product" required="true">
         <label for="product">Product</label>
@@ -22,10 +22,10 @@
         <input type="radio" ng-model="project.type" id="service" name="type" value="service">
         <label for="service">Service</label>
       </div>
-    </div>
+    </div> -->
     <label for="name">Name of the project</label>
     <input ng-model="project.name" type="text" name="name" placeholder="Name" id="name" required="true">
-    <label>Pick a color</label>
+    <!-- <label>Pick a color</label>
     <div class="project-color">
       <label>
         <input type="radio" name="color" value="aqua" ng-model="project.color"/>
@@ -67,7 +67,7 @@
         <input type="radio" name="color" value="dark" ng-model="project.color"/>
         <img src="/static/img/project-colors/project_dark.svg">
       </label>
-    </div>
+    </div> -->
     <label for="description">Description</label>
     <textarea ng-model="project.description" name="description" id="description" placeholder="Description..." required="true"></textarea>
     <div class="project-members">

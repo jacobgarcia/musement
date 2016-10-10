@@ -21,7 +21,7 @@
         <img class="profile-photo" src="{{this_user.image}}" alt="" />
         <div class="profile-text">
           <p class="profile-name">{{this_user.name}} {{this_user.surname}}</p>
-          <p class="profile-username">@{{username}}</p>
+          <p class="profile-username">@{{username}}<span ng-if="user.pro">PRO</span></p>
         </div>
       </div>
       <!-- <div class="search">
@@ -32,7 +32,6 @@
         <ul class="elements-list">
           <li ui-sref="feed" ng-click="bodyMove()" id="interests" class="active pointer"><img src="/static/img/buttons/btn_moments.svg" class="icon" alt="" /><p>Moments</p></li>
           <!-- <li ui-sref="feed.connections" ng-click="bodyMove('feed.connections')" id="connections" class="pointer"><img src="/static/img/buttons/btn_connections.svg" class="icon" alt="" />Connections</li> -->
-          <li><p ui-sref="feed.inbox">Inbox</p></li>
         </ul>
         <h5>Projects</h5>
         <ul class="elements-list">
@@ -106,9 +105,9 @@
       <textarea type="text" ng-model="newMoment.description" name="description" value="" placeholder="What were you working on? What was your progress?" required></textarea>
       <label for="question">Question</label>
       <input type="text" ng-model="newMoment.question" name="question" value="" placeholder="What do you need feedback on?">
-      <label for="tags">Related Interests (Max. 3)</label>
+      <label for="tags">Related Interests (Max. 3) {{newMoment.tags.length&#60;&#61;2}}</label>
         <tags-input ng-model="newMoment.tags" display-property="name" placeholder="Add Topic" replace-spaces-with-dashes="false" max-tags="3" min-length="0"  add-from-autocomplete-only="true">
-          <auto-complete source="loadTags($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="35"></auto-complete>
+          <auto-complete source="loadTags($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="35" ng-show="newMoment.tags.length<=2"></auto-complete>
         </tags-input>
 
         <label>Files</label>
@@ -153,11 +152,11 @@
       <moment ng-repeat="moment in interests.moments"></moment>
     </main>
     <aside>
-      <div class="slack-join">
+      <!-- <div class="slack-join">
         <h4>Join on Slack</h4>
         <p>Be part of the conversation with Musement</p>
         <input type="button" class="green small" value="Join">
-      </div>
+      </div> -->
       <div class="top-projects">
         <p>Talk to Musement team</p>
         <p><a href="">hello@musement.co</a></p>
@@ -166,10 +165,10 @@
         <p>Tweets liked by Musement</p>
 
       </div> -->
-      <div class="facebook">
+      <!-- <div class="facebook">
         <p>Facebook page</p>
         <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fmusementco&width=146&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId=371723859883324" width="146" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-      </div>
+      </div> -->
       <div class="tweets">
         <p><a href="">© 2016 Musement</a> <a href="">Condiciones</a> <a href="">Privacidad</a> <a href="">Cookies</a> <a href="">Feedback</a></p>
       </div>

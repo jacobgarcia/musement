@@ -5,7 +5,7 @@
       <li class="title ng-binding"></li>
       <li>
         <ul class="menu-icons">
-          <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt=""></li>
+          <!-- <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt=""></li> -->
           <li ng-click="showCreateMoment()"><img src="/static/img/buttons/btn_create.svg" class="icon" alt=""></li>
         </ul>
       </li>
@@ -23,6 +23,9 @@
         <p>{{moment.description}}</p>
         <p class="question">{{moment.question}}</p>
       </div>
+    </div>
+    <div class="moment-attachments" ng-if="moment.attachments.length > 0">
+      <a ng-repeat="attachment in moment.attachments" href="{{attachment}}"><img src="{{attachment}}" alt="" /></a>
     </div>
   </div>
   <div id="feedback-wrapper">

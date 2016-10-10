@@ -404,10 +404,10 @@ router.route('/users/:user_id/projects')
 .post(function (req, res) {
   let project = new Project({
     admin: req.U_ID,
-    category: req.body.category,
+    // category: req.body.category,
     description: req.body.description,
     name: req.body.name,
-    color: req.body.color
+    // color: req.body.color
   })
   if (!req.body.members || req.body.members.length == 0)
     project.members = [req.U_ID]
@@ -512,7 +512,7 @@ router.route('/users/:user_id/interests/moments')
 .get(function(req, res) {
   //TODO: Not yet implemented
   Moment.find()
-  .populate('user project tags','username name surname image color')
+  .populate('user project tags','username name surname image color pro')
   .sort('-_id')
   .exec(function(err, moments) {
     if (err)
@@ -525,7 +525,7 @@ router.route('/users/:user_id/interests/moments')
 router.route('/users/:user_id/inbox/moments')
 .get(function(req,res){
   Moment.find({"project": null})
-  .populate('user project tags','username name surname image color')
+  .populate('user project tags','username name surname image color pro')
   .sort('-_id')
   .exec(function(err, moments) {
     if (err)
