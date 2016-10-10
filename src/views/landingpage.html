@@ -13,11 +13,14 @@
           <h4>{{ 'WHAT2' | translate }}</h4>
           <div class="signup">
             <p>{{ 'EMAIL' | translate }}</p>
-            <div class="input-elements">
-              <input type="email" name="email" value="" placeholder="" id="email-input" required="true">
-              <input type="button" name="submit" value="{{ 'SEND' | translate }}" id="submit-button">
+              <div class="input-elements">
+                <input ng-model="guest" type="email" class="dark-input" name="email" value="" placeholder="Email" id="email-input" required="true">
+                <input type="button" name="submit" value="{{ 'SEND' | translate }}" id="submit-button" ng-click="submit(guest)">
+                <div role="alert" class="error">
+                  <span>{{ message | translate }}</span>
+                </div>
+              </div>
           </div>
-        </div>
       </div>
 
       <div class="content">
