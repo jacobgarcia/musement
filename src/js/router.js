@@ -25,6 +25,12 @@ angular.module('musementApp')
         templateUrl: "/static/views/feed.html",
         authenticate: true
       })
+      .state("feed.inbox", {
+        url: "inbox",
+        controller: "inboxCtrl",
+        templateUrl: "/static/views/inbox.html",
+        authenticate: true
+      })
       .state("feed.profile", {
         url: "user/:username/",
         controller: "profileCtrl",

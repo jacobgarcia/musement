@@ -218,6 +218,7 @@ router.route('/users/:user_id/pro')
     if (!user)
       return res.status(404).json({err: {message: "User not found"}})
     user.pro = true
+    user.proDate = new Date()
     user.save(function(err, user){
       if (err)
         return res.status(500).json({err:err})
@@ -411,8 +412,8 @@ router.route('/users/:user_id/projects')
   if (!req.body.members || req.body.members.length == 0)
     project.members = [req.U_ID]
   else {
-    console.log(req.body.members);
-    project.members = req.body.members.push(req.U_ID)
+    project.members = req.body.members
+    project.members.push(req.U_ID)
   }
   project.save(function(err, project) {
     if (err)
@@ -512,7 +513,19 @@ router.route('/users/:user_id/interests/moments')
   //TODO: Not yet implemented
   Moment.find()
   .populate('user project tags','username name surname image color')
-  // .populate('tags')
+  .sort('-_id')
+  .exec(function(err, moments) {
+    if (err)
+      res.status(500).json({'error': err });
+    else
+      res.status(200).json({'moments': moments});
+  })
+})
+
+router.route('/users/:user_id/inbox/moments')
+.get(function(req,res){
+  Moment.find({"project": null})
+  .populate('user project tags','username name surname image color')
   .sort('-_id')
   .exec(function(err, moments) {
     if (err)

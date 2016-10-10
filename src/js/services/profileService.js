@@ -11,4 +11,10 @@ angular.module('musementApp')
     .then(callback);
   }
 
+  this.getProfileInboxMoments = function(user_id, callback) {
+    console.log('Getting inbox moments')
+    $http.get(window.host + '/api/users/' + user_id + '/inbox/moments')
+    .then(callback);
+  }
+
 })

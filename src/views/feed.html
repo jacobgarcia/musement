@@ -5,7 +5,7 @@
       <li class="title">Moments</li>
       <li>
         <ul class="menu-icons">
-          <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt=""></li>
+          <!-- <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt=""></li> -->
           <li ng-click="showCreateMoment()"><img src="/static/img/buttons/btn_create.svg" class="icon" alt=""></li>
         </ul>
       </li>
@@ -32,6 +32,7 @@
         <ul class="elements-list">
           <li ui-sref="feed" ng-click="bodyMove()" id="interests" class="active pointer"><img src="/static/img/buttons/btn_moments.svg" class="icon" alt="" /><p>Moments</p></li>
           <!-- <li ui-sref="feed.connections" ng-click="bodyMove('feed.connections')" id="connections" class="pointer"><img src="/static/img/buttons/btn_connections.svg" class="icon" alt="" />Connections</li> -->
+          <li><p ui-sref="feed.inbox">Inbox</p></li>
         </ul>
         <h5>Projects</h5>
         <ul class="elements-list">
@@ -55,7 +56,7 @@
 <div class="notifications" ng-class="{'active': notificationsSeen}">
   <ul class="menu">
     <li></li>
-    <li>Notifications</li>
+    <!-- <li>Notifications</li> -->
     <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_cancel.svg" alt="" class="icon"/></li>
   </ul>
   <ul>
@@ -66,7 +67,6 @@
   </ul>
   <div class="notifications-list">
     <div class="notification-item">
-
     </div>
   </div>
 </div>
@@ -124,8 +124,6 @@
   </div>
 </div>
 
-
-
 <div class="body" ng-class="{'active': bodyMoved}">
   <div class="inner-body" ui-view>
     <header class="mobile-header">
@@ -135,7 +133,7 @@
           <li class="title">Moments</li>
           <li>
             <ul class="menu-icons">
-              <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt="" /></li>
+              <!-- <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt="" /></li> -->
               <li ng-click="showCreateMoment()"><img src="/static/img/buttons/btn_create.svg" class="icon" alt="" /></li>
             </ul>
           </li>

@@ -99,8 +99,8 @@ angular.module('musementApp')
         $state.go('feed')
       }
     }, function(res) {
-      console.log(res);
-      alert('Error')
+      console.log('Err in signup', res);
+      $window.alert('Error')
     })
 
   }

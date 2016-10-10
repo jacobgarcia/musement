@@ -10,6 +10,7 @@ var userSchema = new mongoose.Schema({
       required: true,
       unique: true
     },
+    proDate: Date,
     image: {
       type: String,
       required: true

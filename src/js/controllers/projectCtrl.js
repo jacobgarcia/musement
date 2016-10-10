@@ -41,8 +41,9 @@ angular.module('musementApp')
 
     projectDataService.setProject(projectInfo, user_id, function (res) {
       if (res.status == 201) {
-        console.log(window.host + "/user/" + localStorageService.get('username') + "/" + res.data.project.name)
+        
         $scope.this_user.projects.push(projectInfo)
+        $state.go()
       }
     }, function(res){
       alert(res.data.err.message);
