@@ -27,6 +27,9 @@ header.large-header {
     margin-bottom: 10px;
   }
 }
+.all-tags {
+  margin-bottom: 30px;
+}
 .select-interests {
   position: absolute;
   top: 0;
@@ -90,6 +93,17 @@ header.large-header {
 
   }
 }
+.username {
+  span {
+    font-size: 0.7rem;
+    margin-left: 5px;
+    background: rgb(222, 229, 232);
+    padding: 2px 4px;
+    color: #FFF;
+    font-weight: 600;
+    border-radius: 3px;
+  }
+}
 .supper-wrapper {
   display: flex;
   overflow: hidden;
@@ -133,15 +147,6 @@ header.large-header {
       margin: 5px 0;
       color: $gray;
       font-size: 0.9rem;
-      span {
-        font-size: 0.7rem;
-        margin-left: 5px;
-        background: rgb(222, 229, 232);
-        padding: 2px 4px;
-        color: #FFF;
-        font-weight: 600;
-        border-radius: 3px;
-      }
     }
     .location {
       margin-top: 5px;
@@ -160,6 +165,13 @@ header.large-header {
   text-align: left;
   .user-info {
     margin-top: 0;
+  }
+  label {
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  input, textarea, tags-input, .tags {
+    margin-bottom: 20px;
   }
   .project-members {
     .tags {

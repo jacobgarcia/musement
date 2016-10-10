@@ -10,12 +10,16 @@ angular.module('musementApp')
   $scope.user_id = user_id
   $scope.tags = []
   $scope.proVisible = false
-
+  $scope.newMoment = {}
+  $scope.newMoment.tags = []
+  $scope.canSelectMore = $scope.newMoment.tags.length<4
   /* Default selected project */
   //$scope.defaultSelectedProject = this.newMoment.project[0].id;
 
   this.username = localStorageService.get('username');
-
+  $scope.$watch('newMoment.tags',function(newVal, oldVal){
+    console.log(newVal, oldVal);
+  })
   // Load tags when creating a moment
   $scope.loadTags = function($query) {
     return $http.get(host + '/api/tags',{cache: true}).then(function(response) {
@@ -43,6 +47,7 @@ angular.module('musementApp')
 
   //Load the moments
   feedDataService.getInterestsFeed(user_id, function(response) {
+    console.log(response.data.moments);
     $scope.interests.moments = response.data.moments;
   });
 
@@ -61,7 +66,7 @@ angular.module('musementApp')
     $scope.this_user = user
 
     console.log(user)
-    
+
   });
 
   $scope.submitMoment = function(moment){

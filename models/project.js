@@ -8,8 +8,7 @@ var projectSchema = new mongoose.Schema({
     required: true
   },
   category: {
-    type: String,
-    required: true
+    type: String
   },
   color: {
     type: String,
