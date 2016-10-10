@@ -12,7 +12,10 @@
           <h2>{{ 'WHAT' | translate }}</h2>
           <h4>{{ 'WHAT2' | translate }}</h4>
           <div class="signup">
-              <a ui-sref="signup"><input type="button" class="green" value="I want to be in"></a>
+            <p>{{ 'EMAIL' | translate }}</p>
+            <div class="input-elements">
+              <input type="email" name="email" value="" placeholder="" id="email-input" required="true">
+              <input type="button" name="submit" value="{{ 'SEND' | translate }}" id="submit-button">
           </div>
         </div>
       </div>
