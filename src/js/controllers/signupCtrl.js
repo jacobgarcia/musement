@@ -5,12 +5,16 @@ angular.module('musementApp')
   //OUR FUNCTIONS
   $scope.next = true;
   $scope.submit = true;
-  $scope.tags = []
-  $scope.selectedTags = []
+  $scope.tags = [];
+  $scope.selectedTags = [];
+  $scope.submitted = false;
 
   $scope.submit = function() {
-    if (this.user.password == this.user.confirm_password)
-      $scope.next();
+    // Set the 'submitted' flag to true
+    $scope.submitted = true;
+
+    if (this.user.password === this.user.confirm_password)
+        console.log("$scope.next();");
     else
       console.log("Ay que las passwords");
   }

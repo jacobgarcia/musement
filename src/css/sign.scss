@@ -9,6 +9,21 @@ $gray: #999;
   margin-bottom: 55px;
 }
 .sign-fields {
+  form {
+    display: flex;
+    flex-direction: column;
+
+    .error {
+      order: -1;
+      text-align: right;
+
+      span {
+        color: #EA0223;
+      }
+    }
+
+  }
+
   h2 {
     margin-bottom: 10px;
   }
