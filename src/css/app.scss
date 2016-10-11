@@ -137,6 +137,45 @@ header.large-header {
   .user-info {
     margin-top: 15px;
     font-size: 0.8rem;
+    .tags {
+      padding: 5px 0;
+    }
+    .project-header {
+      display: flex;
+      img {
+        width: 70px;
+        height: 70px;
+        margin-right: 20px;
+        background: $gray;
+        flex-shrink: 0;
+        border-radius: 50%;
+      }
+    }
+    label {
+      color: $gray;
+      font-weight: 500;
+    }
+    .projects {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      overflow-x: scroll;
+      li {
+        display: block;
+        margin: 0 10px;
+        .project-image {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: $gray;
+        }
+      }
+    }
+    .bio {
+      margin: 20px 0;
+      max-height: 200px;
+      overflow: scroll;
+    }
     .name {
       font-size: 0.9rem;
     }
@@ -229,8 +268,8 @@ header.large-header {
   align-items: center;
   margin-top: 10px;
   img {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
   }
   .member {
@@ -654,6 +693,12 @@ aside {
       margin-right: 10px;
     }
   }
+  .project-mini-image {
+    height: 19px;
+    width: 19px;
+    border-radius: 50%;
+    background: $gray;
+  }
   .pro-button input{
     width: 100%;
     padding: 6px;
@@ -707,9 +752,9 @@ aside {
     position: absolute;
     content: '';
     height: 100%;
-    width: 7px;
-    background: $green;
-    left: 0;
+    width: 4px;
+    background: $darkBlue;
+    left: 6px;
     top: 0;
   }
   a {
