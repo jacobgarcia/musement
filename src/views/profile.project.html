@@ -15,9 +15,15 @@
 <main class="main-feed">
   <div class="user-profile project">
     <div class="user-info">
-      <h1>{{project.name}}</h1>
-      <p class="bio">{{project.description}}</p>
-      <h5>Members</h5>
+      <div class="project-header">
+        <img src="" alt="" class="project-image"/>
+        <div class="">
+          <h1>{{project.name}}</h1>
+          <p class="bio">{{project.description}}</p>
+        </div>
+      </div>
+
+      <label>Team</label>
       <div class="members">
         <div class="member" ng-repeat="member in project.members" ui-sref="feed.profile({username: member.username})">
           <img src="{{member.image}}" alt=""/>

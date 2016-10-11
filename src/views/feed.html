@@ -30,12 +30,17 @@
       <div class="side-options">
         <h5>Moments</h5>
         <ul class="elements-list">
-          <li ui-sref="feed" ng-click="bodyMove()" id="interests" class="active pointer"><img src="/static/img/buttons/btn_moments.svg" class="icon" alt="" /><p>Moments</p></li>
+          <li ui-sref="feed" ng-click="bodyMove()" id="interests" class="pointer" ng-class="{'active': $root.selected == 0}"><img src="/static/img/buttons/btn_moments.svg" class="icon" alt="" />
+            <p>Moments</p>
+          </li>
           <!-- <li ui-sref="feed.connections" ng-click="bodyMove('feed.connections')" id="connections" class="pointer"><img src="/static/img/buttons/btn_connections.svg" class="icon" alt="" />Connections</li> -->
         </ul>
         <h5>Projects</h5>
         <ul class="elements-list">
-          <li ng-if="this_user.pro" ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.name})" ng-click="bodyMove()" class="pointer"><img src="{{project.color}}">{{project.name}}</li>
+          <li ng-if="this_user.pro" ng-repeat="project in this_user.projects" ui-sref="feed.project({'username': username, 'projectname': project.name})" ng-click="bodyMove(); $root.selected = $index+1" class="pointer" ng-class="{'active': $root.selected == $index+1}">
+            <img src="" alt="" class="project-mini-image"/>
+            {{project.name}}
+          </li>
           <li ng-if="this_user.pro" ui-sref="feed.new-project" ng-click="bodyMove()" class="pointer">
             <input type="button" name="name" class="green-button small" value="New Project">
           </li>
@@ -52,10 +57,9 @@
 
   </div>
 
-<div class="notifications" ng-class="{'active': notificationsSeen}">
+<!-- <div class="notifications" ng-class="{'active': notificationsSeen}">
   <ul class="menu">
     <li></li>
-    <!-- <li>Notifications</li> -->
     <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_cancel.svg" alt="" class="icon"/></li>
   </ul>
   <ul>
@@ -68,7 +72,7 @@
     <div class="notification-item">
     </div>
   </div>
-</div>
+</div> -->
 <div class="pro-wrapper" ng-class="{'active': proVisible}">
   <div class="pro-content">
     <div class="pro-header">
@@ -105,7 +109,7 @@
       <textarea type="text" ng-model="newMoment.description" name="description" value="" placeholder="What were you working on? What was your progress?" required></textarea>
       <label for="question">Question</label>
       <input type="text" ng-model="newMoment.question" name="question" value="" placeholder="What do you need feedback on?">
-      <label for="tags">Related Interests (Max. 3) {{newMoment.tags.length&#60;&#61;2}}</label>
+      <label for="tags">Related Interests (Max. 3)</label>
         <tags-input ng-model="newMoment.tags" display-property="name" placeholder="Add Topic" replace-spaces-with-dashes="false" max-tags="3" min-length="0"  add-from-autocomplete-only="true">
           <auto-complete source="loadTags($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="35" ng-show="newMoment.tags.length<=2"></auto-complete>
         </tags-input>
