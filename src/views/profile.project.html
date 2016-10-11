@@ -19,7 +19,7 @@
         <div class="project-image">
           <label for="project-logo" ng-if="project.members | containsMember:this_user._id"></label>
           <input type="file" name="name" value="" id="project-logo"
-           ngf-select="uploadLogo($file)" ng-if="project.members | contains:this_user._id">
+           ngf-select="uploadLogo($file)" ng-if="project.members | containsMember:this_user._id">
           <img src="{{project.logo}}" alt="" />
         </div>
         <div>

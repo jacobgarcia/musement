@@ -7,6 +7,10 @@ var projectSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  projectname: {
+    type: String,
+    unique: true
+  },
   category: {
     type: String
   },

@@ -400,7 +400,7 @@ router.route('/users/u=:username/p=:project')
 
 router.route('/users/:user_id/projects')
 .get(function (req, res) { //remove like from moment
-  Projects.find({'members':req.params.user_id})
+  Project.find({'members':req.params.user_id})
   .populate('members','name username surname image color')
   .exec(function(err, projects) {
     if (err)
@@ -410,34 +410,46 @@ router.route('/users/:user_id/projects')
   })
 })
 .post(function (req, res) {
-  let project = new Project({
-    admin: req.U_ID,
-    // category: req.body.category,
-    description: req.body.description,
-    name: req.body.name,
-    // color: req.body.color
-  })
-  if (!req.body.members || req.body.members.length == 0)
-    project.members = [req.U_ID]
-  else {
-    project.members = req.body.members
-    project.members.push(req.U_ID)
-  }
-  project.save(function(err, project) {
-    if (err)
+  let projectname = req.body.name.split(' ').join('-').toLowerCase()
+
+  Project.findOne({members: req.U_ID, projectname: projectname})
+  .exec(function(err,projectFound){
+    if (err) {
       return res.status(500).json({'err':err})
-    User.update(
-      { _id: {$in: project.members} },
-      { $push: {"projects":  project._id} },
-      { multi: true }
-    )
-    .exec(function(err){
-      if (err)
-        res.status(500).json({'error': err,});
-      else
-        res.status(201).json({message: 'Project created!', project: project});
+    }
+    if (projectFound)
+      return res.status(300).json({'err':{message: "Error, you allready have a project with this name"}})
+
+    let project = new Project({
+      admin: req.U_ID,
+      description: req.body.description,
+      name: req.body.name,
+      projectname: projectname
     })
+    if (!req.body.members || req.body.members.length == 0)
+      project.members = [req.U_ID]
+    else {
+      project.members = req.body.members
+      project.members.push(req.U_ID)
+    }
+    project.save(function(err, project) {
+      if (err)
+        return res.status(500).json({'err':err})
+      User.update(
+        { _id: {$in: project.members} },
+        { $push: {"projects":  project._id} },
+        { multi: true }
+      )
+      .exec(function(err){
+        if (err)
+          return res.status(500).json({'error': err,});
+        else
+          res.status(201).json({message: 'Project created!', project: project});
+      })
+    })
+
   })
+
 })
 
 router.route('/projects/:project_id')
