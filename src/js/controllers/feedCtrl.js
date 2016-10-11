@@ -84,7 +84,7 @@ angular.module('musementApp')
   }
 
   $scope.upload = function(moment, file){
-    Upload.upload({url: 'http://localhost:8080/api/upload', data:{ file: file }})
+    Upload.upload({url: window.host + '/api/upload', data:{ file: file }})
     .then(function (resp) { //upload function returns a promise
                 if(resp.data.error_code === 0){
                     $scope.setMoment(moment, '/static/uploads/' + resp.data.file_name);
