@@ -69,7 +69,7 @@ angular.module('musementApp')
 
         $scope.this_user.projects.push(res.data.project)
 
-        $state.go('feed.project', { 'username': $scope.this_user.username, 'projectname' : res.data.project.projectname })
+        $state.go('feed.project', { 'username': $scope.this_user.username, 'projectname' : res.data.project.name })
       }
     }, function(res){
       alert(res.data.err.message);

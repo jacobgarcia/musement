@@ -62,9 +62,6 @@ angular.module('musementApp')
   profileDataService.getProfileInfo(user_id, function(response) {
     let user = response.data.user
     $scope.this_user = user
-
-    console.log(user.projects)
-
   });
 
   $scope.submitMoment = function(moment){
