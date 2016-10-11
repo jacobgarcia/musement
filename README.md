@@ -2,6 +2,9 @@
 
 **Welcome to Musement!**
 
+![Musement]
+(http://musement.co/static/img/musement.svg)
+
 Musement is a platform for people who want to share their ideas and projects, creating the moment.
 
 ### Getting started
