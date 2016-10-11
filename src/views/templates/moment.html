@@ -7,7 +7,7 @@
       <img src="{{moment.user.image}}" alt="" />
     </div>
     <div class="moment-info">
-      <p class="username" ng-click="console.log(moment);" ui-sref="feed.profile({username: moment.user.username})">{{moment.user.name}} {{moment.user.surname}} <span ng-if="moment.user.pro">PRO</span></p>
+      <p class="username" ng-click="console.log(moment);" ui-sref="feed.profile({username: moment.user.username})">{{moment.user.name}} {{moment.user.surname}}</p>
       <p ui-sref="feed.moment({username: moment.user.username, moment_id: moment._id})">{{moment.description}}</p>
       <p class="question" ui-sref="feed.moment({username: moment.user.username, moment_id: moment._id})">{{moment.question}}</p>
     </div>

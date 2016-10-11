@@ -34,6 +34,15 @@
       <ul class="tags">
         <li ng-repeat="tag in user.tags">{{tag.name}}</li>
       </ul>
+      <div ng-if="user.projects">
+        <label for="">Projects</label>
+        <ul class="projects" id="projects">
+          <li ng-repeat="project in user.projects" ui-sref="feed.project({username: user.username, projectname: project.name})">
+            <img src="{{project.logo}}" class="project-image" alt="" />
+            <p>{{project.name}}</p>
+          </li>
+        </ul>
+      </div>
       <p ng-if="user.location.state" class="location">{{user.location.city}}, {{user.location.state}}</p>
     </div>
   </div>

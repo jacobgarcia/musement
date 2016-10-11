@@ -10,9 +10,7 @@ var projectSchema = new mongoose.Schema({
   category: {
     type: String
   },
-  color: {
-    type: String,
-  },
+  logo: String,
   description: String,
   members: [{
     type: mongoose.Schema.Types.ObjectId,

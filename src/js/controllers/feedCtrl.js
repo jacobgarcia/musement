@@ -13,8 +13,7 @@ angular.module('musementApp')
   $scope.newMoment = {}
   $scope.newMoment.tags = []
   $scope.canSelectMore = $scope.newMoment.tags.length<4
-  /* Default selected project */
-  //$scope.defaultSelectedProject = this.newMoment.project[0].id;
+  $rootScope.selected = 0
 
   this.username = localStorageService.get('username');
   $scope.$watch('newMoment.tags',function(newVal, oldVal){
@@ -47,7 +46,6 @@ angular.module('musementApp')
 
   //Load the moments
   feedDataService.getInterestsFeed(user_id, function(response) {
-    console.log(response.data.moments);
     $scope.interests.moments = response.data.moments;
   });
 
@@ -65,7 +63,7 @@ angular.module('musementApp')
     let user = response.data.user
     $scope.this_user = user
 
-    console.log(user)
+    console.log(user.projects)
 
   });
 
@@ -109,7 +107,7 @@ angular.module('musementApp')
     momentInfo.attachments =  image
     momentInfo.tags = this.newMoment.tags
     momentInfo.question = this.newMoment.question
-    
+
     if (this.newMoment.project != null)
       momentInfo.project = this.newMoment.project._id
     else

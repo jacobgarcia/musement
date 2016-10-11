@@ -15,9 +15,20 @@
 <main class="main-feed">
   <div class="user-profile project">
     <div class="user-info">
-      <h1>{{project.name}}</h1>
-      <p class="bio">{{project.description}}</p>
-      <h5>Members</h5>
+      <div class="project-header">
+        <div class="project-image">
+          <label for="project-logo" ng-if="project.members | containsMember:this_user._id"></label>
+          <input type="file" name="name" value="" id="project-logo"
+           ngf-select="uploadLogo($file)" ng-if="project.members | contains:this_user._id">
+          <img src="{{project.logo}}" alt="" />
+        </div>
+        <div>
+          <h1>{{project.name}}</h1>
+          <p class="bio">{{project.description}}</p>
+        </div>
+      </div>
+
+      <label>Team</label>
       <div class="members">
         <div class="member" ng-repeat="member in project.members" ui-sref="feed.profile({username: member.username})">
           <img src="{{member.image}}" alt=""/>
