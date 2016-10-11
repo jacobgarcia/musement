@@ -1,9 +1,8 @@
 # Musement
 
-**Welcome to Musement!**
+<img src="http://musement.co/static/img/musement.svg" width="100%" height="85">
 
-![Musement]
-(http://musement.co/static/img/musement.svg = 110x200)
+**Welcome to Musement!**
 
 Musement is a platform for people who want to share their ideas and projects, creating the moment.
 
