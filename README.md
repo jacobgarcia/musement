@@ -3,7 +3,7 @@
 **Welcome to Musement!**
 
 ![Musement]
-(http://musement.co/static/img/musement.svg)
+(http://musement.co/static/img/musement.svg | width=200)
 
 Musement is a platform for people who want to share their ideas and projects, creating the moment.
 
