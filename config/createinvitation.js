@@ -17,6 +17,8 @@ var insertInvite = function(req, callback) {
   email.subject = "Invitation Request";
   email.from = 'hello@musement.co';
   email.fromname = "Musement";
+  email.text = 'Welcome to Musement';
+  email.html = '<h1>Welcome to Musement</h1>';
 
   // or set a filter using an object literal.
   email.setFilters({
