@@ -16,8 +16,13 @@
   <div class="user-profile project">
     <div class="user-info">
       <div class="project-header">
-        <img src="" alt="" class="project-image"/>
-        <div class="">
+        <div class="project-image">
+          <label for="project-logo" ng-if="project.members | containsMember:this_user._id"></label>
+          <input type="file" name="name" value="" id="project-logo"
+           ngf-select="uploadLogo($file)" ng-if="project.members | contains:this_user._id">
+          <img src="{{project.logo}}" alt="" />
+        </div>
+        <div>
           <h1>{{project.name}}</h1>
           <p class="bio">{{project.description}}</p>
         </div>

@@ -29,8 +29,7 @@ var upload = multer({storage: storage}).single('file') //single file upload usin
 router.post('/upload', function(req, res) { // API path that will upload the files
   upload(req, res, function(err){
     if(err)
-    res.json({error_code:1, error_desc:err});
-    else
+    return res.status(500).json({error_code:1, error_desc:err});
     res.json({error_code:0, file_name:req.file.filename});
   })
 })
@@ -83,7 +82,6 @@ router.post('/authenticate', function(req, res) {
     else if (!user)
       res.status(401).json({'message': "Authentication failed. Wrong user or password."})
     else {
-      console.log(user);
       if (!user.comparePassword(req.body.password)) // check if password matches
         res.status(401).json({'message': "Authentication failed. Wrong user or password."})
       else {
@@ -199,11 +197,11 @@ router.route('/users/u=:username?')
 router.route('/users/:user_id') //just when the url has "id=" it will run, otherwise it will look for a username
 .get(function (req, res) {
   User.findById(req.params.user_id, '-password') //Return all excepting password
-  .populate('projects tags', 'name description color')
+  .populate('projects tags')
   .exec(function(err, user) {
     if (err)
-    res.status(500).json({'error': err})
-    else
+      return res.status(500).json({'error': err})
+      console.log(user.projects);
     res.status(200).json({'user': user})
   })
 })
@@ -246,7 +244,7 @@ router.route('/users/:user_id/pro')
 router.route('/users/:user_id/moments')
 .get(function (req, res) { //Get moments of user
   Moment.find({"user": req.params.user_id}, '-feedback.user -feedback.text -feedback.comment -feedback.attachments -feedback.upvotes')
-  .populate('user tags','image name username')
+  .populate('user tags','image name username pro')
   .sort('-_id')
   .exec(function(err, moments) {
     if (err)
@@ -284,7 +282,7 @@ router.route('/moments/:moment_id')
     model: 'User',
     select: 'username name'
   })
-  .populate('user tags feedback','name surname username image')
+  .populate('user tags feedback','name surname username image pro')
   .exec(function(err, moment) {
     if (err)
     res.status(500).json({'error': err});
@@ -471,6 +469,23 @@ router.route('/projects/:project_id')
 .delete(function (req, res) {
   //TODO: Delete project
   res.status(501).json({'message':'Not yet supported.'})
+})
+
+router.route('/projects/:project_id/logo')
+.post(upload, function(req,res){
+  Project.findById(req.params.project_id)
+  .exec(function(err, project) {
+    if (err)
+      return res.status(500).json({'error': err})
+    if (project.members.indexOf(req.U_ID) <= -1)
+      return res.status(300).json({error: {message: "This is not your project >:|"}})
+    project.logo = '/static/uploads/'+ req.file.filename
+    project.save(function(err){
+      if (err)
+        return res.status(500).json({'error': err})
+      return res.status(200).json({message: "Logo updated", path: "/static/uploads/" + req.file.filename})
+    })
+  })
 })
 
 router.route('/projects/:project_id/moments')

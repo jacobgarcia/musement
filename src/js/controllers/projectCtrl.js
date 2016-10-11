@@ -1,5 +1,14 @@
 angular.module('musementApp')
-.controller('projectCtrl', function($scope, $rootScope, $stateParams, projectDataService, localStorageService, $http) {
+.filter('containsMember', function() {
+  return function (array, needle) {
+    for (var i = 0; i < array.length; i++) {
+      if (array[i]._id == needle)
+      return true
+    }
+    return false
+  };
+})
+.controller('projectCtrl', function($scope, $rootScope, $stateParams, projectDataService, localStorageService, $http, Upload) {
 
   let username = $stateParams.username;
   let projectname = $stateParams.projectname;
@@ -15,7 +24,7 @@ angular.module('musementApp')
         return member.name.toLowerCase().indexOf($query.toLowerCase()) != -1;
       });
     });
-  };
+  }
 
   projectDataService.getUsernameProject(username, projectname, function(response) {
     let project_id = response.data.project._id;
@@ -26,7 +35,23 @@ angular.module('musementApp')
         $scope.project.moments = response.data
       })
     })
-  });
+  })
+
+  $scope.uploadLogo = function(file) {
+    Upload.upload({
+           url: window.host + '/api/projects/' + $scope.project._id + '/logo',
+           data: {file: file}
+       }).then(function (response) {
+           console.log('Success ' + response.config.data.file.name + 'uploaded. Response: ' + response.data.path)
+           $scope.project.logo = response.data.path
+       }, function (response) {
+           console.log('Error status: ' + response.status)
+           console.dir(response)
+       }, function (event) {
+           var progressPercentage = parseInt(100.0 * event.loaded / event.total);
+           console.log('progress: ' + progressPercentage + '% ' + event.config.data.file.name);
+       });
+  }
 
   $scope.submitProject = function (project) {
 

@@ -37,8 +37,8 @@
       <div ng-if="user.projects">
         <label for="">Projects</label>
         <ul class="projects" id="projects">
-          <li ng-repeat="project in user.projects">
-            <img src="./" class="project-image" alt="" />
+          <li ng-repeat="project in user.projects" ui-sref="feed.project({username: user.username, projectname: project.name})">
+            <img src="{{project.logo}}" class="project-image" alt="" />
             <p>{{project.name}}</p>
           </li>
         </ul>

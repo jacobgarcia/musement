@@ -46,7 +46,6 @@ angular.module('musementApp')
 
   //Load the moments
   feedDataService.getInterestsFeed(user_id, function(response) {
-    console.log(response.data.moments);
     $scope.interests.moments = response.data.moments;
   });
 
@@ -64,7 +63,7 @@ angular.module('musementApp')
     let user = response.data.user
     $scope.this_user = user
 
-    console.log(user)
+    console.log(user.projects)
 
   });
 
