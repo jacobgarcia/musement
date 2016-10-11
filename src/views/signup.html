@@ -1,0 +1,68 @@
+<body>
+  <div class="sign-form">
+    <a href="/">
+      <div class="full-logo">
+        <img src="./static/img/musement.svg" alt="" class="logo"/>
+        <img src="./static/img/musement-logotype.svg" class="logotype" alt="" />
+      </div>
+    </a>
+    <div class="sign-fields">
+      <form name="signup" ng-submit="submit()">
+        <input type="email" ng-model="user.email" name="email" placeholder="Email" required>
+        <div role="alert" class="error">
+          <span ng-show="submitted && signup.email.$error.email">
+            This email is invalid</span>
+        </div>
+        <input type="password" ng-model="user.password" name="name" placeholder="Password" required>
+        <input type="password" ng-model="user.confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+        <div role="alert">
+          <span class="error" ng-show="submitted && (user.password !== user.confirm_password) && signup.confirm_password.$dirty">
+            Passwords do not match</span>
+        </div>
+      <!--  <div ng-messages="signup.confirm_password.$error" ng-if='signup.confirm_password.$touched'>
+          <span ng-message="password">Passwords do not match</span>
+        </div>-->
+        <input ng-click="submitted=true" type="submit" class="green-button small" value="Sign Up">
+      </form>
+      <div class="">
+        <p>Already a member? <a ui-sref="login">Log in</a></p>
+        <p><a ng-click="">Need help?</a></p>
+      </div>
+    </div>
+  </div>
+  <form name="upload_form">
+    <div class="complete-signup sign-fields" ng-hide="next">
+      <div>
+        <input type="text" name="name" ng-model="user.name" placeholder="Name" required="true">
+        <input type="text" name="surname" ng-model="user.surname" placeholder="Surname" required="true">
+        <input type="text" name="username" ng-model="user.username" placeholder="Username" required="true">
+      </div>
+      <div class="profile-picture">
+        <div class="photo">
+          <input type="file" ngf-select name="file" ng-model="user.image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="5MB"/>
+          <img ngf-thumbnail="user.image">
+        </div>
+        <p>What about a profile picture?</p>
+        <i ng-show="upload_form.file.$error.maxSize">File too large {{user.image.size / 1000000|number:1}}MB: max 5M</i><br>
+      </div>
+      <div class="">
+        <input type="button" name="done" value="NEXT" ng-click="nextToTags()" class="green-button">
+      </div>
+    </div>
+  </form>
+  <div class="select-interests" ng-class="{'active': showTags}">
+    <div class="interest-body">
+      <h2>Choose <span>{{3 - selectedTags.length}}</span> of your biggest interests</h2>
+      <p>In which area you consider to have more knowledge or experience? Help the community with your feedback and you will gain experience in that area</p>
+      <ul class="selected-tags">
+        <li ng-repeat="tag in selectedTags">{{tag.name}}</li>
+      </ul>
+      <ul class="all-tags">
+        <li class="tag" ng-repeat="tag in tags" ng-click="selectTag(tag,$index)">{{tag.name}}</li>
+      </ul>
+    </div>
+    <div class="done-button">
+      <input type="button" value="DONE" class="green-button" ng-click="signUp()" name="create" ng-class="{'inactive': selectedTags.length < 3}">
+    </div>
+  </div>
+</body>

@@ -1,45 +1,44 @@
-# Musement 
+# Musement
 
-<img src=http://i.imgur.com/pG2FYHp.jpg">
-###### Musement is a community from people who want to share their ideas and projects. Creating the moment.
+<img src="http://musement.co/static/img/musement.svg" width="100%" height="85">
 
-## Developer Install
+**Welcome to Musement!**
 
-Install Node.js. 
+Musement is a platform for people who want to share their ideas and projects, creating the moment.
 
-```bash
-# Node v4.2.x - recommended
-# Node v4.1.x - supported
-#
-# Choose wisely
-```
-Fork :ghost:
+### Getting started
 
-```bash
-mkdir musement
-cd musement
-git init
-git add remote origin git://github.com/yourForkRepo
-git pull origin master (and dev)
-```
-Install dependencies from this project
+##### System requirements
+
+macOS, Ubuntu Linux
+
+| Module  | Version  |
+| ------- | -------- |
+| NodeJS  | v4.6.0   |
+| MongoDB | v3.2.10  |
+| NPM     | v2.15.9  |
+
+**Install dependencies**
+
 ```bash
 npm install
 ```
-Install local development dependencies
+
+### Building Musement
+
+Musement currently uses Angular as the main frontend framework, Webpack as compiler and module manager, Gulp in CSS and HTML minification and more.
+
+Compile files in the project
 ```bash
-npm install mocha 
-```
-Install mongoDB in your computer
-```bash
- It's depends from your OS, please check the mongo's documentation
-```
-Run the project
-```bash
-npm run serve
-```
-Test the project
-```bash
-npm run test
+gulp build
 ```
 
+Test the project
+```bash
+gulp test
+```
+
+Run the project
+```bash
+npm start
+```

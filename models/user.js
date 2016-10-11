@@ -1,51 +1,57 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 
-// User Schema
 var userSchema = new mongoose.Schema({
     name: String,
-    lastName: {
-        type: String,
-        //required: true
-    },
+    surname: String,
+    pro: {type: Boolean, default: false},
     email: {
-        type: String,
-        required: true,
-        unique: true
+      type: String,
+      required: true,
+      unique: true
     },
-    password: String,
-    bornDate: Date, //ISO Date
+    proDate: Date,
+    image: {
+      type: String,
+      required: true
+    },
+    bio: String,
+    location: {
+      city: String,
+      state: String
+    },
+    moments: [{
+      type: mongoose.Schema.Types.ObjectId, /* Object ID from moments */
+      ref: 'Moment'
+    }],
+    password: {
+      type: String,
+      required: true
+    },
+    projects: [{
+      type: mongoose.Schema.Types.ObjectId, /* Object ID from projects */
+      ref: 'Project'
+    }],
+    tags: [{
+      type: mongoose.Schema.Types.ObjectId, /* Object ID from tags */
+      ref: 'Tag'
+    }],
     username: {
         type: String,
         required: true,
         unique: true
-    },
-    projects: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Project'
-    }],
-    followers: [{
-      type: mongoose.Schema.Types.ObjectId, /* Object ID from user */
-      ref: 'User' /* User Schema. Remember to define it as this in the export module */
-    }],
-    following: [{
-      type: mongoose.Schema.Types.ObjectId, /* Object ID from user */
-      ref: 'User' /* User Schema. Remember to define it as this in the export module */
-    }],
-    image: {
-        type: String,
-        required: true
     }
-});
+})
 
-// ============================= METHODS =======================================
-// generating a hash
-userSchema.methods.generateHash = function (password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
+userSchema.pre('save', function(next, callback){
+  this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8), function(err){
+      if (err) callback({error:{errmsg:"Error making hash sync"}},null)
+  })
+  next()
+})
 
 userSchema.methods.comparePassword = function (password) {
-    return bcrypt.compareSync(password, this.password);
+  return bcrypt.compareSync(password, this.password);
 };
 
 module.exports = mongoose.model('User', userSchema);

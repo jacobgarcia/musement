@@ -1,0 +1,107 @@
+<header class="mobile-header">
+  <nav>
+    <ul class="menu">
+      <li></li>
+      <li class="title">New Project</li>
+      <li>
+        <ul class="menu-icons">
+          <li ui-sref="feed"><img src="/static/img/buttons/btn_cancel.svg" class="icon" alt="" /></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <div class="project">
+    <!-- <div class="project-type">
+      <div class="type">
+        <input type="radio" ng-model="project.type" id="product" name="type" value="product" required="true">
+        <label for="product">Product</label>
+      </div>
+      <div class="type">
+        <input type="radio" ng-model="project.type" id="service" name="type" value="service">
+        <label for="service">Service</label>
+      </div>
+    </div> -->
+    <label for="name">Name of the project</label>
+    <input ng-model="project.name" type="text" name="name" placeholder="Name" id="name" required="true">
+    <!-- <label>Pick a color</label>
+    <div class="project-color">
+      <label>
+        <input type="radio" name="color" value="aqua" ng-model="project.color"/>
+        <img src="/static/img/project-colors/project_aqua.svg">
+      </label>
+      <label>
+        <input type="radio" name="color" value="green" ng-model="project.color"/>
+        <img src="/static/img/project-colors/project_green.svg">
+      </label>
+      <label>
+        <input type="radio" name="color" value="blue" ng-model="project.color"/>
+        <img src="/static/img/project-colors/project_blue.svg">
+      </label>
+      <label>
+        <input type="radio" name="color" value="purple" ng-model="project.color"/>
+        <img src="/static/img/project-colors/project_purple.svg">
+      </label>
+      <label>
+        <input type="radio" name="color" value="pink" ng-model="project.color"/>
+        <img src="/static/img/project-colors/project_pink.svg">
+      </label>
+      <label>
+        <input type="radio" name="color" value="yellow" ng-model="project.color"/>
+        <img src="/static/img/project-colors/project_yellow.svg">
+      </label>
+      <label>
+        <input type="radio" name="color" value="orange" ng-model="project.color"/>
+        <img src="/static/img/project-colors/project_orange.svg">
+      </label>
+      <label>
+        <input type="radio" name="color" value="red" ng-model="project.color"/>
+        <img src="/static/img/project-colors/project_red.svg">
+      </label>
+      <label>
+        <input type="radio" name="color" value="gray" ng-model="project.color"/>
+        <img src="/static/img/project-colors/project_gray.svg">
+      </label>
+      <label>
+        <input type="radio" name="color" value="dark" ng-model="project.color"/>
+        <img src="/static/img/project-colors/project_dark.svg">
+      </label>
+    </div> -->
+    <label for="description">Description</label>
+    <textarea ng-model="project.description" name="description" id="description" placeholder="Description..." required="true"></textarea>
+    <div class="project-members">
+
+      <label>Members</label>
+      <tags-input ng-model="project.members" key-property="_id" display-property="name" placeholder="Add Member" replace-spaces-with-dashes="false" max-tags="3" min-length="0"  add-from-autocomplete-only="true" template="tag-project">
+        <auto-complete source="loadMembers($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="35" template="autocomplete-project"></auto-complete>
+      </tags-input>
+
+      <script type="text/ng-template" id="tag-project">
+        <div class="tag-template">
+          <div class="left-panel">
+            <img class="profile-image" ng-src="{{data.image}}" ng-if="data.image"/>
+          </div>
+          <div class="right-panel">
+            <span>{{$getDisplayText()}}</span>
+            <a class="remove-button" ng-click="$removeTag()">&#10006;</a>
+          </div>
+        </div>
+      </script>
+
+      <script type="text/ng-template" id="autocomplete-project">
+        <div class="autocomplete-template">
+          <div class="left-panel">
+            <img class="profile-image" ng-src="{{data.image}}"/>
+          </div>
+          <div class="right-panel">
+            <span ng-bind-html="$highlight($getDisplayText())"></span>
+            <!-- <span>{{data.surname}}</span> -->
+            <span>{{data.username}}</span>
+          </div>
+        </div>
+      </script>
+    </div>
+      <input type="button" name="create" value="create" ng-click="submitProject(project)">
+  </div>
+</main>

@@ -1,0 +1,47 @@
+<header class="mobile-header">
+  <nav>
+    <ul class="menu">
+      <li ng-click="bodyMove()" id="menu"><div class=""></div><div class=""></div></li>
+      <li class="title">{{project.name}}</li>
+      <li>
+        <ul class="menu-icons">
+          <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt="" /></li>
+          <li ng-click="showCreateMoment()"><img src="/static/img/buttons/btn_create.svg" class="icon" alt="" /></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
+<main class="main-feed">
+  <div class="user-profile project">
+    <div class="user-info">
+      <div class="project-header">
+        <div class="project-image">
+          <label for="project-logo" ng-if="project.members | containsMember:this_user._id"></label>
+          <input type="file" name="name" value="" id="project-logo"
+           ngf-select="uploadLogo($file)" ng-if="project.members | containsMember:this_user._id">
+          <img src="{{project.logo}}" alt="" />
+        </div>
+        <div>
+          <h1>{{project.name}}</h1>
+          <p class="bio">{{project.description}}</p>
+        </div>
+      </div>
+
+      <label>Team</label>
+      <div class="members">
+        <div class="member" ng-repeat="member in project.members" ui-sref="feed.profile({username: member.username})">
+          <img src="{{member.image}}" alt=""/>
+          <p>{{member.name}}</p>
+          <p class="profile-username">@{{member.username}}</p>
+        </div>
+        <!-- <img src="" alt="" /> -->
+      </div>
+    </div>
+  </div>
+  <moment ng-repeat="moment in project.moments"></moment>
+  <div ng-if="project.moments.length == 0" class="no-moments">
+    <p class="no-moments-header">No moments in this project, yet</p>
+    <p ng-click="showCreateMoment()">What about publishing one now?</p>
+  </div>
+</main>

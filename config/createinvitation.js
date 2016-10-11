@@ -1,4 +1,4 @@
-var Guest = require("models/guest.js");
+var Guest = require("../models/guest.js");
 // var newEmail = require('config/sendEmail.js');
 const sendgrid  = require('sendgrid')('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');
 
@@ -10,22 +10,20 @@ var insertInvite = function(req, callback) {
   // Set the information needed
   newGuest.email = req.body.email;
   console.log("Email: " + newGuest.email);
-  // newGuest.whatismusement = req.body.whatismusement;
+  // newGuest.WHATismusement = req.body.WHATismusement;
 
   var email = new sendgrid.Email();
   email.addTo(newGuest.email);
-  email.subject = "Bienvenido a Musement :)";
+  email.subject = "Invitation Request";
   email.from = 'hello@musement.co';
   email.fromname = "Musement";
-  email.text = 'Bienvenido a Musement!';
-  email.html = '<h1>Bienvenido a Musement!</h1>';
 
   // or set a filter using an object literal.
   email.setFilters({
       'templates': {
           'settings': {
               'enable': 1,
-              'template_id' : '9a114f42-5f35-4eef-87bb-144146b12645',
+              'template_id' : '767734fc-b221-47b2-96d7-344ab5179bf4',
           }
       }
   });
