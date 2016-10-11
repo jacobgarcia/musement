@@ -1,5 +1,6 @@
 $lightGray: #f1f2f2;
 $lighterGray: #F5F5F5;
+$coolGray: rgb(176, 181, 184);
 $gray: #bdbdbd;
 $yellow: #ffc06c;
 $green: #20ad8a;
@@ -111,7 +112,7 @@ header.large-header {
   span {
     font-size: 0.7rem;
     margin-left: 5px;
-    background: rgb(222, 229, 232);
+    background: $coolGray;
     padding: 2px 4px;
     color: #FFF;
     font-weight: 600;
@@ -220,7 +221,7 @@ header.large-header {
     }
     .username {
       margin: 5px 0;
-      color: $gray;
+      color: $coolGray;
       font-size: 0.9rem;
     }
     .location {
@@ -554,6 +555,7 @@ aside {
     margin: 0 auto;
     margin-bottom: 10px;
     .username {
+      color: $coolGray;
       font-size: 0.75rem;
       font-weight: 600;
     }
@@ -775,7 +777,6 @@ aside {
     padding-left: 0;
   }
   .active {
-    background: #fff;
     color: rgb(59, 77, 87);
     position: relative;
   }
@@ -868,7 +869,7 @@ input {
   left: 0;
   padding: 16px;
   transform: translateY(-150vh);
-  transition: ease-in-out 0.3s;
+  transition: ease-in-out 0s;
 }
 .super-hover.active {
   z-index: 80;
@@ -1128,7 +1129,8 @@ input {
     flex-direction: column;
   }
   .profile-username {
-    font-size: 0.9rem;
+    color: $coolGray;
+    font-size: 0.75rem;
     font-weight: 500;
   }
   .profile {

@@ -8,7 +8,7 @@ angular.module('musementApp')
     return false
   };
 })
-.controller('projectCtrl', function($scope, $rootScope, $stateParams, projectDataService, localStorageService, $http, Upload) {
+.controller('projectCtrl', function($scope, $rootScope, $stateParams, projectDataService, localStorageService, $http, Upload, $state) {
 
   let username = $stateParams.username;
   let projectname = $stateParams.projectname;
@@ -67,8 +67,9 @@ angular.module('musementApp')
     projectDataService.setProject(projectInfo, user_id, function (res) {
       if (res.status == 201) {
 
-        $scope.this_user.projects.push(projectInfo)
-        $state.go()
+        $scope.this_user.projects.push(res.data.project)
+
+        $state.go('feed.project', { 'username': $scope.this_user.username, 'projectname' : res.data.project.name })
       }
     }, function(res){
       alert(res.data.err.message);
