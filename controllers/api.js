@@ -119,6 +119,16 @@ router.get('/members', function(req, res) {
   })
 })
 
+router.route('/members/:user_id')
+.get(function(req, res) {
+  User.find({}, 'name surname username image')
+  .where('_id')
+  .nin([req.params.user_id])
+  .exec(function(err, users){
+    res.json(users);
+  })
+})
+
 /*************************************
 ***                                ***
 ***          MIDDLEWARE           ***

@@ -108,8 +108,12 @@ angular.module('musementApp')
     momentInfo.description = this.newMoment.description
     momentInfo.attachments =  image
     momentInfo.tags = this.newMoment.tags
-    momentInfo.project = this.newMoment.project._id
     momentInfo.question = this.newMoment.question
+    
+    if (this.newMoment.project != null)
+      momentInfo.project = this.newMoment.project._id
+    else
+      momentInfo.project = null;
 
     feedDataService.setMoment(momentInfo, user_id, function (response) {
       if (response.data.success == true) {

@@ -73,7 +73,7 @@
     <div class="project-members">
 
       <label>Members</label>
-      <tags-input ng-model="project.members" display-property="name" placeholder="Add Member" replace-spaces-with-dashes="false" max-tags="3" min-length="0"  add-from-autocomplete-only="true" template="tag-project">
+      <tags-input ng-model="project.members" key-property="_id" display-property="name" placeholder="Add Member" replace-spaces-with-dashes="false" max-tags="3" min-length="0"  add-from-autocomplete-only="true" template="tag-project">
         <auto-complete source="loadMembers($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="35" template="autocomplete-project"></auto-complete>
       </tags-input>
 

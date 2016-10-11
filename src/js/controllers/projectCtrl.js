@@ -9,7 +9,7 @@ angular.module('musementApp')
 
   // Load members when creating a project
   $scope.loadMembers = function($query) {
-    return $http.get(host + '/api/members',{cache: true}).then(function(response) {
+    return $http.get(host + '/api/members/' + user_id, {cache: true}).then(function(response) {
       var members = response.data;
       return members.filter(function(member) {
         return member.name.toLowerCase().indexOf($query.toLowerCase()) != -1;
@@ -41,7 +41,7 @@ angular.module('musementApp')
 
     projectDataService.setProject(projectInfo, user_id, function (res) {
       if (res.status == 201) {
-        
+
         $scope.this_user.projects.push(projectInfo)
         $state.go()
       }
