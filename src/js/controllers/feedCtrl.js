@@ -13,8 +13,7 @@ angular.module('musementApp')
   $scope.newMoment = {}
   $scope.newMoment.tags = []
   $scope.canSelectMore = $scope.newMoment.tags.length<4
-  /* Default selected project */
-  //$scope.defaultSelectedProject = this.newMoment.project[0].id;
+  $rootScope.selected = 0
 
   this.username = localStorageService.get('username');
   $scope.$watch('newMoment.tags',function(newVal, oldVal){
@@ -109,7 +108,7 @@ angular.module('musementApp')
     momentInfo.attachments =  image
     momentInfo.tags = this.newMoment.tags
     momentInfo.question = this.newMoment.question
-    
+
     if (this.newMoment.project != null)
       momentInfo.project = this.newMoment.project._id
     else
