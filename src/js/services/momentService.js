@@ -11,7 +11,7 @@ angular.module('musementApp')
   }
 
   this.getTags = function(callback, errCallback) {
-    $http.get(host + '/api/tags')
+    $http.get(window.host + '/api/tags')
     .then(callback, errCallback)
   }
 
