@@ -709,6 +709,7 @@ aside {
     height: 43px;
     margin-right: 10px;
     border-radius: 50%;
+    flex-shrink: 0;
   }
   .profile-name {
     overflow: hidden;
