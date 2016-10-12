@@ -4,6 +4,7 @@ let express = require('express'),
     jwt = require('jsonwebtoken'),
     multer = require('multer'),
     path = require('path'),
+    bcrypt = require('bcrypt-nodejs'),
     router = express.Router()
 
 //Models
@@ -55,7 +56,7 @@ router.post('/signup', function(req, res){
           name: req.body.name,
           tags: req.body.tags,
           username: req.body.username,
-          password: req.body.password,
+          password: bcrypt.hashSync(req.body.password),
           image: req.body.image || null
         })
         .save(function (err, user) { // Save the user
@@ -79,12 +80,15 @@ router.post('/authenticate', function(req, res) {
   .exec(function(err, user) {
     if (err)
       res.status(500).json({'error': err})
-    else if (!user)
+    else if (!user) {
+      console.log('---------no user');
       res.status(401).json({'message': "Authentication failed. Wrong user or password."})
-    else {
-      if (!user.comparePassword(req.body.password)) // check if password matches
+    } else {
+      if (!user.comparePassword(req.body.password)) { // check if password matches
+        console.log('---------bad password');
         res.status(401).json({'message': "Authentication failed. Wrong user or password."})
-      else {
+      } else {
+        console.log('---------all cool!!');
         var token = jwt.sign({"_id": user._id}, jwtConfig.secret, { expiresIn: 216000 }) // expires in 6 hours
         res.status(200).json({ '_id': user._id, 'username': user.username, 'token': token })  // Return the information including token as JSON
       }
@@ -220,16 +224,18 @@ router.route('/users/:user_id/pro')
   if (req.params.user_id !== req.U_ID)
     return res.status(401).json({err: {message: "What ya' doing updating a user that's not you?"}})
   User.findById(req.params.user_id)
-  .exec(function(err,user) {
+  .exec(function(err,foundUser) {
+    console.log(foundUser.password)
     if (err)
       return res.status(500).json({err:err})
-    if (!user)
+    if (!foundUser)
       return res.status(404).json({err: {message: "User not found"}})
-    user.pro = true
-    user.proDate = new Date()
-    user.save(function(err, user){
+    foundUser.pro = true
+    foundUser.proDate = new Date()
+    foundUser.save(function(err, user){
       if (err)
         return res.status(500).json({err:err})
+      console.log(user.password);
       res.status(200).json({message: "You're pro now", user: user})
     })
   })
