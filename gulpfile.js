@@ -1,29 +1,70 @@
-var gulp = require('gulp');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var uglify = require('gulp-uglify');
+'use strict'
 
-var config={
-  scripts: {
-    main:'src/js/main.js',
-    watch:'src/js/**/*.js',
-    output:'public/js'
-  }
-}
-gulp.task('browserify', function() {
-  return browserify(config.scripts.main)
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
-    .pipe(uglify())
-    .pipe(gulp.dest(config.scripts.output));
-});
+let gulp = require('gulp'),
+    sourcemaps = require('gulp-sourcemaps'),
+    rename = require('gulp-rename'),
+    sass = require('gulp-sass'),
+    cleanCSS = require('gulp-clean-css'),
+    htmlmin = require('gulp-htmlmin'),
+    webpack = require('webpack-stream'),
+    concat = require('gulp-concat'),
+    nodemon = require('gulp-nodemon')
 
-gulp.task('watch', function(){
-  gulp.watch(config.scripts.watch, ['browserify']);
-});
+gulp.task('min-sass', function() {
+  return gulp.src('src/css/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(concat('master.css'))
+    .pipe(rename({
+            suffix: '.min'
+        }))
+    .pipe(gulp.dest('public/css'))
+})
 
-gulp.task('build', ['browserify']);
+gulp.task('sass', function() {
+  return gulp.src('src/css/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(concat('master.css'))
+    .pipe(rename({
+            suffix: '.min'
+        }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('public/css'))
+})
 
-gulp.task('default', ['watch', 'build']);
+gulp.task('htmlminify', function() {
+  return gulp.src(['./src/views/*/*.html','./src/views/*.html'])
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('./public/views'))
+})
+
+gulp.task('webpack', function(){
+  return gulp.src(['./src/js/**/*.js'])
+  .pipe(
+    webpack(require(__dirname + '/webpack.config.js'))
+    .on('error', (err) => {
+      if (err) console.log('--- Webpack error ---\n', err)
+    })
+  )
+  .pipe(rename('bundle.js'))
+  .pipe(gulp.dest('public/js'))
+})
+
+gulp.task('watch', function () {
+  gulp.watch("./src/views/**/*.html", ['htmlminify'])
+  gulp.watch('./src/js/**/*.js', ['webpack'])
+  gulp.watch('./src/css/*.scss', ['sass'])
+})
+
+gulp.task('start', function () {
+  nodemon({
+    script: 'server.js',
+    ext: 'js',
+    env: { 'NODE_ENV': 'development' }
+  })
+})
+
+gulp.task('build',['min-sass','htmlminify','webpack'])
+gulp.task('test', ['sass','htmlminify','webpack','watch','start'])
