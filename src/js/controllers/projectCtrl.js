@@ -42,14 +42,13 @@ angular.module('musementApp')
            url: window.host + '/api/projects/' + $scope.project._id + '/logo',
            data: {file: file}
        }).then(function (response) {
-           console.log('Success ' + response.config.data.file.name + 'uploaded. Response: ' + response.data.path)
            $scope.project.logo = response.data.path
        }, function (response) {
            console.log('Error status: ' + response.status)
            console.dir(response)
        }, function (event) {
            var progressPercentage = parseInt(100.0 * event.loaded / event.total);
-           console.log('progress: ' + progressPercentage + '% ' + event.config.data.file.name);
+          //  console.log('progress: ' + progressPercentage + '% ' + event.config.data.file.name);
        });
   }
 

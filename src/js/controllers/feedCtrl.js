@@ -16,9 +16,7 @@ angular.module('musementApp')
   $rootScope.selected = 0
 
   this.username = localStorageService.get('username');
-  $scope.$watch('newMoment.tags',function(newVal, oldVal){
-    console.log(newVal, oldVal);
-  })
+
   // Load tags when creating a moment
   $scope.loadTags = function($query) {
     return $http.get(host + '/api/tags',{cache: true}).then(function(response) {
@@ -165,8 +163,6 @@ angular.module('musementApp')
     profileDataService.getProfileInfo('u=' + username, function(response) {
       if (response.data.success) {
         $scope.user = response.data.user;
-
-        console.log(response.data.user);
 
         let user_id = response.data.user._id;
         profileDataService.getProfileMoments(user_id, function (response) {

@@ -16,7 +16,7 @@ angular.module('musementApp')
     if (this.user.password === this.user.confirm_password)
         $scope.next();
     else
-      console.log("Ay que las passwords");
+      // console.log("Ay que las passwords");
   }
 
   $scope.selectTag = function (tag,index) {
