@@ -191,7 +191,7 @@ header.large-header {
       margin-top: 10px;
       display: flex;
       justify-content: center;
-      overflow-x: scroll;
+      overflow-x: auto;
       li {
         display: block;
         margin: 0 10px;
@@ -206,7 +206,7 @@ header.large-header {
     .bio {
       margin: 20px 0;
       max-height: 200px;
-      overflow: scroll;
+      overflow: auto;
     }
     .name {
       font-size: 0.9rem;
@@ -296,7 +296,7 @@ header.large-header {
 .members {
   display: flex;
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
   align-items: center;
   margin-top: 10px;
   img {
@@ -417,7 +417,7 @@ header.large-header {
   -webkit-overflow-scrolling: touch;
   .side-bar-content {
     width: 100%;
-    overflow-y: scroll;
+    overflow: auto;
     padding: 20px;
     -webkit-overflow-scrolling: touch;
 
@@ -534,7 +534,7 @@ aside {
 }
 .main-feed {
   padding: 10px 16px;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -985,7 +985,7 @@ input {
   background: transparent;
   flex-direction: column;
   justify-content: center;
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
   .host {
     margin-bottom: 10px;
@@ -1076,7 +1076,7 @@ input {
     max-width: 300px;
     background: $lighterGray;
     padding: 10px 16px;
-    overflow-y: scroll;
+    overflow: auto;
     .slack-join {
       p {
         margin: 10px 0;
@@ -1225,6 +1225,7 @@ input {
   }
   .supper-wrapper .body .inner-body, .supper-wrapper .side-bar {
     padding-top: 50px;
+    overflow: hidden;
   }
 }
 
