@@ -129,18 +129,24 @@ angular.module('musementApp')
   $scope.setProject = function (project) {
     feedDataService.setProject(project, this.user_id, function (response) {
       console.log('Set project')
-    });
-  };
-
-  $scope.heart = function (index, moment_id) {
-    feedDataService.heartMoment(moment_id, function (res) {
-      if (res.status == 200 || res.status == 201) {
-        $scope.interests.moments[index].hearts.length++; //Increment counter if hearted succeed
-        $scope.interests.moments[index].liked = true;
-      } else {
-      }
-    }, (err) => console.log(err))
+    })
   }
+
+  $scope.heart = function (object) {
+    console.log(object.moment.hearts.indexOf($scope.this_user._id) < 0)
+    if (object.moment.hearts.indexOf($scope.this_user._id) >= 0) {
+      feedDataService.removeHeart(object.moment._id, function(res) {
+
+        object.moment.hearts.splice(object.moment.hearts.indexOf($scope.this_user),1)
+
+      }, (err) => console.log(err))
+    } else {
+      feedDataService.heartMoment(object.moment._id, function (res) {
+        object.moment.hearts.push($scope.this_user._id)
+      }, (err) => console.log(err))
+    }
+  }
+
   //UI functions:
   $scope.bodyMove = function (state) { $scope.bodyMoved = !$scope.bodyMoved; }
   $scope.showNotifications = function () { $scope.notificationsSeen = !$scope.notificationsSeen; }

@@ -7,22 +7,22 @@ module.exports = {
   },
   plugins: [ //Optimize all posible code with this stuff
     //webpack plugin that runs ng-annotate on your bundles
-    new ngAnnotatePlugin({
-        add: true,
-        // other ng-annotate options here
-    }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress:{
-        warnings: true //Remove warnings, production oriented
-      }
-    }),
-    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /de|fr|hu/)
+    // new ngAnnotatePlugin({
+    //     add: true,
+    //     // other ng-annotate options here
+    // }),
+    // new webpack.optimize.OccurenceOrderPlugin(),
+    // new webpack.DefinePlugin({
+    //   'process.env': {
+    //     'NODE_ENV': JSON.stringify('production')
+    //   }
+    // }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress:{
+    //     warnings: true //Remove warnings, production oriented
+    //   }
+    // }),
+    // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /de|fr|hu/)
   ],
   module: {
     loaders: [

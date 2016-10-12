@@ -24,9 +24,13 @@ angular.module('musementApp')
   }
 
   this.heartMoment = function(moment_id, callback,errCallback) {
-    console.log(window.HOST + '/api/moments/' + moment_id + '/likes')
     $http.post(window.HOST + '/api/moments/' + moment_id + '/likes')
-    .then(callback,errCallback);
+    .then(callback, errCallback)
+  }
+
+  this.removeHeart = function(moment_id, callback, errCallback) {
+    $http.delete(window.HOST +'/api/moments/' + moment_id + '/likes')
+    .then(callback, errCallback)
   }
 
   //TODO: Returns moments of the connections

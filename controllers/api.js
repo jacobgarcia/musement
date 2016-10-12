@@ -350,30 +350,26 @@ router.route('/moments/:moment_id/likes')
   })
 })
 .post(function (req, res) {
-  console.log('Got post!',req.params.moment_id)
   Moment.findById(req.params.moment_id)
   .update({ $addToSet: { hearts: req.U_ID } })
   .exec(function(err, result) {
-    console.log('result', result.nModified)
     if (err) {
-      console.log(err);
       res.status(500).json({'error': err})
     } else if (result.nModified == 0) //If the moment wasn't modified, means it didn't liked
       res.status(400).json({'message': "Already liked."})
     else {
-      console.log('Liked!');
       res.status(201).json({'message': "Successfully liked"})
     }
   })
 })
 .delete(function (req, res) { //Unheart
-  Moment.findByIdAndUpdate(req.params.moment_id, {$pull: {usersHeart: req.U_ID}})
-  .exec(function(err) {
-    console.log('Removing heart');
+  Moment.findByIdAndUpdate(req.params.moment_id, {$pull: {hearts: req.U_ID}})
+  .exec(function(err,moment) {
     if (err)
-    res.status(500).json({'error': err})
+      res.status(500).json({'error': err})
     else
-    res.status(200).json({"message": "Successfully un-liked"})
+      res.status(200).json({"message": "Successfully un-liked"})
+    console.log(moment)
   })
 })
 
