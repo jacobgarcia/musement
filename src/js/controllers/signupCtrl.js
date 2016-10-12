@@ -14,9 +14,7 @@ angular.module('musementApp')
     $scope.submitted = true;
 
     if (this.user.password === this.user.confirm_password)
-        $scope.next();
-    else
-      // console.log("Ay que las passwords");
+        $scope.next()
   }
 
   $scope.selectTag = function (tag,index) {
@@ -27,7 +25,7 @@ angular.module('musementApp')
   }
 
   $scope.random = function () {
-    console.log(1 - Math.random())
+    // console.log(1 - Math.random())
     return 1 - Math.random()
   }
 
@@ -35,7 +33,7 @@ angular.module('musementApp')
     if (this.user.email && this.user.password ) {
         $scope.next = false
     } else {
-      console.log('no...')
+      // console.log('no...')
     }
   }
 
