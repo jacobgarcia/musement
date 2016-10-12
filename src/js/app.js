@@ -8,8 +8,8 @@ require('ng-tags-input')
 require('angular-translate-loader-static-files')
 
 var ipAddress = 'localhost:8080'
-window.host = 'http://musement.co' //Change in production to http://musement.co and in development to http://localhost:8080
-window.HOST='http://musement.co'
+ //Change in production to http://musement.co and in development to http://localhost:8080
+window.HOST='http://localhost:8080'
 
 angular.module('musementApp',['ui.router', 'LocalStorageModule', 'angular-jwt','pascalprecht.translate', 'ngFileUpload', 'ngTagsInput'])//, 'ngFileUpload'
 .factory('httpRequestInterceptor', function (localStorageService) {

@@ -19,7 +19,7 @@ angular.module('musementApp')
 
   // Load tags when creating a moment
   $scope.loadTags = function($query) {
-    return $http.get(host + '/api/tags',{cache: true}).then(function(response) {
+    return $http.get(HOST + '/api/tags',{cache: true}).then(function(response) {
       var tags = response.data;
       return tags.filter(function(tag) {
         return tag.name.toLowerCase().indexOf($query.toLowerCase()) != -1;
@@ -82,7 +82,7 @@ angular.module('musementApp')
   }
 
   $scope.upload = function(moment, file){
-    Upload.upload({url: window.host + '/api/upload', data:{ file: file }})
+    Upload.upload({url: window.HOST + '/api/upload', data:{ file: file }})
     .then(function (resp) { //upload function returns a promise
                 if(resp.data.error_code === 0){
                     $scope.setMoment(moment, '/static/uploads/' + resp.data.file_name);
