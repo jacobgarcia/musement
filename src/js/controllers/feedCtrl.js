@@ -10,6 +10,7 @@ angular.module('musementApp')
   $scope.user_id = user_id
   $scope.tags = []
   $scope.proVisible = false
+  $scope.welcomeVisible = false
   $scope.newMoment = {}
   $scope.newMoment.tags = []
   $scope.canSelectMore = $scope.newMoment.tags.length<4
@@ -29,6 +30,11 @@ angular.module('musementApp')
 
   $scope.showPro = function () {
     $scope.proVisible = !$scope.proVisible
+  }
+
+  $scope.showWelcome = function(){
+    $scope.welcomeVisible = !$scope.welcomeVisible
+    $scope.showPro();
   }
 
   $scope.tryPro = function () {

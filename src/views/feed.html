@@ -92,12 +92,35 @@
       </ul>
       <p class="cta">
         Do you want a free PRO version trial for 3 months?
-        <input type="button" name="name" value="Try PRO now" ng-click="tryPro()">
+        <input type="button" name="name" value="Try PRO now" ng-click="bodyMove();showWelcome()">
       </p>
     </div>
   </div>
-
 </div>
+
+<div class="pro-wrapper" ng-class="{'active': welcomeVisible}">
+  <div class="pro-content">
+    <div class="pro-header">
+      <ul class="menu">
+        <li><h2 class="title">Welcome!</h2></li>
+      </ul>
+    </div>
+    <div class="pro-body">
+      <h3>{{this_user.name}} {{this_user.surname}}</h3>
+      <h4>Enjoy your three free months as a PRO entrepreneur</h4>
+      <img src="/static/img/pro-medal.svg" alt="" x/>
+      <p class="cta">
+        Start creating your first project
+        <li ui-sref="feed.new-project" ng-click="tryPro();bodyMove()" class="pointer">
+          <input type="button" name="name" class="green-button small" value="New Project">
+        </li>
+      </p>
+      <a ng-click="bodyMove();tryPro()">or Just continue</a>
+    </div>
+  </div>
+</div>
+
+
 <div class="create-moment" ng-class="{'active': momentSeen}" ng-form="createMomentForm">
   <div class="form-content">
     <ul class="menu">
