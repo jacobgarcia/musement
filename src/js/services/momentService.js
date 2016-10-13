@@ -15,4 +15,9 @@ angular.module('musementApp')
     .then(callback, errCallback)
   }
 
+  this.deleteMoment = function(moment_id ,callback, errCallback) {
+    $http.delete(window.HOST + '/api/moments/' + moment_id)
+    .then(callback, errCallback)
+  }
+
 })

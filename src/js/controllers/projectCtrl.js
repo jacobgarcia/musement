@@ -32,7 +32,7 @@ angular.module('musementApp')
       let project = response.data;
       $scope.project = project;
       projectDataService.getProjectMoments(project._id, function(response) {
-        $scope.project.moments = response.data
+        $scope.moments = response.data
       })
     })
   })

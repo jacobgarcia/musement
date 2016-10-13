@@ -46,8 +46,8 @@
       <p ng-if="user.location.state" class="location">{{user.location.city}}, {{user.location.state}}</p>
     </div>
   </div>
-  <moment ng-repeat="moment in user.moments"></moment>
-  <div ng-if="user.moments.length == 0" class="no-moments">
+  <moment ng-repeat="moment in moments"></moment>
+  <div ng-if="moments.length == 0" class="no-moments">
     <p class="no-moments-header">No moments yet :(</p>
     <p ng-click="showCreateMoment()">What about publishing one now?</p>
   </div>

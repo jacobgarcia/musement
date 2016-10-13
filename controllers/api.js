@@ -303,8 +303,23 @@ router.route('/moments/:moment_id')
   res.status(501).json({'message':'Not yet supported.'})
 })
 .delete(function (req, res) {
-  //TODO: Validate user owns the moment
-  res.status(501).json({'message':'Not yet supported.'})
+  Moment.findById(req.params.moment_id)
+  .exec(function(err,moment){
+    if (err)
+      return res.status(500).json({'error': err})
+    if (!moment)
+      return res.status(404).json({'error': {'message': "No moment found"}})
+    if (moment.user == req.U_ID) {
+      Moment.findById(req.params.moment_id)
+      .remove(function(err){
+        if (err)
+          return res.status(500).json({'error': err})
+        return res.status(204).json({'message': "Moment Successfully deleted :|"})
+      })
+    } else {
+      return res.status(401).json({error:{message: "This is not your moment pal"}})
+    }
+  })
 })
 
 router.route('/moments/:moment_id/feedback')

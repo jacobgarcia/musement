@@ -1,5 +1,5 @@
 angular.module('musementApp')
-.controller('feedCtrl', function($scope, $rootScope, $state, $stateParams, loginDataService, localStorageService, profileDataService, feedDataService, $compile, $sce, $window, Upload, $http) {
+.controller('feedCtrl', function($scope, $rootScope, $state, $stateParams, loginDataService, localStorageService, profileDataService, feedDataService, $compile, $sce, $window, Upload, $http, momentDataService) {
 
   let user_id = localStorageService.get('user_id')
   let detailCounter = 0
@@ -27,6 +27,16 @@ angular.module('musementApp')
     })
   }
 
+  $scope.deleteMoment = function(moments, moment) {
+    if(confirm("Are you sure you want to delte this moment?")){
+      momentDataService.deleteMoment(moment._id, (res) => {
+        if (res.status == 204) {
+          moments.splice(moment.$index, 1)
+        }
+      }, (errRes) => console.log(errRes))
+    }
+  }
+
   $scope.showPro = function () {
     $scope.proVisible = !$scope.proVisible
   }
@@ -36,15 +46,12 @@ angular.module('musementApp')
     function(res){
       $scope.proVisible = false
       $scope.this_user.pro = true
-    },
-    function(errRes){
-      console.log(errRes);
-    })
+    }, (errRes) => console.log(errRes) )
   }
 
   //Load the moments
   feedDataService.getInterestsFeed(user_id, function(response) {
-    $scope.interests.moments = response.data.moments;
+    $scope.moments = response.data.moments;
   });
 
   $scope.showUserDetails = function (username) {
@@ -109,11 +116,13 @@ angular.module('musementApp')
       momentInfo.project = null;
 
     feedDataService.setMoment(momentInfo, user_id, function (response) {
-      if (response.data.success == true) {
-        $scope.showCreateMoment(); //Hide new moment
+      console.log('respospone at set moment',response)
+      if (response.status == 201) {
+        console.log('status 201')
+        $scope.showCreateMoment() //Hide new moment
         //TODO: Maybe add a new animation when a moment has been created, in the midtime we will just reload the feed
         feedDataService.getInterestsFeed(user_id, function(response) { //Reload the moments
-          $scope.interests.moments = response.data.moments;
+          $scope.moments = response.data.moments;
         })
       } else {
         alert(response.error);
@@ -133,12 +142,9 @@ angular.module('musementApp')
   }
 
   $scope.heart = function (object) {
-    console.log(object.moment.hearts.indexOf($scope.this_user._id) < 0)
     if (object.moment.hearts.indexOf($scope.this_user._id) >= 0) {
       feedDataService.removeHeart(object.moment._id, function(res) {
-
         object.moment.hearts.splice(object.moment.hearts.indexOf($scope.this_user),1)
-
       }, (err) => console.log(err))
     } else {
       feedDataService.heartMoment(object.moment._id, function (res) {
@@ -172,7 +178,7 @@ angular.module('musementApp')
 
         let user_id = response.data.user._id;
         profileDataService.getProfileMoments(user_id, function (response) {
-          $scope.user.moments = response.data.moments;
+          $scope.moments = response.data.moments;
         });
 
       } else {
