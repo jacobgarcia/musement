@@ -971,6 +971,10 @@ input {
     }
     .pro-header {
       background: $green;
+      .menu{
+        text-align: center;
+        display: block;
+      }
       .cancel {
         color: #FFF;
       }
