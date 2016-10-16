@@ -32,7 +32,8 @@ header.large-header {
   margin-bottom: 30px;
 }
 .select-interests {
-  position: absolute;
+  position: fixed;
+  overflow-y: scroll;
   top: 0;
   left: 0;
   right: 0;
@@ -439,7 +440,7 @@ header.large-header {
   height: 13px;
 }
 .icon {
-  height: 19px;
+  height: 25px;
 }
 
 .menu {
@@ -449,7 +450,7 @@ header.large-header {
   justify-content: space-between;
   align-items: center;
   .menu-icons li {
-    height: 19px;
+    height: 25px;
   }
   li.search {
     flex-grow: 1;
@@ -486,8 +487,8 @@ header.large-header {
   display: flex;
   flex-wrap: wrap;
   border-bottom: 1px solid $lightGray;
-  padding-bottom: 14px;
-  padding-top: 14px;
+  padding-bottom: 11px;
+  padding-top: 11px;
   .filter {
     margin-top: 10px;
     color: rgb(59, 77, 87);
@@ -498,8 +499,12 @@ ul.menu ul li {
 }
 
 .menu li#menu {
-  width: 48px;
+  width: 25px;
   cursor: pointer;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   div {
     width: 22px;
     margin-bottom: 7px;
@@ -510,6 +515,9 @@ ul.menu ul li {
   div:last-child {
     margin-bottom: 0;
   }
+}
+.danger {
+  color: $red;
 }
 .body {
   z-index: 1;
@@ -578,14 +586,40 @@ aside {
     max-width: 500px;
     font-size: 0.9rem;
     .project-name {
-      width: 100%;
-      padding: 10px 15px 0px 10px;
-      margin-left: 15px;
+      display: flex;
+      justify-content: space-between;
       position: relative;
-      p {
+      > p {
         font-size: .75rem;
+        padding: 10px 15px 0px 10px;
+        position: relative;
       }
-      &::before {
+      .options-selector {
+        background: url('/static/img/icons/arrow-gray.svg') no-repeat right center;
+        background-size: 25px;
+        width: 42px;
+        height: 35px;
+        padding-right: 0;
+        margin-right: 15px;
+        flex-grow: 1;
+        position: absolute;
+        right: 0;
+      }
+      .options {
+        position: absolute;
+        background: #fff;
+        border-radius: 3px;
+        width: 130px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        right: 0;
+        margin-top: 30px;
+        font-weight: 500;
+      }
+      .project-text {
+        margin-left: 15px;
+      }
+      .project-text::before {
         position: absolute;
         content: '';
         left: 0;
@@ -595,6 +629,7 @@ aside {
         border-radius: 50%;
         background: $gray;
       }
+
     }
     .moment-text {
       display: flex;
@@ -1099,6 +1134,9 @@ input {
   }
 }
 @media (min-width: 600px) {
+  .options-selector {
+    position: relative;
+  }
   .create-moment {
     width: 400px;
     left: calc(50% - 220px);
@@ -1157,7 +1195,7 @@ input {
       font-size: 1.3rem;
     }
     li#menu {
-      width: 130px;
+      width: 133px;
       height: 18px;
       background: url('/static/img/musement-beta.svg');
       background-size: cover;
@@ -1167,7 +1205,7 @@ input {
     }
   }
   .icon {
-    height: 23px;
+    height: 25px;
   }
   body.app {
     overflow: auto;
@@ -1188,7 +1226,7 @@ input {
       }
     }
     ul.menu-icons li,ul.menu-icons li img  {
-      height: 21px;
+      height: 25px;
     }
   }
 

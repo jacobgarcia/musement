@@ -303,8 +303,23 @@ router.route('/moments/:moment_id')
   res.status(501).json({'message':'Not yet supported.'})
 })
 .delete(function (req, res) {
-  //TODO: Validate user owns the moment
-  res.status(501).json({'message':'Not yet supported.'})
+  Moment.findById(req.params.moment_id)
+  .exec(function(err,moment){
+    if (err)
+      return res.status(500).json({'error': err})
+    if (!moment)
+      return res.status(404).json({'error': {'message': "No moment found"}})
+    if (moment.user == req.U_ID) {
+      Moment.findById(req.params.moment_id)
+      .remove(function(err){
+        if (err)
+          return res.status(500).json({'error': err})
+        return res.status(204).json({'message': "Moment Successfully deleted :|"})
+      })
+    } else {
+      return res.status(401).json({error:{message: "This is not your moment pal"}})
+    }
+  })
 })
 
 router.route('/moments/:moment_id/feedback')
@@ -350,30 +365,26 @@ router.route('/moments/:moment_id/likes')
   })
 })
 .post(function (req, res) {
-  console.log('Got post!',req.params.moment_id)
   Moment.findById(req.params.moment_id)
   .update({ $addToSet: { hearts: req.U_ID } })
   .exec(function(err, result) {
-    console.log('result', result.nModified)
     if (err) {
-      console.log(err);
       res.status(500).json({'error': err})
     } else if (result.nModified == 0) //If the moment wasn't modified, means it didn't liked
       res.status(400).json({'message': "Already liked."})
     else {
-      console.log('Liked!');
       res.status(201).json({'message': "Successfully liked"})
     }
   })
 })
 .delete(function (req, res) { //Unheart
-  Moment.findByIdAndUpdate(req.params.moment_id, {$pull: {usersHeart: req.U_ID}})
-  .exec(function(err) {
-    console.log('Removing heart');
+  Moment.findByIdAndUpdate(req.params.moment_id, {$pull: {hearts: req.U_ID}})
+  .exec(function(err,moment) {
     if (err)
-    res.status(500).json({'error': err})
+      res.status(500).json({'error': err})
     else
-    res.status(200).json({"message": "Successfully un-liked"})
+      res.status(200).json({"message": "Successfully un-liked"})
+    console.log(moment)
   })
 })
 

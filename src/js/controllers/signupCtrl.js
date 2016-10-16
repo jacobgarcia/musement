@@ -64,7 +64,7 @@ angular.module('musementApp')
     if (!file) { //If user doesnt want to upload a photo, set the gravatar one
         $scope.sign(); //Send no image
     } else {
-      Upload.upload({url: window.host + '/api/upload', data:{ file: file }})
+      Upload.upload({url: window.HOST + '/api/upload', data:{ file: file }})
       .then(function (res) { //upload function returns a promise
             $scope.sign('/static/uploads/' + res.data.file_name);
         }, function (errRes) { //catch error

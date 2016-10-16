@@ -6,7 +6,7 @@ module.exports = {
     filename: "bundle.js"
   },
   plugins: [ //Optimize all posible code with this stuff
-    //webpack plugin that runs ng-annotate on your bundles
+    webpack plugin that runs ng-annotate on your bundles
     new ngAnnotatePlugin({
         add: true,
         // other ng-annotate options here

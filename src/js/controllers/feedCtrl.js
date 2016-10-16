@@ -1,5 +1,5 @@
 angular.module('musementApp')
-.controller('feedCtrl', function($scope, $rootScope, $state, $stateParams, loginDataService, localStorageService, profileDataService, feedDataService, $compile, $sce, $window, Upload, $http) {
+.controller('feedCtrl', function($scope, $rootScope, $state, $stateParams, loginDataService, localStorageService, profileDataService, feedDataService, $compile, $sce, $window, Upload, $http, momentDataService) {
 
   let user_id = localStorageService.get('user_id')
   let detailCounter = 0
@@ -20,12 +20,22 @@ angular.module('musementApp')
 
   // Load tags when creating a moment
   $scope.loadTags = function($query) {
-    return $http.get(host + '/api/tags',{cache: true}).then(function(response) {
+    return $http.get(HOST + '/api/tags',{cache: true}).then(function(response) {
       var tags = response.data;
       return tags.filter(function(tag) {
         return tag.name.toLowerCase().indexOf($query.toLowerCase()) != -1;
       })
     })
+  }
+
+  $scope.deleteMoment = function(moments, moment) {
+    if(confirm("Are you sure you want to delte this moment?")){
+      momentDataService.deleteMoment(moment._id, (res) => {
+        if (res.status == 204) {
+          moments.splice(moment.$index, 1)
+        }
+      }, (errRes) => console.log(errRes))
+    }
   }
 
   $scope.showPro = function () {
@@ -42,15 +52,12 @@ angular.module('musementApp')
     function(res){
       $scope.proVisible = false
       $scope.this_user.pro = true
-    },
-    function(errRes){
-      console.log(errRes);
-    })
+    }, (errRes) => console.log(errRes) )
   }
 
   //Load the moments
   feedDataService.getInterestsFeed(user_id, function(response) {
-    $scope.interests.moments = response.data.moments;
+    $scope.moments = response.data.moments;
   });
 
   $scope.showUserDetails = function (username) {
@@ -88,7 +95,7 @@ angular.module('musementApp')
   }
 
   $scope.upload = function(moment, file){
-    Upload.upload({url: window.host + '/api/upload', data:{ file: file }})
+    Upload.upload({url: window.HOST + '/api/upload', data:{ file: file }})
     .then(function (resp) { //upload function returns a promise
                 if(resp.data.error_code === 0){
                     $scope.setMoment(moment, '/static/uploads/' + resp.data.file_name);
@@ -115,11 +122,13 @@ angular.module('musementApp')
       momentInfo.project = null;
 
     feedDataService.setMoment(momentInfo, user_id, function (response) {
-      if (response.data.success == true) {
-        $scope.showCreateMoment(); //Hide new moment
+      console.log('respospone at set moment',response)
+      if (response.status == 201) {
+        console.log('status 201')
+        $scope.showCreateMoment() //Hide new moment
         //TODO: Maybe add a new animation when a moment has been created, in the midtime we will just reload the feed
         feedDataService.getInterestsFeed(user_id, function(response) { //Reload the moments
-          $scope.interests.moments = response.data.moments;
+          $scope.moments = response.data.moments;
         })
       } else {
         alert(response.error);
@@ -135,18 +144,21 @@ angular.module('musementApp')
   $scope.setProject = function (project) {
     feedDataService.setProject(project, this.user_id, function (response) {
       console.log('Set project')
-    });
-  };
-
-  $scope.heart = function (index, moment_id) {
-    feedDataService.heartMoment(moment_id, function (res) {
-      if (res.status == 200 || res.status == 201) {
-        $scope.interests.moments[index].hearts.length++; //Increment counter if hearted succeed
-        $scope.interests.moments[index].liked = true;
-      } else {
-      }
-    }, (err) => console.log(err))
+    })
   }
+
+  $scope.heart = function (object) {
+    if (object.moment.hearts.indexOf($scope.this_user._id) >= 0) {
+      feedDataService.removeHeart(object.moment._id, function(res) {
+        object.moment.hearts.splice(object.moment.hearts.indexOf($scope.this_user),1)
+      }, (err) => console.log(err))
+    } else {
+      feedDataService.heartMoment(object.moment._id, function (res) {
+        object.moment.hearts.push($scope.this_user._id)
+      }, (err) => console.log(err))
+    }
+  }
+
   //UI functions:
   $scope.bodyMove = function (state) { $scope.bodyMoved = !$scope.bodyMoved; }
   $scope.showNotifications = function () { $scope.notificationsSeen = !$scope.notificationsSeen; }
@@ -172,7 +184,7 @@ angular.module('musementApp')
 
         let user_id = response.data.user._id;
         profileDataService.getProfileMoments(user_id, function (response) {
-          $scope.user.moments = response.data.moments;
+          $scope.moments = response.data.moments;
         });
 
       } else {

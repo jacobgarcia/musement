@@ -18,7 +18,7 @@ angular.module('musementApp')
 
   // Load members when creating a project
   $scope.loadMembers = function($query) {
-    return $http.get(window.host + '/api/members/' + user_id, {cache: true}).then(function(response) {
+    return $http.get(window.HOST + '/api/members/' + user_id, {cache: true}).then(function(response) {
       var members = response.data;
       return members.filter(function(member) {
         return member.name.toLowerCase().indexOf($query.toLowerCase()) != -1;
@@ -32,14 +32,14 @@ angular.module('musementApp')
       let project = response.data;
       $scope.project = project;
       projectDataService.getProjectMoments(project._id, function(response) {
-        $scope.project.moments = response.data
+        $scope.moments = response.data
       })
     })
   })
 
   $scope.uploadLogo = function(file) {
     Upload.upload({
-           url: window.host + '/api/projects/' + $scope.project._id + '/logo',
+           url: window.HOST + '/api/projects/' + $scope.project._id + '/logo',
            data: {file: file}
        }).then(function (response) {
            $scope.project.logo = response.data.path

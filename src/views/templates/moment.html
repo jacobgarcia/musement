@@ -1,13 +1,18 @@
 <div class="moment" ng-model="moments">
-  <div class="project-name" ng-if="moment.project.name" ui-sref="feed.project({username: moment.user.username, projectname: moment.project.name})">
-    <p>{{moment.project.name}}</p>
+  <div class="project-name">
+    <p  ng-if="moment.project.name" ui-sref="feed.project({username: moment.user.username, projectname: moment.project.name})" class="project-text">{{moment.project.name}}</p>
+    <div class="options-selector" ng-model="showSelector" ng-click="showSelector = !showSelector" ng-if="moment.user._id == this_user._id">
+      <div class="options" ng-show="showSelector">
+        <p class="danger" ng-click="deleteMoment(moments, moment)">Delete moment</p>
+      </div>
+    </div>
   </div>
   <div class="moment-text">
     <div class="user-image" ui-sref="feed.profile({username: moment.user.username})">
       <img src="{{moment.user.image}}" alt="" />
     </div>
     <div class="moment-info">
-      <p class="username" ng-click="console.log(moment);" ui-sref="feed.profile({username: moment.user.username})">{{moment.user.name}} {{moment.user.surname}}</p>
+      <p class="username" ui-sref="feed.profile({username: moment.user.username})">{{moment.user.name}} {{moment.user.surname}}</p>
       <p ui-sref="feed.moment({username: moment.user.username, moment_id: moment._id})">{{moment.description}}</p>
       <p class="question" ui-sref="feed.moment({username: moment.user.username, moment_id: moment._id})">{{moment.question}}</p>
     </div>
@@ -22,7 +27,7 @@
     <!-- <p>{{moment.feedback.length}} feedbacks</p> -->
   </div>
   <div class="moment-stats" ui-sref="feed.moment({username: moment.user.username, moment_id: moment._id})">
-    <div class="hearts" ng-click="heart($index, moment._id); $event.stopPropagation();" ng-class="{liked: ((moment.hearts | contains:user_id) || moment.liked)}">
+    <div class="hearts" ng-click="heart(this); $event.stopPropagation();" ng-class="{liked: ((moment.hearts | contains:user_id) || moment.liked)}">
       <p>{{moment.hearts.length}}</p>
     </div>
     <div class="feedback-icon">
