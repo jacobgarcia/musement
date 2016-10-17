@@ -8,6 +8,7 @@ $darkGreen: #3f4d55;
 $darkBlue: #3b4d57;
 $yellow: rgb(247,193,108);
 $red: #ed3c40;
+$blue: #3f4d55;
 
 body.app {
   overflow: hidden;
@@ -843,6 +844,7 @@ aside {
   bottom: 0;
   img {
     margin-right: 10px;
+    width: 20px;
   }
 }
 ul.tags li {
@@ -1228,6 +1230,15 @@ input {
     ul.menu-icons li,ul.menu-icons li img  {
       height: 25px;
     }
+    .new_moment-button{
+      background-color: $blue;
+      padding: 6px 20px;
+      border-radius: 3px;
+      cursor: pointer;
+      color: white;
+      margin-right: 15px;
+      font-size: 16px;
+    }
   }
 
   * [ng-click], * [ui-sref]  {
@@ -1258,6 +1269,8 @@ input {
     .log-out {
       color: #666;
       position: relative;
+      font-size: 16px;
+      margin-top: 30%;
     }
   }
   header.mobile-header {
