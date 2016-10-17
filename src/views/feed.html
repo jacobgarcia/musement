@@ -6,10 +6,15 @@
       <li>
         <ul class="menu-icons">
           <!-- <li ng-click="showNotifications()"><img src="/static/img/buttons/btn_notifications.svg" class="icon" alt=""></li> -->
-          <li ng-click="showCreateMoment()"><img src="/static/img/buttons/btn_create.svg" class="icon" alt=""></li>
+          <li ng-click="showCreateMoment()">
+            <div class="new_moment-button">
+              New Moment
+            </div>
+          </li>
         </ul>
       </li>
     </ul>
+
   </nav>
 </header>
 <div class="super-hover" ng-class="{'active': momentSeen}" ng-click="momentSeen=false"></div>
@@ -78,7 +83,7 @@
   <div class="pro-content">
     <div class="pro-header">
       <ul class="menu">
-        <li><h2>PRO</h2></li>
+        <li><h2>PRO $9USD/mo</h2></li>
         <li class="cancel" ng-click="showPro()">Cancel</li>
       </ul>
     </div>
