@@ -25,6 +25,9 @@
 <main class="main-feed">
   <div class="user-profile">
     <div class="user-image" ng-class="{'mask': this_user.pro}">
+      <label for="user-picture" ng-if="user.username == this_user.username"></label>
+      <input type="file" name="name" value="" id="user-picture"
+       ngf-select="uploadAvatar($file)" ng-if="user.username == this_user.username">
       <img src="{{user.image}}" alt="" />
     </div>
     <div class="user-info">

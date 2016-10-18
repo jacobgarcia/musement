@@ -322,6 +322,23 @@ router.route('/moments/:moment_id')
   })
 })
 
+router.route('/users/:user_id/avatar')
+.post(upload, function(req,res){
+  User.findById(req.params.user_id)
+  .exec(function(err, user) {
+    if (err)
+      return res.status(500).json({'error': err})
+    if (req.params.user_id.indexOf(req.U_ID) <= -1)
+      return res.status(300).json({error: {message: "This are not you >:|"}})
+    user.image = '/static/uploads/'+ req.file.filename
+    user.save(function(err){
+      if (err)
+        return res.status(500).json({'error': err})
+      return res.status(200).json({message: "Avatar updated", path: "/static/uploads/" + req.file.filename})
+    })
+  })
+})
+
 router.route('/moments/:moment_id/feedback')
 .get(function (req, res) { //Get detailed information of the moment
   Moment.findById(req.params.moment_id, 'feedback')

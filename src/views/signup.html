@@ -34,7 +34,7 @@
     <div class="complete-signup sign-fields" ng-hide="next">
       <div>
         <input type="text" name="name" ng-model="user.name" placeholder="Name" required="true">
-        <input type="text" name="surname" ng-model="user.surname" placeholder="Surname" required="true">
+        <input type="text" name="surname" ng-model="user.surname" placeholder="LastName" required="true">
         <input type="text" name="username" ng-model="user.username" placeholder="Username" required="true">
       </div>
       <div class="profile-picture">
@@ -42,7 +42,7 @@
           <input type="file" ngf-select name="file" ng-model="user.image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="5MB"/>
           <img ngf-thumbnail="user.image">
         </div>
-        <p>What about a profile picture?</p>
+        <p>What about uploading a profile picture?</p>
         <i ng-show="upload_form.file.$error.maxSize">File too large {{user.image.size / 1000000|number:1}}MB: max 5M</i><br>
       </div>
       <div class="">
