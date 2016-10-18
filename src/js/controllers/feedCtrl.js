@@ -51,6 +51,7 @@ angular.module('musementApp')
     feedDataService.setUserPro(user_id,
     function(res){
       $scope.proVisible = false
+      $scope.welcomeVisible = false
       $scope.this_user.pro = true
     }, (errRes) => console.log(errRes) )
   }
