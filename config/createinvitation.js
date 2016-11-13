@@ -1,5 +1,4 @@
 var Guest = require("../models/guest.js");
-// var newEmail = require('config/sendEmail.js');
 const sendgrid  = require('sendgrid')('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');
 
 var insertInvite = function(req, callback) {
@@ -9,16 +8,16 @@ var insertInvite = function(req, callback) {
 
   // Set the information needed
   newGuest.email = req.body.email;
-  console.log("Email: " + newGuest.email);
-  // newGuest.WHATismusement = req.body.WHATismusement;
+  newGuest.name = req.body.name;
+  newGuest.preference = req.body.preference;
 
   var email = new sendgrid.Email();
   email.addTo(newGuest.email);
   email.subject = "Invitation Request";
   email.from = 'hello@musement.co';
-  email.fromname = "Musement";
-  email.text = 'Welcome to Musement';
-  email.html = '<h1>Welcome to Musement</h1>';
+  email.fromname = "Wetopia";
+  email.text = 'Welcome to Wetopia';
+  email.html = '<h1>Welcome to Wetopia</h1>';
 
   // or set a filter using an object literal.
   email.setFilters({
@@ -29,8 +28,6 @@ var insertInvite = function(req, callback) {
           }
       }
   });
-
-  console.log(newGuest.email);
 
   newGuest.save(function(error, guest) {
     var response = {};

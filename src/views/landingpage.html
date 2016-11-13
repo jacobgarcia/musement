@@ -14,7 +14,15 @@
           <div class="signup">
             <p>{{ 'EMAIL' | translate }}</p>
               <div class="input-elements">
-                <input ng-model="guest" type="email" class="dark-input" name="email" value="" placeholder="Email" id="email-input" required="true">
+                <input ng-model="guest.name" type="text" class="dark-input" name="name" value="" placeholder="Name" id="name-input" required="true">
+                <input ng-model="guest.email" type="email" class="dark-input" name="email" value="" placeholder="Email" id="email-input" required="true">
+                <select ng-model="guest.preference" required="true">
+                  <option value="" disabled selected>¿En qué estás más interesado?</option>
+                  <option value="validate">Validar Idea/Proyecto</option>
+                  <option value="team">Encontrar Equipo</option>
+                  <option value="mentorship">Mentoría</option>
+                  <option value="investment">Inversión</option>
+                </select>
                 <input type="button" name="submit" value="{{ 'SEND' | translate }}" id="submit-button" ng-click="submit(guest)">
                 <div role="alert" class="error">
                   <span>{{ message | translate }}</span>

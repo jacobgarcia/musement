@@ -172,7 +172,7 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
   border-radius: 5px;
   padding: 3px 20px 3px 10px;
 }
-.input-elements input[type="email"] {
+.input-elements input[type="email"], input[type="text"] {
   background: rgba(0, 0, 0, .3);
   color: rgb(255, 255, 255);
   width: 200px;

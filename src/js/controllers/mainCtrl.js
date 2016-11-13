@@ -9,7 +9,9 @@ angular.module('musementApp')
   $scope.submit = function(guest){
     if (guest != null) {
       let invitationInfo = {};
-      invitationInfo.email = this.guest;
+      invitationInfo.email = this.guest.email;
+      invitationInfo.name = this.guest.name;
+      invitationInfo.preference = this.guest.preference;
 
       invitationDataService.invitation(invitationInfo, function(res){
         if (res.status == 201)
