@@ -12,11 +12,12 @@ Musement is a platform for people who want to share their ideas and projects, cr
 
 macOS, Ubuntu Linux
 
-| Module  | Version  |
-| ------- | -------- |
-| NodeJS  | v4.6.0   |
-| MongoDB | v3.2.10  |
-| NPM     | v2.15.9  |
+| Module   | Version  |
+| -------- | -------- |
+| NodeJS   | v4.4.4   |
+| MongoDB  | v3.2.10  |
+| NPM      | v2.15.9  |
+| SendGrid | v4.7.1   |
 
 **Install dependencies**
 
@@ -41,4 +42,15 @@ gulp test
 Run the project
 ```bash
 npm start
+```
+
+### Setting SendGrid
+
+Wetopia uses SendGrid as its mailing service. The current web API we are using it is v3. Please consider this for API consulting.
+
+Run these on terminal for API Key designation. Remember to add the Key (not specified for security reasons)
+```bash
+echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
+echo "sendgrid.env" >> .gitignore
+source ./sendgrid.env
 ```
