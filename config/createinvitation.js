@@ -37,7 +37,7 @@ var insertInvite = function(req, callback) {
   var recipient_request = sendgrid.emptyRequest({
     method: 'POST',
     path: '/v3/contactdb/recipients',
-    body: [{"email": newGuest.email, "first_name": newGuest.name}]
+    body: [{"email": newGuest.email, "first_name": newGuest.name, "interest": newGuest.preference}]
   });
 
 
@@ -63,7 +63,7 @@ var insertInvite = function(req, callback) {
         });
 
         sendgrid.API(list_request, function (error, response) {
-          
+
           // Send mail
           sendgrid.API(send_request, function (error, response) {
             console.log(response.statusCode)
