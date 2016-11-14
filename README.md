@@ -48,9 +48,9 @@ npm start
 
 Wetopia uses SendGrid as its mailing service. The current web API we are using it is v3. Please consider this for API consulting.
 
-Run these on terminal for API Key designation. Remember to add the Key (not specified for security reasons)
+Run these on terminal for API Key designation
 ```bash
-echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
+echo "export SENDGRID_API_KEY='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'" > sendgrid.env
 echo "sendgrid.env" >> .gitignore
 source ./sendgrid.env
 ```

@@ -41,3 +41,4 @@ bower_components
 # Files uploaded by the user
 uploads
 *.DS_Store
+sendgrid.env
