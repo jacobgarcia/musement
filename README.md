@@ -10,15 +10,14 @@ macOS, Ubuntu Linux
 
 | Module   | Version  |
 | -------- | -------- |
-| NodeJS   | v4.4.4   |
+| NodeJS   | v8.10.11 |
 | MongoDB  | v3.2.10  |
-| NPM      | v2.15.9  |
 | SendGrid | v4.7.1   |
 
 **Install dependencies**
 
 ```bash
-npm install
+yarn
 ```
 
 ### Building Musement
@@ -37,7 +36,7 @@ gulp test
 
 Run the project
 ```bash
-npm start
+yarn start
 ```
 
 ### Setting SendGrid
