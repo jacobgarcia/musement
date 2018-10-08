@@ -1,7 +1,3 @@
-# Musement
-
-<img src="http://musement.co/static/img/musement.svg" width="100%" height="85">
-
 **Welcome to Musement!**
 
 Musement is a platform for people who want to share their ideas and projects, creating the moment.
@@ -46,7 +42,7 @@ npm start
 
 ### Setting SendGrid
 
-Wetopia uses SendGrid as its mailing service. The current web API we are using it is v3. Please consider this for API consulting.
+Musement uses SendGrid as its mailing service. The current web API we are using it is v3. Please consider this for API consulting.
 
 Run these on terminal for API Key designation
 ```bash
